@@ -1,0 +1,43 @@
+@charset "utf-8";
+
+#bo_list .mb-photo {
+	width:18px; 
+	height:18px; }
+
+#bo_list .hd-wrap {
+	font-size: 14px; }
+
+#bo_list .wr-no,
+#bo_list .wr-date,
+#bo_list .wr-num,
+#bo_list .wr-name {
+	font-size: 12px; }
+
+@media (min-width: 768px) {
+	#bo_list .wr-no,
+	#bo_list .wr-date,
+	#bo_list .wr-num,
+	#bo_list .wr-name {
+		font-size: 13px; }
+
+	#bo_list .wr-no,
+	#bo_list .wr-date,
+	#bo_list .wr-num {
+		text-align: center; }
+
+	#bo_list .hd-name,
+	#bo_list .wr-name {
+		width: 100px; }
+
+	#bo_list .hd-date,
+	#bo_list .wr-date {
+		width: 80px; }
+
+	#bo_list .hd-hit,
+	#bo_list .wr-hit {
+		width: 70px; }
+
+	#bo_list .hd-num,
+	#bo_list .wr-num {
+		width: 60px; }
+}

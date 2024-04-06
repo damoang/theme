@@ -1,0 +1,168 @@
+@charset "utf-8";
+
+/* 관리자 버튼 */
+.sct_admin,
+.sev_admin,
+.sit_admin { 
+	position:absolute; 
+	z-index:1; 
+	left:auto; 
+	right:0; }
+
+.sct_admin .btn_admin,
+.sit_admin .btn_admin { 
+	background: var(--bs-tertiary-bg); 
+	border:0; 
+	border-radius:0; 
+	padding:10px 15px; }
+
+/* 페이징 숨김 */
+#sct .pg_wrap {
+	display: none; }
+
+/* 선택옵션 */
+.sod_opt ul { 
+	list-style:none; 
+	padding:0; 
+	margin:0; }
+
+/* 주문서 결제부분 */
+#od_pay_sl input[type="radio"] {
+	position: absolute;
+	width: 0;
+	height: 0;
+	overflow: hidden;
+	visibility: hidden;
+	text-indent: -999px;
+	left: 0;
+	z-index: -1; }
+
+#od_pay_sl .lb_icon {
+	display: inline-block;
+	float: left;
+	width: 50%;
+	font-size:14px;
+	line-height:1.4;
+	letter-spacing:-1px;
+	color:#000;
+	background:#fff; 
+	border: 1px solid #eceff4;
+	margin: -1px 0 0 -1px;
+	cursor: pointer;
+	height: 60px; 
+	position: relative;
+	padding-left: 60px;
+	padding-top: 18px; 
+	z-index:1; }
+
+#od_pay_sl input[type="radio"]:checked+.lb_icon {
+	border: 1px solid var(--bs-primary);
+	z-index: 3; }
+
+#od_pay_sl legend {
+	position: absolute;
+	font-size: 0; 
+	line-height: 0;
+	overflow: hidden; }
+
+#od_pay_sl .KPAY {
+	background: url('../../../../../img/kpay.png') no-repeat 50% 50% #fff;
+	overflow: hidden;
+	text-indent:-999px; }
+
+#od_pay_sl .PAYNOW {
+	background: url('../../../../../img/paynow.png') no-repeat 50% 50% #fff;
+	overflow: hidden;
+	text-indent:-999px; }
+
+#od_pay_sl .PAYCO {
+	background: url('../../../../../img/payco.png') no-repeat 50% 50% #fff;
+	overflow: hidden;
+	text-indent:-999px; }
+
+#od_pay_sl .inicis_lpay {
+	background: url('../../../../../img/lpay_logo.png') no-repeat 50% 50% #fff;
+	overflow: hidden;
+	text-indent:-999px }
+
+#od_pay_sl .inicis_kakaopay{
+	position: relative; 
+	overflow: hidden; 
+	text-indent:-999px; }
+
+#od_pay_sl .inicis_kakaopay em {
+	position: absolute;
+	top: 15px;
+	left: 45px;
+	width: 70px;
+	height: 30px;
+	background: url('../../../img/kakao.png') no-repeat 50% 50% #ffeb00;
+	overflow: hidden;
+	text-indent:-999px;
+	border-radius: 30px; }
+
+#od_pay_sl .kakaopay_icon {
+	background: url('../../../img/kakao.png') no-repeat 50% 50% #fff;
+	overflow: hidden;
+	text-indent:-999px; }
+
+#od_pay_sl .naverpay_icon { 
+	background: url('../../../img/ico-default-naverpay.png') no-repeat 50% 50% #fff;
+	overflow: hidden;
+	text-indent:-999px; }
+
+#od_pay_sl .applepay_icon{
+	background: url('../../../img/ico-mobile-applepay.png') no-repeat 50% 50% #fff;
+	overflow:hidden;
+	text-indent:-999px;	}
+
+#od_pay_sl .samsung_pay{
+	background: url('../../../img/samsungpay.png') no-repeat 50% 50% #fff;
+	overflow:hidden;
+	text-indent:-999px; }
+
+#od_pay_sl .bank_icon {
+	background: url('../../../img/pay_icon1.png') no-repeat 15px 50% #fff; }
+
+#od_pay_sl .vbank_icon{
+	background: url('../../../img/pay_icon2.png') no-repeat 15px 50% #fff; }
+
+#od_pay_sl .iche_icon {
+	background: url('../../../img/pay_icon2.png') no-repeat 15px 50% #fff; }
+
+#od_pay_sl .hp_icon {
+	background: url('../../../img/pay_icon3.png') no-repeat 24px 50% #fff; }
+
+#od_pay_sl .card_icon { 
+	background: url('../../../img/pay_icon4.png') no-repeat 17px 50% #fff; }
+
+#od_pay_sl .escrow_icon { 
+	padding-top:10px !important; }
+
+/* 애스크로 */
+#sod_frm_escrow {
+	margin:30px 0 0; }
+
+#sod_frm_escrow h2 {
+	font-size:1.5rem;
+	padding: 0 1rem 0.25rem;
+	margin: 0;
+	border: 0; }
+
+#sod_frm_escrow td {
+	padding:0.5rem 1rem; }
+
+#sod_frm_escrow p {
+	margin:5px 0; }
+
+#display_pay_process {
+	padding: 20px;
+	text-align:center; }
+
+/* 날짜선택기 */
+.ui-datepicker {
+	z-index:1021 !important; }
+
+/* 쿠폰존 */
+.couponzone-list .ratio { 
+	--bs-aspect-ratio: 75%; overflow:hidden; }
