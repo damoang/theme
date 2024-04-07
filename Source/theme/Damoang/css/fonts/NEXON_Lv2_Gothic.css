@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+@font-face {
+	font-family: "NEXON Lv2 Gothic";
+	src: url("./NEXON_Lv2_Gothic/NEXON_Lv2_Gothic.eot"); /* IE9 Compat Modes */
+	src: local(''),
+		 url("./NEXON_Lv2_Gothic/NEXON_Lv2_Gothic.eot?#iefix") format('embedded-opentype'), /* IE6 ~ IE8 */
+		 url("./NEXON_Lv2_Gothic/NEXON_Lv2_Gothic.woff") format('woff'); /* Modern Browsers */
+}
+
+/*
+@font-face {
+	font-family: "NEXON Lv2 Gothic Light";
+	src: url("./NEXON_Lv2_Gothic/NEXON_Lv2_Gothic_Light.eot");
+	src: local(''),
+		 url("./NEXON_Lv2_Gothic/NEXON_Lv2_Gothic_Light.eot?#iefix") format('embedded-opentype'),
+		 url("./NEXON_Lv2_Gothic/NEXON_Lv2_Gothic_Light.woff") format('woff');
+}
+
+@font-face {
+  font-family: "NEXON Lv2 Gothic Bold";
+	src: url("./NEXON_Lv2_Gothic/NEXON_Lv2_Gothic_Bold.eot");
+	src: local(''),
+		 url("./NEXON_Lv2_Gothic/NEXON_Lv2_Gothic_Bold.eot?#iefix") format('embedded-opentype'),
+		 url("./NEXON_Lv2_Gothic/NEXON_Lv2_Gothic_Bold.woff") format('woff');
+}
+*/
