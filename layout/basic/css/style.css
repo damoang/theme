@@ -98,7 +98,9 @@ a, a:hover {
 	width:0%; }
 
 .site-wrap {
-	background: var(--na-footer-bg); }
+	background: var(--na-footer-bg);
+	overflow-y: scroll;
+}
 
 /* 사이트 최대 너비 */
 .container {
@@ -458,7 +460,7 @@ a, a:hover {
 }
 
 .list-group-item:hover{
-	background-color:var(--bs-list-group-action-hover-bg);
+	background-color:var(--bs-list-group-action-hover-bg)!important;;
 }
 .list-group-item:active{
 	background-color:brightness(var(--bs-list-group-action-active-bg), 0.8)!important;

@@ -33,6 +33,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 		</div>
 	</div>
 </div>
+
 <script>
 //	function googleTranslateElementInit() {
 //		new google.translate.TranslateElement({
@@ -44,5 +45,18 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 //	}
 </script>
 <?php run_event('tail_sub'); ?>
+광고 테스트
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6922133409882969"
+	crossorigin="anonymous"></script>
+<!-- title -->
+<ins class="adsbygoogle"
+	style="display:block"
+	data-ad-client="ca-pub-6922133409882969"
+	data-ad-slot="8483561805"
+	data-ad-format="auto"
+	data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 </body>
 </html>

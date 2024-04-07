@@ -13,6 +13,14 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
 		<div id="sidebar-site-menu" class="mb-3">
 			<div class="nav-item">
+				<a class="nav-link" href="https://www.youtube.com/watch?v=iDy4SyhpOGc" data-placement="left" target="_blank">
+					<i class="bi-youtube nav-icon"></i>
+					<span class="nav-link-title">
+													[♥] 다모앙 라방 (가칭 : 사랑방)				
+					</span>
+				</a>
+			</div>
+			<div class="nav-item">
 				<a class="nav-link" href="https://damoang.net/notice" data-placement="left" target="_self">
 					<i class="bi-clipboard nav-icon"></i>
 					<span class="nav-link-title">
@@ -450,6 +458,19 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 					<span class="nav-link-title"><?php echo (G5_IS_MOBILE) ? 'PC' : '모바일'; ?> 버전</span>
 				</a>
 			</div>
+			여기에 광고야 나와라...ㅠ
+			<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6922133409882969"
+				crossorigin="anonymous"></script>
+<!-- sub -->
+			<ins class="adsbygoogle"
+			style="display:block"
+			data-ad-client="ca-pub-6922133409882969"
+			data-ad-slot="3231235128"
+			data-ad-format="auto"
+			data-full-width-responsive="true"></ins>
+			<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+		</script>
 
 		</div>
 	</div>

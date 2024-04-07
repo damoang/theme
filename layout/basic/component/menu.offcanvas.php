@@ -16,375 +16,383 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 		<div class="na-menu">
 			<div class="nav nav-pills nav-vertical">
 
-				<div id="sidebar-site-menu" class="mb-3">
-					<div class="nav-item">
-						<a class="nav-link" href="https://damoang.net/notice" data-placement="left" target="_self">
-							<i class="bi-clipboard nav-icon"></i>
-							<span class="nav-link-title">
-							[J] 공지사항		
-							</span>
-						</a>
-					</div>
-					<div class="nav-item">
-						<a class="nav-link" href="https://damoang.net/free" data-placement="left" target="_self">
-							<i class="bi-clipboard nav-icon"></i>
-							<span class="nav-link-title">
+				<div class="nav-item">
+				<a class="nav-link" href="https://www.youtube.com/watch?v=iDy4SyhpOGc" data-placement="left" target="_blank">
+					<i class="bi-youtube nav-icon"></i>
+					<span class="nav-link-title">
+							[♥] 다모앙 라방 (가칭 : 사랑방)		
+					</span>
+				</a>
+			</div>
+			<div class="nav-item">
+				<a class="nav-link" href="https://damoang.net/notice" data-placement="left" target="_self">
+					<i class="bi-clipboard nav-icon"></i>
+					<span class="nav-link-title">
+							[A] 공지사항		
+					</span>
+				</a>
+			</div>
+			<div class="nav-item">
+				<a class="nav-link" href="https://damoang.net/free" data-placement="left" target="_self">
+					<i class="bi-clipboard nav-icon"></i>
+					<span class="nav-link-title">
 							[F] 자유게시판		
-							</span>
-						</a>
-					</div>
-					<div class="nav-item">
-						<a class="nav-link" href="https://damoang.net/qa" data-placement="left" target="_self">
-							<i class="bi-clipboard nav-icon"></i>
-							<span class="nav-link-title">
-							[Q] 질문과 답변	
-							</span>
-						</a>
-					</div>
-					<div class="nav-item">
-						<a class="nav-link" href="https://damoang.net/hello" data-placement="left" target="_self">
-							<i class="bi-clipboard nav-icon"></i>
-							<span class="nav-link-title">
+					</span>
+				</a>
+			</div>
+			<div class="nav-item">
+				<a class="nav-link" href="https://damoang.net/qa" data-placement="left" target="_self">
+					<i class="bi-clipboard nav-icon"></i>
+					<span class="nav-link-title">
+							[Q] 질문과 답변		
+					</span>
+				</a>
+			</div>
+			<div class="nav-item">
+				<a class="nav-link" href="https://damoang.net/hello" data-placement="left" target="_self">
+					<i class="bi-clipboard nav-icon"></i>
+					<span class="nav-link-title">
 							[I] 가입인사		
-							</span>
-						</a>
-					</div>
-					<div class="nav-item">
-						<a class="nav-link" href="https://damoang.net/new" data-placement="left" target="_self">
-							<i class="bi-clipboard nav-icon"></i>
-							<span class="nav-link-title">
+					</span>
+				</a>
+			</div>
+			<div class="nav-item">
+				<a class="nav-link" href="https://damoang.net/new" data-placement="left" target="_self">
+					<i class="bi-clipboard nav-icon"></i>
+					<span class="nav-link-title">
 							[N] 새소게(새소식)		
-							</span>
-						</a>
-					</div>
-					<div class="nav-item">
-						<a class="nav-link" href="https://damoang.net/tutorial" data-placement="left" target="_self">
-							<i class="bi-clipboard nav-icon"></i>
-							<span class="nav-link-title">
+					</span>
+				</a>
+			</div>
+			<div class="nav-item">
+				<a class="nav-link" href="https://damoang.net/tutorial" data-placement="left" target="_self">
+					<i class="bi-clipboard nav-icon"></i>
+					<span class="nav-link-title">
 							[T] 사용기/강좌		
-							</span>
-						</a>
-					</div>
-					<div class="nav-item">
-						<a class="nav-link" href="https://damoang.net/economy" data-placement="left" target="_self">
-							<i class="bi-clipboard nav-icon"></i>
-							<span class="nav-link-title">
+					</span>
+				</a>
+			</div>
+			<div class="nav-item">
+				<a class="nav-link" href="https://damoang.net/economy" data-placement="left" target="_self">
+					<i class="bi-clipboard nav-icon"></i>
+					<span class="nav-link-title">
 							[E] 알뜰구매		
-							</span>
-						</a>
-					</div>
-					<div class="nav-item">
-						<a class="nav-link" href="https://damoang.net/gallery" data-placement="left" target="_self">
-							<i class="bi-clipboard nav-icon"></i>
-							<span class="nav-link-title">
+					</span>
+				</a>
+			</div>
+			<div class="nav-item">
+				<a class="nav-link" href="https://damoang.net/gallery" data-placement="left" target="_self">
+					<i class="bi-clipboard nav-icon"></i>
+					<span class="nav-link-title">
 							[G] 갤러리		
-							</span>
-						</a>
-					</div>
-					<div class="nav-item">
-						<a class="nav-link dropdown-toggle collapsed collapsed" href="#sidebar-sub-s8" role="button" data-bs-toggle="collapse" data-bs-target="#sidebar-sub-s8" aria-expanded="false" aria-controls="sidebar-sub-s8">
-							<i class="bi-clipboard nav-icon"></i>
-							<span class="nav-link-title" onclick="na_href('https://damoang.net/bbs/group.php?gr_id=group','_self');">
+					</span>
+				</a>
+			</div>
+			<div class="nav-item">
+				<a class="nav-link dropdown-toggle collapsed collapsed" href="#sidebar-sub-s8" role="button" data-bs-toggle="collapse" data-bs-target="#sidebar-sub-s8" aria-expanded="false" aria-controls="sidebar-sub-s8">
+					<i class="bi-clipboard nav-icon"></i>
+					<span class="nav-link-title" onclick="na_href('https://damoang.net/bbs/group.php?gr_id=group','_self');">
 													[S] 소모임 
-							</span>
-						</a>
-						<div id="sidebar-sub-s8" class="nav-collapse collapse" data-bs-parent="#sidebar-site-menu">
-							<a class="nav-link" href="https://damoang.net/ai" target="_self">
+					</span>
+				</a>
+				<div id="sidebar-sub-s8" class="nav-collapse collapse" data-bs-parent="#sidebar-site-menu">
+					<a class="nav-link" href="https://damoang.net/ai" target="_self">
 									AI당																			<span class="small">
-								<b class="badge bg-primary rounded-pill fw-normal"></b>
-							</span>
-							</a>
-							<a class="nav-link" href="https://damoang.net/android" target="_self">
+						<b class="badge bg-primary rounded-pill fw-normal"></b>
+					</span>
+					</a>
+					<a class="nav-link" href="https://damoang.net/android" target="_self">
 									안드로메당																			<span class="small">
-								<b class="badge bg-primary rounded-pill fw-normal"></b>
-							</span>
-							</a>
-							<a class="nav-link" href="https://damoang.net/applewatch" target="_self">
+						<b class="badge bg-primary rounded-pill fw-normal"></b>
+					</span>
+					</a>
+					<a class="nav-link" href="https://damoang.net/applewatch" target="_self">
 									애플워치당																			<span class="small">
-								<b class="badge bg-primary rounded-pill fw-normal"></b>
-							</span>
-							</a>
-							<a class="nav-link" href="https://damoang.net/baseball" target="_self">
+						<b class="badge bg-primary rounded-pill fw-normal"></b>
+					</span>
+					</a>
+					<a class="nav-link" href="https://damoang.net/baseball" target="_self">
 									야구당																			<span class="small">
-								<b class="badge bg-primary rounded-pill fw-normal"></b>
-							</span>
-							</a>
-							<a class="nav-link" href="https://damoang.net/bicycle" target="_self">
+						<b class="badge bg-primary rounded-pill fw-normal"></b>
+					</span>
+					</a>
+					<a class="nav-link" href="https://damoang.net/bicycle" target="_self">
 									자전거당																			<span class="small">
-								<b class="badge bg-primary rounded-pill fw-normal"></b>
-							</span>
-							</a>
-							<a class="nav-link" href="https://damoang.net/bread" target="_self">
+						<b class="badge bg-primary rounded-pill fw-normal"></b>
+					</span>
+					</a>
+					<a class="nav-link" href="https://damoang.net/bread" target="_self">
 									성심빵당																			<span class="small">
-								<b class="badge bg-primary rounded-pill fw-normal"></b>
-							</span>
-							</a>
-							<a class="nav-link" href="https://damoang.net/camping" target="_self">
+						<b class="badge bg-primary rounded-pill fw-normal"></b>
+					</span>
+					</a>
+					<a class="nav-link" href="https://damoang.net/camping" target="_self">
 									캠핑간당																			<span class="small">
-								<b class="badge bg-primary rounded-pill fw-normal"></b>
-							</span>
-							</a>
-							<a class="nav-link" href="https://damoang.net/car" target="_self">
+						<b class="badge bg-primary rounded-pill fw-normal"></b>
+					</span>
+					</a>
+					<a class="nav-link" href="https://damoang.net/car" target="_self">
 									굴러간당																			<span class="small">
-								<b class="badge bg-primary rounded-pill fw-normal"></b>
-							</span>
-							</a>
-							<a class="nav-link" href="https://damoang.net/cat" target="_self">
+						<b class="badge bg-primary rounded-pill fw-normal"></b>
+					</span>
+					</a>
+					<a class="nav-link" href="https://damoang.net/cat" target="_self">
 									냐옹이당																			<span class="small">
-								<b class="badge bg-primary rounded-pill fw-normal"></b>
-							</span>
-							</a>
-							<a class="nav-link" href="https://damoang.net/coffee" target="_self">
+						<b class="badge bg-primary rounded-pill fw-normal"></b>
+					</span>
+					</a>
+					<a class="nav-link" href="https://damoang.net/coffee" target="_self">
 									클다방																			<span class="small">
-								<b class="badge bg-primary rounded-pill fw-normal"></b>
-							</span>
-							</a>
-							<a class="nav-link" href="https://damoang.net/console" target="_self">
+						<b class="badge bg-primary rounded-pill fw-normal"></b>
+					</span>
+					</a>
+					<a class="nav-link" href="https://damoang.net/console" target="_self">
 									콘솔한당																			<span class="small">
-								<b class="badge bg-primary rounded-pill fw-normal"></b>
-							</span>
-							</a>
-							<a class="nav-link" href="https://damoang.net/cooking" target="_self">
+						<b class="badge bg-primary rounded-pill fw-normal"></b>
+					</span>
+					</a>
+					<a class="nav-link" href="https://damoang.net/cooking" target="_self">
 									요리당																	</a>
-							<a class="nav-link" href="https://damoang.net/cryptocurrency" target="_self">
+					<a class="nav-link" href="https://damoang.net/cryptocurrency" target="_self">
 									가상화폐당																			<span class="small">
-								<b class="badge bg-primary rounded-pill fw-normal"></b>
-							</span>
-							</a>
-							<a class="nav-link" href="https://damoang.net/daegu" target="_self">
+						<b class="badge bg-primary rounded-pill fw-normal"></b>
+					</span>
+					</a>
+					<a class="nav-link" href="https://damoang.net/daegu" target="_self">
 									대구당																			<span class="small">
-								<b class="badge bg-primary rounded-pill fw-normal"></b>
-							</span>
-							</a>
-							<a class="nav-link" href="https://damoang.net/development" target="_self">
+						<b class="badge bg-primary rounded-pill fw-normal"></b>
+					</span>
+					</a>
+					<a class="nav-link" href="https://damoang.net/development" target="_self">
 									개발한당																			<span class="small">
-								<b class="badge bg-primary rounded-pill fw-normal"></b>
-							</span>
-							</a>
-							<a class="nav-link" href="https://damoang.net/diablo" target="_self">
+						<b class="badge bg-primary rounded-pill fw-normal"></b>
+					</span>
+					</a>
+					<a class="nav-link" href="https://damoang.net/diablo" target="_self">
 									디아블로당																			<span class="small">
-								<b class="badge bg-primary rounded-pill fw-normal"></b>
-							</span>
-							</a>
-							<a class="nav-link" href="https://damoang.net/dongsup" target="_self">
+						<b class="badge bg-primary rounded-pill fw-normal"></b>
+					</span>
+					</a>
+					<a class="nav-link" href="https://damoang.net/dongsup" target="_self">
 									동숲한당																	</a>
-							<a class="nav-link" href="https://damoang.net/drawing" target="_self">
+					<a class="nav-link" href="https://damoang.net/drawing" target="_self">
 									그림그린당																			<span class="small">
-								<b class="badge bg-primary rounded-pill fw-normal"></b>
-							</span>
-							</a>
-							<a class="nav-link" href="https://damoang.net/fishing" target="_self">
+						<b class="badge bg-primary rounded-pill fw-normal"></b>
+					</span>
+					</a>
+					<a class="nav-link" href="https://damoang.net/fishing" target="_self">
 									낙시당																	</a>
-							<a class="nav-link" href="https://damoang.net/fly" target="_self">
+					<a class="nav-link" href="https://damoang.net/fly" target="_self">
 									날아간당																			<span class="small">
-								<b class="badge bg-primary rounded-pill fw-normal"></b>
-							</span>
-							</a>
-							<a class="nav-link" href="https://damoang.net/formula" target="_self">
+						<b class="badge bg-primary rounded-pill fw-normal"></b>
+					</span>
+					</a>
+					<a class="nav-link" href="https://damoang.net/formula" target="_self">
 									포물러당																			<span class="small">
-								<b class="badge bg-primary rounded-pill fw-normal"></b>
-							</span>
-							</a>
-							<a class="nav-link" href="https://damoang.net/game" target="_self">
+						<b class="badge bg-primary rounded-pill fw-normal"></b>
+					</span>
+					</a>
+					<a class="nav-link" href="https://damoang.net/game" target="_self">
 									게임한당																			<span class="small">
-								<b class="badge bg-primary rounded-pill fw-normal"></b>
-							</span>
-							</a>
-							<a class="nav-link" href="https://damoang.net/golf" target="_self">
+						<b class="badge bg-primary rounded-pill fw-normal"></b>
+					</span>
+					</a>
+					<a class="nav-link" href="https://damoang.net/golf" target="_self">
 									골프당																			<span class="small">
-								<b class="badge bg-primary rounded-pill fw-normal"></b>
-							</span>
-							</a>
-							<a class="nav-link" href="https://damoang.net/gym" target="_self">
+						<b class="badge bg-primary rounded-pill fw-normal"></b>
+					</span>
+					</a>
+					<a class="nav-link" href="https://damoang.net/gym" target="_self">
 									땀흘린당																			<span class="small">
-								<b class="badge bg-primary rounded-pill fw-normal"></b>
-							</span>
-							</a>
-							<a class="nav-link" href="https://damoang.net/homebuilding" target="_self">
+						<b class="badge bg-primary rounded-pill fw-normal"></b>
+					</span>
+					</a>
+					<a class="nav-link" href="https://damoang.net/homebuilding" target="_self">
 									집짓는당																			<span class="small">
-								<b class="badge bg-primary rounded-pill fw-normal"></b>
-							</span>
-							</a>
-							<a class="nav-link" href="https://damoang.net/iphone" target="_self">
+						<b class="badge bg-primary rounded-pill fw-normal"></b>
+					</span>
+					</a>
+					<a class="nav-link" href="https://damoang.net/iphone" target="_self">
 									아이포니앙																			<span class="small">
-								<b class="badge bg-primary rounded-pill fw-normal"></b>
-							</span>
-							</a>
-							<a class="nav-link" href="https://damoang.net/japanlive" target="_self">
+						<b class="badge bg-primary rounded-pill fw-normal"></b>
+					</span>
+					</a>
+					<a class="nav-link" href="https://damoang.net/japanlive" target="_self">
 									일본산당																			<span class="small">
-								<b class="badge bg-primary rounded-pill fw-normal"></b>
-							</span>
-							</a>
-							<a class="nav-link" href="https://damoang.net/keyboard" target="_self">
+						<b class="badge bg-primary rounded-pill fw-normal"></b>
+					</span>
+					</a>
+					<a class="nav-link" href="https://damoang.net/keyboard" target="_self">
 									키보드당																			<span class="small">
-								<b class="badge bg-primary rounded-pill fw-normal"></b>
-							</span>
-							</a>
-							<a class="nav-link" href="https://damoang.net/lego" target="_self">
+						<b class="badge bg-primary rounded-pill fw-normal"></b>
+					</span>
+					</a>
+					<a class="nav-link" href="https://damoang.net/lego" target="_self">
 									레고당																			<span class="small">
-								<b class="badge bg-primary rounded-pill fw-normal"></b>
-							</span>
-							</a>
-							<a class="nav-link" href="https://damoang.net/linux" target="_self">
+						<b class="badge bg-primary rounded-pill fw-normal"></b>
+					</span>
+					</a>
+					<a class="nav-link" href="https://damoang.net/linux" target="_self">
 									리눅서당																			<span class="small">
-								<b class="badge bg-primary rounded-pill fw-normal"></b>
-							</span>
-							</a>
-							<a class="nav-link" href="https://damoang.net/MaClien" target="_self">
+						<b class="badge bg-primary rounded-pill fw-normal"></b>
+					</span>
+					</a>
+					<a class="nav-link" href="https://damoang.net/MaClien" target="_self">
 									MaClien																			<span class="small">
-								<b class="badge bg-primary rounded-pill fw-normal"></b>
-							</span>
-							</a>
-							<a class="nav-link" href="https://damoang.net/mbike" target="_self">
+						<b class="badge bg-primary rounded-pill fw-normal"></b>
+					</span>
+					</a>
+					<a class="nav-link" href="https://damoang.net/mbike" target="_self">
 									이륜차당																			<span class="small">
-								<b class="badge bg-primary rounded-pill fw-normal"></b>
-							</span>
-							</a>
-							<a class="nav-link" href="https://damoang.net/military" target="_self">
+						<b class="badge bg-primary rounded-pill fw-normal"></b>
+					</span>
+					</a>
+					<a class="nav-link" href="https://damoang.net/military" target="_self">
 									밀리터리당																			<span class="small">
-								<b class="badge bg-primary rounded-pill fw-normal"></b>
-							</span>
-							</a>
-							<a class="nav-link" href="https://damoang.net/movie" target="_self">
+						<b class="badge bg-primary rounded-pill fw-normal"></b>
+					</span>
+					</a>
+					<a class="nav-link" href="https://damoang.net/movie" target="_self">
 									영화본당																			<span class="small">
-								<b class="badge bg-primary rounded-pill fw-normal"></b>
-							</span>
-							</a>
-							<a class="nav-link" href="https://damoang.net/photo" target="_self">
+						<b class="badge bg-primary rounded-pill fw-normal"></b>
+					</span>
+					</a>
+		
+					<a class="nav-link" href="https://damoang.net/photo" target="_self">
 									찰칵찍당																			<span class="small">
-								<b class="badge bg-primary rounded-pill fw-normal"></b>
-							</span>
-							</a>
-							<a class="nav-link" href="https://damoang.net/photoshop" target="_self">
+						<b class="badge bg-primary rounded-pill fw-normal"></b>
+					</span>
+					</a>
+					<a class="nav-link" href="https://damoang.net/photoshop" target="_self">
 									포토샵당																			<span class="small">
-								<b class="badge bg-primary rounded-pill fw-normal"></b>
-							</span>
-							</a>
-							<a class="nav-link" href="https://damoang.net/nas" target="_self">
+						<b class="badge bg-primary rounded-pill fw-normal"></b>
+					</span>
+					</a>
+					<a class="nav-link" href="https://damoang.net/nas" target="_self">
 									나스당																			<span class="small">
-								<b class="badge bg-primary rounded-pill fw-normal"></b>
-							</span>
-							</a>
-							<a class="nav-link" href="https://damoang.net/ott" target="_self">
+						<b class="badge bg-primary rounded-pill fw-normal"></b>
+					</span>
+					</a>
+					<a class="nav-link" href="https://damoang.net/ott" target="_self">
 									OTT당																			<span class="small">
-								<b class="badge bg-primary rounded-pill fw-normal"></b>
-							</span>
-							</a>
-							<a class="nav-link" href="https://damoang.net/overseas" target="_self">
+						<b class="badge bg-primary rounded-pill fw-normal"></b>
+					</span>
+					</a>
+					<a class="nav-link" href="https://damoang.net/overseas" target="_self">
 									바다건넌당																			<span class="small">
-								<b class="badge bg-primary rounded-pill fw-normal"></b>
-							</span>
-							</a>
-							<a class="nav-link" href="https://damoang.net/parenting" target="_self">
+						<b class="badge bg-primary rounded-pill fw-normal"></b>
+					</span>
+					</a>
+					<a class="nav-link" href="https://damoang.net/parenting" target="_self">
 									육아당																			<span class="small">
-								<b class="badge bg-primary rounded-pill fw-normal"></b>
-							</span>
-							</a>
-							<a class="nav-link" href="https://damoang.net/playmobil" target="_self">
+						<b class="badge bg-primary rounded-pill fw-normal"></b>
+					</span>
+					</a>
+					<a class="nav-link" href="https://damoang.net/playmobil" target="_self">
 									플레이모빌당																	</a>
-							<a class="nav-link" href="https://damoang.net/youtube" target="_self">
+					<a class="nav-link" href="https://damoang.net/youtube" target="_self">
 									Youtube 당																			<span class="small">
-								<b class="badge bg-primary rounded-pill fw-normal"></b>
-							</span>
-							</a>
-							<a class="nav-link" href="https://damoang.net/wine" target="_self">
+						<b class="badge bg-primary rounded-pill fw-normal"></b>
+					</span>
+					</a>
+					<a class="nav-link" href="https://damoang.net/wine" target="_self">
 									와인마신당																			<span class="small">
-								<b class="badge bg-primary rounded-pill fw-normal"></b>
-							</span>
-							</a>
-							<a class="nav-link" href="https://damoang.net/whiskey" target="_self">
+						<b class="badge bg-primary rounded-pill fw-normal"></b>
+					</span>
+					</a>
+					<a class="nav-link" href="https://damoang.net/whiskey" target="_self">
 									위스키당																			<span class="small">
-								<b class="badge bg-primary rounded-pill fw-normal"></b>
-							</span>
-							</a>
-							<a class="nav-link" href="https://damoang.net/pathofexile" target="_self">
+						<b class="badge bg-primary rounded-pill fw-normal"></b>
+					</span>
+					</a>
+					<a class="nav-link" href="https://damoang.net/pathofexile" target="_self">
 									패스오브엑자일당																	</a>
-							<a class="nav-link" href="https://damoang.net/running" target="_self">
+					<a class="nav-link" href="https://damoang.net/running" target="_self">
 									달린당																			<span class="small">
-								<b class="badge bg-primary rounded-pill fw-normal"></b>
-							</span>
-							</a>
-							<a class="nav-link" href="https://damoang.net/server" target="_self">
+						<b class="badge bg-primary rounded-pill fw-normal"></b>
+					</span>
+					</a>
+					<a class="nav-link" href="https://damoang.net/server" target="_self">
 									서버당																			<span class="small">
-								<b class="badge bg-primary rounded-pill fw-normal"></b>
-							</span>
-							</a>
-							<a class="nav-link" href="https://damoang.net/watches" target="_self">
+						<b class="badge bg-primary rounded-pill fw-normal"></b>
+					</span>
+					</a>
+					<a class="nav-link" href="https://damoang.net/watches" target="_self">
 									시계당																			<span class="small">
-								<b class="badge bg-primary rounded-pill fw-normal"></b>
-							</span>
-							</a>
-							<a class="nav-link" href="https://damoang.net/seniorcenter" target="_self">
+						<b class="badge bg-primary rounded-pill fw-normal"></b>
+					</span>
+					</a>
+					<a class="nav-link" href="https://damoang.net/seniorcenter" target="_self">
 									경로당																			<span class="small">
-								<b class="badge bg-primary rounded-pill fw-normal"></b>
-							</span>
-							</a>
-							<a class="nav-link" href="https://damoang.net/vr" target="_self">
+						<b class="badge bg-primary rounded-pill fw-normal"></b>
+					</span>
+					</a>
+					<a class="nav-link" href="https://damoang.net/vr" target="_self">
 									VR당																	</a>
-							<a class="nav-link" href="https://damoang.net/soccer" target="_self">
+					<a class="nav-link" href="https://damoang.net/soccer" target="_self">
 									축구당																	</a>
-							<a class="nav-link" href="https://damoang.net/soccerline" target="_self">
+					<a class="nav-link" href="https://damoang.net/soccerline" target="_self">
 									싸줄한당																			<span class="small">
-								<b class="badge bg-primary rounded-pill fw-normal"></b>
-							</span>
-							</a>
-							<a class="nav-link" href="https://damoang.net/socialgame" target="_self">
+						<b class="badge bg-primary rounded-pill fw-normal"></b>
+					</span>
+					</a>
+					<a class="nav-link" href="https://damoang.net/socialgame" target="_self">
 									소셜게임한당																			<span class="small">
-								<b class="badge bg-primary rounded-pill fw-normal"></b>
-							</span>
-							</a>
-							<a class="nav-link" href="https://damoang.net/stationery" target="_self">
+						<b class="badge bg-primary rounded-pill fw-normal"></b>
+					</span>
+					</a>
+					<a class="nav-link" href="https://damoang.net/stationery" target="_self">
 									필구도구당																	</a>
-							<a class="nav-link" href="https://damoang.net/stock" target="_self">
+					<a class="nav-link" href="https://damoang.net/stock" target="_self">
 									주식한당																			<span class="small">
-								<b class="badge bg-primary rounded-pill fw-normal"></b>
-							</span>
-							</a>
-							<a class="nav-link" href="https://damoang.net/swim" target="_self">
+						<b class="badge bg-primary rounded-pill fw-normal"></b>
+					</span>
+					</a>
+					<a class="nav-link" href="https://damoang.net/swim" target="_self">
 									퐁당퐁당																			<span class="small">
-								<b class="badge bg-primary rounded-pill fw-normal"></b>
-							</span>
-							</a>
-							<a class="nav-link" href="https://damoang.net/tabletennis" target="_self">
+						<b class="badge bg-primary rounded-pill fw-normal"></b>
+					</span>
+					</a>
+					<a class="nav-link" href="https://damoang.net/tabletennis" target="_self">
 									탁구당																			<span class="small">
-								<b class="badge bg-primary rounded-pill fw-normal"></b>
-							</span>
-							</a>
-						</div>
-					</div>
-					<div class="nav-item">
-						<a class="nav-link" href="https://damoang.net/governance" data-placement="left" target="_self">
-							<i class="bi-clipboard nav-icon"></i>
-							<span class="nav-link-title">
-							[V] 거버넌스		
-							</span>
-						</a>
-					</div>
-					<div class="nav-item">
-						<a class="nav-link" href="https://damoang.net/bbs/group.php?gr_id=community" data-placement="left" target="_self">
-							<i class="bi-clipboard nav-icon"></i>
-							<span class="nav-link-title">
-							[C] 커뮤니티		
-							</span>
-						</a>
-					</div>
-					<div class="nav-item">
-						<a class="nav-link" href="https://damoang.net/bug" data-placement="left" target="_self">
-							<i class="bi-clipboard nav-icon"></i>
-							<span class="nav-link-title">
-							[B] Salrido ~		
-							</span>
-						</a>
-					</div>
-					<div class="nav-item">
-						<a class="nav-link" href="https://damoang.net/truthroom" data-placement="left" target="_self">
-							<i class="bi-clipboard nav-icon"></i>
-							<span class="nav-link-title">
-							[R] 진실의 방으로		
-							</span>
-						</a>
-					</div>
+						<b class="badge bg-primary rounded-pill fw-normal"></b>
+					</span>
+					</a>
 				</div>
+			</div>
+			<div class="nav-item">
+				<a class="nav-link" href="https://damoang.net/governance" data-placement="left" target="_self">
+					<i class="bi-clipboard nav-icon"></i>
+					<span class="nav-link-title">
+							[V] 거버넌스		
+					</span>
+				</a>
+			</div>
+			<div class="nav-item">
+				<a class="nav-link" href="https://damoang.net/bbs/group.php?gr_id=community" data-placement="left" target="_self">
+					<i class="bi-clipboard nav-icon"></i>
+					<span class="nav-link-title">
+							[C] 커뮤니티		
+					</span>
+				</a>
+			</div>
+			<div class="nav-item">
+				<a class="nav-link" href="https://damoang.net/bug" data-placement="left" target="_self">
+					<i class="bi-clipboard nav-icon"></i>
+					<span class="nav-link-title">
+							[B] Salrido ~		
+					</span>
+				</a>
+			</div>
+			<div class="nav-item">
+				<a class="nav-link" href="https://damoang.net/truthroom" data-placement="left" target="_self">
+					<i class="bi-clipboard nav-icon"></i>
+					<span class="nav-link-title">
+							[J] 진실의 방으로		
+					</span>
+				</a>
+			</div>
+		</div>
 				
 				<div class="dropdown-header">
 					Miscellaneous

@@ -9,25 +9,10 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                 <div class="sticky-top py-3">
 
                     <div class="alert alert-light mb-4 mx-3 mx-sm-0" role="alert">
-                        사전투표가 5일, 6일 실시됩니다. 오전 6시부터 오후 6시까지 사전투표 가능합니다. 신분증 잘 챙기시고, 관외투표는 봉투밀봉 꼭 하세요.
+                        <?php echo $config['cf_10'];?> 
                     </div>
 
                     <div class="row row-cols-1 row-cols-lg-2">
-                        <div class="col">
-                            <!-- 위젯 시작 { -->
-                            <h3 class="fs-5 px-3 py-2 mb-0">
-                                <a href="">
-                                    <i class="bi bi-bell"></i>
-                                    랜덤글
-                                    <i class="bi bi-plus small float-end mt-1 text-body-tertiary"></i>
-                                </a>
-                            </h3>
-                            <div class="line-top mb-4">
-                                <?php echo na_widget('wr-list', 'idx-recommended-day', 'bo_list=notice wr_notice=1 is_notice=1'); ?>
-                            </div>
-                            <!-- } 위젯 끝 -->
-                        </div>
-
                         <div class="col">
                             <!-- 위젯 시작 { -->
                             <h3 class="fs-5 px-3 py-2 mb-0">
@@ -43,6 +28,22 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                             <!-- } 위젯 끝 -->
 
                         </div>
+                       <div class="col">
+                            <!-- 위젯 시작 { -->
+                            <h3 class="fs-5 px-3 py-2 mb-0">
+                                <a href="">
+                                    <i class="bi bi-bell"></i>
+                                    랜덤글
+                                    <i class="bi bi-plus small float-end mt-1 text-body-tertiary"></i>
+                                </a>
+                            </h3>
+                            <div class="line-top mb-4">
+                                <?php echo na_widget('wr-list', 'idx-recommended-day', 'bo_list=notice wr_notice=1 is_notice=1'); ?>
+                            </div>
+                            <!-- } 위젯 끝 -->
+                        </div>
+
+                        
 
                     </div>
                     <div class="row row-cols-1 row-cols-lg-2">
