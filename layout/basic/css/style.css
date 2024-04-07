@@ -40,8 +40,8 @@ root,
 }
 
 /* 기본 공통 */
-html, body {
-	height: 100%; }
+/*html, body {* overflow가 나는 원인 /
+/*	height: 100%; }*/
 
 a, a:hover {
 	text-decoration: none !important; }
@@ -463,3 +463,13 @@ a, a:hover {
 .list-group-item:active{
 	background-color:brightness(var(--bs-list-group-action-active-bg), 0.8)!important;
 }
+
+style.css 파일에서 
+.site-wrap 클래스에 overflow-y:scroll 추가
+
+/*호랑이2 님 요청사항 : 스크롤시 깜빡임 방지*/
+.site-wrap {
+	background: var(--na-footer-bg); 
+	overflow-y: scroll;
+}
+
