@@ -456,3 +456,10 @@ a, a:hover {
     width:100% !important
   }
 }
+
+.list-group-item:hover{
+	background-color:var(--bs-list-group-action-hover-bg);
+}
+.list-group-item:active{
+	background-color:brightness(var(--bs-list-group-action-active-bg), 0.8)!important;
+}

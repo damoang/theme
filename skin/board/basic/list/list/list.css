@@ -41,3 +41,9 @@
 	#bo_list .wr-num {
 		width: 60px; }
 }
+.list-group-item:hover{
+	background-color:var(--bs-list-group-action-hover-bg);
+}
+.list-group-item:active{
+	background-color:brightness(var(--bs-list-group-action-active-bg), 0.8)!important;
+}
