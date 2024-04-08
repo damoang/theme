@@ -2,14 +2,14 @@
 if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
 if(!IS_YC) {
-	$default['de_admin_company_name'] = '아미나'; // 회사명
-	$default['de_admin_company_owner'] = '나리야'; // 대표자명
-	$default['de_admin_company_addr'] = 'OO도 OO시 OO구 OO동 123-45'; // 주소
-	$default['de_admin_company_saupja_no'] = '123-45-67890'; // 사업자 등록번호
+	$default['de_admin_company_name'] = '다모앙'; // 회사명
+	$default['de_admin_company_owner'] = '김선도'; // 대표자명
+	$default['de_admin_company_addr'] = '서울특별시 강남구 테헤란로70길 12, 4층 402-J49호(대치동)'; // 주소
+	$default['de_admin_company_saupja_no'] = '276-13-02570'; // 사업자 등록번호
 	$default['de_admin_company_tel'] = '02-123-4567'; // 전화
 	$default['de_admin_company_fax'] = '02-123-4568'; // 팩스
 	$default['de_admin_tongsin_no'] = '제 OO구 - 123호'; // 통신판매업신고
-	$default['de_admin_info_name'] = '정보책임자명'; //개인정보관리책임자
+	$default['de_admin_info_name'] = '김선도'; //개인정보관리책임자
 }
 
 // 메인이 아닐 경우
@@ -52,6 +52,17 @@ if(!IS_INDEX) {
 				</a>
 			</div>
 
+			<div class="lh-lg mb-3">
+				회사명 : <?php echo $default['de_admin_company_name'] ?>
+				<span class="bar-sm">&nbsp;</span>
+				대표 : <?php echo $default['de_admin_company_owner'] ?>
+				<span class="bar-sm">&nbsp;</span>
+				주소  : <?php echo $default['de_admin_company_addr'] ?>
+				<span class="bar-sm">&nbsp;</span>
+				사업자 등록번호  : <?php echo $default['de_admin_company_saupja_no'] ?>
+				<span class="bar-sm">&nbsp;</span>
+				개인정보관리책임자 :  <?php echo $default['de_admin_info_name'] ?>
+			</div>
 
 	
 			<div class="small">

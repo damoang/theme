@@ -18,14 +18,21 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
     <div class="na-menu">
       <div class="nav nav-pills nav-vertical">
 
+  <?php
+if (!empty($config['cf_9'])) {
+    ?>
         <div class="nav-item">
           <a class="nav-link" href="<?php echo $config['cf_9'];?>" data-placement="left" target="_blank">
             <i class="bi-youtube nav-icon"></i>
             <span class="nav-link-title">
-              [♥] 다모앙 라방 (가칭 : 사랑방)
+                [♥] 다모앙 라방 (가칭 : 사랑방)
             </span>
           </a>
         </div>
+    <?php
+}
+?>
+
         <div class="nav-item">
           <a class="nav-link" href="https://damoang.net/notice" data-placement="left" target="_self">
             <i class="bi-clipboard nav-icon"></i>
