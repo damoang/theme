@@ -79,7 +79,7 @@ for ($i=0; $i < $list_cnt; $i++) {
 	<li class="list-group-item<?php echo ($row['is_notice']) ? $wr_notice : ''; ?>" onclick="location.href='<?php echo $row['href'] ?>'" style="cursor:pointer">
 		<div class="d-flex align-items-center gap-1">
 			<div class="text-truncate">
-				<a href="<?php echo $row['href'] ?>"<?php echo $img_popover ?>>
+				<a href="<?php echo $row['href'] ?>"<?php echo $img_popover ?> onclick="return false">	<!-- 게시글 제목 텍스트 부분 클릭시 서버요청 2번 하는 버그 수정 -->
 					<?php echo $wr_head ?>
 					<?php echo $row['subject'] ?>
 				</a>
