@@ -33,12 +33,14 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
               <h3 class="fs-5 px-3 py-2 mb-0">
                 <a href="">
                   <i class="bi bi-bell"></i>
-                  랜덤글
+                  광고자리
                   <i class="bi bi-plus small float-end mt-1 text-body-tertiary"></i>
                 </a>
               </h3>
               <div class="line-top mb-4">
-                <?php echo na_widget('wr-list', 'idx-recommended-day', 'bo_list=notice wr_notice=1 is_notice=1 wr_comment=0'); ?>
+                <?php // echo na_widget('wr-list', 'idx-recommended-day', 'bo_list=notice wr_notice=1 is_notice=1 wr_comment=0'); ?>
+              애드센스야 여기에 붙어앙~! 앙앙앙 <br/>
+              광고"주님" 계실까여?
               </div>
               <!-- } 위젯 끝 -->
             </div>

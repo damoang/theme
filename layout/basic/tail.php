@@ -57,11 +57,11 @@ if(!IS_INDEX) {
 				<span class="bar-sm">&nbsp;</span>
 				대표 : <?php echo $default['de_admin_company_owner'] ?>
 				<span class="bar-sm">&nbsp;</span>
-				주소  : <?php echo $default['de_admin_company_addr'] ?>
-				<span class="bar-sm">&nbsp;</span>
 				사업자 등록번호  : <?php echo $default['de_admin_company_saupja_no'] ?>
-				<span class="bar-sm">&nbsp;</span>
-				개인정보관리책임자 :  <?php echo $default['de_admin_info_name'] ?>
+				
+			</div>
+			<div class="lh-lg mb-3">
+				주소  : <?php echo $default['de_admin_company_addr'] ?>
 			</div>
 
 	
