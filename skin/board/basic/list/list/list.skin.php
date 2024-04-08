@@ -111,7 +111,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
 					<div class="flex-grow-1">
 						<div class="d-flex flex-column flex-md-row align-items-md-center gap-2">
 							<div>
-								<a href="<?php echo $row['href'] ?>"<?php echo $img_popover ?>>
+								<a href="<?php echo $row['href'] ?>"<?php echo $img_popover ?> onclick="return false">		<!-- 게시글 제목 텍스트 부분 클릭시 서버요청 2번 하는 버그 수정 -->
 									<?php if($row['icon_reply']) { ?>
 										<i class="bi bi-arrow-return-right"></i>
 										<span class="visually-hidden">답변</span>
