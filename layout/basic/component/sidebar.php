@@ -316,7 +316,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
             </span>
           </a>
           <a class="nav-link" href="https://damoang.net/watches" target="_self">
-            시계당 <span class="small">
+            시계당 <span class="small">
               <b class="badge bg-primary rounded-pill fw-normal"></b>
             </span>
           </a>
@@ -352,7 +352,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
             </span>
           </a>
           <a class="nav-link" href="https://damoang.net/tabletennis" target="_self">
-            탁구당 <span class="small">
+            탁구당 <span class="small">
               <b class="badge bg-primary rounded-pill fw-normal"></b>
             </span>
           </a>
@@ -379,7 +379,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
         <a class="nav-link" href="https://damoang.net/bug" data-placement="left" target="_self">
           <i class="bi-clipboard nav-icon"></i>
           <span class="nav-link-title">
-            [B] Salrido ~
+            [B] 유지관리
           </span>
         </a>
       </div>
