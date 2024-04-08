@@ -263,12 +263,12 @@ function na_good(bo_table, wr_id, act, id, opt) {
 			na_alert(data.error, function(){}, 2500);
 			return false;
 		} else if(data.success) {
-			na_alert(data.success, function(){
+			//na_alert(data.success, function(){	추천후 Alert 제거
 				$("#"+id).text(number_format(String(data.count)));
 				if($("."+id+'_cnt').length) {
 					$("."+id+'_cnt').text(number_format(String(data.count)));
 				}				
-			}, 2500);
+			//}, 2500);
 		}
 	}, "json");
 }
