@@ -499,21 +499,6 @@ a:hover {
   background-color: rgba(189, 197, 209, 0.2);
 }
 
-.na-menu .nav-vertical.nav-pills .nav-collapse {
-  position: relative;
-  padding-left: 1.9375rem;
-}
-
-.na-menu .nav-vertical.nav-pills .nav-collapse::before {
-  position: absolute;
-  top: 0;
-  left: 1.3125rem;
-  width: 0.125rem;
-  height: calc(100% - 0.25rem);
-  content: '';
-  background-color: rgba(231, 234, 243, 0.7);
-}
-
 .na-menu .nav-vertical.nav-pills .nav-link.dropdown-toggle {
   display: -ms-flexbox;
   display: flex;
@@ -587,7 +572,7 @@ a:hover {
   align-items: center;
   flex: 0 0 33.33%;
   margin: 0;
-  padding: 0.25rem 0.5rem;
+  padding: 0.25rem 0.5rem !important;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
