@@ -552,8 +552,12 @@ a:hover {
   ) !important;
 }
 
-style.css 파일에서 
-.site-wrap 클래스에 overflow-y:scroll 추가
+.list-group-item a:visited {
+  color:var(--bs-gray-500);
+  text-decoration: none;
+}
+
+/*style.css 파일에서 .site-wrap 클래스에 overflow-y:scroll 추가*/
 
 /*호랑이2 님 요청사항 : 스크롤시 깜빡임 방지*/
 .site-wrap {
