@@ -552,11 +552,39 @@ a:hover {
   ) !important;
 }
 
-style.css 파일에서 
-.site-wrap 클래스에 overflow-y:scroll 추가
+/*style.css 파일에서 */
+/*.site-wrap 클래스에 overflow-y:scroll 추가*/
 
 /*호랑이2 님 요청사항 : 스크롤시 깜빡임 방지*/
 .site-wrap {
   background: var(--na-footer-bg);
   overflow-y: scroll;
+}
+
+
+.nav-vertical.nav-pills .nav-collapse {
+  display: none;
+  flex-wrap: wrap;
+  padding: 0 12px;
+  font-size: 13px;
+}
+.nav-vertical.nav-pills .nav-collapse::before {
+  display: none;
+}
+
+.nav-vertical.nav-pills .nav-collapse.collapsing,
+.nav-vertical.nav-pills .nav-collapse.show {
+  display: flex;
+}
+
+/*https://damoang.net/free/160130 - 소보루 님 (2024-04-00)*/
+.nav-vertical.nav-pills .nav-collapse .nav-link {
+  display: block;
+  align-items: center;
+  flex: 0 0 33.33%;
+  margin: 0;
+  padding: 0.25rem 0.5rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
