@@ -93,9 +93,9 @@ add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
 			// 이미지 미리보기
 			$img_popover = (!G5_IS_MOBILE && $img) ? ' data-bs-toggle="popover-img" data-img="'.na_thumb($img, 400, 225).'"' : '';
 		?>
-			<li class="list-group-item<?php echo $li_css; ?>" onclick="location.href='<?php echo $row['href'] ?>'" style="cursor:pointer">
+			<li class="list-group-item<?php echo $li_css; ?>" onclick="(event.target.localName=='div'||event.target.localName=='li')?location.href='<?php echo $row['href'] ?>':null" style="cursor:pointer">
 
-
+			
 				<div class="d-flex align-items-center gap-1">
 					<div class="col-1 wr-no d-none d-md-block">
 						<?php echo $row['num'] ?>
@@ -111,7 +111,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
 					<div class="flex-grow-1">
 						<div class="d-flex flex-column flex-md-row align-items-md-center gap-2">
 							<div>
-								<a href="<?php echo $row['href'] ?>"<?php echo $img_popover ?> onclick="return false">		<!-- 게시글 제목 텍스트 부분 클릭시 서버요청 2번 하는 버그 수정 -->
+								<a href="<?php echo $row['href'] ?>"<?php echo $img_popover ?>>		<!-- 게시글 제목 텍스트 부분 클릭시 서버요청 2번 하는 버그 수정 -->
 									<?php if($row['icon_reply']) { ?>
 										<i class="bi bi-arrow-return-right"></i>
 										<span class="visually-hidden">답변</span>
