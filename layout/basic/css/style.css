@@ -40,10 +40,10 @@ root,
 }
 
 /* 기본 공통 */
-html,
+/* html,
 body {
   height: 100%;
-}
+} */
 
 a,
 a:hover {
