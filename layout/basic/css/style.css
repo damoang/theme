@@ -1,10 +1,10 @@
 @charset "UTF-8";
 
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&family=Roboto:wght@300;400;500&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&family=Roboto:wght@300;400;500&display=swap'); */
 
 root,
 [data-bs-theme='light'] {
-  --bs-body-font-family: 'Roboto', 'Noto Sans KR', "Malgun Gothic", 맑은고딕, sans-serif;
+  --bs-body-font-family: 'Roboto', 'Noto Sans KR', "Malgun Gothic", "맑은 고딕", "Helvetica", "Apple SD 산돌고딕 Neo", "Apple SD Gothic Neo", sans-serif;
   --bs-link-color: var(--bs-body-color);
   --bs-link-color-rgb: var(--bs-body-color-rgb);
   --na-bar-color: rgba(125, 125, 125, 0.5);
@@ -22,7 +22,7 @@ root,
 }
 
 [data-bs-theme='dark'] {
-  --bs-body-font-family: 'Roboto', 'Noto Sans KR', "Malgun Gothic", 맑은고딕, sans-serif;
+  --bs-body-font-family: 'Roboto', 'Noto Sans KR', "Malgun Gothic", "맑은 고딕", "Helvetica", "Apple SD 산돌고딕 Neo", "Apple SD Gothic Neo", sans-serif;
   --bs-link-color: var(--bs-body-color);
   --bs-link-color-rgb: var(--bs-body-color-rgb);
   --na-bar-color: rgba(125, 125, 125, 0.5);
@@ -40,10 +40,10 @@ root,
 }
 
 /* 기본 공통 */
-html,
+/* html,
 body {
   height: 100%;
-}
+} */
 
 a,
 a:hover {
@@ -545,10 +545,10 @@ a:hover {
 /*style.css 파일에서 .site-wrap 클래스에 overflow-y:scroll 추가*/
 
 /*호랑이2 님 요청사항 : 스크롤시 깜빡임 방지*/
-.site-wrap {
+/* .site-wrap {
   background: var(--na-footer-bg);
   overflow-y: scroll;
-}
+} */
 
 
 .nav-vertical.nav-pills .nav-collapse {
