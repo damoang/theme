@@ -277,4 +277,5 @@ box-shadow:0 1px 10px rgba(0,0,0,.1)}
 #bo_v_con img {
     margin-top:1em;
     max-width: 100% !important;
+    height: auto !important;
 }
