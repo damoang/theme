@@ -120,7 +120,7 @@ $no_img = (isset($wset['no_img']) && $wset['no_img']) ? na_url($wset['no_img']) 
 $id = 'gallery-'.na_rid();
 
 // 그리드
-$grid = (isset($wset['grid']) && $wset['grid']) ? $wset['grid'] : 'g-3 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4';
+$grid = (isset($wset['grid']) && $wset['grid']) ? $wset['grid'] : 'g-3 row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5';
 ?>
 <style>
 #<?php echo $id ?> .ratio { --bs-aspect-ratio: <?php echo na_img_ratio($thumb_w, $thumb_h, $ratio) ?>%; overflow:hidden; }
