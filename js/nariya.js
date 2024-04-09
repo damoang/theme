@@ -55,8 +55,8 @@ function Twitter(t) {
         var n = e.exec(a),
             l = n[3] + "/status/" + n[4];
         a = a.replace(n[0], "<blockquote class='twitter-tweet' data-lang='ko'><a href='//twitter.com/#[CODE]' style='text-decoration:none;'><span style='font-size:15px;text-decoration:none;'></blockquote>".replace("#[CODE]", l))
-    }
-    t.$element.html(a + "<script async src='//platform.twitter.com/widgets.js' charset='utf-8'><\/script>")
+		t.$element.html(a + "<script async src='//platform.twitter.com/widgets.js' charset='utf-8'><\/script>")
+	}
 }
 
 function Vimeo(t) {
@@ -66,7 +66,6 @@ function Vimeo(t) {
             o = l[2];
         a = a.replace(l[0], r.replace("#[CODE]", o))
     }
-    t.$element.html(a + "<script async src='//platform.twitter.com/widgets.js' charset='utf-8'><\/script>")
 }
 
 function Dailymotion(t) {
@@ -76,7 +75,6 @@ function Dailymotion(t) {
             o = l[2];
         a = a.replace(l[0], r.replace("#[CODE]", o))
     }
-    t.$element.html(a + "<script async src='//platform.twitter.com/widgets.js' charset='utf-8'><\/script>")
 }
 
 function auto_link_del(t, e) {
