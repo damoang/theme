@@ -456,6 +456,12 @@ document.getElementById('moveToTureRoomBtn').addEventListener('click', function(
 			</a>	
 		</div>
 		<?php } ?>
+		<div>
+			<a href="/<?php echo $bo_table ?>" class="btn btn-basic btn-sm" title="목록보기">
+				<i class="bi bi-list-ul"></i>
+				<span class="d-none d-sm-inline-block">목록</span>
+			</a>
+		</div>
 		<?php echo $link_buttons; // 버튼 출력 ?>
 	</div>
 </article>
