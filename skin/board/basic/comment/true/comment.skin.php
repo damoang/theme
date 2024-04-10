@@ -504,6 +504,7 @@ if($is_ajax)
 
 			save_before = el_id;
 		}
+		$('.comment-textarea').find('textarea').keyup(); //댓글 수정 후, textarea height 자동조절
 	}
 
 	function comment_delete(url){

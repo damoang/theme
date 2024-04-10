@@ -473,6 +473,31 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
     <?php } ?>
     <?php echo $link_buttons; // 버튼 출력 ?>
   </div>
+	<div class="d-flex align-items-center gap-1 border-top px-3 pt-2 mb-4">
+		<?php if($prev_href) { ?>
+		<div>
+			<a href="<?php echo $prev_href ?>" class="btn btn-basic btn-sm" title="<?php echo $prev_wr_subject;?> <?php echo date("Y.m.d", strtotime($prev_wr_date)) ?>" title="이전글">
+				<i class="bi bi-chevron-left"></i>
+				<span class="d-none d-sm-inline-block">이전글</span>
+			</a>	
+		</div>
+		<?php } ?>
+		<?php if($next_href) { ?>
+		<div>
+			<a href="<?php echo $next_href ?>" class="btn btn-basic btn-sm" title="<?php echo $next_wr_subject;?> <?php echo date("Y.m.d", strtotime($next_wr_date)) ?>" title="다음글">
+				<span class="d-none d-sm-inline-block">다음글</span>
+				<i class="bi bi-chevron-right"></i>
+			</a>	
+		</div>
+		<?php } ?>
+		<div>
+			<a href="/<?php echo $bo_table ?>" class="btn btn-basic btn-sm" title="목록보기">
+				<i class="bi bi-list-ul"></i>
+				<span class="d-none d-sm-inline-block">목록</span>
+			</a>
+		</div>
+		<?php echo $link_buttons; // 버튼 출력 ?>
+	</div>
 </article>
 
 <script>

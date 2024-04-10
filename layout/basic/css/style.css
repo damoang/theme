@@ -536,9 +536,9 @@ a:hover {
     0.8
   ) !important;
 }
-
-.list-group-item a:visited {
-  color:var(--bs-gray-500);
+/* 유저이름을 제외하고 제목에만 읽은 글(visited) 효과를 부여 */
+.list-group-item a:not(.wr-name a):visited {
+  color: var(--bs-gray-500);
   text-decoration: none;
 }
 
