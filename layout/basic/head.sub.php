@@ -55,22 +55,23 @@ if (!preg_match('/macintosh|mac os x/i', $agent)) {
     'use strict';
 
     const shortcuts = {
+        'KeyA': '/bbs/noti.php',
+        'KeyK': '/notice',
         'KeyF': '/free',
-        'KeyE': '/economy',
-        'KeyT': '/tutorial',
         'KeyQ': '/qa',
-        'KeyA': '/notice',
-        'KeyG': '/gallery',
-        'KeyJ': '/truthroom',
-        'KeyV': '/governance',
-        'KeyB': '/bug',
         'KeyI': '/hello',
         'KeyN': '/new',
+        'KeyT': '/tutorial',
+        'KeyE': '/economy',
+        'KeyG': '/gallery',
         'KeyS': '/bbs/group.php?gr_id=group',
+        'KeyV': '/governance',
         'KeyC': '/bbs/group.php?gr_id=community',
+        'KeyB': '/bug',
+        'KeyJ': '/truthroom',
         'KeyH': '/',
         // Refresh the page when 'R' is pressed
-    'KeyR': 'refresh',
+        'KeyR': 'refresh',
         // 추가 단축키와 페이지를 여기에 추가하세요.
 };
 
