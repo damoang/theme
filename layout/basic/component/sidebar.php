@@ -26,12 +26,19 @@ if (!empty($config['cf_9'])) {
     <?php
 }
 ?>
-
+      <div class="nav-item">
+        <a class="nav-link" href="https://damoang.net/bbs/noti.php" data-placement="left" target="_self">
+          <i class="bi-clipboard nav-icon"></i>
+          <span class="nav-link-title">
+            [A] 알림보기
+          </span>
+        </a>
+      </div>
       <div class="nav-item">
         <a class="nav-link" href="https://damoang.net/notice" data-placement="left" target="_self">
           <i class="bi-clipboard nav-icon"></i>
           <span class="nav-link-title">
-            [A] 공지사항
+            [K] 공지사항
           </span>
         </a>
       </div>
