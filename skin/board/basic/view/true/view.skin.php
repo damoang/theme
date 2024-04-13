@@ -173,10 +173,12 @@ document.getElementById('moveToTureRoomBtn').addEventListener('click', function(
 			<?php } ?>
 			<?php if ($write_href) { ?>
 				<div>
+					<!-- 쓰기버튼 삭제
 					<a href="<?php echo $write_href ?>" class="btn btn-primary btn-sm">
 						<i class="bi bi-pencil"></i>
 						<span class="d-none d-sm-inline-block">쓰기</span>
 					</a>
+					-->
 				</div>
 			<?php } ?>
 			<?php
