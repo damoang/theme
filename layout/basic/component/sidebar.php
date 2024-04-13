@@ -65,7 +65,7 @@ if (!empty($config['cf_9'])) {
         <a class="nav-link" href="https://damoang.net/hello" data-placement="left" target="_self">
           <i class="bi-clipboard nav-icon"></i>
           <span class="nav-link-title">
-            [I] 가입인사
+            [H] 가입인사
           </span>
         </a>
       </div>
@@ -81,7 +81,23 @@ if (!empty($config['cf_9'])) {
         <a class="nav-link" href="https://damoang.net/tutorial" data-placement="left" target="_self">
           <i class="bi-clipboard nav-icon"></i>
           <span class="nav-link-title">
-            [T] 사용기/강좌
+            [T] 사용기
+          </span>
+        </a>
+      </div>
+      <div class="nav-item">
+        <a class="nav-link" href="https://damoang.net/lecture" data-placement="left" target="_self">
+          <i class="bi-clipboard nav-icon"></i>
+          <span class="nav-link-title">
+            [L] 강좌
+          </span>
+        </a>
+      </div>
+      <div class="nav-item">
+        <a class="nav-link" href="https://damoang.net/pds" data-placement="left" target="_self">
+          <i class="bi-clipboard nav-icon"></i>
+          <span class="nav-link-title">
+            [P] 자료실
           </span>
         </a>
       </div>
