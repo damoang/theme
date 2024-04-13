@@ -271,28 +271,36 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
     </div>
 
 
-
+    <style>
+	    .sg-name .sv_wrap .profile_img { display: none }
+	    .na-list * { max-width: 100%; max-height: 100% }
+	  </style>
     <div class="border mx-3 mx-sm-0 mb-3 p-3">
       <div class="row row-cols-1 row-cols-md-2 align-items-center">
-        <div class="col-sm-5 col-md-4 pb-3">
-          <div class="text-center mb-2 mb-sm-0">
-            <img src="<?php echo na_member_photo($mbs['mb_id']) ?>" class="rounded-circle">
-          </div>
-          <div class="clearfix f-sm">
+        <div class="col-sm-5 col-md-4 text-center">
+		      <div class="row row-cols-1 row-cols-md-2 align-items-center">
+            <div class="col-sm-auto col-md-auto pe-0">
+              <img src="<?php echo na_member_photo($view['mb_id']) ?>" class="rounded-circle">
+            </div>
+		        <div class="col-sm-auto col-md-auto ps-2 sg-name">
+		  	      <?php echo $view['name'] ?>
+            </div>
+		      </div>
+          <!-- <div class="clearfix f-sm text-center">
             <span class="float-left">
-              <?php echo na_xp_icon($mbs['mb_id'], '', $mbs) ?>
-              <?php echo $view['name'] ?>
+              <?php echo na_xp_icon($view['mb_id'], '', $view) ?>
+              <?php echo $view['wr_name'] ?>
             </span>
             <span class="float-right">
               레벨 <?php echo $mbs['as_level'] ?>
             </span>
-          </div>
-          <div class="progress" title="레벨업까지 <?php echo number_format($mbs['as_max'] - $mbs['as_exp']);?> 경험치 필요">
+          </div> -->
+          <!-- <div class="progress" title="레벨업까지 <?php echo number_format($mbs['as_max'] - $mbs['as_exp']);?> 경험치 필요">
             <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="<?php echo $per ?>"
               aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $per ?>%">
               <span class="sr-only"><?php echo $per ?>%</span>
             </div>
-          </div>
+          </div> -->
         </div>
         <div class="col-sm-7 col-md-8">
           <ul class="na-list">
