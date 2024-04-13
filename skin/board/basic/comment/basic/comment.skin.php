@@ -172,16 +172,32 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
 							<?php } ?>
 						</div>
 						<?php if($is_comment_good || $is_comment_nogood) { ?>
+							<?php
+								// 추천/비추천 여부 확인
+								$bg_status = '';
+
+								$sql = "select bg_id, bg_flag from {$g5['board_good_table']}
+										where bo_table = '{$bo_table}'
+										and wr_id = '{$list[$i]['wr_id']}'
+										and mb_id = '{$member['mb_id']}'";
+								$row = sql_fetch($sql);
+
+								if ($row) {
+									if (isset($row['bg_flag']) && $row['bg_flag']) {
+										$bg_status = $row['bg_flag'];
+									}
+								}
+							?>
 							<div class="btn-group btn-group-sm" role="group">
 								<?php if($is_comment_good) { ?>
-									<button type="button" onclick="na_good('<?php echo $bo_table ?>', '<?php echo $comment_id ?>', 'good', 'c_g<?php echo $comment_id ?>', 1);" class="btn btn-basic" title="추천">	
+									<button type="button" onclick="na_good('<?php echo $bo_table ?>', '<?php echo $comment_id ?>', 'good', 'c_g<?php echo $comment_id ?>', 1);" class="btn <?php echo ($bg_status == 'good') ? 'btn-primary' : 'btn-basic' ?>" title="추천">	
 										<span class="visually-hidden">추천</span>
 										<i class="bi bi-hand-thumbs-up"></i>
 										<span id="c_g<?php echo $comment_id ?>"><?php echo $list[$i]['wr_good'] ?></span>
 									</button>
 								<?php } ?>
 								<?php if($is_comment_nogood) { ?>
-									<button type="button" class="btn btn-basic" onclick="na_good('<?php echo $bo_table ?>', '<?php echo $comment_id ?>', 'nogood', 'c_ng<?php echo $comment_id ?>', 1);" title="비추천">
+									<button type="button" class="btn <?php echo ($bg_status == 'nogood') ? 'btn-primary' : 'btn-basic' ?>" onclick="na_good('<?php echo $bo_table ?>', '<?php echo $comment_id ?>', 'nogood', 'c_ng<?php echo $comment_id ?>', 1);" title="비추천">
 										<span class="visually-hidden">비추천</span>
 										<i class="bi bi-hand-thumbs-down"></i>
 										<span id="c_ng<?php echo $comment_id;?>"><?php echo $list[$i]['wr_nogood']; ?></span>
