@@ -140,7 +140,7 @@ if (!empty($config['cf_9'])) {
               </span>
             </a>
             <a class="nav-link" href="https://damoang.net/bread" target="_self">
-              성심빵당 <span class="small">
+             빵친당 <span class="small">
                 <b class="badge bg-primary rounded-pill fw-normal"></b>
               </span>
             </a>

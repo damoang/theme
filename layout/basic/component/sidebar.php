@@ -26,14 +26,17 @@ if (!empty($config['cf_9'])) {
     <?php
 }
 ?>
+
       <div class="nav-item">
-        <a class="nav-link" href="https://damoang.net/bbs/noti.php" data-placement="left" target="_self">
+        <a class="nav-link" href="/bbs/noti.php" data-placement="left" target="_self">
           <i class="bi-clipboard nav-icon"></i>
           <span class="nav-link-title">
-            [A] 알림보기
+            [A] 알림보기 
           </span>
         </a>
       </div>
+      <div class="nav-item">
+
       <div class="nav-item">
         <a class="nav-link" href="https://damoang.net/notice" data-placement="left" target="_self">
           <i class="bi-clipboard nav-icon"></i>
@@ -134,7 +137,7 @@ if (!empty($config['cf_9'])) {
             </span>
           </a>
           <a class="nav-link" href="https://damoang.net/bread" target="_self">
-            성심빵당 <span class="small">
+            빵친당 <span class="small">
               <b class="badge bg-primary rounded-pill fw-normal"></b>
             </span>
           </a>
@@ -477,7 +480,6 @@ if (!empty($config['cf_9'])) {
           <span class="nav-link-title"><?php echo (G5_IS_MOBILE) ? 'PC' : '모바일'; ?> 버전</span>
         </a>
       </div>
-      여기에 광고야 나와라...ㅠ
       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6922133409882969"
         crossorigin="anonymous"></script>
       <!-- sub -->

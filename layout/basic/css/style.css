@@ -595,3 +595,31 @@ mark.voting::before {
   background-repeat: no-repeat;
   background-size: 100% auto;
 }
+
+div a mark::before {
+  content: "";
+  display:inline-block;
+  width: 14px;
+  height: 14px;
+  background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjxzdmcgdmlld0JveD0iLTAuNzE0IC0wLjQ3NiAzNS41NDYgMzYuMDU1IiBvdmVyZmxvdz0iaGlkZGVuIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPg0KICA8ZyB0cmFuc2Zvcm09Im1hdHJpeCgxLCAwLCAwLCAxLCAtMzE1LjQ0MTAwOTUyMTQ4NDMsIC00NzIuNDQ4NDg2MzI4MTI1KSI+DQogICAgPHBhdGggZD0iTTMxOSA0OTBDMzE5IDQ4Mi4yNjggMzI1LjA0NCA0NzYgMzMyLjUgNDc2IDMzOS45NTYgNDc2IDM0NiA0ODIuMjY4IDM0NiA0OTAgMzQ2IDQ5Ny43MzIgMzM5Ljk1NiA1MDQgMzMyLjUgNTA0IDMyNS4wNDQgNTA0IDMxOSA0OTcuNzMyIDMxOSA0OTBaIiBzdHJva2U9IiNFODM4MjgiIHN0cm9rZS1taXRlcmxpbWl0PSI4IiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0eWxlPSJzdHJva2Utd2lkdGg6IDRweDsiLz4NCiAgICA8cGF0aCBkPSJNMzMyIDQ3NiAzMzIgNTAzLjI3NSIgc3Ryb2tlPSIjRTgzODI4IiBzdHJva2UtbWl0ZXJsaW1pdD0iOCIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIiBzdHlsZT0ic3Ryb2tlLXdpZHRoOiA1cHg7Ii8+DQogICAgPHBhdGggZD0iTSAzMzIgNDg4LjIxNiBMIDM0MS42NDMgNDk4LjA2IiBzdHJva2U9IiNFODM4MjgiIHN0cm9rZS1taXRlcmxpbWl0PSI4IiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0eWxlPSJzdHJva2Utd2lkdGg6IDRweDsiLz4NCiAgPC9nPg0KPC9zdmc+");
+
+  background-position: center 0px; /* y 위치를 10px 아래로 이동 /
+  background-repeat: no-repeat; / 반복 없음 /
+  background-size: cover; / 배경 이미지가 넘치지 않도록 설정 /
+  overflow: visible !important;
+}
+div a mark {
+  border-radius: 0.4em !important;
+  background-color: var(--mark-bg-color);
+  overflow: visible !important;
+  display: inline-block;
+  transition: all 400ms cubic-bezier(.47,1.64,.41,.8);
+}
+
+div a mark:hover {
+  transform: scale(1.5) rotate(-2deg) translateY(-6px);
+  transition: all 400ms cubic-bezier(.47,1.64,.41,.8);
+  z-index: 900;
+  / 그림자 효과 */
+  box-shadow: 0px 3px 10px rgba(0,0,0,0.3);
+}

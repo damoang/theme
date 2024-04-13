@@ -33,14 +33,48 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
               <h3 class="fs-5 px-3 py-2 mb-0">
                 <a href="">
                   <i class="bi bi-bell"></i>
-                  광고자리
+                  광고
                   <i class="bi bi-plus small float-end mt-1 text-body-tertiary"></i>
                 </a>
               </h3>
               <div class="line-top mb-4">
+              
+                              
+                
+                
+                <?php if (is_mobile()) { ?>
+                
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6922133409882969"
+                  crossorigin="anonymous"></script>
+                        <!-- main -->
+                          <ins class="adsbygoogle"
+                            style="display:block"
+                            data-ad-client="ca-pub-6922133409882969"
+                            data-ad-slot="9138253649"
+                            data-ad-format="auto"
+                            data-full-width-responsive="true"></ins>
+                          <script>
+               (adsbygoogle = window.adsbygoogle || []).push({});                
+                <?php } else { ?>
+                
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6922133409882969"
+                                  crossorigin="anonymous"></script>
+                <!-- 메인 -->
+                                <ins class="adsbygoogle"
+                                style="display:inline-block;width:420px;height:820px"
+                                data-ad-client="ca-pub-6922133409882969"
+                                data-ad-slot="3397474823"></ins>
+                                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});                
+                <?php } ?>
+              
+                
+              </script>
+              
+              
                 <?php // echo na_widget('wr-list', 'idx-recommended-day', 'bo_list=notice wr_notice=1 is_notice=1 wr_comment=0'); ?>
-              애드센스야 여기에 붙어앙~! 앙앙앙 <br/>
-              광고"주님" 계실까여?
+   
+              </script>
               </div>
               <!-- } 위젯 끝 -->
             </div>
