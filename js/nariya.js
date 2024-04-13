@@ -5,7 +5,7 @@ Modified by Graysmile
 */
 
 function youtube(t) {
-    var e = [/<a href="(https?:\/\/youtu.be\/([a-zA-Z0-9\-_\/\?\=\&]+))"[^>]*>/gi, /<a href="(https?:\/\/www.youtube.com\/watch\?v=([a-zA-Z0-9\-_\/\?\=\&]+))"[^>]*>/gi];
+    var e = [/<a href="(https?:\/\/youtu.be\/([a-zA-Z0-9\-_\/\?\=\&\&amp;]+))"[^>]*>/gi, /<a href="(https?:\/\/www.youtube.com\/watch\?v=([a-zA-Z0-9\-_\/\?\=\&\&amp;]+))"[^>]*>/gi];
     for (var i in e) {
         for (var a = t.$element.html();;) {
             if (null == (o = e[i].exec(a))) 
@@ -15,7 +15,7 @@ function youtube(t) {
         }
         t.$element.html(a)
     }
-    var n = [/https?:\/\/youtu.be\/([a-zA-Z0-9\-_\/\?\=\&]+)/gi, /https?:\/\/www.youtube.com\/watch\?v=([a-zA-Z0-9\-_\/\?\=\&]+)/gi],
+    var n = [/https?:\/\/youtu.be\/([a-zA-Z0-9\-_\/\?\=\&\&amp;]+)/gi, /https?:\/\/www.youtube.com\/watch\?v=([a-zA-Z0-9\-_\/\?\=\&\&amp;]+)/gi],
         l = '<div class="ratio ratio-16x9"><iframe src="//www.youtube.com/embed/#[CODE]" frameborder="0" width="640" height="360" allowfullscreen></iframe></div>';
     for (var i in n) {
         for (a = t.$element.html();;) {
@@ -23,6 +23,7 @@ function youtube(t) {
             if (null == (o = n[i].exec(a))) 
 				break;
             r = o[1];
+			r= r.replace('t=','start=');
             a = a.replace(o[0], l.replace("#[CODE]", r))
         }
         t.$element.html(a)
