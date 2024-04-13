@@ -625,3 +625,11 @@ div a mark:hover {
   / 그림자 효과 */
   box-shadow: 0px 3px 10px rgba(0,0,0,0.3);
 }
+
+.pagination-sm {
+  /* pagination의 값으로 재정의 */
+  --bs-pagination-padding-x: 0.75rem;
+  --bs-pagination-padding-y: 0.375rem;
+  --bs-pagination-font-size: 1rem;
+}
+
