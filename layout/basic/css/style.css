@@ -19,6 +19,7 @@ root,
   --na-title-color: var(--bs-body-color);
   --na-title-bg: var(--bs-tertiary-bg);
   --na-footer-bg: var(--bs-tertiary-bg);
+  --na-sub-visited-color: #adb5bd;
 }
 
 [data-bs-theme='dark'] {
@@ -37,6 +38,7 @@ root,
   --na-title-color: var(--bs-body-color);
   --na-title-bg: var(--bs-tertiary-bg);
   --na-footer-bg: var(--bs-tertiary-bg);
+  --na-sub-visited-color: #6c757d;
 }
 
 /* 기본 공통 */
@@ -538,7 +540,7 @@ a:hover {
 }
 /* 유저이름을 제외하고 제목에만 읽은 글(visited) 효과를 부여 */
 .list-group-item a:not(.wr-name a):visited {
-  color: var(--bs-gray-500);
+  color: var(--na-sub-visited-color);
   text-decoration: none;
 }
 
