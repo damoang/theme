@@ -59,7 +59,11 @@
   --bs-info-bg-subtle: #cff4fc;
   --bs-warning-bg-subtle: #fff3cd;
   --bs-danger-bg-subtle: #f8d7da;
+  /* 게시판 공지 background에만 사용중이므로, bootstrap.css 파일을 수정함.
+  bootstrap.css, bootstrap.min.css, bootstrap.css.map, bootstrap.min.css.map 수정
   --bs-light-bg-subtle: #fcfcfd;
+  */
+  --bs-light-bg-subtle: #fafafa;
   --bs-dark-bg-subtle: #ced4da;
   --bs-primary-border-subtle: #9ec5fe;
   --bs-secondary-border-subtle: #c4c8cb;
