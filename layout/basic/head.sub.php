@@ -62,6 +62,8 @@ if (!preg_match('/macintosh|mac os x/i', $agent)) {
         'KeyI': '/hello',
         'KeyN': '/new',
         'KeyT': '/tutorial',
+        'KeyL': '/lecture',
+        'KeyP': '/pds',
         'KeyE': '/economy',
         'KeyG': '/gallery',
         'KeyS': '/bbs/group.php?gr_id=group',

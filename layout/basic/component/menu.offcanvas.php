@@ -84,7 +84,23 @@ if (!empty($config['cf_9'])) {
           <a class="nav-link" href="/tutorial" data-placement="left" target="_self">
             <i class="bi-clipboard nav-icon"></i>
             <span class="nav-link-title">
-              [T] 사용기/강좌
+              [T] 사용기
+            </span>
+          </a>
+        </div>
+        <div class="nav-item">
+          <a class="nav-link" href="https://damoang.net/lecture" data-placement="left" target="_self">
+            <i class="bi-clipboard nav-icon"></i>
+            <span class="nav-link-title">
+              [T] 강좌
+            </span>
+          </a>
+        </div>
+        <div class="nav-item">
+          <a class="nav-link" href="https://damoang.net/pds" data-placement="left" target="_self">
+            <i class="bi-clipboard nav-icon"></i>
+            <span class="nav-link-title">
+              [P] 자료실
             </span>
           </a>
         </div>
@@ -296,8 +312,9 @@ if (!empty($config['cf_9'])) {
                 <b class="badge bg-primary rounded-pill fw-normal"></b>
               </span>
             </a>
-            <a class="nav-link" href="/overseas" target="_self">
-              바다건넌당 <span class="small">
+            <a class="nav-link" href="https://damoang.net/overseas" target="_self">
+              바다건너당 <span class="small">
+
                 <b class="badge bg-primary rounded-pill fw-normal"></b>
               </span>
             </a>
