@@ -35,6 +35,10 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 		<i class="bi bi-arrow-clockwise"></i>
 		<span class="visually-hidden">새댓글 작성</span>
 	</button>
+	<button type="button" class="btn btn-basic" title="공백문자" onclick="$('#wr_content').val($('#wr_content').val()+'&#10240;')">
+		<i class="bi"> &#10240; </i>
+		<span class="visually-hidden">공백문자</span>
+	</button>
 </div>
 
 <script>
