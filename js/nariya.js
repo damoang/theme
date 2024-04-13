@@ -50,10 +50,10 @@ function KakaoPot(t) {
 }
 
 function Twitter(t) {
-    auto_link_del(t, /<a href="http(s)?:\/\/(.*\.)?twitter\.com\/(\w+)\/?status\/(\w+)"[^>]*>/gi);
-    for (var e = /http(s)?:\/\/(.*\.)?twitter\.com\/(\w+)\/?status\/(\w+)/gi, i = (t.$element.html().match(e) || []).length, a = t.$element.html(), r = 0; r < i; r++) {
+    auto_link_del(t, /<a href="http(s)?:\/\/(.*\.)?(twitter|x)\.com\/(\w+)\/?status\/(\w+)"[^>]*>/gi);
+    for (var e = /http(s)?:\/\/(.*\.)?(twitter|x)\.com\/(\w+)\/?status\/(\w+)/gi, i = (t.$element.html().match(e) || []).length, a = t.$element.html(), r = 0; r < i; r++) {
         var n = e.exec(a),
-            l = n[3] + "/status/" + n[4];
+            l = n[4] + "/status/" + n[5];
         a = a.replace(n[0], "<blockquote class='twitter-tweet' data-lang='ko'><a href='//twitter.com/#[CODE]' style='text-decoration:none;'><span style='font-size:15px;text-decoration:none;'></blockquote>".replace("#[CODE]", l))
 		t.$element.html(a + "<script async src='//platform.twitter.com/widgets.js' charset='utf-8'><\/script>")
 	}
@@ -74,7 +74,7 @@ function Dailymotion(t) {
         var l = e.exec(a),
             o = l[2];
         a = a.replace(l[0], r.replace("#[CODE]", o))
-    }
+	}
 }
 
 function auto_link_del(t, e) {
