@@ -291,7 +291,7 @@ if($is_ajax)
 			</style>
 			<div class="mb-2">
 				<div class="form-floating comment-textarea">
-					<textarea tabindex="0" placeholder="Leave a comment here" id="wr_content" name="wr_content" maxlength="10000" class="form-control lh-base"
+					<textarea tabindex="1" placeholder="Leave a comment here" id="wr_content" name="wr_content" maxlength="10000" class="form-control lh-base"
 					<?php if ($comment_min || $comment_max) { ?>onkeyup="check_byte('wr_content', 'char_count');"<?php } ?>><?php echo $c_wr_content;  ?></textarea>
 					<label id="wr_msg" for="wr_content">댓글을 입력해 주세요.</label>
 				</div>
