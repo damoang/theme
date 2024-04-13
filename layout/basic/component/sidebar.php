@@ -65,7 +65,7 @@ if (!empty($config['cf_9'])) {
         <a class="nav-link" href="https://damoang.net/hello" data-placement="left" target="_self">
           <i class="bi-clipboard nav-icon"></i>
           <span class="nav-link-title">
-            [H] 가입인사
+            [I] 가입인사
           </span>
         </a>
       </div>
@@ -310,7 +310,7 @@ if (!empty($config['cf_9'])) {
             </span>
           </a>
           <a class="nav-link" href="https://damoang.net/overseas" target="_self">
-            바다건넌당 <span class="small">
+            바다건너당 <span class="small">
               <b class="badge bg-primary rounded-pill fw-normal"></b>
             </span>
           </a>
