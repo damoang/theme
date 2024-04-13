@@ -5,7 +5,7 @@ Modified by Graysmile
 */
 
 function youtube(t) {
-    var e = [/<a href="(https?:\/\/youtu.be\/([a-zA-Z0-9\-_\/\?\=\&]+))"[^>]*>/gi, /<a href="(https?:\/\/www.youtube.com\/watch\?v=([a-zA-Z0-9\-_\/\?\=\&]+))"[^>]*>/gi];
+    var e = [/<a href="(https?:\/\/youtu.be\/([a-zA-Z0-9\-_\/\?\=\&\&amp;]+))"[^>]*>/gi, /<a href="(https?:\/\/www.youtube.com\/watch\?v=([a-zA-Z0-9\-_\/\?\=\&\&amp;]+))"[^>]*>/gi];
     for (var i in e) {
         for (var a = t.$element.html();;) {
             if (null == (o = e[i].exec(a))) 
@@ -15,7 +15,7 @@ function youtube(t) {
         }
         t.$element.html(a)
     }
-    var n = [/https?:\/\/youtu.be\/([a-zA-Z0-9\-_\/\?\=\&]+)/gi, /https?:\/\/www.youtube.com\/watch\?v=([a-zA-Z0-9\-_\/\?\=\&]+)/gi],
+    var n = [/https?:\/\/youtu.be\/([a-zA-Z0-9\-_\/\?\=\&\&amp;]+)/gi, /https?:\/\/www.youtube.com\/watch\?v=([a-zA-Z0-9\-_\/\?\=\&\&amp;]+)/gi],
         l = '<div class="ratio ratio-16x9"><iframe src="//www.youtube.com/embed/#[CODE]" frameborder="0" width="640" height="360" allowfullscreen></iframe></div>';
     for (var i in n) {
         for (a = t.$element.html();;) {
@@ -23,6 +23,7 @@ function youtube(t) {
             if (null == (o = n[i].exec(a))) 
 				break;
             r = o[1];
+			r= r.replace('t=','start=');
             a = a.replace(o[0], l.replace("#[CODE]", r))
         }
         t.$element.html(a)
@@ -50,10 +51,10 @@ function KakaoPot(t) {
 }
 
 function Twitter(t) {
-    auto_link_del(t, /<a href="http(s)?:\/\/(.*\.)?twitter\.com\/(\w+)\/?status\/(\w+)"[^>]*>/gi);
-    for (var e = /http(s)?:\/\/(.*\.)?twitter\.com\/(\w+)\/?status\/(\w+)/gi, i = (t.$element.html().match(e) || []).length, a = t.$element.html(), r = 0; r < i; r++) {
+    auto_link_del(t, /<a href="http(s)?:\/\/(.*\.)?(twitter|x)\.com\/(\w+)\/?status\/(\w+)"[^>]*>/gi);
+    for (var e = /http(s)?:\/\/(.*\.)?(twitter|x)\.com\/(\w+)\/?status\/(\w+)/gi, i = (t.$element.html().match(e) || []).length, a = t.$element.html(), r = 0; r < i; r++) {
         var n = e.exec(a),
-            l = n[3] + "/status/" + n[4];
+            l = n[4] + "/status/" + n[5];
         a = a.replace(n[0], "<blockquote class='twitter-tweet' data-lang='ko'><a href='//twitter.com/#[CODE]' style='text-decoration:none;'><span style='font-size:15px;text-decoration:none;'></blockquote>".replace("#[CODE]", l))
 		t.$element.html(a + "<script async src='//platform.twitter.com/widgets.js' charset='utf-8'><\/script>")
 	}
@@ -74,7 +75,7 @@ function Dailymotion(t) {
         var l = e.exec(a),
             o = l[2];
         a = a.replace(l[0], r.replace("#[CODE]", o))
-    }
+	}
 }
 
 function auto_link_del(t, e) {
