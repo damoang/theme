@@ -60,20 +60,21 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
 
 	<section id="bo_vc" class="na-fadein">
 		<?php
-		// 추천/비추천 여부 확인을 위한 댓글의 추천내역 가져오기
-		$sql = " select {$write_table}.wr_id, {$g5['board_good_table']}.bg_id, {$g5['board_good_table']}.bg_flag
-				from {$write_table}
-				left join {$g5['board_good_table']} on
-					{$write_table}.wr_id = {$g5['board_good_table']}.wr_id
-				where {$write_table}.wr_id != '{$wr_id}'
-				and {$write_table}.wr_parent = '{$wr_id}'
-				and {$g5['board_good_table']}.mb_id = '{$member['mb_id']}'";
-		$result = sql_query($sql);
-
 		$good_list = array();
+		if ($member['mb_id']) {
+			// 추천/비추천 여부 확인을 위한 댓글의 추천내역 가져오기
+			$sql = " select {$write_table}.wr_id, {$g5['board_good_table']}.bg_id, {$g5['board_good_table']}.bg_flag
+					from {$write_table}
+					left join {$g5['board_good_table']} on
+						{$write_table}.wr_id = {$g5['board_good_table']}.wr_id
+					where {$write_table}.wr_id != '{$wr_id}'
+					and {$write_table}.wr_parent = '{$wr_id}'
+					and {$g5['board_good_table']}.mb_id = '{$member['mb_id']}'";
+			$result = sql_query($sql);
 
-		for ($i=0; $row=sql_fetch_array($result); $i++) {
-			$good_list[$row['wr_id']] = $row['bg_flag'];
+			for ($i=0; $row=sql_fetch_array($result); $i++) {
+				$good_list[$row['wr_id']] = $row['bg_flag'];
+			}
 		}
 
 		// 댓글목록
