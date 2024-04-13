@@ -7,6 +7,7 @@ root,
   --bs-body-font-family: 'Roboto', 'Noto Sans KR', "Malgun Gothic", "맑은 고딕", "Helvetica", "Apple SD 산돌고딕 Neo", "Apple SD Gothic Neo", sans-serif;
   --bs-link-color: var(--bs-body-color);
   --bs-link-color-rgb: var(--bs-body-color-rgb);
+  --bs-light-bg-subtle: #f7f7f7;
   --na-bar-color: rgba(125, 125, 125, 0.5);
   --na-bar-sm-color: rgba(125, 125, 125, 0.25);
   --na-nav-bg: #fff;
