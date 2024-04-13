@@ -263,8 +263,10 @@ function na_good(bo_table, wr_id, act, id, opt) {
 		} else if(data.success) {
 			//na_alert(data.success, function(){
 				$("#"+id).text(number_format(String(data.count)));
+				$("#"+id).parent().toggleClass(['btn-primary', 'btn-basic'])
 				if($("."+id+'_cnt').length) {
 					$("."+id+'_cnt').text(number_format(String(data.count)));
+					$("#"+id+'_cnt').parent().toggleClass(['btn-primary', 'btn-basic'])
 				}				
 			//}, 2500);
 		}
