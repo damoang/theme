@@ -20,7 +20,7 @@ include_once(G5_PATH.'/head.sub.php');
 	</div>
 	<div class="form-text">
 		<i class="bi bi-check2-circle"></i>
-		<?php echo ($is_member) ? '이미지 파일(JPG/GIF/PNG)만 업로드 할 수 있습니다.' : '로그인한 회원만 가능합니다.';?>
+		<?php echo ($is_member) ? '이미지 파일(JPG/GIF/PNG/JPEG/WEBP)만 업로드 할 수 있습니다.' : '로그인한 회원만 가능합니다.';?>
 	</div>
 </form>
 
@@ -43,8 +43,8 @@ $(function(){
 
 			var chkExt = chkFile.split('.').pop().toLowerCase();
 
-			if($.inArray(chkExt, ['gif','png','jpg','jpeg']) == -1) {
-				na_alert('이미지 파일(JPG/GIF/PNG)만 업로드 할 수 있습니다.');
+			if($.inArray(chkExt, ['gif','png','jpg','jpeg','webp']) == -1) {
+				na_alert('이미지 파일(JPG/GIF/PNG/JPEG/WEBP)만 업로드 할 수 있습니다.');
 				return false;
 			}
 		},
