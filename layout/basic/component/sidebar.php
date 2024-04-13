@@ -27,7 +27,6 @@ if (!empty($config['cf_9'])) {
 }
 ?>
 
-
       <div class="nav-item">
         <a class="nav-link" href="/bbs/noti.php" data-placement="left" target="_self">
           <i class="bi-clipboard nav-icon"></i>
