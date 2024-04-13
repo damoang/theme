@@ -224,12 +224,27 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
       <p><?php // echo $signature ?></p>
       <?php // } ?>
     </div>
+<?php
+    // 추천/비추천 여부 확인
+    $bg_status = '';
 
+    $sql = "select bg_id, bg_flag from {$g5['board_good_table']}
+            where bo_table = '{$bo_table}'
+            and wr_id = '{$wr_id}'
+            and mb_id = '{$member['mb_id']}'";
+      $row = sql_fetch($sql);
+
+    if ($row) {
+        if (isset($row['bg_flag']) && $row['bg_flag']) {
+            $bg_status = $row['bg_flag'];
+        }
+    }
+?>
     <div class="pt-5 pb-4 text-center">
       <div id="bo_v_act" class="btn-group" role="group">
         <?php if ($board['bo_use_good']) { ?>
         <button type="button" onclick="na_good('<?php echo $bo_table ?>', '<?php echo $wr_id ?>', 'good', 'wr_good');"
-          class="btn btn-basic" title="추천">
+          class="btn <?php echo ($bg_status == 'good') ? 'btn-primary' : 'btn-basic' ?>" title="추천">
           <i class="bi bi-hand-thumbs-up"></i>
           <b id="wr_good"><?php echo number_format($view['wr_good']) ?></b>
           <span class="visually-hidden">추천</span>
@@ -238,7 +253,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
         <?php if ($board['bo_use_nogood']) { ?>
         <button type="button"
           onclick="na_good('<?php echo $bo_table ?>', '<?php echo $wr_id ?>', 'nogood', 'wr_nogood');"
-          class="btn btn-basic" title="비추천">
+          class="btn <?php echo ($bg_status == 'nogood') ? 'btn-primary' : 'btn-basic' ?>" title="비추천">
           <i class="bi bi-hand-thumbs-down"></i>
           <b id="wr_nogood"><?php echo number_format($view['wr_nogood']) ?></b>
           <span class="visually-hidden">비추천</span>
