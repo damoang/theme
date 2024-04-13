@@ -1,0 +1,7 @@
+2024-04-09T14:57:13.431 INFO Starting to read entries from file agents_to_install.csv.
+2024-04-09T14:57:13.431 INFO Finished reading entried from file agents_to_install.csv.
+2024-04-09T14:57:13.431 INFO Starting to parse and validate entries.
+2024-04-09T14:57:13.431 INFO Parsed and validated all entries successfully.
+2024-04-09T14:57:13.431 INFO Starting tasks on instances.
+2024-04-09T14:57:13.431 INFO Starting process on instance: projects/damoang/zones/asia-northeast3-a/instances/damoang.
+2024-04-09T14:57:13.432 INFO Instance: damoang - Starting process to run command: gcloud compute ssh damoang --project damoang --zone asia-northeast3-a --quiet --strict-host-key-checking=no --ssh-flag '-o ConnectTimeout=20' --command "echo \"$(date -Ins) Starting running commands.\";curl -sSO https://dl.google.com/cloudagents/add-google-cloud-ops-agent-repo.sh; sudo bash add-google-cloud-ops-agent-repo.sh --also-install  --uninstall-standalone-logging-agent --uninstall-standalone-monitoring-agent; :; for i in {1..3}; do if (ps aux | grep 'opt[/].*google-cloud-ops-agent.*bin/'); then echo 'google-cloud-ops-agent runs successfully.'; break; fi; sleep 1s; done;echo \"$(date -Ins) Finished running commands.\"".
