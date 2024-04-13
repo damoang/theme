@@ -148,8 +148,24 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
       <form id="memberLogin" class="pt-1" name="memberLogin" method="post"
         action="<?php echo G5_HTTPS_BBS_URL ?>/login_check.php" autocomplete="off">
         <input type="hidden" name="url" value="<?php echo $urlencode; ?>">
+          <?php
+          $host = $_SERVER['HTTP_HOST'];
+          $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https://" : "http://";
 
-        <!--					<div class="input-group mb-2">-->
+          $full_url = $protocol . $host;
+
+          if ($host == 'localhost' || $host == '127.0.0.1') {
+              echo "A";
+          } else if ($full_url == 'https://damoang.net') {
+              // HTTPS 프로토콜을 포함하여 검사
+              echo "This content is hidden on production";
+          } else {
+              echo "Accessed from unknown host: $host with protocol $protocol";
+          }
+          ?>
+
+
+          <!--					<div class="input-group mb-2">-->
         <!--						<span class="input-group-text">-->
         <!--							<i class="bi bi-person text-muted"></i>-->
         <!--						</span>-->
