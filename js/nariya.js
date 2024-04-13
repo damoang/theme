@@ -265,7 +265,13 @@ function na_good(bo_table, wr_id, act, id, opt) {
 				$("#"+id).text(number_format(String(data.count)));
 				if($("."+id+'_cnt').length) {
 					$("."+id+'_cnt').text(number_format(String(data.count)));
-				}				
+				}
+
+				if ($("#"+id).parent().hasClass('btn-basic')) {
+					$("#"+id).parent().removeClass('btn-basic').addClass('btn-primary');
+				} else {
+					$("#"+id).parent().removeClass('btn-primary').addClass('btn-basic');
+				}
 			//}, 2500);
 		}
 	}, "json");
