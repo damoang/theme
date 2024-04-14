@@ -77,6 +77,8 @@ if (!preg_match('/macintosh|mac os x/i', $agent)) {
         // 추가 단축키와 페이지를 여기에 추가하세요.
 };
 
+
+
     function isInputElement(element) {
         return ['INPUT', 'TEXTAREA', 'SELECT'].includes(element.tagName);
     }
@@ -111,10 +113,21 @@ if (!preg_match('/macintosh|mac os x/i', $agent)) {
     }
 
     window.addEventListener('keydown', handleKeyPress);
-})();
+
+    try{
+        set_ui_custom();
+    } catch{
+
+    }})();
+
+
+
 
 function set_ui_custom(){
-    $("#user_ui_custom_styles").remove();
+    try {
+        $("#user_ui_custom_styles").remove();
+    } catch {
+    }
     var ui_custom_storage_str = localStorage.getItem("ui_custom");
     if (ui_custom_storage_str != null && ui_custom_storage_str != "") {
         var ui_obj = JSON.parse(ui_custom_storage_str);
@@ -157,7 +170,7 @@ function set_ui_custom(){
             //media 992px 이상
             //왼쪽 메뉴 적용
             if (ui_obj.left_menu != null && ui_obj.left_menu) {
-                ui_media992_style += ".order-2 {order: 0 !important;}\n";ㅊ
+                ui_media992_style += ".order-2 {order: 0 !important;}\n";
             }
             //메뉴바 크기 설정
             if (ui_obj.menu_width != null) {
@@ -176,9 +189,9 @@ function set_ui_custom(){
             if (ui_media992_style != "") {
                 ui_custom_style += "@media (min-width: 992px) {\n" + ui_media992_style + "}\n";
             }
-            //console.log(ui_custom_style);
             if (ui_custom_style != "") {
-                document.body.innerHTML += "<style id=\"user_ui_custom_styles\">\n" + ui_custom_style + "</style>";
+                $("body").append("<style id=\"user_ui_custom_styles\">\n" + ui_custom_style + "</style>");
+
             }
         }
     }
