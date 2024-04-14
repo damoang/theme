@@ -9,8 +9,4 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 		</h5>
 		<button type="button" class="btn-close nofocus" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 	</div>
-	<div class="offcanvas-body pt-0">
-		<!-- //Google 번역 -->
-		<div id="google_translate_element" class="hd_lang"></div>
-	</div>
 </div>
