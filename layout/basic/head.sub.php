@@ -115,7 +115,7 @@ $one_cols = array(
 
                 window.addEventListener('keydown', handleKeyPress);
 
-
+                document.documentElement.style.visibility = 'hidden';
             })();
 
 
@@ -228,7 +228,7 @@ $one_cols = array(
             } catch (error) {
                 console.error('Failed to initialize custom UI settings:', error);
             }
-            $('body').css('display', '');
+            document.documentElement.style.visibility = '';
         });
         </script>
         <?php
@@ -238,7 +238,7 @@ $one_cols = array(
 
 
     </head>
-<body style="display:none" <?php echo isset($g5['body_script']) ? $g5['body_script'] : ''; ?>>
+<body<?php echo isset($g5['body_script']) ? $g5['body_script'] : ''; ?>>
 <?php
 if ($is_member) { // 회원이라면 로그인 중이라는 메세지를 출력해준다.
     $sr_admin_msg = '';
