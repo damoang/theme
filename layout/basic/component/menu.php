@@ -10,5 +10,5 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
   <?php endif; ?>
   <a href="/notice" class="nav-link">공지사항</a> | <a href="/bbs/group.php?gr_id=group" class="nav-link">소모임</a> | <a
     href="/bbs/group.php?gr_id=community" class="nav-link">커뮤니티</a> |
-    <a href="https://github.com/damoang/theme/pulls?q=" target="_blank">내가 만드는 커뮤니티!</a>
+    <a href="https://github.com/damoang/theme/pulls?q=" target="_blank">내가 만든다!</a>
 </nav>
