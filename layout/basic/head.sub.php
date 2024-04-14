@@ -115,7 +115,6 @@ $one_cols = array(
 
                 window.addEventListener('keydown', handleKeyPress);
 
-                document.documentElement.style.visibility = 'hidden';
             })();
 
 
@@ -228,7 +227,6 @@ $one_cols = array(
             } catch (error) {
                 console.error('Failed to initialize custom UI settings:', error);
             }
-            document.documentElement.style.visibility = '';
         });
         </script>
         <?php
