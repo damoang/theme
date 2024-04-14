@@ -4,7 +4,7 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
 // 회원만 보기가 설정되어 있고, 접속한 회원의 레벨이 2 미만인 경우
 if ($view['wr_1'] == '1' && $member['mb_level'] < 2) { // 회원만 가능
 
-    alert('회원만 열람할 수 있습니다.');
+    alert('앙님만 열람할 수 있습니다.');
     return;
 
 }
