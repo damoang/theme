@@ -115,7 +115,7 @@ $one_cols = array(
 
                 window.addEventListener('keydown', handleKeyPress);
 
-
+                document.documentElement.style.visibility = 'hidden';
             })();
 
 
@@ -193,15 +193,6 @@ $one_cols = array(
                 }
             }
 
-
-            document.addEventListener('DOMContentLoaded', function () {
-                try {
-                    set_ui_custom();
-                } catch (error) {
-                    console.error('Failed to initialize custom UI settings:', error);
-                }
-            });
-
             // 자바스크립트에서 사용하는 전역변수 선언
             var g5_url = "<?php echo G5_URL ?>";
             var g5_bbs_url = "<?php echo G5_BBS_URL ?>";
@@ -230,6 +221,16 @@ $one_cols = array(
         <script src="<?php echo G5_THEME_URL ?>/js/nariya.js?ver=<?php echo G5_JS_VER; ?>"></script>
         <script src="<?php echo LAYOUT_URL ?>/js/darkmode.js?ver=<?php echo G5_JS_VER; ?>"
                 data-cfasync="false"></script>
+        <script>
+        $(function() {
+            try {
+                set_ui_custom();
+            } catch (error) {
+                console.error('Failed to initialize custom UI settings:', error);
+            }
+            document.documentElement.style.visibility = '';
+        });
+        </script>
         <?php
         if (!defined('G5_IS_ADMIN'))
             echo $config['cf_add_script'];
@@ -247,4 +248,5 @@ if ($is_member) { // 회원이라면 로그인 중이라는 메세지를 출력�
 
     echo '<div id="hd_login_msg" class="visually-hidden">' . $sr_admin_msg . get_text($member['mb_nick']) . '님 로그인 중 ';
     echo '<a href="' . G5_BBS_URL . '/logout.php">로그아웃</a></div>';
+
 }

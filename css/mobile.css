@@ -257,3 +257,7 @@ box-shadow:0 0 8px rgba(65,98,255,0.8)}
     max-width: 100% !important;
     height: auto !important;
 }
+
+#bo_v_con, .comment-content {
+    word-wrap: break-word;
+}
