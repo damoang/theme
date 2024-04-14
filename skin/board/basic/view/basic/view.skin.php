@@ -19,18 +19,8 @@ add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css">
 <article id="bo_v" class="mb-4">
     <header>
         <h1 id="bo_v_title" class="px-3 pb-2 mb-0 lh-base fs-5">
-            <?php echo $view_subject; // 글제목 출력 ?>
+            <?php echo $view_subject; // 글제목 출력 ?>  <?php echo ($write['wr_1']  == '1') ? '<i class="fa fa-id-badge"></i>' : ''; ?>
         </h1>
-        <?php echo $member['mb_level'] ?>
-        <?php echo $is_member ?>
-
-
-        <?php echo $view['mb_level'] ?>
-        <?php echo $view['wr_1'] ?>
-
-
-
-
     </header>
 
     <section id="bo_v_info">
