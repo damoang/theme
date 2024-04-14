@@ -113,15 +113,7 @@ if (!preg_match('/macintosh|mac os x/i', $agent)) {
     }
 
     window.addEventListener('keydown', handleKeyPress);
-
-    try{
-        set_ui_custom();
-    } catch{
-
-    }})();
-
-
-
+})();
 
 function set_ui_custom(){
     try {
@@ -223,13 +215,19 @@ var na_url       = "<?php echo NA_URL ?>";
 <script src="<?php echo G5_THEME_URL ?>/js/clipboard.min.js"></script>
 <script src="<?php echo G5_THEME_URL ?>/js/nariya.js?ver=<?php echo G5_JS_VER; ?>"></script>
 <script src="<?php echo LAYOUT_URL ?>/js/darkmode.js?ver=<?php echo G5_JS_VER; ?>" data-cfasync="false"></script>
+<script>
+$(function() {
+    set_ui_custom();
+    $('body').css('display', '');
+});
+</script>
 <?php
 if(!defined('G5_IS_ADMIN'))
     echo $config['cf_add_script'];
 ?>
 
 </head>
-<body<?php echo isset($g5['body_script']) ? $g5['body_script'] : ''; ?>>
+<body style="display:none" <?php echo isset($g5['body_script']) ? $g5['body_script'] : ''; ?>>
 <?php
 if ($is_member) { // 회원이라면 로그인 중이라는 메세지를 출력해준다.
     $sr_admin_msg = '';
