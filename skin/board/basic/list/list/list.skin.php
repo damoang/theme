@@ -106,7 +106,8 @@ add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
 							<label for="chk_wr_id_<?php echo $i ?>" class="visually-hidden">
 								<?php echo $row['subject'] ?>
 							</label>
-						</div>
+                        </div>
+
 					<?php } ?>
 					<div class="flex-grow-1">
 						<div class="d-flex flex-column flex-md-row align-items-md-center gap-2">
@@ -116,8 +117,8 @@ add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
 										<i class="bi bi-arrow-return-right"></i>
 										<span class="visually-hidden">답변</span>
 									<?php } ?>
-									<?php echo $row['subject']; // 제목 ?>
-								</a>
+									<?php echo $row['subject']; // 제목 ?> <?php echo ($list[$i]['wr_1'] == '1') ? '<i class="fa fa-id-badge"></i>' : ''; ?>
+                                </a>
 								
 								<?php if (!$sca && $is_category && $row['ca_name']) { ?>
 									<a href="<?php echo $row['ca_name_href'] ?>" class="badge text-body-tertiary px-1">

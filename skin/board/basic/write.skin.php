@@ -34,7 +34,6 @@ na_membership('write', '멤버십 회원만 등록할 수 있습니다.');
 	<input type="hidden" name="sst" value="<?php echo $sst ?>">
 	<input type="hidden" name="sod" value="<?php echo $sod ?>">
 	<input type="hidden" name="page" value="<?php echo $page ?>">
-	<input type="hidden" name="wr_7" value="<?php echo isset($write['wr_7']) ? $write['wr_7'] : ''; ?>">
 
 	<?php
 		$option = '';
@@ -78,7 +77,13 @@ na_membership('write', '멤버십 회원만 등록할 수 있습니다.');
 				$option .= '<label class="form-check-label" for="mail">답변메일받기</label>';
 				$option .= $option_end;
 			}
-		}
+
+
+
+
+
+        }
+
 
 		echo $option_hidden;
 	?>
@@ -161,6 +166,16 @@ na_membership('write', '멤버십 회원만 등록할 수 있습니다.');
 			</div>
 		</div>
 	</li>
+    <li class="list-group-item">
+        <div class="row">
+        <label for="wr_1" class="col-sm-2 col-form-label">회원만 보기</label>
+        <div class="col-sm-10">
+            <input class="form-check-input" type="checkbox" name="wr_1" value="1" id="wr_1" <?php if ($write['wr_1'] == '1') echo 'checked'; ?>>
+            <label class="form-check-label" for="wr_1">로그인 한 회원만 볼 수 있습니다.</label>
+        </div>
+        </div>
+    </li>
+
 	<li class="list-group-item">
 		<label class="visually-hidden">내용<strong> 필수</strong></label>
 		<?php if($write_min || $write_max) { ?>
