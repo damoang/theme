@@ -193,15 +193,6 @@ $one_cols = array(
                 }
             }
 
-
-            document.addEventListener('DOMContentLoaded', function () {
-                try {
-                    set_ui_custom();
-                } catch (error) {
-                    console.error('Failed to initialize custom UI settings:', error);
-                }
-            });
-
             // 자바스크립트에서 사용하는 전역변수 선언
             var g5_url = "<?php echo G5_URL ?>";
             var g5_bbs_url = "<?php echo G5_BBS_URL ?>";
