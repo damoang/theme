@@ -44,15 +44,7 @@ if(in_array($file_id, $shop_notitle) || in_array($file_id, $notitle)) {
 				<nav aria-label="breadcrumb">
 					<ol class="breadcrumb mb-0">
 					<li><li class="breadcrumb-item"><a href="<?php G5_URL ?>/"><i class="bi bi-house-door"></i></a></li>
-                        <?php if (!empty($bo_table)): ?>
-                            <a href="/<?php echo $bo_table ?>?sca=&sfl=mb_id,1&stx=<?php echo $member['mb_id'] ?>">[내글
-                                보기]</a>
-                        <?php endif; ?>
-
-                        <a href="/bbs/new.php?bo_table=&sca=&gr_id=&view=w&mb_id=<?php echo $member['mb_id'] ?>">내글 </a> |
-                        <a href="/bbs/new.php?bo_table=&sca=&gr_id=&view=c&mb_id=<?php echo $member['mb_id'] ?>">내 댓글 </a>
-
-					<?php 
+					<?php
 						$nav_now = $nav_cnt - 1;
 						for($i=0; $i < $nav_cnt; $i++) { 
 							if ($i == $nav_now) {
