@@ -228,10 +228,6 @@ $one_cols = array(
         <script src="<?php echo LAYOUT_URL ?>/js/darkmode.js?ver=<?php echo G5_JS_VER; ?>"
                 data-cfasync="false"></script>
 
-        <script>
-          window.attachEvent("onload",set_ui_custom());
- 
-        </script>
         <?php
         if (!defined('G5_IS_ADMIN'))
             echo $config['cf_add_script'];
