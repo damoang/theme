@@ -125,4 +125,9 @@ if(!IS_INDEX) {
 
 
 		<?php } ?>
+
+                        <?php if (!empty($bo_table)): ?>
+                            <a href="/<?php echo $bo_table ?>?sca=&sfl=mb_id,1&stx=<?php echo $member['mb_id'] ?>">[내글
+                                보기]</a>
+                        <?php endif; ?>
 <?php } // 메인이 아닐 경우 ?>
