@@ -28,6 +28,9 @@ add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css">
         </h1>
     </header>
 
+    <a href="/<?php echo $bo_table ?>?sca=&sfl=mb_id,1&stx=<?php echo $member['mb_id'] ?>">내글 보기</a> |
+    <a href="/<?php echo $bo_table ?>?bo_table=notice&sca=&sfl=mb_id%2C0&sop=and&stx=<?php echo $member['mb_id'] ?>"> 내 댓글 보기
+
     <section id="bo_v_info">
         <h3 class="visually-hidden">페이지 정보</h3>
         <div class="d-flex justify-content-end align-items-center line-top border-bottom bg-body-tertiary py-2 px-3 small">
