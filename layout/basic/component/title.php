@@ -44,7 +44,7 @@ if(in_array($file_id, $shop_notitle) || in_array($file_id, $notitle)) {
 				<nav aria-label="breadcrumb">
 					<ol class="breadcrumb mb-0">
 					<li><li class="breadcrumb-item"><a href="<?php G5_URL ?>/"><i class="bi bi-house-door"></i></a></li>
-					<?php 
+					<?php
 						$nav_now = $nav_cnt - 1;
 						for($i=0; $i < $nav_cnt; $i++) { 
 							if ($i == $nav_now) {
