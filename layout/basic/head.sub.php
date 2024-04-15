@@ -221,13 +221,8 @@ $one_cols = array(
         <script src="<?php echo LAYOUT_URL ?>/js/darkmode.js?ver=<?php echo G5_JS_VER; ?>"
                 data-cfasync="false"></script>
         <script>
-        $(function() {
-            try {
-                set_ui_custom();
-            } catch (error) {
-                console.error('Failed to initialize custom UI settings:', error);
-            }
-        });
+          window.attachEvent("onload",set_ui_custom());
+ 
         </script>
         <?php
         if (!defined('G5_IS_ADMIN'))
