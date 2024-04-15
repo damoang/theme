@@ -115,6 +115,7 @@ $one_cols = array(
 
                 window.addEventListener('keydown', handleKeyPress);
 
+
             })();
 
 
@@ -192,6 +193,15 @@ $one_cols = array(
                 }
             }
 
+
+            document.addEventListener('DOMContentLoaded', function () {
+                try {
+                    set_ui_custom();
+                } catch (error) {
+                    console.error('Failed to initialize custom UI settings:', error);
+                }
+            });
+
             // 자바스크립트에서 사용하는 전역변수 선언
             var g5_url = "<?php echo G5_URL ?>";
             var g5_bbs_url = "<?php echo G5_BBS_URL ?>";
@@ -210,13 +220,6 @@ $one_cols = array(
             var g5_admin_url = "<?php echo G5_ADMIN_URL ?>";
             <?php } ?>
             var na_url = "<?php echo NA_URL ?>";
-
-
-            // 참고로, 소스 어디에선가 onLoad 관련하여 스크립트로 호출하는 부분이 있다면
-            // 이거 적용하면 해당 부분은 무시됩니다.
-            //     그런 부분 있으시다면 onload용 함수 하나 만드셔서 해당 함수에서 필요한 함수들을 순차적으로 실행하게 하면 될 듯 합니다.
-            window.attachEvent("onload", set_ui_custom());
-
         </script>
         <script src="<?php echo G5_THEME_URL ?>/js/jquery-3.5.1.min.js?ver=<?php echo G5_JS_VER; ?>"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11?ver=<?php echo G5_JS_VER; ?>"></script>
@@ -227,17 +230,13 @@ $one_cols = array(
         <script src="<?php echo G5_THEME_URL ?>/js/nariya.js?ver=<?php echo G5_JS_VER; ?>"></script>
         <script src="<?php echo LAYOUT_URL ?>/js/darkmode.js?ver=<?php echo G5_JS_VER; ?>"
                 data-cfasync="false"></script>
-
-        <script>
-          window.attachEvent("onload",set_ui_custom());
- 
-        </script>
         <?php
         if (!defined('G5_IS_ADMIN'))
             echo $config['cf_add_script'];
         ?>
 
-</head>
+
+    </head>
 <body<?php echo isset($g5['body_script']) ? $g5['body_script'] : ''; ?>>
 <?php
 if ($is_member) { // 회원이라면 로그인 중이라는 메세지를 출력해준다.
@@ -248,5 +247,4 @@ if ($is_member) { // 회원이라면 로그인 중이라는 메세지를 출력�
 
     echo '<div id="hd_login_msg" class="visually-hidden">' . $sr_admin_msg . get_text($member['mb_nick']) . '님 로그인 중 ';
     echo '<a href="' . G5_BBS_URL . '/logout.php">로그아웃</a></div>';
-
 }
