@@ -309,7 +309,8 @@ function na_comment_new(id, url, count) {
 	var href = url + '&count=' + count + '&cnew=1';
 	$.post(href, function(data) {
 		if(data) {
-			na_alert(data);
+			//  댓글 새로 고침
+			// na_alert(data);
 			return false;
 		} else {
 			na_page(id, url);
