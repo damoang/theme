@@ -374,7 +374,7 @@ if (!empty($config['cf_9'])) {
               </span>
             </a>
             <a class="nav-link" href="/stationery" target="_self">
-              필구도구당 </a>
+              필기도구당 </a>
             <a class="nav-link" href="/stock" target="_self">
               주식한당 <span class="small">
                 <b class="badge bg-primary rounded-pill fw-normal"></b>
