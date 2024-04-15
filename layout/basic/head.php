@@ -122,5 +122,13 @@ if(!IS_INDEX) {
 							// 페이지 타이틀
 							include_once LAYOUT_PATH.'/component/title.php';
 						?>
+
+                        <?php if (!empty($bo_table)): ?>
+                            <a href="/<?php echo $bo_table ?>?sca=&sfl=mb_id,1&stx=<?php echo $member['mb_id'] ?>">[내글
+                                보기]</a>
+                        <?php endif; ?>
+
+                        <a href="/bbs/new.php?bo_table=&sca=&gr_id=&view=w&mb_id=<?php echo $member['mb_id'] ?>">내글 </a> |
+                        <a href="/bbs/new.php?bo_table=&sca=&gr_id=&view=c&mb_id=<?php echo $member['mb_id'] ?>">내 댓글 </a>
 		<?php } ?>
 <?php } // 메인이 아닐 경우 ?>
