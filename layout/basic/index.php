@@ -8,10 +8,12 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
       <div class="order-1 col-md-8 col-lg-9">
         <div class="sticky-top py-3">
 
-          <div class="alert alert-light mb-4 mx-3 mx-sm-0" role="alert">
-            <?php echo $config['cf_10'];?>
-          </div>
 
+          <div class="alert alert-light mb-4 mx-3 mx-sm-0" role="alert">
+                 <img src="https://damoang.net/logo/0416_02.gif" style="max-width: 100%">
+
+          </div>
+           <?php echo $config['cf_10'];?>
           <div class="row row-cols-1 row-cols-lg-2">
             <div class="col">
               <!-- 위젯 시작 { -->

@@ -63,7 +63,8 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
 		$good_list = array();
 		if ($member['mb_id']) {
 			// 추천/비추천 여부 확인을 위한 댓글의 추천내역 가져오기
-			$sql = " select {$write_table}.wr_id, {$g5['board_good_table']}.bg_id, {$g5['board_good_table']}.bg_flag
+			// 2024.04.15 서버 부하로 사용 안함
+			/*$sql = " select {$write_table}.wr_id, {$g5['board_good_table']}.bg_id, {$g5['board_good_table']}.bg_flag
 					from {$write_table}
 					left join {$g5['board_good_table']} on
 						{$write_table}.wr_id = {$g5['board_good_table']}.wr_id
@@ -74,7 +75,7 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
 
 			for ($i=0; $row=sql_fetch_array($result); $i++) {
 				$good_list[$row['wr_id']] = $row['bg_flag'];
-			}
+			}*/
 		}
 
 		// 댓글목록
