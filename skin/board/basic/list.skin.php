@@ -23,8 +23,6 @@ $list_skin_path = $board_skin_path.'/list/'.$list_skin;
    </div>
 
 <?php echo $config['cf_10'];?>
-<a href="/<?php echo $bo_table ?>?sca=&sfl=mb_id,1&stx=<?php echo $member['mb_id'] ?>">내글 보기</a> |
-<a href="/<?php echo $bo_table ?>?bo_table=notice&sca=&sfl=mb_id%2C0&sop=and&stx=<?php echo $member['mb_id'] ?>"> 내 댓글 보기
 <div id="bo_list_wrap">
 	<?php
 		// 분류 스킨
