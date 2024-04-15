@@ -18,18 +18,18 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
     <div class="na-menu">
       <div class="nav nav-pills nav-vertical">
 
-  <?php
+        <?php
 if (!empty($config['cf_9'])) {
     ?>
         <div class="nav-item">
           <a class="nav-link" href="<?php echo $config['cf_9'];?>" data-placement="left" target="_blank">
             <i class="bi-youtube nav-icon"></i>
             <span class="nav-link-title">
-                [♥] 다모앙 라방 (가칭 : 사랑방)
+              [♥] 다모앙 라방 (가칭 : 사랑방)
             </span>
           </a>
         </div>
-    <?php
+        <?php
 }
 ?>
         <div class="nav-item">
@@ -156,7 +156,7 @@ if (!empty($config['cf_9'])) {
               </span>
             </a>
             <a class="nav-link" href="/bread" target="_self">
-             빵친당 <span class="small">
+              빵친당 <span class="small">
                 <b class="badge bg-primary rounded-pill fw-normal"></b>
               </span>
             </a>
@@ -271,8 +271,8 @@ if (!empty($config['cf_9'])) {
                 <b class="badge bg-primary rounded-pill fw-normal"></b>
               </span>
             </a>
-            <a class="nav-link" href="/MaClien" target="_self">
-              MaClien <span class="small">
+            <a class="nav-link" href="/macmoang" target="_self">
+              맥모앙 <span class="small">
                 <b class="badge bg-primary rounded-pill fw-normal"></b>
               </span>
             </a>
@@ -393,6 +393,16 @@ if (!empty($config['cf_9'])) {
                 <b class="badge bg-primary rounded-pill fw-normal"></b>
               </span>
             </a>
+            <a class="nav-link" href="/MSSurface" target="_self">
+              서피스당 <span class="small">
+                <b class="badge bg-primary rounded-pill fw-normal"></b>
+              </span>
+            </a>
+            <a class="nav-link" href="/see" target="_self">
+              보러간당 <span class="small">
+                <b class="badge bg-primary rounded-pill fw-normal"></b>
+              </span>
+            </a>
           </div>
         </div>
         <div class="nav-item">
@@ -404,8 +414,7 @@ if (!empty($config['cf_9'])) {
           </a>
         </div>
         <div class="nav-item">
-          <a class="nav-link" href="/bbs/group.php?gr_id=community" data-placement="left"
-            target="_self">
+          <a class="nav-link" href="/bbs/group.php?gr_id=community" data-placement="left" target="_self">
             <i class="bi-clipboard nav-icon"></i>
             <span class="nav-link-title">
               [C] 커뮤니티
