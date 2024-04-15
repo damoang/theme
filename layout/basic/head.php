@@ -126,8 +126,10 @@ if(!IS_INDEX) {
 
 		<?php } ?>
 
-                        <?php if (!empty($bo_table)): ?>
-                            <a href="/<?php echo $bo_table ?>?sca=&sfl=mb_id,1&stx=<?php echo $member['mb_id'] ?>">[내글
-                                보기]</a>
-                        <?php endif; ?>
+
 <?php } // 메인이 아닐 경우 ?>
+<?php if (!empty($bo_table)): ?>
+    <a href="/<?php echo $bo_table ?>?sca=&sfl=mb_id,1&stx=<?php echo $member['mb_id'] ?>">내글 보기</a> |
+<a href="/<?php echo $bo_table ?>?bo_table=notice&sca=&sfl=mb_id%2C0&sop=and&stx=<?php echo $member['mb_id'] ?>"> 내 댓글 보기
+
+<?php endif; ?>
