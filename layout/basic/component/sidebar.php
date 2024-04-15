@@ -268,8 +268,8 @@ if (!empty($config['cf_9'])) {
                 <b class="badge bg-primary rounded-pill fw-normal"></b>
               </span>
             </a>
-            <a class="nav-link" href="/MaClien" target="_self">
-              MaClien <span class="small">
+            <a class="nav-link" href="/macmoang" target="_self">
+              맥모앙 <span class="small">
                 <b class="badge bg-primary rounded-pill fw-normal"></b>
               </span>
             </a>
@@ -387,6 +387,16 @@ if (!empty($config['cf_9'])) {
             </a>
             <a class="nav-link" href="/tabletennis" target="_self">
               탁구당 <span class="small">
+                <b class="badge bg-primary rounded-pill fw-normal"></b>
+              </span>
+            </a>
+            <a class="nav-link" href="/MSSurface" target="_self">
+              서피스당 <span class="small">
+                <b class="badge bg-primary rounded-pill fw-normal"></b>
+              </span>
+            </a>
+            <a class="nav-link" href="/see" target="_self">
+              보러간당 <span class="small">
                 <b class="badge bg-primary rounded-pill fw-normal"></b>
               </span>
             </a>
