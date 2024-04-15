@@ -23,9 +23,11 @@ $list_skin_path = $board_skin_path.'/list/'.$list_skin;
 
 
           </div>
+<?php if (!empty($bo_table)): ?>
+    <a href="/<?php echo $bo_table ?>?sca=&sfl=mb_id,1&stx=<?php echo $member['mb_id'] ?>">[내글
+        보기]</a>
+<?php endif; ?>
 
-<a href="/bbs/new.php?bo_table=&sca=&gr_id=&view=w&mb_id=<?php echo $member['mb_id'] ?>">내글 </a> |
-<a href="/bbs/new.php?bo_table=&sca=&gr_id=&view=c&mb_id=<?php echo $member['mb_id'] ?>">내 댓글 </a>
            <?php //echo $config['cf_10'];?>
 <div id="bo_list_wrap">
 	<?php
