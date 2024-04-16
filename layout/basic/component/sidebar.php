@@ -192,7 +192,7 @@ if (!empty($config['cf_9'])) {
               </span>
             </a>
             <a class="nav-link" href="/fishing" target="_self">
-              낙시당 <span class="small">
+              낚시당 <span class="small">
                 <b class="badge bg-primary rounded-pill fw-normal"></b>
               </span>
             </a>
