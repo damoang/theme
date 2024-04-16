@@ -215,102 +215,10 @@ $one_cols = array(
             // 참고로, 소스 어디에선가 onLoad 관련하여 스크립트로 호출하는 부분이 있다면
             // 이거 적용하면 해당 부분은 무시됩니다.
             //     그런 부분 있으시다면 onload용 함수 하나 만드셔서 해당 함수에서 필요한 함수들을 순차적으로 실행하게 하면 될 듯 합니다.
-            window.attachEvent("onload", set_ui_custom());
+//            window.attachEvent("onload", set_ui_custom());
 
+	            window.addEventListener("load", set_ui_custom);
         </script>
-
-        <script type="text/javascript">
-            function ui_custom_apply(){
-                var ui_custom_input = ["ui_custom","show_width","font_family","font_size","line_height","menu_width","left_menu","menu_scroll","list_search","img_preview","hide_nick"];
-                var ui_custom_default = {show_width : 1200, font_size:1,line_height:1.5,menu_width:25};
-                var ui_custom_json = {};
-                var changed = false;
-
-                ui_custom_input.forEach(function(reg){
-                    var temp_input = $("#reg_"+reg)[0]
-                    if (temp_input!=null) {
-                        var temp_value = temp_input.value;
-                        if (temp_value != null && temp_value !="" ) {
-                            temp_value = temp_value.trim()
-                            var save = true;
-                            if (temp_input.type=="checkbox") {
-                                save = temp_input.checked;
-                                temp_value = true;
-                            } else {
-                                if (ui_custom_default[reg] !=null ) {
-                                    if (temp_value == ui_custom_default[reg]) {
-                                        save = false;
-                                    }
-                                }
-                            }
-                            if (save) {
-                                changed = true;
-                                if (temp_input.type=="number") {
-                                    ui_custom_json[reg] = Number(temp_value);
-                                } else {
-                                    ui_custom_json[reg] = temp_value;
-                                }
-
-                            }
-                        }
-                    }
-                });
-
-                var json_str = "";
-                var item_key = "ui_custom";
-                if (changed) {
-                    json_str = JSON.stringify(ui_custom_json);
-                    localStorage.setItem(item_key,json_str);
-                } else {
-                    localStorage.removeItem(item_key)
-                }
-                $("#ui_custom_json").val(json_str);
-                alert("변경사항이 적용되었습니다.");
-
-                try{
-                    set_ui_custom();
-                } catch{
-                    console.error('Failed to initialize custom UI settings:', error);
-                }
-            }
-
-            function get_ui_custom_values(){
-                var ui_custom_storage_str = localStorage.getItem("ui_custom");
-                if (ui_custom_storage_str !=null && ui_custom_storage_str != "") {
-                    var ui_custom_obj = JSON.parse(ui_custom_storage_str);
-                    var ui_custom_keys = Object.keys(ui_custom_obj);
-                    ui_custom_keys.forEach(function(reg){
-                        var temp_input = $("#reg_"+reg)[0];
-                        if (temp_input != null) {
-                            if (temp_input.type=="checkbox") {
-                                if (ui_custom_obj[reg] == true) {
-                                    temp_input.checked = true;
-                                } else {
-                                    temp_input.checked = false;
-                                }
-                            } else {
-                                temp_input.value = ui_custom_obj[reg];
-                            }
-                        }
-                    })
-                    $("#ui_custom_json").val(ui_custom_storage_str);
-                }
-            }
-
-            document.addEventListener("DOMContentLoaded", function() {
-                var btn_ui_apply = document.getElementById("btn_ui_apply");
-                if (btn_ui_apply) {
-                    btn_ui_apply.addEventListener("click", function(e) {
-                        ui_custom_apply();
-                    });
-                }
-                get_ui_custom_values();
-            });
-
-        </script>
-
-
-
         <script src="<?php echo G5_THEME_URL ?>/js/jquery-3.5.1.min.js?ver=<?php echo G5_JS_VER; ?>"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11?ver=<?php echo G5_JS_VER; ?>"></script>
         <script src="<?php echo G5_THEME_URL ?>/js/common.js?ver=<?php echo G5_JS_VER; ?>"></script>
