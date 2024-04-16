@@ -308,7 +308,66 @@ if($is_ajax)
 				height:92px; resize: none; overflow-y: hidden; }
 			</style>
 			<div class="mb-2">
+				<script>
+					$(function () {
+						$("#fviewcomment textarea, .upload-file-area")
+						.on("dragenter", function (e) {
+							e.preventDefault();
+							e.stopPropagation();
+						}).on("dragover", function (e) {
+							e.preventDefault();
+							e.stopPropagation();
+							$('.upload-file-area').css("display", "flex");
+						}).on("dragleave", function (e) {
+							e.preventDefault();
+							e.stopPropagation();
+							if ($(this).hasClass('upload-file-area'))
+								$('.upload-file-area').css("display", "none");
+						}).on("drop", function (e) {
+							e.preventDefault();
+							var data = new FormData();
+							var files = e.originalEvent.dataTransfer.files;
+							data.append('bo_table', '<?php echo $bo_table ?>');
+							data.append('na_file', files[0]);
+
+							$.ajax({
+								type: 'POST',
+								url: '<?php echo NA_URL ?>/upload.image.php',
+								enctype : 'multipart/form-data',
+								dataType: 'json',
+								contentType: false,
+								processData: false,
+								data: data,
+								success: function (result) {
+									$('.upload-file-area').css("display", "none");
+									if(result.success) {
+										parent.document.getElementById("wr_content").value += '[' + result.success + ']\n';
+									} else {
+										var chkErr = result.error.replace(/<[^>]*>?/g, '');
+										if(!chkErr) {
+											chkErr = '[E1]오류가 발생하였습니다.';
+										}
+										na_alert(chkErr);
+										return false;
+									}
+								},
+								error: function (request,status,error) {
+									let msg = "code:"+request.status+"<br>"+"message:"+request.responseText+"<br>"+"error:"+error;
+									na_alert(msg);
+									return false;
+								}
+							});
+						});
+					});
+				</script>
 				<div class="form-floating comment-textarea">
+					<div class="upload-file-area">
+						<div class="upload-file-over"></div>
+						<div class="icon-upload">
+							<i class="bi bi-upload"></i>
+						</div>
+						<div>여기에 파일을 놓아 업로드</div>
+					</div>
 					<textarea tabindex="1" placeholder="Leave a comment here" id="wr_content" name="wr_content" maxlength="10000" class="form-control lh-base"
 					<?php if ($comment_min || $comment_max) { ?>onkeyup="check_byte('wr_content', 'char_count');"<?php } ?>><?php echo $c_wr_content;  ?></textarea>
 					<label id="wr_msg" for="wr_content">댓글을 입력해 주세요.</label>

@@ -461,3 +461,33 @@ textarea.required {
         opacity: 1;
     }
 }
+
+/* Drag & drop file upload */
+.upload-file-area {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background-color: rgba(var(--bs-body-bg-rgb), .7);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: var(--bs-border-radius);
+	z-index: 10;
+	border: var(--bs-border-width) dashed var(--bs-border-color);
+	display: none;
+}
+
+.upload-file-area .upload-file-over {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 11;
+}
+
+.upload-file-area .icon-upload {
+	margin-right: .4rem;
+}
