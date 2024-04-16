@@ -19,12 +19,10 @@ $list_skin_path = $board_skin_path.'/list/'.$list_skin;
 ?>
 
    <div class="alert alert-light mb-4 mx-3 mx-sm-0" role="alert">
-<img src="https://damoang.net/logo/0416_02.gif" style="max-width: 100%">
+    <img src="https://damoang.net/logo/0416_02.gif" style="max-width: 100%">
+   </div>
 
-
-          </div>
-
-           <?php echo $config['cf_10'];?>
+<?php echo $config['cf_10'];?>
 <div id="bo_list_wrap">
 	<?php
 		// 분류 스킨

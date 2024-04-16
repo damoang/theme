@@ -137,8 +137,8 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
               </div></li><li class="list-group-item">
               <div class="row align-items-center">
-                  <label for="reg_ui_custom" class="col-sm-3 col-form-label">UI 커스텀</label>
-                  <div class="col-sm-9">
+                  <label for="reg_ui_custom" class="col-sm-5 col-form-label">UI 커스텀</label>
+                  <div class="col-sm-7">
                       <div class="form-check form-switch form-check-inline">
                           <input class="form-check-input ui_custom_items" type="checkbox" name="ui_custom" value="1" role="switch" id="reg_ui_custom" data-gtm-form-interact-field-id="0">
 
@@ -148,43 +148,43 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
           </li>
           <li class="list-group-item ui-custon-item">
               <div class="row">
-                  <label for="reg_show_width" class="col-sm-3 col-form-label">화면너비(px)</label>
-                  <div class="col-sm-9">
+                  <label for="reg_show_width" class="col-sm-5 col-form-label">화면너비(px)</label>
+                  <div class="col-sm-7">
                       <input type="number" id="reg_show_width" name="show_width" placeholder="1200" class="form-control ui_custom_items" data-gtm-form-interact-field-id="1" value="1200" min="1000">
                   </div>
               </div>
           </li><li class="list-group-item ui-custon-item">
               <div class="row">
-                  <label for="reg_font_family" class="col-sm-3 col-form-label">글씨체</label>
-                  <div class="col-sm-9">
+                  <label for="reg_font_family" class="col-sm-5 col-form-label">글씨체</label>
+                  <div class="col-sm-7">
                       <input type="text" id="reg_font_family" name="font_family" value="" class="form-control ui_custom_items ">
                   </div>
               </div>
           </li><li class="list-group-item ui-custon-item">
               <div class="row">
-                  <label for="reg_font_size" class="col-sm-3 col-form-label">글씨 크기(em)</label>
-                  <div class="col-sm-9">
+                  <label for="reg_font_size" class="col-sm-5 col-form-label">글씨 크기(em)</label>
+                  <div class="col-sm-7">
                       <input type="number" id="reg_font_size" name="font_size" class="form-control ui_custom_items" step="0.1" data-gtm-form-interact-field-id="0" placeholder="1" value="1" min="0.3">
                   </div>
               </div>
           </li><li class="list-group-item ui-custon-item">
               <div class="row">
-                  <label for="reg_line_height" class="col-sm-3 col-form-label">줄높이</label>
-                  <div class="col-sm-9">
+                  <label for="reg_line_height" class="col-sm-5 col-form-label">줄높이</label>
+                  <div class="col-sm-7">
                       <input type="number" id="reg_line_height" name="line_height" class="form-control ui_custom_items" step="0.1" placeholder="1.5" value="1.5" min="0.1">
                   </div>
               </div>
           </li><li class="list-group-item ui-custon-item">
               <div class="row">
-                  <label for="reg_menu_width" class="col-sm-3 col-form-label">메뉴너비(%)</label>
-                  <div class="col-sm-9">
+                  <label for="reg_menu_width" class="col-sm-5 col-form-label">메뉴너비(%)</label>
+                  <div class="col-sm-7">
                       <input type="number" id="reg_menu_width" name="menu_width" class="form-control ui_custom_items " step="0.1" placeholder="25" value="25" data-gtm-form-interact-field-id="2" min="10" max="50">
                   </div>
               </div>
           </li><li class="list-group-item ui-custon-item">
               <div class="row align-items-center">
-                  <label for="reg_left_menu" class="col-sm-3 col-form-label">좌측 메뉴</label>
-                  <div class="col-sm-9">
+                  <label for="reg_left_menu" class="col-sm-5 col-form-label">좌측 메뉴</label>
+                  <div class="col-sm-7">
                       <div class="form-check form-switch form-check-inline">
                           <input class="form-check-input ui_custom_items" type="checkbox" name="left_menu" value="1" role="switch" id="reg_left_menu" data-gtm-form-interact-field-id="0">
 
@@ -193,8 +193,8 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
               </div>
           </li><li class="list-group-item ui-custon-item">
               <div class="row align-items-center">
-                  <label for="reg_menu_scroll" class="col-sm-3 col-form-label">메뉴 스크롤</label>
-                  <div class="col-sm-9">
+                  <label for="reg_menu_scroll" class="col-sm-5 col-form-label">메뉴 스크롤</label>
+                  <div class="col-sm-7">
                       <div class="form-check form-switch form-check-inline">
                           <input class="form-check-input ui_custom_items" type="checkbox" name="menu_scroll" value="1" role="switch" id="reg_menu_scroll" data-gtm-form-interact-field-id="0">
 
@@ -203,8 +203,8 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
               </div>
           </li><li class="list-group-item ui-custon-item">
               <div class="row align-items-center">
-                  <label for="reg_list_search" class="col-sm-3 col-form-label">목록 검색창</label>
-                  <div class="col-sm-9">
+                  <label for="reg_list_search" class="col-sm-5 col-form-label">목록 검색창</label>
+                  <div class="col-sm-7">
                       <div class="form-check form-switch form-check-inline">
                           <input class="form-check-input ui_custom_items" type="checkbox" name="list_search" value="1" role="switch" id="reg_list_search" data-gtm-form-interact-field-id="0">
 
@@ -213,8 +213,8 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
               </div>
           </li><li class="list-group-item ui-custon-item">
               <div class="row align-items-center">
-                  <label for="reg_img_preview" class="col-sm-3 col-form-label">미리보기끔</label>
-                  <div class="col-sm-9">
+                  <label for="reg_img_preview" class="col-sm-5 col-form-label">미리보기끔</label>
+                  <div class="col-sm-7">
                       <div class="form-check form-switch form-check-inline">
                           <input class="form-check-input ui_custom_items" type="checkbox" name="img_preview" value="1" role="switch" id="reg_img_preview" data-gtm-form-interact-field-id="0">
                       </div>
@@ -224,8 +224,8 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
           <li class="list-group-item ui-custon-item">
               <div class="row align-items-center">
-                  <label for="reg_hide_nick" class="col-sm-3 col-form-label">닉감추기</label>
-                  <div class="col-sm-9">
+                  <label for="reg_hide_nick" class="col-sm-5 col-form-label">닉감추기</label>
+                  <div class="col-sm-7">
                       <div class="form-check form-switch form-check-inline">
                           <input class="form-check-input ui_custom_items" type="checkbox" name="hide_nick" value="1" role="switch" id="reg_hide_nick" data-gtm-form-interact-field-id="0">
 
@@ -240,91 +240,6 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
               </div>
           </li>
-          <script type="text/javascript">
-              function ui_custom_apply(){
-                  var ui_custom_input = ["ui_custom","show_width","font_family","font_size","line_height","menu_width","left_menu","menu_scroll","list_search","img_preview","hide_nick"];
-                  var ui_custom_default = {show_width : 1200, font_size:1,line_height:1.5,menu_width:25};
-                  var ui_custom_json = {};
-                  var changed = false;
-
-                  ui_custom_input.forEach(function(reg){
-                      var temp_input = $("#reg_"+reg)[0]
-                      if (temp_input!=null) {
-                          var temp_value = temp_input.value;
-                          if (temp_value != null && temp_value !="" ) {
-                              temp_value = temp_value.trim()
-                              var save = true;
-                              if (temp_input.type=="checkbox") {
-                                  save = temp_input.checked;
-                                  temp_value = true;
-                              } else {
-                                  if (ui_custom_default[reg] !=null ) {
-                                      if (temp_value == ui_custom_default[reg]) {
-                                          save = false;
-                                      }
-                                  }
-                              }
-                              if (save) {
-                                  changed = true;
-                                  if (temp_input.type=="number") {
-                                      ui_custom_json[reg] = Number(temp_value);
-                                  } else {
-                                      ui_custom_json[reg] = temp_value;
-                                  }
-
-                              }
-                          }
-                      }
-                  });
-
-                  var json_str = "";
-                  var item_key = "ui_custom";
-                  if (changed) {
-                      json_str = JSON.stringify(ui_custom_json);
-                      localStorage.setItem(item_key,json_str);
-                  } else {
-                      localStorage.removeItem(item_key)
-                  }
-                  $("#ui_custom_json").val(json_str);
-                  alert("변경사항이 적용되었습니다.");
-
-                  try{
-                      set_ui_custom();
-                  } catch{
-                      console.error('Failed to initialize custom UI settings:', error);
-                  }
-              }
-
-              function get_ui_custom_values(){
-                  var ui_custom_storage_str = localStorage.getItem("ui_custom");
-                  if (ui_custom_storage_str !=null && ui_custom_storage_str != "") {
-                      var ui_custom_obj = JSON.parse(ui_custom_storage_str);
-                      var ui_custom_keys = Object.keys(ui_custom_obj);
-                      ui_custom_keys.forEach(function(reg){
-                          var temp_input = $("#reg_"+reg)[0];
-                          if (temp_input != null) {
-                              if (temp_input.type=="checkbox") {
-                                  if (ui_custom_obj[reg] == true) {
-                                      temp_input.checked = true;
-                                  } else {
-                                      temp_input.checked = false;
-                                  }
-                              } else {
-                                  temp_input.value = ui_custom_obj[reg];
-                              }
-                          }
-                      })
-                      $("#ui_custom_json").val(ui_custom_storage_str);
-                  }
-              }
-
-              jQuery(function($){
-                  $("#btn_ui_apply").on("click", function(e){
-                      ui_custom_apply();
-                  });
-                  get_ui_custom_values();
-              })
-          </script>
       <?php } else { ?>
 
       <form id="memberLogin" class="pt-1" name="memberLogin" method="post"
@@ -391,7 +306,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
           <?php
           } else if ($full_url == 'https://damoang.net') {
               // HTTPS 프로토콜을 포함하여 검사
-              echo "This content is hidden on production";
+              // echo "This content is hidden on production";
           } else {
               echo "Accessed from unknown host: $host with protocol $protocol";
           }

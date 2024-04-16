@@ -63,11 +63,11 @@ if(IS_INDEX)
 									</span>
 									Auto
 								</button>
-							</div>	
+							</div>
 						</div>
 					</div>
 				</div>
-				
+
 				<div>
 					<a href="#newOffcanvas" data-bs-toggle="offcanvas" data-bs-target="#newOffcanvas" aria-controls="newOffcanvas" class="site-icon">
 						<span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="새글/새댓글">
@@ -104,16 +104,16 @@ if(IS_INDEX)
 		</div><!-- .container -->
 	</header>
 
-<?php 
+<?php
 // 메인이 아닐 경우
 if(!IS_INDEX) {
 ?>
 	<div id="main-wrap" class="bg-body">
 		<div class="container px-0 px-sm-3<?php echo (IS_ONECOL) ? ' py-3' : ''; ?>">
-		<?php if(IS_ONECOL) { // 1단 일 때 
+		<?php if(IS_ONECOL) { // 1단 일 때
 			// 페이지 타이틀
 			include_once LAYOUT_PATH.'/component/title.php';
-		} else { // 2단 일 때 
+		} else { // 2단 일 때
 ?>
 			<div class="row row-cols-1 row-cols-md-2 g-3">
 				<div class="order-1 col-md-8 col-lg-9">
@@ -122,5 +122,9 @@ if(!IS_INDEX) {
 							// 페이지 타이틀
 							include_once LAYOUT_PATH.'/component/title.php';
 						?>
+
+
 		<?php } ?>
+
+
 <?php } // 메인이 아닐 경우 ?>
