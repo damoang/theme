@@ -1,15 +1,12 @@
-$(function () {
+document.addEventListener('DOMContentLoaded', function () {
   // 상단 네비바
   var is_scroll;
   var lastScrollTop = 0;
   var delta = 5;
-  var navbarHeight = $('#header-navbar').outerHeight();
+  var navbar = document.getElementById('header-navbar');
+  var navbarHeight = navbar.offsetHeight;
 
-  // $(window).on('scroll', function () {
-  //   is_scroll = true;
-  // });
-
-  $(window).on('scroll', function () {
+  window.addEventListener('scroll', function () {
     if (is_scroll) return;
     is_scroll = true;
     setTimeout(function () {
@@ -18,54 +15,38 @@ $(function () {
     }, 500);
   });
 
-  // setInterval(function () {
-  //   if (is_scroll) {
-  //     na_navbar();
-  //     is_scroll = false;
-  //   }
-  // }, 250); // 스크롤이 멈춘 후 동작이 실행되기 까지의 딜레이
-
   function na_navbar() {
-    var nstv = $(this).scrollTop(); // 현재 window의 scrollTop 값
+    var nst = window.pageYOffset; // 현재 window의 scrollTop 값
 
     // delta로 설정한 값보다 많이 스크롤 되어야 실행된다.
-    if (Math.abs(lastScrollTop - nstv) <= delta) return;
+    if (Math.abs(lastScrollTop - nst) <= delta) return;
 
-    if (nstv > lastScrollTop && nstv > navbarHeight) {
+    if (nst > lastScrollTop && nst > navbarHeight) {
       // 스크롤을 내렸을 때
-      $('#header-navbar').slideUp('fast'); // 숨기기
+      navbar.style.display = 'none'; // 숨기기
     } else {
       // 스크롤을 올렸을 때
-      if (nstv + $(window).height() < $(document).height()) {
-        $('#header-navbar').slideDown('fast'); // 보이기
+      if (nst + window.innerHeight < document.body.scrollHeight) {
+        navbar.style.display = 'block'; // 보이기
       }
     }
 
-    lastScrollTop = nstv; // 현재 멈춘 위치를 기준점으로 재설정
+    lastScrollTop = nst; // 현재 멈춘 위치를 기준점으로 재설정
   }
 
-  // 상단 진행바
-  // var pageProgress = '<div id="page-progress"></div>';
-
-  // $('body').append(pageProgress);
-
-  $(window).on('scroll', function () {
-    // var currentPercentage =
-    //   ($(window).scrollTop() /
-    //     ($(document).outerHeight() - $(window).height())) *
-    //   100;
-    // $('#page-progress').width(currentPercentage + '%');
-
-    if ($(this).scrollTop() > 150) {
-      $('#toTop').fadeIn();
+  // 상단 이동버튼
+  var toTop = document.getElementById('toTop');
+  window.addEventListener('scroll', function () {
+    if (window.pageYOffset > 150) {
+      toTop.style.display = 'block';
     } else {
-      $('#toTop').fadeOut();
+      toTop.style.display = 'none';
     }
   });
 
-  // 상단 이동버튼
-  $('#toTop a').on('click', function () {
-    $('body, html').animate({ scrollTop: 0 }, 500);
-    return false;
+  document.querySelector('#toTop a').addEventListener('click', function (e) {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 });
+

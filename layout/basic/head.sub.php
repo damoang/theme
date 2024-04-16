@@ -135,6 +135,13 @@ $one_cols = array(
             var g5_admin_url = "<?php echo G5_ADMIN_URL ?>";
             <?php } ?>
             var na_url = "<?php echo NA_URL ?>";
+
+            // 참고로, 소스 어디에선가 onLoad 관련하여 스크립트로 호출하는 부분이 있다면
+            // 이거 적용하면 해당 부분은 무시됩니다.
+            //     그런 부분 있으시다면 onload용 함수 하나 만드셔서 해당 함수에서 필요한 함수들을 순차적으로 실행하게 하면 될 듯 합니다.
+//            window.attachEvent("onload", set_ui_custom());
+
+	            window.addEventListener("load", set_ui_custom);
         </script>
         <script src="<?php echo G5_THEME_URL ?>/js/jquery-3.5.1.min.js?ver=<?php echo G5_JS_VER; ?>"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11?ver=<?php echo G5_JS_VER; ?>"></script>
