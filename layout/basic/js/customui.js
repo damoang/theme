@@ -151,7 +151,7 @@
 
     function hide_nick(ui_obj) {
          //닉네임 감추기
-         if (ui_obj.hide_nick != null && ui_obj.hide_nick) {
+         if (ui_obj && ui_obj.hide_nick != null && ui_obj.hide_nick) {
             var profiles = document.getElementsByClassName('sv_member ellipsis-1');
             for(var i = 0; i < profiles.length; i++) {
                 var profile_html = profiles[i].innerHTML;
@@ -168,7 +168,7 @@
             });
         }
         var ui_obj = get_ui_custom_values();
-        hide_nick(ui_obj);
+        if(ui_obj) hide_nick(ui_obj);
     }, { once: true });
 
     try{
