@@ -117,81 +117,6 @@ $one_cols = array(
 
             })();
 
-
-            function set_ui_custom() {
-                try {
-                    $("#user_ui_custom_styles").remove();
-                } catch {
-                }
-                var ui_custom_storage_str = localStorage.getItem("ui_custom");
-                if (ui_custom_storage_str != null && ui_custom_storage_str != "") {
-                    var ui_obj = JSON.parse(ui_custom_storage_str);
-                    var ui_keys = Object.keys(ui_obj);
-                    var ui_custom_style = "";
-                    var ui_root_style = "";
-                    var ui_media992_style = "";
-                    if (ui_obj.ui_custom != null && ui_obj.ui_custom) {
-                        //화면 너비 설정
-                        if (ui_obj.show_width != null) {
-                            ui_custom_style += ".container {max-width: " + ui_obj.show_width + "px !important;}\n";
-                        }
-                        //메뉴 스크롤 적용
-                        if (ui_obj.menu_scroll != null && ui_obj.menu_scroll) {
-                            ui_custom_style += "#header-copy.header-copy {display: none;}\n";
-                            ui_custom_style += "#header-navbar.site-navbar {position: relative !important;display: block !important; height: 64px !important;}\n";
-                        }
-
-                        //닉네임 감추기
-                        if (ui_obj.hide_nick != null && ui_obj.hide_nick) {
-                            var profile_html = $(".sv_member.ellipsis-1").html();
-                            $(".sv_member.ellipsis-1").html(profile_html.substr(0, profile_html.indexOf("/span>") + 6) + " 회원님");
-                        }
-                        //미리보기창 끄기
-                        if (ui_obj.img_preview != null && ui_obj.img_preview) {
-                            ui_custom_style += "div.popover.bs-popover-auto.fade.show {display: none !important;}\n";
-                        }
-
-                        //root style 글씨체 및 크기
-                        if (ui_obj.font_family != null) {
-                            ui_root_style += "--bs-body-font-family:" + ui_obj.font_family + " !important;\n";
-                        }
-                        if (ui_obj.font_size != null) {
-                            ui_root_style += "--bs-body-font-size:" + ui_obj.font_size + "em !important;\n";
-                        }
-                        if (ui_obj.line_height != null) {
-                            ui_root_style += "--bs-body-line-height:" + ui_obj.line_height + " !important;\n";
-                        }
-
-                        //media 992px 이상
-                        //왼쪽 메뉴 적용
-                        if (ui_obj.left_menu != null && ui_obj.left_menu) {
-                            ui_media992_style += ".order-2 {order: 0 !important;}\n";
-                        }
-                        //메뉴바 크기 설정
-                        if (ui_obj.menu_width != null) {
-                            var content_width = 100 - ui_obj.menu_width;
-                            ui_media992_style += ".col-lg-9 {width: " + content_width + "% !important;}\n";
-                            ui_media992_style += ".col-lg-3 {width: " + ui_obj.menu_width + "% !important;}\n";
-                        }
-                        //검색메뉴 항상 보임
-                        if (ui_obj.list_search != null && ui_obj.list_search) {
-                            ui_media992_style += "#boardSearch {display: block !important;}\n";
-                        }
-
-                        if (ui_root_style != "") {
-                            ui_custom_style += ":root {\n" + ui_root_style + "}\n";
-                        }
-                        if (ui_media992_style != "") {
-                            ui_custom_style += "@media (min-width: 992px) {\n" + ui_media992_style + "}\n";
-                        }
-                        if (ui_custom_style != "") {
-                            $("body").append("<style id=\"user_ui_custom_styles\">\n" + ui_custom_style + "</style>");
-
-                        }
-                    }
-                }
-            }
-
             // 자바스크립트에서 사용하는 전역변수 선언
             var g5_url = "<?php echo G5_URL ?>";
             var g5_bbs_url = "<?php echo G5_BBS_URL ?>";
@@ -211,7 +136,6 @@ $one_cols = array(
             <?php } ?>
             var na_url = "<?php echo NA_URL ?>";
 
-
             // 참고로, 소스 어디에선가 onLoad 관련하여 스크립트로 호출하는 부분이 있다면
             // 이거 적용하면 해당 부분은 무시됩니다.
             //     그런 부분 있으시다면 onload용 함수 하나 만드셔서 해당 함수에서 필요한 함수들을 순차적으로 실행하게 하면 될 듯 합니다.
@@ -226,8 +150,8 @@ $one_cols = array(
         <script src="<?php echo G5_THEME_URL ?>/js/bootstrap.bundle.min.js?ver=<?php echo G5_JS_VER; ?>"></script>
         <script src="<?php echo G5_THEME_URL ?>/js/clipboard.min.js"></script>
         <script src="<?php echo G5_THEME_URL ?>/js/nariya.js?ver=<?php echo G5_JS_VER; ?>"></script>
-        <script src="<?php echo LAYOUT_URL ?>/js/darkmode.js?ver=<?php echo G5_JS_VER; ?>"
-                data-cfasync="false"></script>
+        <script src="<?php echo LAYOUT_URL ?>/js/darkmode.js?ver=<?php echo G5_JS_VER; ?>" data-cfasync="false"></script>
+        <script src="<?php echo LAYOUT_URL ?>/js/customui.js?ver=<?php echo G5_JS_VER; ?>" data-cfasync="false"></script>
 
         <?php
         if (!defined('G5_IS_ADMIN'))
