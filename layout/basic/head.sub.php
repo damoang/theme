@@ -141,7 +141,7 @@ $one_cols = array(
             //     그런 부분 있으시다면 onload용 함수 하나 만드셔서 해당 함수에서 필요한 함수들을 순차적으로 실행하게 하면 될 듯 합니다.
 //            window.attachEvent("onload", set_ui_custom());
 
-	            window.addEventListener("load", set_ui_custom);
+//	            window.addEventListener("load", set_ui_custom);
         </script>
         <script src="<?php echo G5_THEME_URL ?>/js/jquery-3.5.1.min.js?ver=<?php echo G5_JS_VER; ?>"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11?ver=<?php echo G5_JS_VER; ?>"></script>
