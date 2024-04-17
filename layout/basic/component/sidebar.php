@@ -33,8 +33,8 @@ if (!empty($config['cf_9'])) {
       <div class="nav-item">
         <a class="nav-link" href="/bbs/noti.php" data-placement="left" target="_self">
           <i class="bi-clipboard nav-icon"></i>
-          <span class="nav-link-title">
-            [A] 알림보기
+          <span class="nav-link-title">🅰️
+           알림보기
           </span>
         </a>
       </div>
@@ -44,7 +44,7 @@ if (!empty($config['cf_9'])) {
           <a class="nav-link" href="/notice" data-placement="left" target="_self">
             <i class="bi-clipboard nav-icon"></i>
             <span class="nav-link-title">
-              [K] 공지사항
+             🇰공지사항
             </span>
           </a>
         </div>
@@ -52,7 +52,7 @@ if (!empty($config['cf_9'])) {
           <a class="nav-link" href="/free" data-placement="left" target="_self">
             <i class="bi-clipboard nav-icon"></i>
             <span class="nav-link-title">
-              [F] 자유게시판
+             🅕 자유게시판
             </span>
           </a>
         </div>
@@ -60,7 +60,7 @@ if (!empty($config['cf_9'])) {
           <a class="nav-link" href="/qa" data-placement="left" target="_self">
             <i class="bi-clipboard nav-icon"></i>
             <span class="nav-link-title">
-              [Q] 질문과 답변
+              🆀 질문과 답변
             </span>
           </a>
         </div>
@@ -68,7 +68,7 @@ if (!empty($config['cf_9'])) {
           <a class="nav-link" href="/hello" data-placement="left" target="_self">
             <i class="bi-clipboard nav-icon"></i>
             <span class="nav-link-title">
-              [I] 가입인사
+              🅸 가입인사
             </span>
           </a>
         </div>
@@ -76,7 +76,7 @@ if (!empty($config['cf_9'])) {
           <a class="nav-link" href="/new" data-placement="left" target="_self">
             <i class="bi-clipboard nav-icon"></i>
             <span class="nav-link-title">
-              [N] 새소게(새소식)
+              🅽 새소게(새소식)
             </span>
           </a>
         </div>
@@ -84,7 +84,7 @@ if (!empty($config['cf_9'])) {
           <a class="nav-link" href="/tutorial" data-placement="left" target="_self">
             <i class="bi-clipboard nav-icon"></i>
             <span class="nav-link-title">
-              [T] 사용기
+              🆃 사용기
             </span>
           </a>
         </div>
@@ -92,7 +92,7 @@ if (!empty($config['cf_9'])) {
           <a class="nav-link" href="/lecture" data-placement="left" target="_self">
             <i class="bi-clipboard nav-icon"></i>
             <span class="nav-link-title">
-              [L] 강좌/팁
+              🅻 강좌/팁
             </span>
           </a>
         </div>
@@ -100,7 +100,7 @@ if (!empty($config['cf_9'])) {
           <a class="nav-link" href="/pds" data-placement="left" target="_self">
             <i class="bi-clipboard nav-icon"></i>
             <span class="nav-link-title">
-              [P] 자료실
+             🅿 자료실
             </span>
           </a>
         </div>
@@ -108,7 +108,7 @@ if (!empty($config['cf_9'])) {
           <a class="nav-link" href="/economy" data-placement="left" target="_self">
             <i class="bi-clipboard nav-icon"></i>
             <span class="nav-link-title">
-              [E] 알뜰구매
+              🅴 알뜰구매
             </span>
           </a>
         </div>
@@ -116,7 +116,7 @@ if (!empty($config['cf_9'])) {
           <a class="nav-link" href="/gallery" data-placement="left" target="_self">
             <i class="bi-clipboard nav-icon"></i>
             <span class="nav-link-title">
-              [G] 갤러리
+              🅶 갤러리
             </span>
           </a>
         </div>
@@ -126,7 +126,7 @@ if (!empty($config['cf_9'])) {
             aria-controls="sidebar-sub-s8">
             <i class="bi-clipboard nav-icon"></i>
             <span class="nav-link-title" onclick="na_href('/bbs/group.php?gr_id=group','_self');">
-              [S] 소모임
+              🆂 소모임
             </span>
           </a>
           <div id="sidebar-sub-s8" class="nav-collapse collapse" data-bs-parent="#sidebar-site-menu">
@@ -455,7 +455,7 @@ if (!empty($config['cf_9'])) {
           <a class="nav-link" href="/governance" data-placement="left" target="_self">
             <i class="bi-clipboard nav-icon"></i>
             <span class="nav-link-title">
-              [V] 거버넌스
+              🆅 거버넌스
             </span>
           </a>
         </div>
@@ -463,7 +463,7 @@ if (!empty($config['cf_9'])) {
           <a class="nav-link" href="/bug" data-placement="left" target="_self">
             <i class="bi-clipboard nav-icon"></i>
             <span class="nav-link-title">
-              [B] 유지관리
+              🅱 유지관리
             </span>
           </a>
         </div>
@@ -471,7 +471,7 @@ if (!empty($config['cf_9'])) {
           <a class="nav-link" href="/truthroom" data-placement="left" target="_self">
             <i class="bi-clipboard nav-icon"></i>
             <span class="nav-link-title">
-              [J] 진실의 방
+              🅹 진실의 방
             </span>
           </a>
         </div>
@@ -479,7 +479,7 @@ if (!empty($config['cf_9'])) {
           <a class="nav-link" href="/bbs/group.php?gr_id=community" data-placement="left" target="_self">
             <i class="bi-clipboard nav-icon"></i>
             <span class="nav-link-title">
-              [C] 커뮤니티
+              🅲 커뮤니티
             </span>
           </a>
         </div>
