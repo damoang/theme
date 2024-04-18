@@ -382,6 +382,15 @@ na_membership('write', '멤버십 회원만 등록할 수 있습니다.');
 </section>
 
 <script>
+$(document).on('change', 'input[type="file"]', function(event) {
+    var upload_max_size = <?=(int)$board['bo_upload_size']?>;
+    var file = event.target.files[0];
+    if (file && (upload_max_size < file.size)) {
+        alert('파일의 용량이 서버에 설정(<?=get_filesize($board['bo_upload_size'])?>)된 값보다 크므로 업로드 할 수 없습니다.')
+        $(this).val('');
+    }
+});
+
 <?php if($write_min || $write_max) { ?>
 // 글자수 제한
 var char_min = parseInt(<?php echo (int)$write_min; ?>); // 최소
