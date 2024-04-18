@@ -27,7 +27,7 @@ if (!empty($config['cf_9'])) {
 }
 ?>
       <div class="nav-item nav-link">
-        <a href="/bbs/search.php?srows=10&gr_id=&sfl=wr_name&stx=<?php echo $member['mb_id'] ?>">내 글</a>&nbsp;|&nbsp;
+        <a href="/bbs/search.php?srows=10&gr_id=&sfl=mb_id&stx=<?php echo $member['mb_id'] ?>">내 글</a>&nbsp;|&nbsp;
         <a href="/bbs/new.php?bo_table=&sca=&gr_id=&view=c&mb_id=<?php echo $member['mb_id'] ?>">내 댓글</a>
       </div>
       <div class="nav-item">
