@@ -34,7 +34,7 @@ if (!empty($config['cf_9'])) {
         <a class="nav-link" href="/bbs/noti.php" data-placement="left" target="_self">
           <i class="bi-clipboard nav-icon"></i>
           <span class="nav-link-title">🅰
-           알림보기
+            알림보기
           </span>
         </a>
       </div>
@@ -44,7 +44,7 @@ if (!empty($config['cf_9'])) {
           <a class="nav-link" href="/notice" data-placement="left" target="_self">
             <i class="bi-clipboard nav-icon"></i>
             <span class="nav-link-title">
-             🅺공지사항
+              🅺공지사항
             </span>
           </a>
         </div>
@@ -52,7 +52,7 @@ if (!empty($config['cf_9'])) {
           <a class="nav-link" href="/free" data-placement="left" target="_self">
             <i class="bi-clipboard nav-icon"></i>
             <span class="nav-link-title">
-             🅵 자유게시판
+              🅵 자유게시판
             </span>
           </a>
         </div>
@@ -100,7 +100,7 @@ if (!empty($config['cf_9'])) {
           <a class="nav-link" href="/pds" data-placement="left" target="_self">
             <i class="bi-clipboard nav-icon"></i>
             <span class="nav-link-title">
-             🅿 자료실
+              🅿 자료실
             </span>
           </a>
         </div>
@@ -359,6 +359,11 @@ if (!empty($config['cf_9'])) {
             </a>
             <a class="nav-link" href="/bicycle" target="_self">
               자전거당 <span class="small">
+                <b class="badge bg-primary rounded-pill fw-normal"></b>
+              </span>
+            </a>
+            <a class="nav-link" href="/sewing" target="_self">
+              재봉한당 <span class="small">
                 <b class="badge bg-primary rounded-pill fw-normal"></b>
               </span>
             </a>
