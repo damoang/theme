@@ -69,35 +69,11 @@
 			- 스킨 디렉토리
 			- 모바일스킨 디렉토리
 
+## 13. 짧은주소 설정
+- 관리자페이지 - 환경설정 - 기본환경설정
+  	- 짧은주소
+  		- 숫자로 선택하고 사용하는 서버에 맞는 rewrite 적용
+  	   	- 참고: [공식 메뉴얼](https://sir.kr/manual/g5/286)
 ## 문제해결
 ### 1. 만약 테마 관련 설정이 저장되지 않는다면
 - theme 폴더 및 하위 폴더들을 쓰기 가능하게 권한 수정
-
-### 2. 메뉴에 적용된 RESTful URI 가 작동하지 않을 경우
-- 웹서버에 아래 값으로 rewrite 설정 (완벽하지 않음)
-	- Nginx
-```
-if (!-e $requestfilename){
-    rewrite ^/content/([0-9a-zA-Z]+)$ /bbs/content.php?coid=$1&rewrite=1 break;
-    rewrite ^/content/([^/]+)/$ /bbs/content.php?co_seo_title=$1&rewrite=1 break;
-    rewrite ^/rss/([0-9a-zA-Z]+)$ /bbs/rss.php?bo_table=$1 break;
-    rewrite ^/([0-9a-zA-Z]+)$ /bbs/board.php?bo_table=$1&rewrite=1 break;
-    rewrite ^/([0-9a-zA-Z]+)/write$ /bbs/write.php?bo_table=$1&rewrite=1 break;
-    rewrite ^/([0-9a-zA-Z]+)/([^/]+)/$ /bbs/board.php?bo_table=$1&wr_seo_title=$2&rewrite=1 break;
-    rewrite ^/([0-9a-zA-Z]+)/([0-9]+)$ /bbs/board.php?bo_table=$1&wr_id=$2&rewrite=1 break;
-}
-```
-	- Apache .htaccess
-```
-RewriteEngine on
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^content([0-9a-zA-Z]+)$ /bbs/content.php?coid=$1&rewrite=1
-RewriteRule ^content([^/]+)/$ /bbs/content.php?co_seo_title=$1&rewrite=1
-RewriteRule ^rss([0-9a-zA-Z]+)$ /bbs/rss.php?bo_table=$1
-RewriteRule ^([0-9a-zA-Z]+)$ /bbs/board.php?bo_table=$1&rewrite=1
-RewriteRule ^([0-9a-zA-Z]+)/write$ /bbs/write.php?bo_table=$1&rewrite=1
-RewriteRule ^([0-9a-zA-Z]+)/([^/]+)/$ /bbs/board.php?bo_table=$1&wr_seo_title=$2&rewrite=1
-RewriteRule ^([0-9a-zA-Z]+)/([0-9]+)$ /bbs/board.php?bo_table=$1&wr_id=$2&rewrite=1
-```
-- 위 rewrite을 적용해도 현재 다모앙 사이트와 동일한 링크 형태가 되지 않음. RESTful URI 적용을 위해 그누보드 원본이 수정된 것 같음.
