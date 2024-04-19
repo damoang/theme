@@ -24,7 +24,7 @@ if(IS_INDEX)
 			<div class="d-flex gap-3 align-items-center">
 				<div>
 					<a href="<?php echo HOME_URL ?>" class="fs-2 fw-bold">
-                        <img height="48" src="https://damoang.net/logo/1.svg"/>
+                        <img height="48" src="https://damoang.net/logo/damoang-default-logo.svg"/>
 
                     </a>
 				</div>

@@ -25,7 +25,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                 </a>
               </h3>
               <div class="line-top mb-4">
-                <?php //echo na_widget('wr-list', 'idx-recommended-o', 'bo_list=free wr_notice=1 is_notice=1 wr_comment=0'); ?>
+                <?php echo na_widget('wr-list', 'idx-recommended-o', 'bo_list=free wr_notice=1 is_notice=1 wr_comment=0'); ?>
               </div>
               <!-- } 위젯 끝 -->
 
@@ -95,7 +95,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                 </a>
               </h3>
               <div class="line-top mb-4">
-                <?php //echo na_widget('wr-list', 'idx-notice', 'bo_list=notice wr_notice=1 is_notice=1'); ?>
+                <?php echo na_widget('wr-list', 'idx-notice', 'bo_list=notice wr_notice=1 is_notice=1'); ?>
               </div>
               <!-- } 위젯 끝 -->
             </div>
@@ -110,7 +110,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                 </a>
               </h3>
               <div class="line-top mb-4">
-                <?php// echo na_widget('wr-list', 'idx-free', 'bo_list=free wr_notice=1 is_notice=1'); ?>
+                <?php echo na_widget('wr-list', 'idx-free', 'bo_list=free wr_notice=1 is_notice=1'); ?>
               </div>
               <!-- } 위젯 끝 -->
 
@@ -127,7 +127,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
             </a>
           </h3>
           <div class="line-top mb-4">
-            <?php //echo na_widget('wr-gallery', 'idx-gallery', 'bo_list=gallery wr_notice=1 is_notice=1 rows=8'); ?>
+            <?php echo na_widget('wr-gallery', 'idx-gallery', 'bo_list=gallery wr_notice=1 is_notice=1 rows=8'); ?>
           </div>
           <!-- } 위젯 끝 -->
 
@@ -140,7 +140,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
             </a>
           </h3>
           <div class="line-top mb-4">
-            <?php //echo na_widget('wr-webzine', 'idx-webzine', 'bo_list=gallery wr_notice=1 is_notice=1 rows=4'); ?>
+            <?php echo na_widget('wr-webzine', 'idx-webzine', 'bo_list=gallery wr_notice=1 is_notice=1 rows=4'); ?>
           </div>
           <!-- } 위젯 끝 -->
 
@@ -154,7 +154,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
             </a>
           </h3>
           <div class="line-top mb-4">
-            <?php //echo na_widget('wr-webzine', 'idx-use', 'bo_list=gallery wr_notice=1 is_notice=1 rows=4'); ?>
+            <?php echo na_widget('wr-webzine', 'idx-use', 'bo_list=gallery wr_notice=1 is_notice=1 rows=4'); ?>
           </div>
           <!-- } 위젯 끝 -->
           <div class="row row-cols-1 row-cols-lg-2">
@@ -168,7 +168,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                 </a>
               </h3>
               <div class="line-top mb-4">
-                <?php //echo na_widget('wr-list', 'idx-qa', 'bo_list=qa wr_notice=1 is_notice=1'); ?>
+                <?php echo na_widget('wr-list', 'idx-qa', 'bo_list=qa wr_notice=1 is_notice=1'); ?>
               </div>
               <!-- } 위젯 끝 -->
 
@@ -184,7 +184,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                 </a>
               </h3>
               <div class="line-top mb-4">
-                <?php //echo na_widget('wr-list', 'idx-download', 'bo_list=gallery wr_notice=1 is_notice=1'); ?>
+                <?php echo na_widget('wr-list', 'idx-download', 'bo_list=gallery wr_notice=1 is_notice=1'); ?>
               </div>
               <!-- } 위젯 끝 -->
             </div>
