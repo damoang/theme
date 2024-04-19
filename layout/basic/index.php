@@ -8,12 +8,10 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
       <div class="order-1 col-md-8 col-lg-9">
         <div class="sticky-top py-3">
 
-
           <div class="alert alert-light mb-4 mx-3 mx-sm-0" role="alert">
-                 <img src="https://damoang.net/logo/0416_02.gif" style="max-width: 100%">
-
+            <?php echo $config['cf_10'];?>
           </div>
-           <?php echo $config['cf_10'];?>
+
           <div class="row row-cols-1 row-cols-lg-2">
             <div class="col">
               <!-- 위젯 시작 { -->
@@ -25,7 +23,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                 </a>
               </h3>
               <div class="line-top mb-4">
-                <?php //echo na_widget('wr-list', 'idx-recommended-o', 'bo_list=free wr_notice=1 is_notice=1 wr_comment=0'); ?>
+                <?php echo na_widget('wr-list', 'idx-recommended-o', 'bo_list=free wr_notice=1 is_notice=1 wr_comment=0'); ?>
               </div>
               <!-- } 위젯 끝 -->
 
@@ -40,12 +38,12 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                 </a>
               </h3>
               <div class="line-top mb-4">
-              
-                              
-                
-                
+
+
+
+
                 <?php if (is_mobile()) { ?>
-                
+
                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6922133409882969"
                   crossorigin="anonymous"></script>
                         <!-- main -->
@@ -56,9 +54,9 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                             data-ad-format="auto"
                             data-full-width-responsive="true"></ins>
                           <script>
-               (adsbygoogle = window.adsbygoogle || []).push({});                
+               (adsbygoogle = window.adsbygoogle || []).push({});
                 <?php } else { ?>
-                
+
                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6922133409882969"
                                   crossorigin="anonymous"></script>
                 <!-- 메인 -->
@@ -67,15 +65,15 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                                 data-ad-client="ca-pub-6922133409882969"
                                 data-ad-slot="3397474823"></ins>
                                 <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({});                
+                     (adsbygoogle = window.adsbygoogle || []).push({});
                 <?php } ?>
-              
-                
+
+
               </script>
-              
-              
+
+
                 <?php // echo na_widget('wr-list', 'idx-recommended-day', 'bo_list=notice wr_notice=1 is_notice=1 wr_comment=0'); ?>
-   
+
               </script>
               </div>
               <!-- } 위젯 끝 -->
@@ -95,7 +93,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                 </a>
               </h3>
               <div class="line-top mb-4">
-                <?php //echo na_widget('wr-list', 'idx-notice', 'bo_list=notice wr_notice=1 is_notice=1'); ?>
+                <?php echo na_widget('wr-list', 'idx-notice', 'bo_list=notice wr_notice=1 is_notice=1'); ?>
               </div>
               <!-- } 위젯 끝 -->
             </div>
@@ -111,6 +109,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
               </h3>
               <div class="line-top mb-4">
                 <?php // echo na_widget('wr-list', 'idx-free', 'bo_list=free wr_notice=1 is_notice=1'); ?>
+
               </div>
               <!-- } 위젯 끝 -->
 
@@ -127,7 +126,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
             </a>
           </h3>
           <div class="line-top mb-4">
-            <?php //echo na_widget('wr-gallery', 'idx-gallery', 'bo_list=gallery wr_notice=1 is_notice=1 rows=8'); ?>
+            <?php echo na_widget('wr-gallery', 'idx-gallery', 'bo_list=gallery wr_notice=1 is_notice=1 rows=8'); ?>
           </div>
           <!-- } 위젯 끝 -->
 
@@ -140,7 +139,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
             </a>
           </h3>
           <div class="line-top mb-4">
-            <?php //echo na_widget('wr-webzine', 'idx-webzine', 'bo_list=gallery wr_notice=1 is_notice=1 rows=4'); ?>
+            <?php echo na_widget('wr-webzine', 'idx-webzine', 'bo_list=gallery wr_notice=1 is_notice=1 rows=4'); ?>
           </div>
           <!-- } 위젯 끝 -->
 
@@ -154,7 +153,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
             </a>
           </h3>
           <div class="line-top mb-4">
-            <?php //echo na_widget('wr-webzine', 'idx-use', 'bo_list=gallery wr_notice=1 is_notice=1 rows=4'); ?>
+            <?php echo na_widget('wr-webzine', 'idx-use', 'bo_list=gallery wr_notice=1 is_notice=1 rows=4'); ?>
           </div>
           <!-- } 위젯 끝 -->
           <div class="row row-cols-1 row-cols-lg-2">
@@ -168,7 +167,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                 </a>
               </h3>
               <div class="line-top mb-4">
-                <?php //echo na_widget('wr-list', 'idx-qa', 'bo_list=qa wr_notice=1 is_notice=1'); ?>
+                <?php echo na_widget('wr-list', 'idx-qa', 'bo_list=qa wr_notice=1 is_notice=1'); ?>
               </div>
               <!-- } 위젯 끝 -->
 
@@ -184,7 +183,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                 </a>
               </h3>
               <div class="line-top mb-4">
-                <?php //echo na_widget('wr-list', 'idx-download', 'bo_list=gallery wr_notice=1 is_notice=1'); ?>
+                <?php echo na_widget('wr-list', 'idx-download', 'bo_list=gallery wr_notice=1 is_notice=1'); ?>
               </div>
               <!-- } 위젯 끝 -->
             </div>
@@ -201,4 +200,3 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
       </div>
     </div>
   </div>
-</div>
