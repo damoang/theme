@@ -32,6 +32,11 @@ DB : gnuboard
 E-mail : <사용자 입력>
 ```
 
+### theme > basic 폴더 변경
+기존에 있던 basic 대신 git에서 받은 damoang theme을 basic을 사용합니다.
+(없다면 theme폴더에 basic폴더를 만들고 damoang theme폴더 파일들을 복사합니다)
+ 
+
 ## '짝짝짝 ' 설치완료   
 http://localhost 에 접속하면 다모앙 사이트가 보입니다.  
 (알림: 실소스와 CSS, DB와 차이가 있어 군데군데 오류가 있습니다, 구조파악용으로 먼저 보세요)
