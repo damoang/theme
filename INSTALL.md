@@ -1,0 +1,103 @@
+# 다모앙 테마 설치하기
+
+⚠️ 서버 설치를 제외한 그누보드+나리야 설치 후 다모앙 테마 적용 방법입니다.
+
+⚠️ 미리 웹서버와 DB서버가 설정되어 있고 브라우저에서 접근 가능해야 합니다.
+
+## 1. 그누보드 다운로드
+ - 베타 버전이 아닌 안정 버전인 5.5.16 다운로드 (예:gnuboard5.5.16.tar.gz)
+ - [https://sir.kr/g5_pds/7170](https://sir.kr/g5_pds/7170)
+
+## 2. 압축 해제
+ - 웹서버에서 지정된 루트 폴더에 다운받은(예:gnuboard5.5.16.tar.gz) 파일을 압축 해제함
+
+## 3. data 폴더 생성
+ - 소스 루트(config.php와 같은 위치) 폴더에 data 폴더를 생성하고 권한을 777 로 설정
+
+## 4. 브라우저에서 접속
+ - "그누보드5를 먼저 설치해주십시오." 안내가 나와야 정상
+
+## 5. 그누보드5 설치하기 진행
+ - 라이센스 동의
+ - DB 접속 정보와 사용할 전체관리자 아이디/비번을 입력하고 진행
+
+## 6. 나리야 코어 다운받고 적용하기
+ - [https://amina.co.kr/nariya/download](https://amina.co.kr/nariya/download)
+ - NB-1.2.17.zip 파일 압축을 풀어 bbs, extend, nariya 폴더를 그누보드 루트 폴더에 덮어쓰기함
+
+## 7. BS4 베이직 테마 & 스킨팩 다운받고 적용하기
+ - [https://amina.co.kr/nariya/bs4_pds/필수-bs4-베이직-테마-스킨팩/](https://amina.co.kr/nariya/bs4_pds/%ED%95%84%EC%88%98-bs4-%EB%B2%A0%EC%9D%B4%EC%A7%81-%ED%85%8C%EB%A7%88-%EC%8A%A4%ED%82%A8%ED%8C%A9/)
+ - G55-BS4-Basic-Pack.zip 파일 압축을 풀어 그누보드 루트 폴더에 덮어쓰기함
+
+## 8. 신)나리야 테스트 버전 다운받고 적용하기
+- [https://amina.co.kr/nariya/notice/신-나리야-테스트-버전/](https://amina.co.kr/nariya/notice/%EC%8B%A0-%EB%82%98%EB%A6%AC%EC%95%BC-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EB%B2%84%EC%A0%84/)
+ - Nariya-0.1.zip 파일 압축을 풀어 그누보드 루트 폴더에 덮어쓰기함
+
+## 9. 관리자 페이지 접속
+- 설치가 끝나면 홈페이지에서 로그인 한 후 빨간색 톱니바퀴를 클릭하여 접속
+
+## 10. 신)나리야 설정
+ - [관리자페이지 - 환경설정 - 테마설정] 에서 Nariya-Marigold 0.1a 선택
+ - [관리자페이지 - 나리야 빌더 - 나리야 설정] 에서 '나리야 설치하기' 클릭
+
+## 11. 다모앙 테마 설치
+ - 다모앙 [Github](https://github.com/damoang/theme.git) 내용을 모두 theme/Marigold 에 덮어쓰기 함
+ 
+ **( 복사할 때 .git 폴더와 .gitignore 파일도 잊지 마세요. 그래야 업데이트 시 Marigold 폴더에서 git pull 을 사용하실 수 있습니다. )**
+
+## 12. 스킨 설정
+- 모두 기본스킨 : **(테마) basic** , 모바일스킨 : **(테마) PC-Skin** 으로 설정
+- 관리자페이지 - 환경설정 - 기본환경설정
+	- 기본환경
+		- 최근게시물 스킨
+		- 검색 스킨
+		- 접속자 스킨
+		- FAQ 스킨
+	- 회원가입
+		- 회원 스킨
+
+- 관리자페이지 - 게시판관리
+	- 게시판관리
+		- 모든 게시판 스킨/모바일 스킨 적용
+
+	- 1:1문의설정
+		- 스킨 디렉토리
+		- 모바일 스킨 디렉토리
+
+	- 내용관리
+		- 모든 컨텐츠 수정
+			- 스킨 디렉토리
+			- 모바일스킨 디렉토리
+
+## 문제해결
+### 1. 만약 테마 관련 설정이 저장되지 않는다면
+- theme 폴더 및 하위 폴더들을 쓰기 가능하게 권한 수정
+
+### 2. 메뉴에 적용된 RESTful URI 가 작동하지 않을 경우
+- 웹서버에 아래 값으로 rewrite 설정 (완벽하지 않음)
+	- Nginx
+```
+if (!-e $requestfilename){
+    rewrite ^/content/([0-9a-zA-Z]+)$ /bbs/content.php?coid=$1&rewrite=1 break;
+    rewrite ^/content/([^/]+)/$ /bbs/content.php?co_seo_title=$1&rewrite=1 break;
+    rewrite ^/rss/([0-9a-zA-Z]+)$ /bbs/rss.php?bo_table=$1 break;
+    rewrite ^/([0-9a-zA-Z]+)$ /bbs/board.php?bo_table=$1&rewrite=1 break;
+    rewrite ^/([0-9a-zA-Z]+)/write$ /bbs/write.php?bo_table=$1&rewrite=1 break;
+    rewrite ^/([0-9a-zA-Z]+)/([^/]+)/$ /bbs/board.php?bo_table=$1&wr_seo_title=$2&rewrite=1 break;
+    rewrite ^/([0-9a-zA-Z]+)/([0-9]+)$ /bbs/board.php?bo_table=$1&wr_id=$2&rewrite=1 break;
+}
+```
+	- Apache .htaccess
+```
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^content([0-9a-zA-Z]+)$ /bbs/content.php?coid=$1&rewrite=1
+RewriteRule ^content([^/]+)/$ /bbs/content.php?co_seo_title=$1&rewrite=1
+RewriteRule ^rss([0-9a-zA-Z]+)$ /bbs/rss.php?bo_table=$1
+RewriteRule ^([0-9a-zA-Z]+)$ /bbs/board.php?bo_table=$1&rewrite=1
+RewriteRule ^([0-9a-zA-Z]+)/write$ /bbs/write.php?bo_table=$1&rewrite=1
+RewriteRule ^([0-9a-zA-Z]+)/([^/]+)/$ /bbs/board.php?bo_table=$1&wr_seo_title=$2&rewrite=1
+RewriteRule ^([0-9a-zA-Z]+)/([0-9]+)$ /bbs/board.php?bo_table=$1&wr_id=$2&rewrite=1
+```
+- 위 rewrite을 적용해도 현재 다모앙 사이트와 동일한 링크 형태가 되지 않음. RESTful URI 적용을 위해 그누보드 원본이 수정된 것 같음.
