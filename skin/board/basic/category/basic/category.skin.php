@@ -7,7 +7,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 ?>
 
 <div class="d-flex gap-2 align-items-center px-3 mb-2">
-	<div class="order-0 d-none d-sm-block">
+	<div class="me-auto order-0 d-none d-sm-block">
 		<?php 
 			if ($stx)
 				$htxt = '검색';
@@ -21,6 +21,15 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 		<b><?php echo number_format((int)$total_count) ?></b> / <?php echo $page ?> 페이지
 	</div>
 	<div class="ms-auto order-1 pe-1">
+		<a href="#" id="hide_notice" class="text-body-tertiary">
+			<span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="공지사항">
+				<i id="hide_notice_icon" class="fa fa-sticky-note-o"></i>
+				<span class="visually-hidden">공지사항</span>
+			</span>
+		</a>
+	</div>
+
+	<div class="order-3 pe-1">
 		<a href="#boardSearch" data-bs-toggle="collapse" data-bs-target="#boardSearch" aria-expanded="false" aria-controls="boardSearch" class="text-body-tertiary">
 			<span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="검색">
 				<i class="bi bi-search"></i>
@@ -28,8 +37,9 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 			</span>
 		</a>
 	</div>
+	
 	<?php if ($is_admin) {  ?>
-	<div class="order-2 pe-1">
+	<div class="order-4 pe-1">
 		<a href="<?php echo G5_THEME_URL ?>/app/search.video.php?bo_table=<?php echo $bo_table ?>" class="win_point text-body-tertiary" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="동영상 검색">
 			<i class="bi bi-camera-reels"></i>
 			<span class="visually-hidden">동영상 검색</span>
@@ -37,7 +47,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 	</div>
 	<?php } ?>
 	<?php if ($is_checkbox || $admin_href || IS_DEMO) {  ?>
-		<div class="order-3 dropdown pe-1">
+		<div class="order-5 dropdown pe-1">
 			<a href="#boardAdmin" data-bs-toggle="dropdown" aria-expanded="false" class="text-body-tertiary">
 				<span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="관리자">
 					<i class="bi bi-gear-fill"></i>
@@ -94,7 +104,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 		</div>
 	<?php } ?>
 	<?php if ($rss_href) { ?>
-		<div class="order-4 pe-1">
+		<div class="order-6 pe-1">
 			<a href="<?php echo $rss_href ?>" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="RSS" class="text-body-tertiary">
 				<i class="bi bi-rss"></i>
 				<span class="visually-hidden">RSS</span>
@@ -107,7 +117,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 			<select class="form-select form-select-sm" name="sst" onchange="location.href='<?php echo str_replace('&sst=', '', $sst_tag['href']);?>&sst='+this.value;">
 				<option value="">최신순</option>
 				<option value="wr_datetime"<?php echo get_selected($sst, 'wr_datetime');?>>날짜순</option>
-				<option value="wr_hit"<?php echo get_selected($sst, 'wr_hit');?>>조회순</option>
+				<option value="wr_hit"<?php echo get_selected($sst, 'wr_hit');?>>1조회순</option>
 				<?php if($is_good) { ?>
 					<option value="wr_good"<?php echo get_selected($sst, 'wr_good');?>>추천순</option>
 				<?php } ?>
