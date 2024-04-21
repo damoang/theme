@@ -104,7 +104,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 		</div>
 	<?php } ?>
 	<?php if ($rss_href) { ?>
-		<div class="order-6 pe-1">
+		<div class="order-3 pe-1">
 			<a href="<?php echo $rss_href ?>" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="RSS" class="text-body-tertiary">
 				<i class="bi bi-rss"></i>
 				<span class="visually-hidden">RSS</span>
