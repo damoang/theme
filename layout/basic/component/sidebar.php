@@ -18,8 +18,7 @@ if (!empty($config['cf_9'])) {
       <div class="nav-item">
         <a class="nav-link" href="<?php echo $config['cf_9'];?>" data-placement="left" target="_blank">
           <i class="bi-youtube nav-icon"></i>
-          <span class="nav-link-title">
-            ▶️ 다모앙 방송국
+          <span class="nav-link-title">▶️ 다모앙 방송국
           </span>
         </a>
       </div>
@@ -27,100 +26,82 @@ if (!empty($config['cf_9'])) {
 }
 ?>
       <div class="nav-item nav-link">
-        <a href="/bbs/search.php?srows=10&gr_id=&sfl=mb_id&stx=<?php echo $member['mb_id'] ?>">내 글</a>&nbsp;|&nbsp;
-        <a href="/bbs/new.php?bo_table=&sca=&gr_id=&view=c&mb_id=<?php echo $member['mb_id'] ?>">내 댓글</a>
+        <a href="/bbs/search.php?srows=10&gr_id=&sfl=mb_id&stx=<?php echo $member['mb_id'] ?>">내 글</a> |
+        <a href="/bbs/new.php?bo_table=&sca=&gr_id=&view=c&mb_id=<?php echo $member['mb_id'] ?>">내 댓글</a> | <a
+          href="/bbs/noti.php"><i class="bi bi-bell"></i>알림</a>
       </div>
+      <!-- 사이드 메뉴 -->
       <div class="nav-item">
-        <a class="nav-link" href="/bbs/noti.php" data-placement="left" target="_self">
-          <i class="bi-clipboard nav-icon"></i>
+        <div class="nav-item">
+          <a class="nav-link" href="/event" data-placement="left" target="_self">
+            <i class="bi-clipboard nav-icon"></i>
 
-          <span class="nav-link-title">
- 🅐 알림보기
-          </span>
-        </a>
-      </div>
-      <div class="nav-item">
-
+            <span class="nav-link-title">
+              <span class="badge text-bg-secondary">Ａ</span>&nbsp;앙상불
+            </span>
+          </a>
+        </div>
         <div class="nav-item">
           <a class="nav-link" href="/notice" data-placement="left" target="_self">
             <i class="bi-clipboard nav-icon"></i>
-            <span class="nav-link-title">
-
-             🅚 공지사항
+            <span class="nav-link-title"><span class="badge text-bg-secondary">Ｋ</span>&nbsp;공지사항
             </span>
           </a>
         </div>
         <div class="nav-item">
           <a class="nav-link" href="/free" data-placement="left" target="_self">
             <i class="bi-clipboard nav-icon"></i>
-            <span class="nav-link-title">
-
-             🅕 자유게시판
-            </span>
+            <span class="nav-link-title"><span class="nav-link-title"><span
+                  class="badge text-bg-secondary">Ｆ</span>&nbsp;자유게시판
+              </span>
           </a>
         </div>
         <div class="nav-item">
           <a class="nav-link" href="/qa" data-placement="left" target="_self">
             <i class="bi-clipboard nav-icon"></i>
-            <span class="nav-link-title">
-              🅠 질문과 답변
-            </span>
-          </a>
-        </div>
-        <div class="nav-item">
-          <a class="nav-link" href="/hello" data-placement="left" target="_self">
-            <i class="bi-clipboard nav-icon"></i>
-            <span class="nav-link-title">
-              🅘 가입인사
+            <span class="nav-link-title"><span class="badge text-bg-secondary">Ｑ</span>&nbsp;질문과 답변
             </span>
           </a>
         </div>
         <div class="nav-item">
           <a class="nav-link" href="/new" data-placement="left" target="_self">
             <i class="bi-clipboard nav-icon"></i>
-            <span class="nav-link-title">
-              🅝 새소게(새소식)
+            <span class="nav-link-title"><span class="badge text-bg-secondary">Ｎ</span>&nbsp;새소식
             </span>
           </a>
         </div>
         <div class="nav-item">
           <a class="nav-link" href="/tutorial" data-placement="left" target="_self">
             <i class="bi-clipboard nav-icon"></i>
-            <span class="nav-link-title">
-             🅣 사용기
+            <span class="nav-link-title"><span class="badge text-bg-secondary">Ｔ</span>&nbsp;사용기
             </span>
           </a>
         </div>
         <div class="nav-item">
           <a class="nav-link" href="/lecture" data-placement="left" target="_self">
             <i class="bi-clipboard nav-icon"></i>
-            <span class="nav-link-title">
-               🅛 강좌/팁
+            <span class="nav-link-title"><span class="badge text-bg-secondary">Ｌ</span>&nbsp;강좌/팁
             </span>
           </a>
         </div>
         <div class="nav-item">
           <a class="nav-link" href="/pds" data-placement="left" target="_self">
             <i class="bi-clipboard nav-icon"></i>
-            <span class="nav-link-title">
-
-              🅟 자료실
+            <span class="nav-link-title"><span class="badge text-bg-secondary">Ｐ</span>&nbsp;자료실
             </span>
           </a>
         </div>
         <div class="nav-item">
           <a class="nav-link" href="/economy" data-placement="left" target="_self">
             <i class="bi-clipboard nav-icon"></i>
-            <span class="nav-link-title">
-              🅔 알뜰구매
+            <span class="nav-link-title"><span class="badge text-bg-secondary">Ｅ</span>&nbsp;알뜰구매
             </span>
           </a>
         </div>
         <div class="nav-item">
           <a class="nav-link" href="/gallery" data-placement="left" target="_self">
             <i class="bi-clipboard nav-icon"></i>
-            <span class="nav-link-title">
-              🅖 갤러리
+            <span class="nav-link-title"><span class="badge text-bg-secondary">Ｇ</span>&nbsp;갤러리
             </span>
           </a>
         </div>
@@ -130,7 +111,7 @@ if (!empty($config['cf_9'])) {
             aria-controls="sidebar-sub-s8">
             <i class="bi-clipboard nav-icon"></i>
             <span class="nav-link-title" onclick="na_href('/bbs/group.php?gr_id=group','_self');">
-              🅢 소모임
+              <span class="badge text-bg-secondary">Ａ</span>&nbsp;소모임
             </span>
           </a>
           <div id="sidebar-sub-s8" class="nav-collapse collapse" data-bs-parent="#sidebar-site-menu">
@@ -138,6 +119,11 @@ if (!empty($config['cf_9'])) {
             <!-- 소모임 목록 시작 -->
             <a class="nav-link" href="/ai" target="_self">
               AI당 <span class="small">
+                <b class="badge bg-primary rounded-pill fw-normal"></b>
+              </span>
+            </a>
+            <a class="nav-link" href="/lol" target="_self">
+              LOL당 <span class="small">
                 <b class="badge bg-primary rounded-pill fw-normal"></b>
               </span>
             </a>
@@ -432,7 +418,7 @@ if (!empty($config['cf_9'])) {
               </span>
             </a>
             <a class="nav-link" href="/formula" target="_self">
-              포물러당 <span class="small">
+              포뮬러당 <span class="small">
                 <b class="badge bg-primary rounded-pill fw-normal"></b>
               </span>
             </a>
@@ -464,7 +450,7 @@ if (!empty($config['cf_9'])) {
           <a class="nav-link" href="/governance" data-placement="left" target="_self">
             <i class="bi-clipboard nav-icon"></i>
             <span class="nav-link-title">
-              🅥 거버넌스
+              <span class="badge text-bg-secondary">Ｖ</span>&nbsp;거버넌스
             </span>
           </a>
         </div>
@@ -472,7 +458,7 @@ if (!empty($config['cf_9'])) {
           <a class="nav-link" href="/bug" data-placement="left" target="_self">
             <i class="bi-clipboard nav-icon"></i>
             <span class="nav-link-title">
-               🅑 유지관리
+              <span class="badge text-bg-secondary">Ｂ</span>&nbsp;유지관리
             </span>
           </a>
         </div>
@@ -480,7 +466,14 @@ if (!empty($config['cf_9'])) {
           <a class="nav-link" href="/truthroom" data-placement="left" target="_self">
             <i class="bi-clipboard nav-icon"></i>
             <span class="nav-link-title">
-              🅙 진실의 방
+              <span class="badge text-bg-secondary">Ｊ</span>&nbsp;진실의 방
+            </span>
+          </a>
+        </div>
+        <div class="nav-item">
+          <a class="nav-link" href="/hello" data-placement="left" target="_self">
+            <i class="bi-clipboard nav-icon"></i>
+            <span class="nav-link-title"><span class="badge text-bg-secondary">Ｉ</span>&nbsp;가입인사
             </span>
           </a>
         </div>
@@ -488,7 +481,7 @@ if (!empty($config['cf_9'])) {
           <a class="nav-link" href="/bbs/group.php?gr_id=community" data-placement="left" target="_self">
             <i class="bi-clipboard nav-icon"></i>
             <span class="nav-link-title">
-               🅒 커뮤니티
+              <span class="badge text-bg-secondary">Ｃ</span>&nbsp;커뮤니티
             </span>
           </a>
         </div>
