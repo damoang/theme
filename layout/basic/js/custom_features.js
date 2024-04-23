@@ -32,7 +32,9 @@
       icon.css('color', 'var(--bs-danger-text-emphasis)');
     }
 
-    $('#hide_notice').click(function(){
+    $('#hide_notice').click(function(e){
+      e.preventDefault();
+      
       if(notices.css('display') == 'none') {
         notices.css('display', 'table-row');
         icon.css('color', 'var(--bs-danger-text-emphasis)');
