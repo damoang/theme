@@ -18,9 +18,9 @@
 
   document.addEventListener("DOMContentLoaded", function() {
     let myConf = getConf();
-    let notices = $('.bg-light-subtle');
     let icon = $('#hide_notice_icon');
-    
+    let notices = $('span:contains("공지")').parents('.bg-light-subtle');
+
     if(typeof(myConf[0]?.hideNotice) == 'undefined') {
       myConf[0] = {hideNotice:false};
     }
