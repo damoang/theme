@@ -27,7 +27,7 @@ button,input[type=submit] {cursor:pointer}
 #captcha {position:relative}
 #captcha legend {position:absolute;margin:0;padding:0;font-size:0;line-height:0;text-indent:-9999em;overflow:hidden}
 #captcha #captcha_img {height:40px;border:1px solid #898989;vertical-align:top;padding:0;margin:0}
-#captcha #captcha_mp3 {margin:0;padding:0;width:40px;height:40px;border:0;background:transparent;vertical-align:middle;overflow:hidden;cursor:pointer;width:40px;height:40px;background:url('../../../img/captcha.png') no-repeat;text-indent:-999px;border-radius:3px}
+#captcha #captcha_mp3 {margin:0;padding:0;border:0;background:transparent;vertical-align:middle;overflow:hidden;cursor:pointer;width:40px;height:40px;background:url('../../../img/captcha.png') no-repeat;text-indent:-999px;border-radius:3px}
 #captcha #captcha_reload {margin:0;padding:0;width:40px;height:40px;border:0;background:transparent;vertical-align:middle;overflow:hidden;cursor:pointer;background:url('../../../img/captcha.png') no-repeat  0 -40px;text-indent:-999px;border-radius:3px}
 #captcha #captcha_key {margin:0 0 0 3px;padding:0 5px;width:90px;height:40px;border:1px solid #ccc;background:#fff;font-size:1.333em;font-weight:bold;text-align:center;border-radius:3px;vertical-align:top}
 #captcha #captcha_info {display:block;margin:3px 0 5px;font-size:0.95em;letter-spacing:-0.1em}
@@ -59,11 +59,11 @@ a.btn02 {display:inline-block;padding:8px 7px 7px;border:1px solid #3b3c3f;backg
 a.btn02:focus, .btn02:hover {text-decoration:none}
 button.btn02 {display:inline-block;margin:0;padding:7px;border:1px solid #3b3c3f;background:#4b545e;color:#fff;text-decoration:none}
 .btn_confirm {text-align:center} /* 서식단계 진행 */
-.btn_submit {padding:0 5px;border:0;background:#3a8afd;border:1px solid #1c70e9;color:#fff;letter-spacing:-0.1em;border-radius:3px}
+.btn_submit {padding:0 5px;background:#3a8afd;border:1px solid #1c70e9;color:#fff;letter-spacing:-0.1em;border-radius:3px}
 fieldset .btn_submit {padding:0 7px;height:24px;line-height:1em}
 a.btn_cancel {display:inline-block;padding:8px 7px 7px;border:1px solid #ccc;background:#fff;color:#000;text-decoration:none;vertical-align:middle}
 button.btn_cancel {display:inline-block;padding:7px;border:1px solid #ccc;background:#fafafa;color:#000;vertical-align:top;text-decoration:none}
-a.btn_frmline, button.btn_frmline {display:inline-block;padding:0 5px;height:1.9em;border:0;background:#fff;color:#3a8afd;border:1px solid #3a8afd;letter-spacing:-0.1em;text-decoration:none;vertical-align:top;line-height:1.9em} 
+a.btn_frmline, button.btn_frmline {display:inline-block;padding:0 5px;height:1.9em;background:#fff;color:#3a8afd;border:1px solid #3a8afd;letter-spacing:-0.1em;text-decoration:none;vertical-align:top;line-height:1.9em}
 .btn_close {border:1px solid #dcdcdc;cursor:pointer;border-radius:3px;background:#fff}
 a.btn_close {text-align:center;line-height:50px}
 
@@ -85,8 +85,6 @@ a.btn_admin {display:inline-block;background:#e8180c;color:#fff;text-decoration:
 a.btn_admin:focus, a.btn_admin:hover {}
 
 .is_community .btn_top {position:relative;height:50px;margin:0;padding:10px 15px;line-height:30px;background:#fff;color:#333;text-align:right;
--webkit-box-shadow:0 0 10px rgba(181, 181, 181, 0.4);
--moz-box-shadow:0 0 10px rgba(181, 181, 181, 0.4);
 box-shadow:0 0 10px rgba(181, 181, 181, 0.4);
 }
 .is_community a.btn_admin {display:inline-block;color:#d13f4a;font-size:1.4em;background:transparent;text-decoration:none;vertical-align:middle}
@@ -151,8 +149,6 @@ box-shadow:0 0 10px rgba(181, 181, 181, 0.4);
 /* 기본리스트 */
 .list_01 {padding:0 10px}
 .list_01 li {background:#fff;border-radius:3px;margin:10px 0;padding:10px 15px;
--webkit-box-shadow: 0 1px 4px #cbd1df;
--moz-box-shadow: 0 1px 4px #cbd1df;
 box-shadow:0 1px 4px #cbd1df;}
 
 /* 기본폼 */
@@ -210,8 +206,7 @@ box-shadow:0 1px 4px #cbd1df;}
 
 /* 새창 기본 스타일 */
 .new_win {}
-.new_win #win_title {font-size:1.3em;min-height:50px;line-height:30px;padding:10px 20px;background:#fff;color:#000;-webkit-box-shadow:0 1px 10px rgba(0,0,0,.1);
--moz-box-shadow:0 1px 10px rgba(0,0,0,.1);
+.new_win #win_title {font-size:1.3em;min-height:50px;line-height:30px;padding:10px 20px;background:#fff;color:#000;
 box-shadow:0 1px 10px rgba(0,0,0,.1)}
 .new_win #win_title .sv {font-size:0.75em;line-height:1.2em}
 .new_win_con {margin:10px}
@@ -220,8 +215,6 @@ box-shadow:0 1px 10px rgba(0,0,0,.1)}
 .new_win .win_ul li {display:inline-block}
 .new_win .win_ul li a {display:block;line-height:24px;padding:0 10px}
 .new_win .win_ul li .selected {background:#4162ff;color:#fff;border-radius:13px;
--webkit-box-shadow:0 0 5px rgba(65,98,255,0.8);
--moz-box-shadow:0 0 5px rgba(65,98,255,0.8);
 box-shadow:0 0 8px rgba(65,98,255,0.8)}
 
 .new_win .win_desc {margin:5px 0;font-size:0.92em;color:#4162ff}
