@@ -12,6 +12,30 @@ if(G5_COMMUNITY_USE === false) {
     return;
 }
 
+//banner array 2024.04.24 by munbbok
+function getDisplayAdBanner($type = 1){
+    $arrBanner = Array(
+      Array(
+        'type'=>1,
+        'img'=>'https://damoang.net/logo/0416_02.gif',
+        'link'=>'https://damoang.net',
+        'target'=>'_self',
+        'display'=>true
+      ),
+      Array(
+          'type'=>1,
+          'img'=>'https://damoang.net/logo/damoang-default-logo.svg',
+          'display'=>true
+      )
+    );
+    
+    $_result = Array();
+    foreach($arrBanner as $k => $v){
+        if($type === $v['type']) $_result[] = $v;
+    }
+    shuffle($_result);
+    return $_result[0];
+}
 include_once(G5_THEME_PATH.'/head.php');
 
 include_once(LAYOUT_PATH.'/index.php');
