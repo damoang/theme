@@ -303,10 +303,16 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
               						</div>
               					</div>
 
-          <?php
+              <?php
           } else if ($full_url == 'https://damoang.net') {
               // HTTPS 프로토콜을 포함하여 검사
               // echo "This content is hidden on production";
+          } else if ($full_url == 'https://rc.damoang.net') {
+              // RC 서버에 대한 처리
+              echo "This is the release candidate environment.";
+          } else if ($full_url == 'https://dev.damoang.net') {
+              // 개발 서버에 대한 처리
+              echo "This is the development environment.";
           } else {
               echo "Accessed from unknown host: $host with protocol $protocol";
           }
