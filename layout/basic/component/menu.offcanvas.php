@@ -84,19 +84,10 @@ if (!empty($config['cf_9'])) {
                 >
                   <i class="<?= $menuItem['icon'] ?> nav-icon"></i>
                     <span class="nav-link-title" <?= ($hasSub) ? ' onclick="na_href(\'' . $menuUrlOrigin . '\', \'_self\');"' : '' ?>>
-                      <?php if ($menuItem['shortcut']) { ?><span class="badge text-bg-secondary"><?= $menuItem['shortcut'] ?></span>&nbsp;<?php } ?>
+                      <?php if ($menuItem['shortcut']) { ?><span class="badge text-bg-secondary"><?= $menuItem['shortcut'] ?></span><?php } ?>
                       <?= $menuTitle ?>
                     </span>
                 </a>
-
-                <!-- <a class="nav-link dropdown-toggle collapsed" href="#sidebar-sub-s8" role="button"
-                data-bs-toggle="collapse" data-bs-target="#sidebar-sub-s8" aria-expanded="false"
-                aria-controls="sidebar-sub-s8">
-                  <i class="bi-clipboard nav-icon"></i>
-                  <span class="nav-link-title" onclick="na_href('/bbs/group.php?gr_id=group','_self');">
-                  <span class="badge text-bg-secondary">Ａ</span>&nbsp;소모임
-                  </span>
-                </a> -->
 
                 <!-- 서브 메뉴 -->
                 <?php if ($hasSub): ?>
