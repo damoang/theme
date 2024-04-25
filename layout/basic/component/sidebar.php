@@ -33,524 +33,80 @@ if (!empty($config['cf_9'])) {
 
       <!-- 사이드 메뉴 -->
       <div class="nav-item">
-        <div class="nav-item">
-          <a class="nav-link" href="/event" data-placement="left" target="_self">
-            <i class="bi-clipboard nav-icon"></i>
-
-            <span class="nav-link-title">
-              <span class="badge text-bg-secondary">Ａ</span>&nbsp;앙상불
-            </span>
-          </a>
-        </div>
-        <div class="nav-item">
-          <a class="nav-link" href="/notice" data-placement="left" target="_self">
-            <i class="bi-clipboard nav-icon"></i>
-            <span class="nav-link-title"><span class="badge text-bg-secondary">Ｋ</span>&nbsp;공지사항
-            </span>
-          </a>
-        </div>
-        <div class="nav-item">
-          <a class="nav-link" href="/free" data-placement="left" target="_self">
-            <i class="bi-clipboard nav-icon"></i>
-            <span class="nav-link-title"><span class="nav-link-title"><span
-                  class="badge text-bg-secondary">Ｆ</span>&nbsp;자유게시판
-              </span>
-          </a>
-        </div>
-        <div class="nav-item">
-          <a class="nav-link" href="/qa" data-placement="left" target="_self">
-            <i class="bi-clipboard nav-icon"></i>
-            <span class="nav-link-title"><span class="badge text-bg-secondary">Ｑ</span>&nbsp;질문과 답변
-            </span>
-          </a>
-        </div>
-        <div class="nav-item">
-          <a class="nav-link" href="/new" data-placement="left" target="_self">
-            <i class="bi-clipboard nav-icon"></i>
-            <span class="nav-link-title"><span class="badge text-bg-secondary">Ｎ</span>&nbsp;새소식
-            </span>
-          </a>
-        </div>
-        <div class="nav-item">
-          <a class="nav-link" href="/tutorial" data-placement="left" target="_self">
-            <i class="bi-clipboard nav-icon"></i>
-            <span class="nav-link-title"><span class="badge text-bg-secondary">Ｔ</span>&nbsp;사용기
-            </span>
-          </a>
-        </div>
-        <div class="nav-item">
-          <a class="nav-link" href="/lecture" data-placement="left" target="_self">
-            <i class="bi-clipboard nav-icon"></i>
-            <span class="nav-link-title"><span class="badge text-bg-secondary">Ｌ</span>&nbsp;강좌/팁
-            </span>
-          </a>
-        </div>
-        <div class="nav-item">
-          <a class="nav-link" href="/pds" data-placement="left" target="_self">
-            <i class="bi-clipboard nav-icon"></i>
-            <span class="nav-link-title"><span class="badge text-bg-secondary">Ｐ</span>&nbsp;자료실
-            </span>
-          </a>
-        </div>
-        <div class="nav-item">
-          <a class="nav-link" href="/economy" data-placement="left" target="_self">
-            <i class="bi-clipboard nav-icon"></i>
-            <span class="nav-link-title"><span class="badge text-bg-secondary">Ｅ</span>&nbsp;알뜰구매
-            </span>
-          </a>
-        </div>
-        <div class="nav-item">
-          <a class="nav-link" href="/gallery" data-placement="left" target="_self">
-            <i class="bi-clipboard nav-icon"></i>
-            <span class="nav-link-title"><span class="badge text-bg-secondary">Ｇ</span>&nbsp;갤러리
-            </span>
-          </a>
-        </div>
-        <div class="nav-item">
-          <a class="nav-link dropdown-toggle collapsed collapsed" href="#sidebar-sub-s8" role="button"
-            data-bs-toggle="collapse" data-bs-target="#sidebar-sub-s8" aria-expanded="false"
-            aria-controls="sidebar-sub-s8">
-            <i class="bi-clipboard nav-icon"></i>
-            <span class="nav-link-title" onclick="na_href('/bbs/group.php?gr_id=group','_self');">
-              <span class="badge text-bg-secondary">Ａ</span>&nbsp;소모임
-            </span>
-          </a>
-          <div id="sidebar-sub-s8" class="nav-collapse collapse" data-bs-parent="#sidebar-site-menu">
-
-            <!-- 소모임 목록 시작 -->
-            <a class="nav-link" href="/ai" target="_self">
-              AI당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/lol" target="_self">
-              LOL당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/ott" target="_self">
-              OTT당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/vr" target="_self">
-              VR당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/youtube" target="_self">
-              Youtube 당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/cryptocurrency" target="_self">
-              가상화폐당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/development" target="_self">
-              개발한당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/game" target="_self">
-              게임한당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/seniorcenter" target="_self">
-              경로당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/golf" target="_self">
-              골프당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/car" target="_self">
-              굴러간당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/drawing" target="_self">
-              그림그린당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/nas" target="_self">
-              나스당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/fishing" target="_self">
-              낚시당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/fly" target="_self">
-              날아간당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/cat" target="_self">
-              냐옹이당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/running" target="_self">
-              달린당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/daegu" target="_self">
-              대구당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/dongsup" target="_self">
-              동숲한당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/diablo" target="_self">
-              디아블로당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/gym" target="_self">
-              땀흘린당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/lego" target="_self">
-              레고당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/linux" target="_self">
-              리눅서당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/macmoang" target="_self">
-              맥모앙 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/military" target="_self">
-              밀리터리당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/overseas" target="_self">
-              바다건너당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/bts" target="_self">
-              방탄소년당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/boardgame" target="_self">
-              보드게임당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/see" target="_self">
-              보러간당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/bread" target="_self">
-              빵친당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/server" target="_self">
-              서버당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/MSSurface" target="_self">
-              서피스당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/socialgame" target="_self">
-              소셜게임한당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/watches" target="_self">
-              시계당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/soccerline" target="_self">
-              싸줄한당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/android" target="_self">
-              안드로메당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/applemoang" target="_self">
-              애플모앙 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/baseball" target="_self">
-              야구당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/movie" target="_self">
-              영화본당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/obsidang" target="_self">
-              옵시디안당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/wine" target="_self">
-              와인마신당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/cooking" target="_self">
-              요리당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/whiskey" target="_self">
-              위스키당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/parenting" target="_self">
-              육아당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/mbike" target="_self">
-              이륜차당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/japanlive" target="_self">
-              일본산당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/bicycle" target="_self">
-              자전거당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/sewing" target="_self">
-              재봉한당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/stock" target="_self">
-              주식한당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/watchingyou" target="_self">
-              지켜본당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/homebuilding" target="_self">
-              집짓는당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/photo" target="_self">
-              찰칵찍당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/space" target="_self">
-              우주본당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/soccer" target="_self">
-              축구당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/camping" target="_self">
-              캠핑간당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/console" target="_self">
-              콘솔한당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/coffee" target="_self">
-              클다방 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/keyboard" target="_self">
-              키보드당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/tabletennis" target="_self">
-              탁구당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/pathofexile" target="_self">
-              패스오브엑자일당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/formula" target="_self">
-              포뮬러당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/photoshop" target="_self">
-              포토샵당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/swim" target="_self">
-              퐁당퐁당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/playmobil" target="_self">
-              플레이모빌당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <a class="nav-link" href="/stationery" target="_self">
-              필기도구당 <span class="small">
-                <b class="badge bg-primary rounded-pill fw-normal"></b>
-              </span>
-            </a>
-            <!-- 소모임 목록 끝 -->
-
-          </div>
-        </div>
-        <div class="nav-item">
-          <a class="nav-link" href="/governance" data-placement="left" target="_self">
-            <i class="bi-clipboard nav-icon"></i>
-            <span class="nav-link-title">
-              <span class="badge text-bg-secondary">Ｖ</span>&nbsp;거버넌스
-            </span>
-          </a>
-        </div>
-        <div class="nav-item">
-          <a class="nav-link" href="/bug" data-placement="left" target="_self">
-            <i class="bi-clipboard nav-icon"></i>
-            <span class="nav-link-title">
-              <span class="badge text-bg-secondary">Ｂ</span>&nbsp;유지관리
-            </span>
-          </a>
-        </div>
-        <div class="nav-item">
-          <a class="nav-link" href="/truthroom" data-placement="left" target="_self">
-            <i class="bi-clipboard nav-icon"></i>
-            <span class="nav-link-title">
-              <span class="badge text-bg-secondary">Ｊ</span>&nbsp;진실의 방
-            </span>
-          </a>
-        </div>
-        <div class="nav-item">
-          <a class="nav-link" href="/hello" data-placement="left" target="_self">
-            <i class="bi-clipboard nav-icon"></i>
-            <span class="nav-link-title"><span class="badge text-bg-secondary">Ｉ</span>&nbsp;가입인사
-            </span>
-          </a>
-        </div>
-        <div class="nav-item">
-          <a class="nav-link" href="/bbs/group.php?gr_id=community" data-placement="left" target="_self">
-            <i class="bi-clipboard nav-icon"></i>
-            <span class="nav-link-title">
-              <span class="badge text-bg-secondary">Ｃ</span>&nbsp;커뮤니티
-            </span>
-          </a>
-        </div>
-      </div>
-
-
-      <div class="dropdown-header">
-        Miscellaneous
-      </div>
-
-      <div id="sidebar-misc-menu" class="mb-3">
+        <!-- 사이트 메뉴 -->
         <?php
-			// 현재접속자
+        // 메뉴. `inc.menu.php` 파일에서 정의 됨
+        foreach ($siteMenus as $menuGroupIndex => $menuGroup) {
+          $groupTitle = $menuGroup['title'] ?? null;
+        ?>
 
-
-			$iRow = array();
-			$iRow[] = array(G5_BBS_DIR.'-page-faq', 'bi-question-circle', 'FAQ', G5_BBS_URL.'/faq.php');
-			$iRow[] = array(G5_BBS_DIR.'-page-new', 'bi-pencil', '새글모음', G5_BBS_URL.'/new.php');
-			$iRow[] = array(G5_BBS_DIR.'-page-search', 'bi-search', '게시물검색', G5_BBS_URL.'/search.php');
-
-			for ($i=0; $i < count($iRow); $i++) { 
-		?>
-        <div class="nav-item">
-          <a class="nav-link<?php echo ($page_id == $iRow[$i][0]) ? ' active' : ''; ?>"
-            href="<?php echo $iRow[$i][3] ?>" data-placement="left">
-            <i class="<?php echo $iRow[$i][1] ?> nav-icon"></i>
-            <span class="nav-link-title"><?php echo $iRow[$i][2] ?></span>
-          </a>
-        </div>
-        <?php } ?>
-      </div>
-
-      <div class="dropdown-header">
-        About us
-      </div>
-
-      <div id="sidebar-misc-menu" class="mb-3">
+        <?php if ($groupTitle): ?>
+          <div class="dropdown-header"><?= $groupTitle ?></div>
+        <?php endif; ?>
+        
         <?php
-				$iRow = array();
-				$iRow[] = array(G5_BBS_DIR.'-content-company', 'bi-balloon-heart', '사이트 소개', get_pretty_url('content', 'company'));
-				$iRow[] = array(G5_BBS_DIR.'-content-provision', 'bi-check2-square', '서비스 이용약관', get_pretty_url('content', 'provision'));
-				$iRow[] = array(G5_BBS_DIR.'-content-privacy', 'bi-person-lock', '개인정보 처리방침', get_pretty_url('content', 'privacy'));
+          foreach ($menuGroup['items'] as $menuTitle => $menuItem) {
+            $hasSub = false;
+            $subMenus = null;
 
-				for ($i=0; $i < count($iRow); $i++) { 
-			?>
-        <div class="nav-item">
-          <a class="nav-link<?php echo ($page_id == $iRow[$i][0]) ? ' active' : ''; ?>"
-            href="<?php echo $iRow[$i][3] ?>" data-placement="left">
-            <i class="<?php echo $iRow[$i][1] ?> nav-icon"></i>
-            <span class="nav-link-title"><?php echo $iRow[$i][2] ?></span>
-          </a>
-        </div>
-        <?php } ?>
+            if (!is_array($menuItem)) {
+              $menuItem = ['url' => $menuItem];
+            }
 
-        <?php if (IS_YC) { ?>
-        <div class="nav-item">
-          <a class="nav-link" href="<?php echo (IS_SHOP) ? G5_URL : G5_SHOP_URL; ?>" data-placement="left">
-            <i class="bi-door-open nav-icon"></i>
-            <span class="nav-link-title">
-              <?php if(IS_SHOP) { ?>
-              <?php echo $config['cf_title'] ?>
-              <?php } else { ?>
-              <?php echo (isset($nariya['seo_shop_title']) && $nariya['seo_shop_title']) ? $nariya['seo_shop_title'] : '쇼핑몰'; ?>
-              <?php } ?>
-            </span>
-          </a>
-        </div>
-        <?php } ?>
+            $menuItem['url'] = $menuItem['url'] ?? '#';
+            $menuItem['icon'] = $menuItem['icon'] ?? 'bi-clipboard';
+            $hasSub = !empty($menuItem['items']) && is_array($menuItem['items']);
+
+            if (!$menuitme['page_id']) {
+              if (preg_match('/\/([a-zA-Z0-9]+)$/i', $menuItem['url'], $matches)) {
+                $menuItem['page_id'] = G5_BBS_DIR . '-board-' . $matches[1];
+              }
+            }
+
+            if ($hasSub) {
+              $menuIndex = array_search($menuTitle, array_keys($siteMenus[$menuGroupIndex]['items']));
+              $menuToggleId = "sidebar-sub-s{$menuGroupIndex}-{$menuIndex}";
+              $menuUrlOrigin = $menuItem['url'];
+              $menuItem['url'] = '#' . $menuToggleId;
+              $subMenus = $menuItem['items'];
+            }
+          ?>
+            <div class="nav-item">
+              <a
+                class="nav-link <?= ($menuItem['page_id'] === $page_id) ? 'active' : ''; ?><?= ($hasSub) ? 'dropdown-toggle collapsed collapsed' : '' ?>"
+                href="<?= $menuItem['url'] ?>"
+                data-placement="left"
+                <?= ($hasSub) ? 'role="button" data-bs-toggle="collapse" data-bs-target="#' . $menuToggleId . '" aria-expanded="false" aria-controls="' . $menuToggleId . '"' : '' ?>
+              >
+                <i class="<?= $menuItem['icon'] ?> nav-icon"></i>
+                  <span class="nav-link-title" <?= ($hasSub) ? ' onclick="na_href(\'' . $menuUrlOrigin . '\', \'_self\');"' : '' ?>>
+                    <?php if ($menuItem['shortcut']) { ?><span class="badge text-bg-secondary"><?= $menuItem['shortcut'] ?></span>&nbsp;<?php } ?>
+                    <?= $menuTitle ?>
+                  </span>
+              </a>
+
+              <!-- <a class="nav-link dropdown-toggle collapsed" href="#sidebar-sub-s8" role="button"
+              data-bs-toggle="collapse" data-bs-target="#sidebar-sub-s8" aria-expanded="false"
+              aria-controls="sidebar-sub-s8">
+                <i class="bi-clipboard nav-icon"></i>
+                <span class="nav-link-title" onclick="na_href('/bbs/group.php?gr_id=group','_self');">
+                <span class="badge text-bg-secondary">Ａ</span>&nbsp;소모임
+                </span>
+              </a> -->
+
+              <!-- 서브 메뉴 -->
+              <?php if ($hasSub): ?>
+                  <div id="<?= $menuToggleId ?>" class="nav-collapse collapse" data-bs-parent="#sidebar-site-menu">
+                    <?php foreach ($subMenus as $subMenuTitle => $subMenuUrl): ?>
+                      <a class="nav-link" href="<?= $subMenuUrl ?>">
+                        <?= $subMenuTitle ?>
+                      </a>
+                    <?php endforeach; ?>
+                  </div>
+                <?php endif; ?>
+            </div>
+          <?php } ?>
+        <?php } // endforeach $siteMenus ?>
 
         <div class="nav-item">
           <a class="nav-link" href="<?php echo get_device_change_url() ?>" data-placement="left">
