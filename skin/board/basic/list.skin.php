@@ -22,6 +22,7 @@ $list_skin_path = $board_skin_path.'/list/'.$list_skin;
     <img src="https://damoang.net/logo/0416_02.gif" style="max-width: 100%"><br/>
         
    </div>
+<?php echo na_widget('damoang-image-banner', 'wide-banner'); ?>
 
 <?php echo $config['cf_10'];?>
 <div id="bo_list_wrap">
