@@ -13,12 +13,13 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
           <div class="alert alert-light mb-4 mx-3 mx-sm-0" role="alert">
 <img src="https://damoang.net/logo/0416_02.gif" style="max-width: 100%"><br/>
           
-            <?php echo na_widget('damoang-image-banner', 'wide-banner'); ?>
-  
+
             <?php echo $config['cf_10'];?>
           </div>
+            <?php echo na_widget('damoang-image-banner', 'wide-banner'); ?>
 
-          <div class="row row-cols-1 row-cols-lg-2">
+
+            <div class="row row-cols-1 row-cols-lg-2">
             <div class="col">
               <!-- 위젯 시작 { -->
               <h3 class="fs-5 px-3 py-2 mb-0">
