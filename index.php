@@ -52,7 +52,7 @@ function getDisplayAdBanner($type = 1){
       ),
       Array(
         'type'=>1,
-        'img'=>'/banners/banners/images/dmb-6.jpg',
+        'img'=>'/banners/images/dmb-6.jpg',
         'link'=>'https://smartstore.naver.com/damoang-net',
         'target'=>'_blank',
         'display'=>true
