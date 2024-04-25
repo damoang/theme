@@ -17,56 +17,56 @@ function getDisplayAdBanner($type = 1){
   $arrBanner = array(
     array(
         'type'=>1,
-        'img'=> G5_THEME_URL.'/banners/images/dmb-1.jpg',
+        'img'=> LAYOUT_URL.'/banners/images/dmb-1.jpg',
         'link'=>'https://smartstore.naver.com/damoang-net',
         'target'=>'_blank',
         'display'=>true
     ),
     array(
         'type'=>1,
-        'img'=> G5_THEME_URL.'/banners/images/dmb-2.jpg',
+        'img'=> LAYOUT_URL.'/banners/images/dmb-2.jpg',
         'link'=>'https://smartstore.naver.com/damoang-net',
         'target'=>'_blank',
         'display'=>true
     ),
     array(
         'type'=>1,
-        'img'=> G5_THEME_URL.'/banners/images/dmb-3.jpg',
+        'img'=> LAYOUT_URL.'/banners/images/dmb-3.jpg',
         'link'=>'https://smartstore.naver.com/damoang-net',
         'target'=>'_blank',
         'display'=>true
     ),
     array(
         'type'=>1,
-        'img'=> G5_THEME_URL.'/banners/images/dmb-4.jpg',
+        'img'=> LAYOUT_URL.'/banners/images/dmb-4.jpg',
         'link'=>'https://smartstore.naver.com/damoang-net',
         'target'=>'_blank',
         'display'=>true
     ),
     array(
         'type'=>1,
-        'img'=> G5_THEME_URL.'/banners/images/dmb-5.jpg',
+        'img'=> LAYOUT_URL.'/banners/images/dmb-5.jpg',
         'link'=>'https://smartstore.naver.com/damoang-net',
         'target'=>'_blank',
         'display'=>true
     ),
     array(
         'type'=>1,
-        'img'=> G5_THEME_URL.'/banners/images/dmb-6.jpg',
+        'img'=> LAYOUT_URL.'/banners/images/dmb-6.jpg',
         'link'=>'https://smartstore.naver.com/damoang-net',
         'target'=>'_blank',
         'display'=>true
     ),
     array(
         'type'=>1,
-        'img'=> G5_THEME_URL.'/banners/images/dmb-7.jpg',
+        'img'=> LAYOUT_URL.'/banners/images/dmb-7.jpg',
         'link'=>'https://smartstore.naver.com/damoang-net',
         'target'=>'_blank',
         'display'=>true
     ),
     array(
         'type'=>2,
-        'img'=> G5_THEME_URL.'/banners/images/dmb-s1.jpg',
+        'img'=> LAYOUT_URL.'/banners/images/dmb-s1.jpg',
         'link'=>'https://smartstore.naver.com/damoang-net',
         'target'=>'_blank',
         'display'=>true

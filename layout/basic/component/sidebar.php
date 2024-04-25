@@ -557,6 +557,21 @@ if (!empty($config['cf_9'])) {
             <span class="nav-link-title"><?php echo (G5_IS_MOBILE) ? 'PC' : '모바일'; ?> 버전</span>
           </a>
         </div>
+
+        <div style="padding: 14px 0;">
+          <?php
+          //banner 2024.04.24 by munbbok
+          $arrBanner = getDisplayAdBanner(2);
+          if(count($arrBanner) > 0){
+            if($arrBanner['display']){
+              if($arrBanner['link']) echo '<a href="'.$arrBanner['link'].'" target="'.$arrBanner['target'].'">';
+              echo '<img src="'.$arrBanner['img'].'" style="width: 100%;" />';
+              if($arrBanner['link']) echo '</a>';
+            }
+          }
+          ?>
+        </div>
+
         <script async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6922133409882969"
           crossorigin="anonymous"></script>
