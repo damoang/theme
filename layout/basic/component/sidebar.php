@@ -561,7 +561,7 @@ if (!empty($config['cf_9'])) {
         <div style="padding: 14px 0;">
           <?php
           //banner 2024.04.24 by munbbok
-          $arrBanner = getDisplayAdBanner(2);
+          // $arrBanner = getDisplayAdBanner(2);
           if(count($arrBanner) > 0){
             if($arrBanner['display']){
               if($arrBanner['link']) echo '<a href="'.$arrBanner['link'].'" target="'.$arrBanner['target'].'">';
