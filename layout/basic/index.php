@@ -9,7 +9,19 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
         <div class="sticky-top py-3">
 
           <div class="alert alert-light mb-4 mx-3 mx-sm-0" role="alert">
-<img src="https://damoang.net/logo/0416_02.gif" style="max-width: 100%">
+<img src="https://damoang.net/logo/0416_02.gif" style="max-width: 100%"><br/>
+                            <?php
+                //banner 2024.04.24 by munbbok
+                $arrBanner = getDisplayAdBanner(1);
+                if(count($arrBanner) > 0){
+                  if($arrBanner['display']){
+                    if($arrBanner['link']) echo '<a href="'.$arrBanner['link'].'" target="'.$arrBanner['target'].'">';
+                    echo '<img src="'.$arrBanner['img'].'" style="max-width: 100%;" />';
+                    if($arrBannerv['link']) echo '</a>';
+                  }
+                }
+                ?>
+  
             <?php echo $config['cf_10'];?>
           </div>
 
