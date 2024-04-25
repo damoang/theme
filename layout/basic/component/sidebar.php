@@ -26,10 +26,10 @@ if (!empty($config['cf_9'])) {
 }
 ?>
       <div class="nav-item nav-link">
-        <a href="/bbs/search.php?srows=10&gr_id=&sfl=mb_id&stx=<?php echo $member['mb_id'] ?>">내 글</a> |
-        <a href="/bbs/new.php?bo_table=&sca=&gr_id=&view=c&mb_id=<?php echo $member['mb_id'] ?>">내 댓글</a> | <a
-          href="/bbs/noti.php"><i class="bi bi-bell"></i>알림</a>
+        <a href="/bbs/search.php?srows=10&amp;gr_id=&amp;sfl=mb_id&amp;stx=<?php echo $member['mb_id'] ?>">내 글</a>&nbsp;|&nbsp;
+        <a href="/bbs/new.php?bo_table=&amp;sca=&amp;gr_id=&amp;view=c&amp;mb_id=<?php echo $member['mb_id'] ?>">내 댓글</a>
       </div>
+
       <!-- 사이드 메뉴 -->
       <div class="nav-item">
         <div class="nav-item">
@@ -557,6 +557,21 @@ if (!empty($config['cf_9'])) {
             <span class="nav-link-title"><?php echo (G5_IS_MOBILE) ? 'PC' : '모바일'; ?> 버전</span>
           </a>
         </div>
+
+        <div style="padding: 14px 0;">
+          <?php
+          //banner 2024.04.24 by munbbok
+          $arrBanner = getDisplayAdBanner(2);
+          if(count($arrBanner) > 0){
+            if($arrBanner['display']){
+              if($arrBanner['link']) echo '<a href="'.$arrBanner['link'].'" target="'.$arrBanner['target'].'">';
+              echo '<img src="'.$arrBanner['img'].'" style="width: 100%;" />';
+              if($arrBanner['link']) echo '</a>';
+            }
+          }
+          ?>
+        </div>
+
         <script async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6922133409882969"
           crossorigin="anonymous"></script>
