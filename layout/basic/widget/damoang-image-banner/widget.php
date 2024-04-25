@@ -26,9 +26,11 @@ $id = 'carousel_' . na_rid();
 ?>
 
 <?php if ($list_cnt) { ?>
+<div style="padding: 10px 0;">
 	<a href="<?php echo ($list[0]['link']) ? $list[0]['link'] : 'javascript:;'; ?>" target="<?php echo $list[0]['target'] ?>">
 		<img src="<?php echo $list[0]['img'] ?>" style="max-width: 100%;" />
 	</a>
+</div>
 <?php } ?>
 
 <?php if ($setup_href) { ?>
