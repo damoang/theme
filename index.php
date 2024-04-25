@@ -17,56 +17,56 @@ function getDisplayAdBanner($type = 1){
     $arrBanner = Array(
       Array(
         'type'=>1,
-        'img'=>'/images/dmb-1.jpg',
+        'img'=>'/banners/images/dmb-1.jpg',
         'link'=>'https://smartstore.naver.com/damoang-net',
         'target'=>'_blank',
         'display'=>true
       ),
       Array(
         'type'=>1,
-        'img'=>'/images/dmb-2.jpg',
+        'img'=>'/banners/images/dmb-2.jpg',
         'link'=>'https://smartstore.naver.com/damoang-net',
         'target'=>'_blank',
         'display'=>true
       ),
       Array(
         'type'=>1,
-        'img'=>'/images/dmb-3.jpg',
+        'img'=>'/banners/images/dmb-3.jpg',
         'link'=>'https://smartstore.naver.com/damoang-net',
         'target'=>'_blank',
         'display'=>true
       ),
       Array(
         'type'=>1,
-        'img'=>'/images/dmb-4.jpg',
+        'img'=>'/banners/images/dmb-4.jpg',
         'link'=>'https://smartstore.naver.com/damoang-net',
         'target'=>'_blank',
         'display'=>true
       ),
       Array(
         'type'=>1,
-        'img'=>'/images/dmb-5.jpg',
+        'img'=>'/banners/images/dmb-5.jpg',
         'link'=>'https://smartstore.naver.com/damoang-net',
         'target'=>'_blank',
         'display'=>true
       ),
       Array(
         'type'=>1,
-        'img'=>'/images/dmb-6.jpg',
+        'img'=>'/banners/banners/images/dmb-6.jpg',
         'link'=>'https://smartstore.naver.com/damoang-net',
         'target'=>'_blank',
         'display'=>true
       ),
       Array(
         'type'=>1,
-        'img'=>'/images/dmb-7.jpg',
+        'img'=>'/banners/images/dmb-7.jpg',
         'link'=>'https://smartstore.naver.com/damoang-net',
         'target'=>'_blank',
         'display'=>true
       ),
       Array(
         'type'=>2,
-        'img'=>'/images/dmb-s1.jpg',
+        'img'=>'/banners/images/dmb-s1.jpg',
         'link'=>'https://smartstore.naver.com/damoang-net',
         'target'=>'_blank',
         'display'=>true
