@@ -17,7 +17,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                   if($arrBanner['display']){
                     if($arrBanner['link']) echo '<a href="'.$arrBanner['link'].'" target="'.$arrBanner['target'].'">';
                     echo '<img src="'.$arrBanner['img'].'" style="max-width: 100%;" />';
-                    if($arrBannerv['link']) echo '</a>';
+                    if($arrBanner['link']) echo '</a>';
                   }
                 }
                 ?>
@@ -52,23 +52,6 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                 </a>
               </h3>
               <div class="line-top mb-4">
-
-
-
-
-              <div style="padding: 5px 0;">
-                <?php
-                //banner 2024.04.24 by munbbok
-                $arrBanner = getDisplayAdBanner(1);
-                if(count($arrBanner) > 0){
-                  if($arrBanner['display']){
-                    if($arrBanner['link']) echo '<a href="'.$arrBanner['link'].'" target="'.$arrBanner['target'].'">';
-                    echo '<img src="'.$arrBanner['img'].'" style="max-width: 100%;" />';
-                    if($arrBannerv['link']) echo '</a>';
-                  }
-                }
-                ?>
-              </div>
 
                 <?php if (is_mobile()) { ?>
                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6922133409882969"
