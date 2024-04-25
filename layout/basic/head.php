@@ -4,6 +4,9 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 // 레이아웃 스크립트
 add_javascript('<script src="'.LAYOUT_URL.'/js/layout.js"></script>', 0);
 
+// 사이트 메뉴
+$siteMenus = include 'inc.menu.php';
+
 if(IS_SHOP) {
 	$member['todayview_cnt'] = get_boxcart_datas_count();
 	$member['cart_cnt'] = get_view_today_items_count();
