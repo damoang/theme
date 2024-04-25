@@ -32,8 +32,7 @@ if (!empty($config['cf_9'])) {
 }
 ?>
         <div class="nav-item nav-link">
-          <a href="/bbs/new.php?bo_table=&sca=&gr_id=&view=w&mb_id=<?php echo $member['mb_id'] ?>">내 글</a> |
-          <a href="/bbs/new.php?bo_table=&sca=&gr_id=&view=c&mb_id=<?php echo $member['mb_id'] ?>">내 댓글</a> | <a
+          <a href="/bbs/new.php?bo_table=&sca=&gr_id=&view=w&mb_id=<?php echo $member['mb_id'] ?>">내 글</a>&nbsp;|&nbsp;<a href="/bbs/new.php?bo_table=&sca=&gr_id=&view=c&mb_id=<?php echo $member['mb_id'] ?>">내 댓글</a>&nbsp;|&nbsp;<a
             href="/bbs/noti.php"><i class="bi bi-bell"></i>알림</a>
         </div>
         <!-- 사이드 메뉴 -->
