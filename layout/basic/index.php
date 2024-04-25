@@ -9,6 +9,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
         <div class="sticky-top py-3">
 
           <div class="alert alert-light mb-4 mx-3 mx-sm-0" role="alert">
+<img src="https://damoang.net/logo/0416_02.gif" style="max-width: 100%">
             <?php echo $config['cf_10'];?>
           </div>
 
@@ -24,6 +25,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
               </h3>
               <div class="line-top mb-4">
                 <?php echo na_widget('wr-list', 'idx-recommended-o', 'bo_list=free wr_notice=1 is_notice=1 wr_comment=0'); ?>
+
               </div>
               <!-- } 위젯 끝 -->
 
@@ -42,17 +44,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
 
 
-                <?php 
-                //banner 2024.04.24 by munbbok
-                $arrBanner = getDisplayAdBanner(1);
-                if(count($arrBanner) > 0){
-                  if($arrBanner['display']){
-                    if($arrBanner['link']) echo '<a href="'.$arrBanner['link'].'" target="'.$arrBanner['target'].'">';
-                    echo '<img src="'.$arrBanner['img'].'" />';
-                    if($arrBannerv['link']) echo '</a>';
-                  }
-                }
-                if (is_mobile()) { ?>
+                <?php if (is_mobile()) { ?>
 
                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6922133409882969"
                   crossorigin="anonymous"></script>
@@ -104,6 +96,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
               </h3>
               <div class="line-top mb-4">
                 <?php echo na_widget('wr-list', 'idx-notice', 'bo_list=notice wr_notice=1 is_notice=1'); ?>
+
               </div>
               <!-- } 위젯 끝 -->
             </div>
@@ -119,7 +112,6 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
               </h3>
               <div class="line-top mb-4">
                 <?php  echo na_widget('wr-list', 'idx-free', 'bo_list=free wr_notice=1 is_notice=1'); ?>
-
               </div>
               <!-- } 위젯 끝 -->
 
@@ -144,12 +136,13 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
           <h3 class="fs-5 px-3 py-2 mb-0">
             <a href="<?php echo get_pretty_url('new') ?>">
               <i class="bi bi-postcard-heart"></i>
-              새소개
+              새소식
               <i class="bi bi-plus small float-end mt-1 text-body-tertiary"></i>
             </a>
           </h3>
           <div class="line-top mb-4">
             <?php echo na_widget('wr-webzine', 'idx-webzine', 'bo_list=gallery wr_notice=1 is_notice=1 rows=4'); ?>
+
           </div>
           <!-- } 위젯 끝 -->
 
@@ -164,6 +157,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
           </h3>
           <div class="line-top mb-4">
             <?php echo na_widget('wr-webzine', 'idx-use', 'bo_list=gallery wr_notice=1 is_notice=1 rows=4'); ?>
+
           </div>
           <!-- } 위젯 끝 -->
           <div class="row row-cols-1 row-cols-lg-2">
@@ -178,6 +172,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
               </h3>
               <div class="line-top mb-4">
                 <?php echo na_widget('wr-list', 'idx-qa', 'bo_list=qa wr_notice=1 is_notice=1'); ?>
+
               </div>
               <!-- } 위젯 끝 -->
 
@@ -194,6 +189,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
               </h3>
               <div class="line-top mb-4">
                 <?php echo na_widget('wr-list', 'idx-download', 'bo_list=gallery wr_notice=1 is_notice=1'); ?>
+
               </div>
               <!-- } 위젯 끝 -->
             </div>
@@ -210,6 +206,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
           </h3>
           <div class="line-top mb-4">
             <?php echo na_widget('wr-webzine', 'idx-lecture', 'bo_list=gallery wr_notice=1 is_notice=1 rows=4'); ?>
+
           </div>
           <!-- } 위젯 끝 -->
 
@@ -223,6 +220,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
           </h3>
           <div class="line-top mb-4">
             <?php echo na_widget('wr-webzine', 'idx-pds', 'bo_list=gallery wr_notice=1 is_notice=1 rows=4'); ?>
+
           </div>
           <!-- } 위젯 끝 -->
 
