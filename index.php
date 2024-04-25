@@ -14,20 +14,65 @@ if(G5_COMMUNITY_USE === false) {
 
 //banner array 2024.04.24 by munbbok
 function getDisplayAdBanner($type = 1){
-    $arrBanner = Array(
-      Array(
+  $arrBanner = array(
+    array(
         'type'=>1,
-        'img'=>'https://damoang.net/logo/0416_02.gif',
-        'link'=>'https://damoang.net',
-        'target'=>'_self',
+        'img'=> G5_THEME_URL.'/banners/images/dmb-1.jpg',
+        'link'=>'https://smartstore.naver.com/damoang-net',
+        'target'=>'_blank',
         'display'=>true
-      ),
-      Array(
-          'type'=>1,
-          'img'=>'https://damoang.net/logo/damoang-default-logo.svg',
-          'display'=>true
-      )
-    );
+    ),
+    array(
+        'type'=>1,
+        'img'=> G5_THEME_URL.'/banners/images/dmb-2.jpg',
+        'link'=>'https://smartstore.naver.com/damoang-net',
+        'target'=>'_blank',
+        'display'=>true
+    ),
+    array(
+        'type'=>1,
+        'img'=> G5_THEME_URL.'/banners/images/dmb-3.jpg',
+        'link'=>'https://smartstore.naver.com/damoang-net',
+        'target'=>'_blank',
+        'display'=>true
+    ),
+    array(
+        'type'=>1,
+        'img'=> G5_THEME_URL.'/banners/images/dmb-4.jpg',
+        'link'=>'https://smartstore.naver.com/damoang-net',
+        'target'=>'_blank',
+        'display'=>true
+    ),
+    array(
+        'type'=>1,
+        'img'=> G5_THEME_URL.'/banners/images/dmb-5.jpg',
+        'link'=>'https://smartstore.naver.com/damoang-net',
+        'target'=>'_blank',
+        'display'=>true
+    ),
+    array(
+        'type'=>1,
+        'img'=> G5_THEME_URL.'/banners/images/dmb-6.jpg',
+        'link'=>'https://smartstore.naver.com/damoang-net',
+        'target'=>'_blank',
+        'display'=>true
+    ),
+    array(
+        'type'=>1,
+        'img'=> G5_THEME_URL.'/banners/images/dmb-7.jpg',
+        'link'=>'https://smartstore.naver.com/damoang-net',
+        'target'=>'_blank',
+        'display'=>true
+    ),
+    array(
+        'type'=>2,
+        'img'=> G5_THEME_URL.'/banners/images/dmb-s1.jpg',
+        'link'=>'https://smartstore.naver.com/damoang-net',
+        'target'=>'_blank',
+        'display'=>true
+    ),
+  );
+
     
     $_result = Array();
     foreach($arrBanner as $k => $v){
