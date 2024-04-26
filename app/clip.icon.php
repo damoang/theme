@@ -79,6 +79,11 @@ $qstr_clip = ($is_clip) ? '&amp;clip=1' : '';
 <script>
 function clip_insert(txt){
 	var clip = "{icon:" + txt + "}";
+
+	if(parent.document.suneditor) {
+		parent.document.suneditor.insertHTML(clip);
+		window.parent.naClipClose();
+	} else {
 	<?php if($is_clip) { ?>
 		$("#txtClip").val(clip);
 		$('#clipModal').modal('show');
@@ -86,6 +91,7 @@ function clip_insert(txt){
 		parent.document.getElementById("wr_content").value += clip;
 		window.parent.naClipClose();
 	<?php } ?>
+	}
 }
 </script>
 

@@ -60,6 +60,10 @@ $(function() {
 
 		var clip = "{video: " + txt + " }";
 
+		if(parent.document.suneditor) {
+			parent.document.suneditor.insertHTML(clip);
+			window.parent.naClipClose();
+		} else {
 		<?php if($is_clip) { ?>
 			$("#txtClip").val(clip);
 			$('#clipModal').modal('show');
@@ -67,6 +71,8 @@ $(function() {
 			parent.document.getElementById("wr_content").value += clip;
 			window.parent.naClipClose();
 		<?php } ?>
+		}
+		
 	});
 });
 </script>
