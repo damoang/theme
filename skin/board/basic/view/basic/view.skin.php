@@ -20,7 +20,7 @@ add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css">
                  <img src="https://damoang.net/logo/0416_02.gif" style="max-width: 100%">
 
           </div>
-<?php echo na_widget('damoang-image-banner', 'wide-banner'); ?>
+<?php echo na_widget('damoang-image-banner', 'board-head'); ?>
 
            <?php echo $config['cf_10'];?>
 <article id="bo_v" class="mb-4">
