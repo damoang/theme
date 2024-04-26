@@ -117,7 +117,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 			<select class="form-select form-select-sm" name="sst" onchange="location.href='<?php echo str_replace('&sst=', '', $sst_tag['href']);?>&sst='+this.value;">
 				<option value="">최신순</option>
 				<option value="wr_datetime"<?php echo get_selected($sst, 'wr_datetime');?>>날짜순</option>
-				<option value="wr_hit"<?php echo get_selected($sst, 'wr_hit');?>>1조회순</option>
+				<option value="wr_hit"<?php echo get_selected($sst, 'wr_hit');?>>조회순</option>
 				<?php if($is_good) { ?>
 					<option value="wr_good"<?php echo get_selected($sst, 'wr_good');?>>추천순</option>
 				<?php } ?>
