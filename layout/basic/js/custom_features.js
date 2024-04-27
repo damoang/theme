@@ -3,49 +3,50 @@
   const keyID = 'custom_features';
 
   const setConf = (obj) => {
-    if(obj.length > 0) {
-      localStorage.setItem(keyID, JSON.stringify(obj));
-    } else {
-      localStorage.removeItem(keyID);
-    }
+    localStorage.setItem(keyID, JSON.stringify(obj ?? {}));
 
     return obj;
   }
 
   const getConf = () => {
-    return JSON.parse(localStorage.getItem(keyID)) ?? [];
+    return JSON.parse(localStorage.getItem(keyID)) ?? {};
   }
 
-  document.addEventListener("DOMContentLoaded", function() {
-    let myConf = getConf();
-    let icon = $('#hide_notice_icon');
-    let notices = $('span:contains("공지")').parents('.bg-light-subtle');
-
-    if(typeof(myConf[0]?.hideNotice) == 'undefined') {
-      myConf[0] = {hideNotice:false};
-    }
-    
-    if(myConf[0]?.hideNotice == true) {
-      notices.attr('style', 'display:none !important;');
-      icon.css('color', 'var(--bs-tertiary-color)');
-    } else {
-      icon.css('color', 'var(--bs-danger-text-emphasis)');
+  // 게시판 공지사항 보기 설정
+  document.addEventListener("DOMContentLoaded", function () {
+    const hideTrigger = $('#hide_notice');
+    if (!hideTrigger.length) {
+      return;
     }
 
-    $('#hide_notice').click(function(e){
+    const myConf = getConf();
+    const icon = $('#hide_notice_icon');
+
+    myConf.hideNotice = myConf?.hideNotice ?? false;
+
+    if (myConf.hideNotice) {
+      toggleNoticeHide();
+    }
+
+    // 아이콘 클릭 시 상태 토글
+    $('#hide_notice').on('click', function (e) {
       e.preventDefault();
-      
-      if(notices.css('display') == 'none') {
-        notices.css('display', 'table-row');
-        icon.css('color', 'var(--bs-danger-text-emphasis)');
-        myConf[0].hideNotice = false;
-      } else {
-        notices.css('display', 'none');
-        icon.css('color', 'var(--bs-tertiary-color)');
-        myConf[0].hideNotice = true;
-      }
+
+      myConf.hideNotice = !myConf.hideNotice;
       setConf(myConf);
+
+      toggleNoticeHide();
     });
 
+    /**
+     * 공지 보이기/감추기 토글
+     */
+    function toggleNoticeHide() {
+      icon.toggleClass('bi-megaphone-fill bi-megaphone');
+
+      let notices = $('#bo_list .bg-light-subtle span:contains("공지")').closest('.list-group-item');
+
+      notices.toggleClass('d-none');
+    }
   }, { once: true });
 })();
