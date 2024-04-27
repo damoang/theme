@@ -23,6 +23,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 	<div class="ms-auto order-1 pe-1">
 		<a href="#" id="hide_notice" class="text-body-tertiary">
 			<span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="공지사항">
+				<i id="hide_notice_icon" class="fa fa-bullhorn" style="font-size:18px;"></i>
 				<i id="hide_notice_icon" class="bi bi-megaphone-fill"></i>
 				<span class="visually-hidden">공지사항</span>
 			</span>
