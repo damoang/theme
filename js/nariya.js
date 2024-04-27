@@ -629,7 +629,7 @@ $(function(){
 
 			var $element = $(this);
 			debounce(function() {
-				$element.attr('data-popover-initialized', true); // Mark as initialized to avoid duplicate binding
+				$element.attr('data-popover-initialized', true);
 				$element.popover({
 					html: true,
 					trigger: 'hover',
@@ -639,7 +639,7 @@ $(function(){
 							'<img src="' + $element.data('img') + '" class="w-100"/></div>';
 					}
 				}).popover('show');
-			}, 500); //썸네일 뜨는 시간 ms 단위
+			}, 500); //썸네일 뜨는 시간 ms
 		});
 
 		$(document).on("mouseleave", '[data-bs-toggle="popover-img"]', function () {
