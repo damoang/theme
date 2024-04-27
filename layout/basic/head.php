@@ -26,9 +26,7 @@ if(IS_INDEX)
 		<div class="container px-3">
 			<div class="d-flex gap-3 align-items-center">
 				<div>
-					<a href="https://damoang.net" class="fs-2 fw-bold">
-                        <img height="48" src="https://damoang.net/logo/damoang-default-logo.svg" title="">
-                    </a> Beta
+					<?php echo na_widget('damoang-logo', 'default'); ?>
 				</div>
 				<div class="ms-auto">
 					<?php
