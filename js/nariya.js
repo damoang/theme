@@ -619,15 +619,31 @@ $(function(){
 		$('[data-bs-toggle="tooltip"]').tooltip('disable');
 
 	} else {
-		$(document).on("mouseover", '[data-bs-toggle="popover-img"]', function () {
-			var e = $(this);
-			e.off('hover');
-			e.popover({
-			  html: true,
-			  trigger: 'hover',
-			  placement: 'left',
-			  content: function () { return '<div class="rounded overflow-hidden" style="max-height:200px;"><img src="' + e.data('img') + '" class="w-100"/></div>'; }
-			}).popover('show');
+		let debounceTimeout;
+		function debounce(func, delay) {
+			clearTimeout(debounceTimeout);
+			debounceTimeout = setTimeout(func, delay);
+		}
+
+		$('[data-bs-toggle="popover-img"]:not([data-popover-initialized])').hover(function () {
+
+			var $element = $(this);
+			debounce(function() {
+				$element.attr('data-popover-initialized', true); // Mark as initialized to avoid duplicate binding
+				$element.popover({
+					html: true,
+					trigger: 'hover',
+					placement: 'left',
+					content: function () {
+						return '<div class="rounded overflow-hidden" style="max-height:200px;">' +
+							'<img src="' + $element.data('img') + '" class="w-100"/></div>';
+					}
+				}).popover('show');
+			}, 500); //썸네일 뜨는 시간 ms 단위
+		});
+
+		$(document).on("mouseleave", '[data-bs-toggle="popover-img"]', function () {
+			clearTimeout(debounceTimeout);
 		});
 	}
 
