@@ -17,214 +17,233 @@ if(!$is_ajax)
         var char_min = parseInt(<?php echo $comment_min ?>); // 최소
         var char_max = parseInt(<?php echo $comment_max ?>); // 최대
     </script>
-    <div id="viewcomment" class="mt-4">
-        <?php } ?>
-        <div class="d-flex justify-content-between align-items-end px-3 mb-2">
-            <div>
-                댓글 <b><?php echo $write['wr_comment'] ?></b>
-                <?php if($is_paging && $page) echo ' / '.$page.' 페이지'.PHP_EOL; ?>
-            </div>
-            <?php if($is_paging) { //페이징
-                $comment_sort_href = NA_URL.'/comment.page.php?bo_table='.$bo_table.'&amp;wr_id='.$wr_id;
-                switch($cob) {
-                    case 'new'		: $comment_sort_txt = '최신순'; break;
-                    case 'good'		: $comment_sort_txt = '추천순'; break;
-                    case 'nogood'	: $comment_sort_txt = '비추천순'; break;
-                    default			: $comment_sort_txt = '과거순'; break;
-                }
-                ?>
-
-                <div>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-basic btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                            <?php echo $comment_sort_txt ?>
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li>
-                                <button class="dropdown-item" type="button" onclick="na_comment_sort('viewcomment', '<?php echo $comment_sort_href ?>', 'old');">과거순</button>
-                            </li>
-                            <li>
-                                <button class="dropdown-item" type="button" onclick="na_comment_sort('viewcomment', '<?php echo $comment_sort_href ?>', 'new');">최신순</button>
-                            </li>
-                            <?php if($is_comment_good) { ?>
-                                <button class="dropdown-item" type="button" onclick="na_comment_sort('viewcomment', '<?php echo $comment_sort_href ?>', 'good');">추천순</button>
-                            <?php } ?>
-                            <?php if($is_comment_nogood) { ?>
-                                <button class="dropdown-item" type="button" onclick="na_comment_sort('viewcomment', '<?php echo $comment_sort_href ?>', 'nogood');">비추천순</button>
-                            <?php } ?>
-                        </ul>
-                    </div>
-                </div>
-            <?php } ?>
+<div id="viewcomment" class="mt-4">
+    <?php } ?>
+    <div class="d-flex justify-content-between align-items-end px-3 mb-2">
+        <div>
+            댓글 <b><?php echo $write['wr_comment'] ?></b>
+            <?php if($is_paging && $page) echo ' / '.$page.' 페이지'.PHP_EOL; ?>
         </div>
+        <?php if($is_paging) { //페이징
+            $comment_sort_href = NA_URL.'/comment.page.php?bo_table='.$bo_table.'&amp;wr_id='.$wr_id;
+            switch($cob) {
+                case 'new'		: $comment_sort_txt = '최신순'; break;
+                case 'good'		: $comment_sort_txt = '추천순'; break;
+                case 'nogood'	: $comment_sort_txt = '비추천순'; break;
+                default			: $comment_sort_txt = '과거순'; break;
+            }
+            ?>
 
-        <section id="bo_vc" class="na-fadein">
-            <?php
-            // 댓글목록
-            $comment_cnt = count($list);
-            for ($i=0; $i<$comment_cnt; $i++) {
-                $comment_id = $list[$i]['wr_id'];
-                $comment_depth = strlen($list[$i]['wr_comment_reply']) * 1;
-                $comment = $list[$i]['content'];
+            <div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-basic btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        <?php echo $comment_sort_txt ?>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li>
+                            <button class="dropdown-item" type="button" onclick="na_comment_sort('viewcomment', '<?php echo $comment_sort_href ?>', 'old');">과거순</button>
+                        </li>
+                        <li>
+                            <button class="dropdown-item" type="button" onclick="na_comment_sort('viewcomment', '<?php echo $comment_sort_href ?>', 'new');">최신순</button>
+                        </li>
+                        <?php if($is_comment_good) { ?>
+                            <button class="dropdown-item" type="button" onclick="na_comment_sort('viewcomment', '<?php echo $comment_sort_href ?>', 'good');">추천순</button>
+                        <?php } ?>
+                        <?php if($is_comment_nogood) { ?>
+                            <button class="dropdown-item" type="button" onclick="na_comment_sort('viewcomment', '<?php echo $comment_sort_href ?>', 'nogood');">비추천순</button>
+                        <?php } ?>
+                    </ul>
+                </div>
+            </div>
+        <?php } ?>
+    </div>
 
-                // 이미지
-                $comment = preg_replace("/\[\<a\s*href\=\"(http|https|ftp)\:\/\/([^[:space:]]+)\.(gif|png|jpg|jpeg|bmp)\"\s*[^\>]*\>[^\s]*\<\/a\>\]/i", "<img src=\"$1://$2.$3\" alt=\"\" class=\"img-fluid\">", $comment);
+    <section id="bo_vc" class="na-fadein">
+        <?php
+        $good_list = array();
+        if ($member['mb_id']) {
+            // 추천/비추천 여부 확인을 위한 댓글의 추천내역 가져오기
+            // 2024.04.15 서버 부하로 사용 안함
+            /*$sql = " select {$write_table}.wr_id, {$g5['board_good_table']}.bg_id, {$g5['board_good_table']}.bg_flag
+                    from {$write_table}
+                    left join {$g5['board_good_table']} on
+                        {$write_table}.wr_id = {$g5['board_good_table']}.wr_id
+                    where {$write_table}.wr_id != '{$wr_id}'
+                    and {$write_table}.wr_parent = '{$wr_id}'
+                    and {$g5['board_good_table']}.mb_id = '{$member['mb_id']}'";
+            $result = sql_query($sql);
 
-                // 동영상
-                $comment = preg_replace("/\[\<a\s.*href\=\"(http|https|ftp|mms)\:\/\/([^[:space:]]+)\.(mp3|wma|wmv|asf|asx|mpg|mpeg)\".*\<\/a\>\]/i", "<script>doc_write(obj_movie('$1://$2.$3'));</script>", $comment);
+            for ($i=0; $row=sql_fetch_array($result); $i++) {
+                $good_list[$row['wr_id']] = $row['bg_flag'];
+            }*/
+        }
 
-                // 컨텐츠
-                $comment = na_content($comment);
+        // 댓글목록
+        $comment_cnt = count($list);
+        for ($i=0; $i<$comment_cnt; $i++) {
+            $comment_id = $list[$i]['wr_id'];
+            $comment_depth = strlen($list[$i]['wr_comment_reply']) * 1;
+            $comment = $list[$i]['content'];
 
-                $comment_sv = $comment_cnt - $i + 1; // 댓글 헤더 z-index 재설정 ie8 이하 사이드뷰 겹침 문제 해결
-                $c_reply_href = $comment_common_url.'&amp;c_id='.$comment_id.'&amp;w=c#bo_vc_w';
-                $c_edit_href = $comment_common_url.'&amp;c_id='.$comment_id.'&amp;w=cu#bo_vc_w';
-                $is_comment_reply_edit = ($list[$i]['is_reply'] || $list[$i]['is_edit'] || $list[$i]['is_del']) ? 1 : 0;
+            // 이미지
+            $comment = preg_replace("/\[\<a\s*href\=\"(http|https|ftp)\:\/\/([^[:space:]]+)\.(gif|png|jpg|jpeg|bmp|webp)\"\s*[^\>]*\>[^\s]*\<\/a\>\]/i", "<img src=\"$1://$2.$3\" alt=\"\" class=\"img-fluid\">", $comment);
 
-                $comment_name = get_text($list[$i]['wr_name']);
-                $by_writer = ($view['mb_id'] && $view['mb_id'] == $list[$i]['mb_id']) ? 'bg-body-secondary' : 'bg-body-tertiary';
+            // 동영상
+            $comment = preg_replace("/\[\<a\s.*href\=\"(http|https|ftp|mms)\:\/\/([^[:space:]]+)\.(mp3|wma|wmv|asf|asx|mpg|mpeg)\".*\<\/a\>\]/i", "<script>doc_write(obj_movie('$1://$2.$3'));</script>", $comment);
 
-                ?>
-                <article id="c_<?php echo $comment_id ?>" <?php if ($comment_depth) { ?>style="margin-left:<?php echo $comment_depth ?>rem;"<?php } ?>>
-                    <div class="comment-list-wrap position-relative">
-                        <header style="z-index:<?php echo $comment_sv ?>">
-                            <h3 class="visually-hidden">
-                                <?php echo $comment_name; ?>님의
-                                <?php if ($comment_depth) { ?><span class="visually-hidden">댓글의</span><?php } ?> 댓글
-                            </h3>
-                            <div class="d-flex align-items-center border-top <?php echo $by_writer ?> py-1 px-3 small">
-                                <div class="me-2"<?php echo $is_ip_view ? ' data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="'.$list[$i]['ip'].'"' : ''; ?>>
-                                    <?php if ($comment_depth) { ?>
-                                        <i class="bi bi-arrow-return-right"></i>
-                                        <span class="visually-hidden">대댓글</span>
-                                    <?php } ?>
-                                    <span class="visually-hidden">작성자</span>
-                                    <?php echo na_name_photo($list[$i]['mb_id'], $list[$i]['name']); ?>
-                                </div>
-                                <div>
-                                    <?php include(G5_SNS_PATH.'/view_comment_list.sns.skin.php'); // SNS ?>
-                                </div>
-                                <div class="ms-auto">
-                                    <span class="visually-hidden">작성일</span>
-                                    <?php echo na_date($list[$i]['wr_datetime'], 'orangered', 'H:i', 'm.d H:i', 'Y.m.d H:i'); ?>
-                                </div>
-                            </div>
-                        </header>
-                        <div class="comment-content p-3">
-                            <div class="<?php echo $is_convert ?>">
-                                <?php
-                                $is_lock = false;
-                                if (strstr($list[$i]['wr_option'], "secret")) {
-                                    $is_lock = true;
-                                    ?>
-                                    <span class="na-icon na-secret"></span>
+            // 컨텐츠
+            $comment = na_content($comment);
+
+            $comment_sv = $comment_cnt - $i + 1; // 댓글 헤더 z-index 재설정 ie8 이하 사이드뷰 겹침 문제 해결
+            $c_reply_href = $comment_common_url.'&amp;c_id='.$comment_id.'&amp;w=c#bo_vc_w';
+            $c_edit_href = $comment_common_url.'&amp;c_id='.$comment_id.'&amp;w=cu#bo_vc_w';
+            $is_comment_reply_edit = ($list[$i]['is_reply'] || $list[$i]['is_edit'] || $list[$i]['is_del']) ? 1 : 0;
+
+            $comment_name = get_text($list[$i]['wr_name']);
+            $by_writer = ($view['mb_id'] && $view['mb_id'] == $list[$i]['mb_id']) ? 'bg-body-secondary' : 'bg-body-tertiary';
+
+            ?>
+            <article id="c_<?php echo $comment_id ?>" <?php if ($comment_depth) { ?>style="margin-left:<?php echo $comment_depth ?>rem;"<?php } ?>>
+                <div class="comment-list-wrap position-relative">
+                    <header style="z-index:<?php echo $comment_sv ?>">
+                        <h3 class="visually-hidden">
+                            <?php echo $comment_name; ?>님의
+                            <?php if ($comment_depth) { ?><span class="visually-hidden">댓글의</span><?php } ?> 댓글
+                        </h3>
+                        <div class="d-flex align-items-center border-top <?php echo $by_writer ?> py-1 px-3 small">
+                            <div class="me-2"<?php echo $is_ip_view ? ' data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="'.$list[$i]['ip'].'"' : ''; ?>>
+                                <?php if ($comment_depth) { ?>
+                                    <i class="bi bi-arrow-return-right"></i>
+                                    <span class="visually-hidden">대댓글</span>
                                 <?php } ?>
-
-                                <?php echo $comment ?>
+                                <span class="visually-hidden">작성자</span>
+                                <?php echo na_name_photo($list[$i]['mb_id'], $list[$i]['name']); ?>
+                                (<?php echo $list[$i]['ip'] ?>)
                             </div>
-                            <?php if((int)$list[$i]['wr_10'] > 0) { // 럭키포인트 ?>
-                                <div class="small mt-3">
-                                    <i class="bi bi-gift"></i>
-                                    <b><?php echo number_format((int)$list[$i]['wr_10']) ?></b> 럭키포인트 당첨을 축하드립니다.
-                                </div>
+                            <div>
+                                <?php include(G5_SNS_PATH.'/view_comment_list.sns.skin.php'); // SNS ?>
+                            </div>
+                            <div class="ms-auto">
+                                <span class="visually-hidden">작성일</span>
+                                <?php echo na_date($list[$i]['wr_datetime'], 'orangered', 'H:i', 'm.d H:i', 'Y.m.d H:i'); ?>
+                            </div>
+                        </div>
+                    </header>
+                    <div class="comment-content p-3">
+                        <div class="<?php echo $is_convert ?>">
+                            <?php
+                            $is_lock = false;
+                            if (strstr($list[$i]['wr_option'], "secret")) {
+                                $is_lock = true;
+                                ?>
+                                <span class="na-icon na-secret"></span>
                             <?php } ?>
 
-                            <div class="d-flex justify-content-between mt-3">
-                                <div class="btn-group btn-group-sm" role="group">
-                                    <?php if($is_comment_reply_edit) {
-                                        if($w == 'cu') {
-                                            $sql = " select wr_id, wr_content, mb_id from $write_table where wr_id = '$c_id' and wr_is_comment = '1' ";
-                                            $cmt = sql_fetch($sql);
-                                            if (!($is_admin || ($member['mb_id'] == $cmt['mb_id'] && $cmt['mb_id'])))
-                                                $cmt['wr_content'] = '';
-                                            $c_wr_content = $cmt['wr_content'];
-                                        }
-                                        ?>
-                                        <?php if ($list[$i]['is_reply']) { ?>
-                                            <button type="button" class="btn btn-basic" onclick="comment_box('<?php echo $comment_id ?>','c','<?php echo $comment_name;?>');" class="btn btn-basic btn-sm" title="답글">
-                                                <i class="bi bi-arrow-return-right"></i>
-                                                답글
-                                            </button>
-                                        <?php } ?>
-                                        <?php if ($list[$i]['is_edit']) { ?>
-                                            <button type="button" class="btn btn-basic" onclick="comment_box('<?php echo $comment_id ?>','cu','<?php echo $comment_name;?>');" class="btn btn-basic btn-sm" title="수정">
-                                                <i class="bi bi-pencil"></i>
-                                                <span class="d-none d-sm-inline-block">수정</span>
-                                            </button>
-                                        <?php } ?>
-                                        <?php if ($list[$i]['is_del']) { ?>
-                                            <a href="<?php echo $list[$i]['del_link']; ?>" onclick="<?php echo (isset($list[$i]['del_back']) && $list[$i]['del_back']) ? "na_delete('viewcomment', '".$list[$i]['del_href']."','".$list[$i]['del_back']."'); return false;" : "return comment_delete(this.href);";?>" class="btn btn-basic" title="삭제">
-                                                <i class="bi bi-trash"></i>
-                                                <span class="d-none d-sm-inline-block">삭제</span>
-                                            </a>
-                                        <?php } ?>
+                            <?php echo $comment ?>
+                        </div>
+                        <?php if((int)$list[$i]['wr_10'] > 0) { // 럭키포인트 ?>
+                            <div class="small mt-3">
+                                <i class="bi bi-gift"></i>
+                                <b><?php echo number_format((int)$list[$i]['wr_10']) ?></b> 럭키포인트 당첨을 축하드립니다.
+                            </div>
+                        <?php } ?>
+
+                        <div class="d-flex justify-content-between mt-3">
+                            <div class="btn-group btn-group-sm" role="group">
+                                <?php if($is_comment_reply_edit) {
+                                    if($w == 'cu') {
+                                        $sql = " select wr_id, wr_content, mb_id from $write_table where wr_id = '$c_id' and wr_is_comment = '1' ";
+                                        $cmt = sql_fetch($sql);
+                                        if (!($is_admin || ($member['mb_id'] == $cmt['mb_id'] && $cmt['mb_id'])))
+                                            $cmt['wr_content'] = '';
+                                        $c_wr_content = $cmt['wr_content'];
+                                    }
+                                    ?>
+                                    <?php if ($list[$i]['is_reply']) { ?>
+                                        <button type="button" class="btn btn-basic" onclick="comment_box('<?php echo $comment_id ?>','c','<?php echo $comment_name;?>');" class="btn btn-basic btn-sm" title="답글">
+                                            <i class="bi bi-arrow-return-right"></i>
+                                            답글
+                                        </button>
                                     <?php } ?>
-                                    <button type="button" onclick="na_singo('<?php echo $bo_table ?>', '<?php echo $list[$i]['wr_id'] ?>', '0', 'c_<?php echo $comment_id ?>');" class="btn btn-basic" title="신고">
-                                        <i class="bi bi-eye-slash"></i>
-                                        <span class="d-none d-sm-inline-block">신고</span>
+                                    <?php if ($list[$i]['is_edit']) { ?>
+                                        <button type="button" class="btn btn-basic" onclick="comment_box('<?php echo $comment_id ?>','cu','<?php echo $comment_name;?>');" class="btn btn-basic btn-sm" title="수정">
+                                            <i class="bi bi-pencil"></i>
+                                            <span class="d-none d-sm-inline-block">수정</span>
+                                        </button>
+                                    <?php } ?>
+                                    <?php if ($list[$i]['is_del']) { ?>
+                                        <a href="<?php echo $list[$i]['del_link']; ?>" onclick="<?php echo (isset($list[$i]['del_back']) && $list[$i]['del_back']) ? "na_delete('viewcomment', '".$list[$i]['del_href']."','".$list[$i]['del_back']."'); return false;" : "return comment_delete(this.href);";?>" class="btn btn-basic" title="삭제">
+                                            <i class="bi bi-trash"></i>
+                                            <span class="d-none d-sm-inline-block">삭제</span>
+                                        </a>
+                                    <?php } ?>
+                                <?php } ?>
+                                <button type="button" onclick="na_singo('<?php echo $bo_table ?>', '<?php echo $list[$i]['wr_id'] ?>', '0', 'c_<?php echo $comment_id ?>');" class="btn btn-basic" title="신고">
+                                    <i class="bi bi-eye-slash"></i>
+                                    <span class="d-none d-sm-inline-block">신고</span>
+                                </button>
+                                <?php if($list[$i]['mb_id']) { // 회원만 가능 ?>
+                                    <button type="button" onclick="na_chadan('<?php echo $list[$i]['mb_id'] ?>');" class="btn btn-basic" title="차단">
+                                        <i class="bi bi-person-slash"></i>
+                                        <span class="d-none d-sm-inline-block">차단</span>
                                     </button>
-                                    <?php if($list[$i]['mb_id']) { // 회원만 가능 ?>
-                                        <button type="button" onclick="na_chadan('<?php echo $list[$i]['mb_id'] ?>');" class="btn btn-basic" title="차단">
-                                            <i class="bi bi-person-slash"></i>
-                                            <span class="d-none d-sm-inline-block">차단</span>
+                                <?php } ?>
+                            </div>
+                            <?php if($is_comment_good || $is_comment_nogood) { ?>
+                                <div class="btn-group btn-group-sm" role="group">
+                                    <?php if($is_comment_good) { ?>
+                                        <button type="button" onclick="na_good('<?php echo $bo_table ?>', '<?php echo $comment_id ?>', 'good', 'c_g<?php echo $comment_id ?>', 1);" class="btn <?php echo (isset($good_list[$list[$i]['wr_id']]) && $good_list[$list[$i]['wr_id']] == 'good') ? 'btn-primary' : 'btn-basic' ?>" title="추천">
+                                            <span class="visually-hidden">추천</span>
+                                            <i class="bi bi-hand-thumbs-up"></i>
+                                            <span id="c_g<?php echo $comment_id ?>"><?php echo $list[$i]['wr_good'] ?></span>
+                                        </button>
+                                    <?php } ?>
+                                    <?php if($is_comment_nogood) { ?>
+                                        <button type="button" class="btn <?php echo (isset($good_list[$list[$i]['wr_id']]) && $good_list[$list[$i]['wr_id']] == 'nogood') ? 'btn-primary' : 'btn-basic' ?>" onclick="na_good('<?php echo $bo_table ?>', '<?php echo $comment_id ?>', 'nogood', 'c_ng<?php echo $comment_id ?>', 1);" title="비추천">
+                                            <span class="visually-hidden">비추천</span>
+                                            <i class="bi bi-hand-thumbs-down"></i>
+                                            <span id="c_ng<?php echo $comment_id;?>"><?php echo $list[$i]['wr_nogood']; ?></span>
                                         </button>
                                     <?php } ?>
                                 </div>
-                                <?php if($is_comment_good || $is_comment_nogood) { ?>
-                                    <div class="btn-group btn-group-sm" role="group">
-                                        <?php if($is_comment_good) { ?>
-                                            <button type="button" onclick="na_good('<?php echo $bo_table ?>', '<?php echo $comment_id ?>', 'good', 'c_g<?php echo $comment_id ?>', 1);" class="btn btn-basic" title="추천">
-                                                <span class="visually-hidden">추천</span>
-                                                <i class="bi bi-hand-thumbs-up"></i>
-                                                <span id="c_g<?php echo $comment_id ?>"><?php echo $list[$i]['wr_good'] ?></span>
-                                            </button>
-                                        <?php } ?>
-                                        <?php if($is_comment_nogood) { ?>
-                                            <button type="button" class="btn btn-basic" onclick="na_good('<?php echo $bo_table ?>', '<?php echo $comment_id ?>', 'nogood', 'c_ng<?php echo $comment_id ?>', 1);" title="비추천">
-                                                <span class="visually-hidden">비추천</span>
-                                                <i class="bi bi-hand-thumbs-down"></i>
-                                                <span id="c_ng<?php echo $comment_id;?>"><?php echo $list[$i]['wr_nogood']; ?></span>
-                                            </button>
-                                        <?php } ?>
-                                    </div>
-                                <?php } ?>
-                            </div>
-                        </div>
-                        <div class="clearfix">
-                            <span id="edit_<?php echo $comment_id ?>" class="bo_vc_w"></span><!-- 수정 -->
-                            <span id="reply_<?php echo $comment_id ?>" class="bo_vc_re"></span><!-- 답변 -->
-                            <?php if($is_paging) { ?>
-                                <input type="hidden" value="<?php echo $comment_url.'&amp;page='.$page; ?>" id="comment_url_<?php echo $comment_id ?>">
-                                <input type="hidden" value="<?php echo $page; ?>" id="comment_page_<?php echo $comment_id ?>">
                             <?php } ?>
-                            <input type="hidden" value="<?php echo strstr($list[$i]['wr_option'],"secret") ?>" id="secret_comment_<?php echo $comment_id ?>">
-                            <textarea id="save_comment_<?php echo $comment_id ?>" class="d-none"><?php echo get_text($list[$i]['content1'], 0) ?></textarea>
                         </div>
                     </div>
-                </article>
-            <?php } ?>
-            <?php if($is_paging) { //페이징 ?>
-                <div class="d-flex flex-column flex-sm-row border-top justify-content-between p-3 gap-2">
-                    <div>
-                        <ul class="pagination pagination-sm justify-content-center m-0">
-                            <?php echo na_ajax_paging('viewcomment', $write_pages, $page, $total_page, $comment_page); ?>
-                        </ul>
-                    </div>
-                    <div>
-                        <button class="btn btn-basic btn-sm w-100" onclick="na_comment_new('viewcomment','<?php echo $comment_url ?>','<?php echo $total_count ?>');">
-                            <i class="bi bi-arrow-clockwise"></i>
-                            새로운 댓글 확인
-                        </button>
+                    <div class="clearfix">
+                        <span id="edit_<?php echo $comment_id ?>" class="bo_vc_w"></span><!-- 수정 -->
+                        <span id="reply_<?php echo $comment_id ?>" class="bo_vc_re"></span><!-- 답변 -->
+                        <?php if($is_paging) { ?>
+                            <input type="hidden" value="<?php echo $comment_url.'&amp;page='.$page; ?>" id="comment_url_<?php echo $comment_id ?>">
+                            <input type="hidden" value="<?php echo $page; ?>" id="comment_page_<?php echo $comment_id ?>">
+                        <?php } ?>
+                        <input type="hidden" value="<?php echo strstr($list[$i]['wr_option'],"secret") ?>" id="secret_comment_<?php echo $comment_id ?>">
+                        <textarea id="save_comment_<?php echo $comment_id ?>" class="d-none"><?php echo get_text($list[$i]['content1'], 0) ?></textarea>
                     </div>
                 </div>
-            <?php } ?>
-        </section>
-        <?php
-        // 아래 내용은 1번만 출력
-        if($is_ajax)
-            return;
-        ?>
-    </div><!-- #viewcomment 닫기 -->
+            </article>
+        <?php } ?>
+        <?php if($is_paging) { //페이징 ?>
+            <div class="d-flex flex-column flex-sm-row border-top justify-content-between p-3 gap-2">
+                <div>
+                    <ul class="pagination pagination-sm justify-content-center m-0">
+                        <?php echo na_ajax_paging('viewcomment', $write_pages, $page, $total_page, $comment_page); ?>
+                    </ul>
+                </div>
+                <div>
+                    <button class="btn btn-basic btn-sm w-100" onclick="na_comment_new('viewcomment','<?php echo $comment_url ?>','<?php echo $total_count ?>');">
+                        <i class="bi bi-arrow-clockwise"></i>
+                        새로운 댓글 확인
+                    </button>
+                </div>
+            </div>
+        <?php } ?>
+    </section>
+    <?php
+    // 아래 내용은 1번만 출력
+    if($is_ajax)
+        return;
+    ?>
+</div><!-- #viewcomment 닫기 -->
 
 <?php if ($is_comment_write) { $w = ($w == '') ? 'c' : $w; ?>
 
@@ -289,9 +308,68 @@ if(!$is_ajax)
                         height:92px; resize: none; overflow-y: hidden; }
                 </style>
                 <div class="mb-2">
+                    <script>
+                        $(function () {
+                            $("#fviewcomment textarea, .upload-file-area")
+                                .on("dragenter", function (e) {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                }).on("dragover", function (e) {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                $('.upload-file-area').css("display", "flex");
+                            }).on("dragleave", function (e) {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                if ($(this).hasClass('upload-file-area'))
+                                    $('.upload-file-area').css("display", "none");
+                            }).on("drop", function (e) {
+                                e.preventDefault();
+                                var data = new FormData();
+                                var files = e.originalEvent.dataTransfer.files;
+                                data.append('bo_table', '<?php echo $bo_table ?>');
+                                data.append('na_file', files[0]);
+
+                                $.ajax({
+                                    type: 'POST',
+                                    url: '<?php echo NA_URL ?>/upload.image.php',
+                                    enctype : 'multipart/form-data',
+                                    dataType: 'json',
+                                    contentType: false,
+                                    processData: false,
+                                    data: data,
+                                    success: function (result) {
+                                        $('.upload-file-area').css("display", "none");
+                                        if(result.success) {
+                                            parent.document.getElementById("wr_content").value += '[' + result.success + ']\n';
+                                        } else {
+                                            var chkErr = result.error.replace(/<[^>]*>?/g, '');
+                                            if(!chkErr) {
+                                                chkErr = '[E1]오류가 발생하였습니다.';
+                                            }
+                                            na_alert(chkErr);
+                                            return false;
+                                        }
+                                    },
+                                    error: function (request,status,error) {
+                                        let msg = "code:"+request.status+"<br>"+"message:"+request.responseText+"<br>"+"error:"+error;
+                                        na_alert(msg);
+                                        return false;
+                                    }
+                                });
+                            });
+                        });
+                    </script>
                     <div class="form-floating comment-textarea">
-					<textarea placeholder="Leave a comment here" id="wr_content" name="wr_content" maxlength="10000" class="form-control lh-base"
-                              <?php if ($comment_min || $comment_max) { ?>onkeyup="check_byte('wr_content', 'char_count');"<?php } ?>><?php echo $c_wr_content;  ?></textarea>
+                        <div class="upload-file-area">
+                            <div class="upload-file-over"></div>
+                            <div class="icon-upload">
+                                <i class="bi bi-upload"></i>
+                            </div>
+                            <div>여기에 파일을 놓아 업로드</div>
+                        </div>
+                        <textarea tabindex="1" placeholder="Leave a comment here" id="wr_content" name="wr_content" maxlength="10000" class="form-control lh-base"
+                                  <?php if ($comment_min || $comment_max) { ?>onkeyup="check_byte('wr_content', 'char_count');"<?php } ?>><?php echo $c_wr_content;  ?></textarea>
                         <label id="wr_msg" for="wr_content">댓글을 입력해 주세요.</label>
                     </div>
                     <?php if ($comment_min || $comment_max) { ?><script> check_byte('wr_content', 'char_count'); </script><?php } ?>
@@ -301,13 +379,11 @@ if(!$is_ajax)
                     <div>
                         <?php include_once(G5_THEME_PATH.'/app/clip.comment.php'); //댓글 버튼 모음 ?>
                     </div>
-
-
                     <div class="px-2">
                         <input type="checkbox" class="btn-check" name="wr_secret" value="secret" id="wr_secret" autocomplete="off">
                     </div>
                     <div class="ms-auto">
-                        <button <?php echo ($is_paging) ? 'type="button" onclick="na_comment(\'viewcomment\');"' : 'type="submit"';?> class="btn btn-primary btn-sm" onKeyDown="na_comment_onKeyDown(<?php echo $is_paging?>);" id="btn_submit" title="댓글등록">
+                        <button <?php echo ($is_paging) ? 'type="button" onclick="na_comment(\'viewcomment\');"' : 'type="submit"';?> class="btn btn-primary btn-sm" onKeyDown="na_comment_onKeyDown(<?php echo $is_paging?>);" id="btn_submit" title="댓글등록" tabindex="2">
                             <span class="d-none d-sm-inline-block">댓글</span>
                             등록
                         </button>
@@ -502,6 +578,7 @@ if(!$is_ajax)
 
                 save_before = el_id;
             }
+            $('.comment-textarea').find('textarea').keyup(); //댓글 수정 후, textarea height 자동조절
         }
 
         function comment_delete(url){
