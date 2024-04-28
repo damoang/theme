@@ -10,7 +10,8 @@
     'use strict'
 
     // 문서가 로드되기 전에 선호하는 테마를 설정하는 인라인 스크립트를 초기에 실행합니다.
-    var theme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    var theme = localStorage.getItem('theme');
+    if(!theme || theme == 'auto') theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     document.documentElement.setAttribute('data-bs-theme', theme);
 
     // 함수를 사용하여 로컬 스토리지에서 테마를 불러오고 따옴표를 처리합니다.
@@ -28,13 +29,15 @@
     const getPreferredTheme = () => {
         if (storedTheme) {
             return storedTheme;
+        } else {
+            return 'auto';
         }
-        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        //return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     }
 
     const setTheme = function (theme) {
         if (theme === 'auto') {
-            theme = getPreferredTheme();
+            theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';//getPreferredTheme();
         }
         document.documentElement.setAttribute('data-bs-theme', theme);
     }
