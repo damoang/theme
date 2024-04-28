@@ -184,7 +184,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                     <!-- 위젯 시작 { -->
                     <h3 class="fs-5 px-3 py-2 mb-0">
                         <a href="/bbs/group.php?gr_id=group">
-                            <i class="bi bi-bell"></i>
+                            <i class="fa fa-users"></i>
                             소모임
                             <i class="bi bi-plus small float-end mt-1 text-body-tertiary"></i>
                         </a>
