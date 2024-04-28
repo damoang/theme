@@ -2,7 +2,7 @@
 if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가 
 ?>
 
-<div class="text-center p-3">
+<div>
   <h3 style="text-align: center;">다모앙, &quot;다같이 모여 더욱 자유로운 세상&quot;</h3>
   <p><br>
   </p>
