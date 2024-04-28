@@ -166,15 +166,6 @@ na_membership('write', '멤버십 회원만 등록할 수 있습니다.');
 			</div>
 		</div>
 	</li>
-    <li class="list-group-item">
-        <div class="row">
-        <label for="wr_1" class="col-sm-2 col-form-label">회원만 보기</label>
-        <div class="col-sm-10">
-            <input class="form-check-input" type="checkbox" name="wr_1" value="1" id="wr_1" <?php if ($write['wr_1'] == '1') echo 'checked'; ?>>
-            <label class="form-check-label" for="wr_1">로그인 한 회원만 볼 수 있습니다.</label>
-        </div>
-        </div>
-    </li>
 
 	<li class="list-group-item">
 		<label class="visually-hidden">내용<strong> 필수</strong></label>
