@@ -19,7 +19,7 @@ if(!IS_INDEX) {
 </div>
 </div>
 <div class="order-2 col-md-4 col-lg-3">
-  <div class="sticky-top py-3">
+  <div class="py-3">
     <?php include_once LAYOUT_PATH.'/component/sidebar.php'; // 사이드바 ?>
   </div>
 </div>

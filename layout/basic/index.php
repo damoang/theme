@@ -6,7 +6,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
   <div class="container px-0 px-sm-3">
     <div class="row row-cols-1 row-cols-md-2 g-3">
       <div class="order-1 col-md-8 col-lg-9">
-        <div class="sticky-top py-3">
+        <div class="py-3">
 
         
 
@@ -231,7 +231,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
         </div>
       </div>
       <div class="order-2 col-md-4 col-lg-3">
-        <div class="sticky-top py-3">
+        <div class="py-3">
           <?php include_once LAYOUT_PATH.'/component/sidebar.php'; // 사이드바 ?>
         </div>
       </div>
