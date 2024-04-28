@@ -9,7 +9,13 @@
   }
 
   const getConf = () => {
-    return JSON.parse(localStorage.getItem(keyID)) ?? {};
+    let data = JSON.parse(localStorage.getItem(keyID)) ?? {};
+
+    if (data instanceof Array) {
+      data = {};
+    }
+
+    return data;
   }
 
   // 게시판 공지사항 보기 설정
