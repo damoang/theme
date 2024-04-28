@@ -119,7 +119,22 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
           </div>
 
-          <!-- 위젯 시작 { -->
+
+            <!-- 위젯 시작 { -->
+            <h3 class="fs-5 px-3 py-2 mb-0">
+                <a href="<?php echo get_pretty_url('new') ?>">
+                    <i class="bi bi-postcard-heart"></i>
+                    새소식
+                    <i class="bi bi-plus small float-end mt-1 text-body-tertiary"></i>
+                </a>
+            </h3>
+            <div class="line-top mb-4">
+                <?php echo na_widget('wr-webzine', 'idx-webzine', 'bo_list=gallery wr_notice=1 is_notice=1 rows=4'); ?>
+
+            </div>
+            <!-- } 위젯 끝 -->
+
+            <!-- 위젯 시작 { -->
           <h3 class="fs-5 px-3 py-2 mb-0">
             <a href="<?php echo get_pretty_url('gallery') ?>">
               <i class="bi bi-images"></i>
@@ -132,33 +147,41 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
           </div>
           <!-- } 위젯 끝 -->
 
-          <!-- 위젯 시작 { -->
-          <h3 class="fs-5 px-3 py-2 mb-0">
-            <a href="<?php echo get_pretty_url('new') ?>">
-              <i class="bi bi-postcard-heart"></i>
-              새소식
-              <i class="bi bi-plus small float-end mt-1 text-body-tertiary"></i>
-            </a>
-          </h3>
-          <div class="line-top mb-4">
-            <?php echo na_widget('wr-webzine', 'idx-webzine', 'bo_list=gallery wr_notice=1 is_notice=1 rows=4'); ?>
 
-          </div>
-          <!-- } 위젯 끝 -->
+            <div class="row row-cols-1 row-cols-lg-2">
+                <div class="col">
+                    <!-- 위젯 시작 { -->
+                    <h3 class="fs-5 px-3 py-2 mb-0">
+                        <a href="<?php echo get_pretty_url('tutorial') ?>">
+                            <i class="bi bi-question-circle"></i>
+                            사용기
+                            <i class="bi bi-plus small float-end mt-1 text-body-tertiary"></i>
+                        </a>
+                    </h3>
+                    <div class="line-top mb-4">
+                        <?php echo na_widget('wr-list', 'idx-use', 'bo_list=gallery wr_notice=1 is_notice=1 rows=4'); ?>
 
+                    </div>
+                    <!-- } 위젯 끝 -->
 
-          <!-- 위젯 시작 { -->
-          <h3 class="fs-5 px-3 py-2 mb-0">
-            <a href="<?php echo get_pretty_url('tutorial') ?>">
-              <i class="bi bi-postcard-heart"></i>
-              사용기/강좌
-              <i class="bi bi-plus small float-end mt-1 text-body-tertiary"></i>
-            </a>
-          </h3>
-          <div class="line-top mb-4">
-            <?php echo na_widget('wr-list', 'idx-use', 'bo_list=gallery wr_notice=1 is_notice=1 rows=4'); ?>
+                </div>
 
-          </div>
+                <div class="col">
+                    <!-- 위젯 시작 { -->
+                    <h3 class="fs-5 px-3 py-2 mb-0">
+                        <a href="<?php echo get_pretty_url('lect') ?>">
+                            <i class="bi bi-bell"></i>
+                            강좌 / 팁
+                            <i class="bi bi-plus small float-end mt-1 text-body-tertiary"></i>
+                        </a>
+                    </h3>
+                    <div class="line-top mb-4">
+                        <?php echo na_widget('wr-list', 'idx-lecture', 'bo_list=gallery wr_notice=1 is_notice=1 rows=4'); ?>
+
+                    </div>
+                    <!-- } 위젯 끝 -->
+                </div>
+
           <!-- } 위젯 끝 -->
           <div class="row row-cols-1 row-cols-lg-2">
             <div class="col">
@@ -198,20 +221,6 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
         <!-- 위젯 시작 { -->
           <h3 class="fs-5 px-3 py-2 mb-0">
-            <a href="<?php echo get_pretty_url('lecture') ?>">
-              <i class="bi bi-postcard-heart"></i>
-              강좌 / 팁
-              <i class="bi bi-plus small float-end mt-1 text-body-tertiary"></i>
-            </a>
-          </h3>
-          <div class="line-top mb-4">
-            <?php echo na_widget('wr-list', 'idx-lecture', 'bo_list=gallery wr_notice=1 is_notice=1 rows=4'); ?>
-
-          </div>
-          <!-- } 위젯 끝 -->
-
-        <!-- 위젯 시작 { -->
-          <h3 class="fs-5 px-3 py-2 mb-0">
             <a href="<?php echo get_pretty_url('pds') ?>">
               <i class="bi bi-postcard-heart"></i>
 자료실
@@ -219,7 +228,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
             </a>
           </h3>
           <div class="line-top mb-4">
-            <?php echo na_widget('wr-list', 'idx-pds', 'bo_list=gallery wr_notice=1 is_notice=1 rows=4'); ?>
+            <?php echo na_widget('wr-webzine', 'idx-pds', 'bo_list=gallery wr_notice=1 is_notice=1 rows=4'); ?>
 
           </div>
           <!-- } 위젯 끝 -->
