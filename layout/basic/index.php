@@ -133,7 +133,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
               <!-- 위젯 시작 { -->
                 <h3 class="fs-5 px-3 py-2 mb-0">
                     <a href="<?php echo get_pretty_url('lecture') ?>">
-                        <i class="bi bi-cart-plus-fill"></i>
+                        <i class="bi bi-mortarboard-fill"></i>
                         강좌 / 팁
                         <i class="bi bi-plus small float-end mt-1 text-body-tertiary"></i>
                     </a>
@@ -167,7 +167,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                     <!-- 위젯 시작 { -->
                     <h3 class="fs-5 px-3 py-2 mb-0">
                         <a href="<?php echo get_pretty_url('new') ?>">
-                            <i class="fa fa-free-code-camp"></i>
+                            <i class="bi bi-lightning-charge-fill"></i>
                             새로운 소식
                             <i class="bi bi-plus small float-end mt-1 text-body-tertiary"></i>
                         </a>
