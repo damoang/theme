@@ -91,13 +91,10 @@ add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
 			}
 
 			// 이미지 미리보기
-			//
-            //$img_popover = (!G5_IS_MOBILE && $img) ? ' data-bs-toggle="popover-img" data-img="'.na_thumb($img, 400, 225).'"' : '';
-            $img_popover = (!G5_IS_MOBILE && $img && $list[$i]['wr_1'] != '1') ? ' data-bs-toggle="popover-img" data-img="'.na_thumb($img, 400, 225).'"' : '';
-            ?>
-			<li class="list-group-item<?php echo $li_css; ?>" onclick="(event.target.localName=='div'||event.target.localName=='li')?location.href='<?php echo $row['href'] ?>':null" style="cursor:pointer">
+			$img_popover = (!G5_IS_MOBILE && $img) ? ' data-bs-toggle="popover-img" data-img="'.na_thumb($img, 400, 225).'"' : '';
+		?>
+			<li class="list-group-item<?php echo $li_css; ?>">
 
-			
 				<div class="d-flex align-items-center gap-1">
 					<div class="col-1 wr-no d-none d-md-block">
 						<?php echo $row['num'] ?>
@@ -108,8 +105,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
 							<label for="chk_wr_id_<?php echo $i ?>" class="visually-hidden">
 								<?php echo $row['subject'] ?>
 							</label>
-                        </div>
-
+						</div>
 					<?php } ?>
 					<div class="flex-grow-1">
 						<div class="d-flex flex-column flex-md-row align-items-md-center gap-2">
@@ -119,8 +115,8 @@ add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
 										<i class="bi bi-arrow-return-right"></i>
 										<span class="visually-hidden">답변</span>
 									<?php } ?>
-									<?php echo $row['subject']; // 제목 ?> <?php echo ($list[$i]['wr_1'] == '1') ? '<i class="fa fa-id-badge"></i>' : ''; ?>
-                                </a>
+									<?php echo $row['subject']; // 제목 ?>
+								</a>
 								
 								<?php if (!$sca && $is_category && $row['ca_name']) { ?>
 									<a href="<?php echo $row['ca_name_href'] ?>" class="badge text-body-tertiary px-1">
