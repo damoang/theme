@@ -16,10 +16,10 @@ add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css">
 <!--script src="<?php echo G5_JS_URL ?>/viewimageresize.js"></script-->
 
 <!-- 게시물 읽기 시작 { -->
-      <div class="alert alert-light mb-4 mx-3 mx-sm-0" role="alert">
-                 <img src="https://damoang.net/logo/0416_02.gif" style="max-width: 100%">
-
-          </div>
+<!--      <div class="alert alert-light mb-4 mx-3 mx-sm-0" role="alert">-->
+<!--                 <img src="https://damoang.net/logo/0416_02.gif" style="max-width: 100%">-->
+<!---->
+<!--          </div>-->
 <?php echo na_widget('damoang-image-banner', 'board-head'); ?>
 
            <?php echo $config['cf_10'];?>

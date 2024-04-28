@@ -18,10 +18,10 @@ $list_skin_url = $board_skin_url.'/list/'.$list_skin;
 $list_skin_path = $board_skin_path.'/list/'.$list_skin;
 ?>
 
-   <div class="alert alert-light mb-4 mx-3 mx-sm-0" role="alert">
-    <img src="https://damoang.net/logo/0416_02.gif" style="max-width: 100%"><br/>
-        
-   </div>
+<!--   <div class="alert alert-light mb-4 mx-3 mx-sm-0" role="alert">-->
+<!--    <img src="https://damoang.net/logo/0416_02.gif" style="max-width: 100%"><br/>-->
+<!--        -->
+<!--   </div>-->
 <?php echo na_widget('damoang-image-banner', 'board-head'); ?>
 
 <?php echo $config['cf_10'];?>
