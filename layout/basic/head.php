@@ -117,7 +117,7 @@ if(!IS_INDEX) {
 ?>
 			<div class="row row-cols-1 row-cols-md-2 g-3">
 				<div class="order-1 col-md-8 col-lg-9">
-					<div class="sticky-top py-3">
+					<div class="py-3">
 						<?php
 							// 페이지 타이틀
 							include_once LAYOUT_PATH.'/component/title.php';

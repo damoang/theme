@@ -8,9 +8,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
   </p>
 
   <div>
-    <img
-      src="https://cdn.damoang.net/data/file/main/015f0b5e4ca48f7d44e78ebd6f62e722_DrwRdMSl_41f6863ee7f1f4c6c0078589512aaa389850160b.png"
-      alt="다모앙 한글 로고" width="184" height="119">
+    <img src="https://damoang.net/theme/damoang/page/img/damoang_logo_ko.png" alt="다모앙 한글 로고" width="184" height="119">
   </div>
   <p><br>
   </p>
@@ -38,9 +36,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
     있습니다. 여러분과 함께라면 더 큰 꿈을 향해 나아갈 수 있습니다.</p>
 
   <div>
-    <img
-      src="https://cdn.damoang.net/data/file/main/015f0b5e4ca48f7d44e78ebd6f62e722_fogqkS2s_1a70c748d1d8559960a4ab993c96aa4d6d48f6f0.png"
-      alt="다모앙 영문 로고" width="250" height="119">
+    <img src="https://damoang.net/theme/damoang/page/img/damoang_logo_en.png" alt="다모앙 영문 로고" width="250" height="119">
   </div>
   <p><br>
   </p>
