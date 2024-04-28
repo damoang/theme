@@ -379,13 +379,6 @@ if($is_ajax)
 				<div>
 					<?php include_once(G5_THEME_PATH.'/app/clip.comment.php'); //댓글 버튼 모음 ?>
 				</div>
-<!--				<div class="px-2">-->
-<!--					<input type="checkbox" class="btn-check" name="wr_secret" value="secret" id="wr_secret" autocomplete="off">-->
-<!--					<label class="btn btn-basic btn-sm" for="wr_secret" title="비밀글">-->
-<!--						<i class="bi bi-lock"></i>-->
-<!--						<span class="d-none d-sm-inline-block">비밀글</span>-->
-<!--					</label>-->
-<!--				</div>-->
 				<div class="ms-auto">
 					<button <?php echo ($is_paging) ? 'type="button" onclick="na_comment(\'viewcomment\');"' : 'type="submit"';?> class="btn btn-primary btn-sm" onKeyDown="na_comment_onKeyDown(<?php echo $is_paging?>);" id="btn_submit" title="댓글등록" tabindex="2">
 						<span class="d-none d-sm-inline-block">댓글</span>
