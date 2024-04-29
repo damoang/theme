@@ -33,13 +33,15 @@ add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css">
     <section id="bo_v_info">
         <h3 class="visually-hidden">페이지 정보</h3>
         <div class="d-flex justify-content-end align-items-center line-top border-bottom bg-body-tertiary py-2 px-3 small">
-            <div class="me-auto"
-                <?php echo $is_ip_view ? ' data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="' . $ip . '"' : ''; ?>>
+            <div class="me-auto">
                 <span class="visually-hidden">작성자</span>
                 <?php
-                $wr_name = ($view['mb_id']) ? str_replace('sv_member', 'sv_member text-truncate d-block', $view['name']) : str_replace('sv_guest', 'sv_guest text-truncate d-block', $view['name']);
-                echo na_name_photo($view['mb_id'], $wr_name) . ' ' . $ip;
+                $wr_name = ($view['mb_id']) ? str_replace('sv_member', 'sv_member text-truncate', $view['name']) : str_replace('sv_guest', 'sv_guest text-truncate', $view['name']);
+                echo na_name_photo($view['mb_id'], $wr_name);
+                // 회원 메모
+                echo $view['da_member_memo'] ?? '';
                 ?>
+                <span class="d-block"><?php echo $ip; ?></span>
             </div>
 
 

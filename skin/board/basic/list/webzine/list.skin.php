@@ -112,6 +112,9 @@ $ratio = na_img_ratio($thumb_w, $thumb_h, 75);
 									<?php echo $row['wr_comment'] ?>
 								</span>
 						<?php } ?>
+						<?php if ($row['da_member_memo']) { ?>
+							<span class="float-end"><?= $row['da_member_memo'] ?? '' ?></span>
+						<?php } ?>
 					</div>
 					<div class="wr-num text-nowrap ps-2 d-none d-sm-block">
 						<?php echo na_date($row['wr_datetime'], 'orangered', 'H:i', 'm.d', 'Y.m.d') ?>
@@ -218,7 +221,6 @@ $ratio = na_img_ratio($thumb_w, $thumb_h, 75);
 											<?php echo $row['wr_comment'] ?>
 										</span>
 								<?php } ?>
-
 							</div>
 
 							<div class="card-text small text-body-secondary ellipsis-2 mb-2">
@@ -227,7 +229,7 @@ $ratio = na_img_ratio($thumb_w, $thumb_h, 75);
 
 							<div class="mt-auto w-100">
 								<div class="d-flex align-items-end small wr-num text-nowrap gap-2">
-									<div>
+									<div class="flex-fill">
 										<i class="bi bi-eye"></i>
 										<?php echo $row['wr_hit'] ?>
 										<span class="visually-hidden">조회</span>
@@ -239,7 +241,10 @@ $ratio = na_img_ratio($thumb_w, $thumb_h, 75);
 											<span class="visually-hidden">추천</span>
 										</div>
 									<?php } ?>
-									<div class="ms-auto">
+									<?php if ($row['da_member_memo']) { ?>
+										<span class="float-end"><?= $row['da_member_memo'] ?? '' ?></span>
+									<?php } ?>
+									<div class="">
 										<?php echo na_date($row['wr_datetime'], 'orangered', 'H:i', 'm.d', 'Y.m.d') ?>
 										<span class="visually-hidden">등록</span>
 									</div>

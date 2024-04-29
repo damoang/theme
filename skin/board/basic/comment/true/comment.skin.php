@@ -100,6 +100,10 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
 							<?php } ?>
 							<span class="visually-hidden">작성자</span>
 							<?php echo na_name_photo($list[$i]['mb_id'], $list[$i]['name']); ?>
+							<?php
+							// 회원 메모
+							echo $list[$i]['da_member_memo'] ?? '';
+							?>
 						</div>
 						<div>
 							<?php include(G5_SNS_PATH.'/view_comment_list.sns.skin.php'); // SNS ?>
