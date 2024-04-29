@@ -5,7 +5,7 @@ return [
         'items' => [
             '앙상불' => [
                 'url' => '/event',
-                // 'shortcut' => 'Ａ',
+                 'shortcut' => 'Ａ',
                 // Ａ단축키는 알림 링크에 사용됨
             ],
             '공지사항' => [

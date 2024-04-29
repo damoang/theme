@@ -67,7 +67,7 @@ if(!IS_INDEX) {
     <div class="lh-lg mb-3">
       주소 : <?php echo $default['de_admin_company_addr'] ?>
     </div>
-    contact : contact@damonag.net / support : support@damoang.net / 대표메일 : main@damoang.net
+    contact : contact@damoang.net
 
     <div class="small">
       Copyright &copy; <b><?php $host = @parse_url(G5_URL); echo $host['host'] ?></b>. All rights reserved.
