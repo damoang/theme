@@ -79,6 +79,7 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
 		}
 
 		// 댓글목록
+		$list = run_replace('da_comment_list', $list);
 		$comment_cnt = count($list);
 		for ($i=0; $i<$comment_cnt; $i++) {
 			$comment_id = $list[$i]['wr_id'];
@@ -111,13 +112,17 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
 						<?php if ($comment_depth) { ?><span class="visually-hidden">댓글의</span><?php } ?> 댓글
 					</h3>
 					<div class="d-flex align-items-center border-top <?php echo $by_writer ?> py-1 px-3 small">
-						<div class="me-2"<?php echo $is_ip_view ? ' data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="'.$list[$i]['ip'].'"' : ''; ?>>
+						<div class="me-2">
 							<?php if ($comment_depth) { ?>
 								<i class="bi bi-arrow-return-right"></i>
 								<span class="visually-hidden">대댓글</span>
 							<?php } ?>
 							<span class="visually-hidden">작성자</span>
 							<?php echo na_name_photo($list[$i]['mb_id'], $list[$i]['name']); ?>
+							<?php
+							// 회원 메모
+							echo $list[$i]['da_member_memo'] ?? '';
+							?>
 							(<?php echo $list[$i]['ip'] ?>)
 						</div>
 						<div>
