@@ -57,25 +57,26 @@ $one_cols = array(
                 'use strict';
 
                 const shortcuts = {
-                    'KeyA': '/bbs/noti.php',
-                    'KeyK': '/notice',
-                    'KeyF': '/free',
-                    'KeyQ': '/qa',
-                    'KeyI': '/hello',
-                    'KeyN': '/new',
-                    'KeyT': '/tutorial',
-                    'KeyL': '/lecture',
-                    'KeyP': '/pds',
-                    'KeyE': '/economy',
-                    'KeyG': '/gallery',
-                    'KeyS': '/bbs/group.php?gr_id=group',
-                    'KeyV': '/governance',
-                    'KeyC': '/bbs/group.php?gr_id=community',
+                    'KeyA': '/event',
                     'KeyB': '/bug',
-                    'KeyJ': '/truthroom',
+                    'KeyC': '/bbs/group.php?gr_id=community',
+                    'KeyE': '/economy',
+                    'KeyF': '/free',
+                    'KeyG': '/gallery',
                     'KeyH': '/',
+                    'KeyI': '/hello',
+                    'KeyJ': '/truthroom',
+                    'KeyK': '/notice',
+                    'KeyL': '/lecture',
+                    'KeyN': '/new',
+                    'KeyP': '/pds',
+                    'KeyQ': '/qa',
                     // Refresh the page when 'R' is pressed
                     'KeyR': 'refresh',
+                    'KeyS': '/bbs/group.php?gr_id=group',
+                    'KeyT': '/tutorial',
+                    'KeyV': '/governance',
+                    'KeyZ': '/bbs/noti.php',
                     // 추가 단축키와 페이지를 여기에 추가하세요.
                 };
 
