@@ -7,6 +7,9 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
 // 멤버십
 na_membership('list', '멤버십 회원만 목록을 볼 수 있습니다.');
 
+// 다모앙 회원 메모
+$list = run_replace('da_board_list', $list);
+
 // 분류 스킨
 $category_skin = isset($boset['category_skin']) && $boset['category_skin'] ? $boset['category_skin'] : 'basic';
 $category_skin_url = $board_skin_url.'/category/'.$category_skin;

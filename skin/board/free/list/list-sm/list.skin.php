@@ -109,7 +109,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
 					<?php } ?>
 					<div class="flex-grow-1 small">
 						<div class="d-flex flex-column flex-md-row align-items-md-center gap-2">
-							<div>
+							<div class="flex-fill">
 								<a href="<?php echo $row['href'] ?>"<?php echo $img_popover ?>>
 									<?php if($row['icon_reply']) { ?>
 										<i class="bi bi-arrow-return-right"></i>
@@ -133,8 +133,12 @@ add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
 											<?php echo $row['wr_comment'] ?>
 										</span>
 								<?php } ?>
+								<?php if ($row['da_member_memo']) { ?>
+									<!-- 다모앙 회원 메모 -->
+									<span class="float-end"><?= $row['da_member_memo'] ?? '' ?></span>
+								<?php } ?>
 							</div>	
-							<div class="ms-md-auto">
+							<div class="">
 								<div class="d-flex gap-2">
 									<div class="order-1 wr-name">
 										<?php 

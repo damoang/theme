@@ -79,7 +79,7 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
 		}
 
 		// 댓글목록
-		$list = run_replace('da_comment_list', $list);
+		
 		$comment_cnt = count($list);
 		for ($i=0; $i<$comment_cnt; $i++) {
 			$comment_id = $list[$i]['wr_id'];

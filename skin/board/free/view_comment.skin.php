@@ -14,6 +14,8 @@ $is_paging = (isset($boset['comment_rows']) && $boset['comment_rows']) ? true : 
 $is_comment_good = (isset($boset['comment_good']) && $boset['comment_good']) ? true : false;
 $is_comment_nogood = (isset($boset['comment_nogood']) && $boset['comment_nogood']) ? true : false;
 
+$list = run_replace('da_comment_list', $list);
+
 // 댓글 스킨
 $comment_skin = isset($boset['comment_skin']) && $boset['comment_skin'] ? $boset['comment_skin'] : 'basic';
 $comment_skin_url = $board_skin_url.'/comment/'.$comment_skin;
