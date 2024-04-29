@@ -36,18 +36,53 @@ if (!empty($config['cf_9'])) {
             href="/bbs/noti.php"><i class="bi bi-bell"></i>알림</a>
         </div>
 
-        <!-- 사이드 메뉴 -->
-        <div class="nav-item">
-          <?php
-          // 메뉴. `inc.menu.php` 파일에서 정의 됨
-          foreach ($siteMenus as $menuGroupIndex => $menuGroup) {
-            $groupTitle = $menuGroup['title'] ?? null;
-          ?>
+					<div id="offcanvas-site-menu" class="mb-3">
+					<?php
+					for ($i=0; $i < $menu_cnt; $i++) {
+						// 주메뉴
+						$me = $menu[$i];
+
+						$collapsed = ' collapsed';
+						$expanded = 'false';
+						$active = $show = '';
+						if($me['on']) {
+							if($me['eq']) {
+								$active = $collapsed = ' active';
+							}
+							$expanded = 'true';
+							$show = ' show';
+						}
+
+						// 1차서브
+						if($me['is_sub']) {
+							$id_s1 = 'sub-s'.$i;
+						?>
+						<div class="nav-item">
+							<a class="nav-link dropdown-toggle collapsed<?php echo $collapsed ?>" href="#<?php echo $id_s1 ?>" role="button" data-bs-toggle="collapse" data-bs-target="#<?php echo $id_s1 ?>" aria-expanded="<?php echo $expanded ?>" aria-controls="<?php echo $id_s1 ?>">
+								<i class="<?php echo ($me['icon']) ? $me['icon'] : 'bi-clipboard'; ?> nav-icon"></i>
+								<?php if($me['me_link'] === '#') { ?>
+									<span class="nav-link-title">
+								<?php } else { ?>
+									<span class="nav-link-title" onclick="na_href('<?php echo $me['me_link'] ?>','<?php echo $me['me_target'] ?>');">
+								<?php } ?>
+									<?php echo $me['me_name'] ?>
+									<?php if($me['new']) { ?>
+										<span class="small">
+											<b class="badge bg-primary rounded-pill fw-normal"><?php echo $me['new'] ?></b>
+										</span>
+									<?php } ?>
+								</span>
+							</a>
+							<div id="<?php echo $id_s1 ?>" class="nav-collapse collapse<?php echo $show ?>" data-bs-parent="#offcanvas-site-menu">
+								<?php
+								// 1차 서브
+								for ($j=0; $j < count($me['s']); $j++) {
+									$me1 = $me['s'][$j];
 
           <?php if ($groupTitle): ?>
             <div class="dropdown-header"><?= $groupTitle ?></div>
           <?php endif; ?>
-          
+
           <?php
             foreach ($menuGroup['items'] as $menuTitle => $menuItem) {
               $hasSub = false;
