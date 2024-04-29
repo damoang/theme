@@ -57,7 +57,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                         $menuItem['icon'] = $menuItem['icon'] ?? 'bi-clipboard';
                         $hasSub = !empty($menuItem['items']) && is_array($menuItem['items']);
 
-                        if (!$menuitme['page_id']) {
+                        if (!$menuItem['page_id']) {
                             if (preg_match('/\/([a-zA-Z0-9]+)$/i', $menuItem['url'], $matches)) {
                                 $menuItem['page_id'] = G5_BBS_DIR . '-board-' . $matches[1];
                             }
