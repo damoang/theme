@@ -25,6 +25,9 @@ $view_skin = isset($boset['view_skin']) && $boset['view_skin'] ? $boset['view_sk
 $view_skin_url = $board_skin_url.'/view/'.$view_skin;
 $view_skin_path = $board_skin_path.'/view/'.$view_skin;
 
+// 다모앙 회원 메모
+$view = run_replace('da_board_view', $view);
+
 // 내용 스킨
 $skin_file = $view_skin_path.'/view.skin.php';
 if (is_file($skin_file)) {
