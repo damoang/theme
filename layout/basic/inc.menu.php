@@ -45,6 +45,11 @@ return [
                 // 'icon' => 'bi-cart-plus-fill',
                 'shortcut' => 'Ｅ',
             ],
+            '직접홍보' => [
+                'url' => '/promotion',
+                // 'icon' => 'bi-cart-plus-fill',
+                'shortcut' => 'Ｗ',
+            ],
             '갤러리' => [
                 'url' => '/gallery',
                 // 'icon' => 'bi-images',
