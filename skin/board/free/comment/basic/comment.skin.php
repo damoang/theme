@@ -111,7 +111,7 @@ if(!$is_ajax)
                             <?php if ($comment_depth) { ?><span class="visually-hidden">댓글의</span><?php } ?> 댓글
                         </h3>
                         <div class="d-flex align-items-center border-top <?php echo $by_writer ?> py-1 px-3 small">
-                            <div class="me-2"<?php echo $is_ip_view ? ' data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="'.$list[$i]['ip'].'"' : ''; ?>>
+                            <div class="me-2">
                                 <?php if ($comment_depth) { ?>
                                     <i class="bi bi-arrow-return-right"></i>
                                     <span class="visually-hidden">대댓글</span>
