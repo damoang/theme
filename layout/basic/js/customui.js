@@ -623,10 +623,9 @@
         if (isShortCutInputElement(event.target) || isShortCutKeyCombination(event) || isShortCutContentEditableElement(event.target)) {
             return;
         }
-        var key = event.key ?? "";
-        if (event.key != null && shortcut_map[event.key] !=null ) {
-            console.debug(shortcut_map[event.key]);
-            window.location.href = shortcut_map[event.key];
+        var key = event?.key ?? "";
+        if (/^[0-9]$/.test(key) && shortcut_map[key] !=null ) {
+            window.location.href = shortcut_map[key];
             return;
         } else {
             return;
