@@ -530,7 +530,7 @@
             }
         }
 
-        links = $("#sidebar-site-menu #sidebar-sub-s0-10 a.nav-link")
+        links = $("#sidebar-site-menu a.nav-link.dropdown-toggle").parent().find("div > a");
         for (var i = 0; i < links.length; i++) {
             var temp_link_obj = $(links[i]);
             var temp_name = temp_link_obj.html().trim();
@@ -657,7 +657,7 @@
                 }
             });    
         
-        } catch {
+        } catch(error) {
             console.error('Failed to initialize custom UI settings:', error);
         }
     }
@@ -666,7 +666,7 @@
             $("#reg_ui_custom").trigger('change');
             $("#reg_title_filtering").trigger('change');
             $("#reg_shortcut_use").trigger('change');
-        } catch {
+        } catch(error) {
             console.error('Failed to initialize custom UI settings:', error);
         }
     }
@@ -686,7 +686,7 @@
 
     try {
         set_ui_custom();
-    } catch {
+    } catch(error) {
         console.error('Failed to initialize custom UI settings:', error);
     }
 })();
