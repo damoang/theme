@@ -296,6 +296,18 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
         </li>
         <li class="list-group-item ui-custom-item">
             <div class="row align-items-center">
+                <label for="reg_hide_member_memo" class="col-sm-5 col-form-label">회원메모 가리기</label>
+                <div class="col-sm-7">
+                    <div class="form-check form-switch form-check-inline">
+                        <input class="form-check-input ui_custom_items" type="checkbox" name="hide_member_memo" value="1"
+                            role="switch" id="reg_hide_member_memo" data-gtm-form-interact-field-id="0">
+
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item ui-custom-item">
+            <div class="row align-items-center">
                 <label for="reg_mymenu_img" class="col-sm-5 col-form-label">마이메뉴 이미지</label>
                 <div class="col-sm-7">
                     <div class="form-check form-switch form-check-inline">
