@@ -93,6 +93,15 @@ $widget = 'banner';
 					</table>
 				</div>
 
+				<div class="row gx-2 mb-2">
+					<label class="col-md-2 col-form-label">
+						data-dd-action-name
+					</label>
+					<div class="col-md-10">
+						<input type="text" name="wset[action_name]" value="<?php echo $wset['action_name'] ?>" class="form-control" placeholder="배너 효율 측정용 action-name" />
+					</div>
+				</div>
+
 				<div class="text-center mt-3">
 					<button type="button" class="btn btn-outline-primary btn-lg en" id="addrow">
 						배너 추가
