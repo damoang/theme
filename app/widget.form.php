@@ -43,6 +43,8 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 		@include_once (G5_THEME_PATH.'/app/widget.member.php');
 	else if($widget == 'item')
 		@include_once (G5_THEME_PATH.'/app/widget.item.php');
+	else if($widget == 'recommend')
+		@include_once (G5_THEME_PATH.'/app/widget.recommend.php');
 ?>
 <div class="sticky-bottom p-3 bg-body border-top">
 	<div class="row justify-content-center g-3">
