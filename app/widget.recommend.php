@@ -233,13 +233,13 @@ function na_term_options_custom($value) {
 
 				<div class="row gx-2 mb-2">
 					<label class="col-md-2 col-form-label">
-						시간(초) 지정
+						시간 지정
 					</label>
 					<div class="col-md-4">
 						<div class="input-group">
 							<?php $wset['hrterm'] = isset($wset['hrterm']) ? $wset['hrterm'] : ''; ?>
 							<input type="text" name="wset[hrterm]" value="<?php echo $wset['hrterm']; ?>" class="form-control">
-							<span class="input-group-text">시간 이내</span>
+							<span class="input-group-text">시간</span>
 						</div>
 					</div>
 					<div class="col-md-6">
