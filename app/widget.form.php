@@ -47,10 +47,10 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 <div class="sticky-bottom p-3 bg-body border-top">
 	<div class="row justify-content-center g-3">
 		<div class="col col-sm-4 col-md-3 col-lgx-2">
-			<button type="submit" class="btn btn-danger w-100" onclick="document.pressed='reset'">초기화</button>
+			<button type="submit" onclick="document.pressed='save'" class="btn btn-primary w-100">저장하기</button>
 		</div>
-		<div class="col col-sm-4 col-md-3 col-lgx-2">
-			<button type="submit" class="btn btn-primary w-100">저장하기</button>
+		<div class="col col-sm-4 col-md-3 col-lgx-2 ms-5">
+			<button type="submit" class="btn btn-sm btn-outline-danger" onclick="document.pressed='reset'">초기화</button>
 		</div>
 	</div>
 </div>
@@ -63,6 +63,8 @@ function fsetup_submit(f) {
 			f.submit();
 		});
 		return false;
+	}  else {
+		f.freset.value = null;
 	}
 }
 </script>
