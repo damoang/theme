@@ -27,7 +27,7 @@ $id = 'carousel_' . na_rid();
 
 <?php if ($list_cnt) { ?>
 	<div class="mb-4">
-		<a href="<?php echo ($list[0]['link']) ? $list[0]['link'] : 'javascript:;'; ?>" target="<?php echo $list[0]['target'] ?>">
+		<a href="<?php echo ($list[0]['link']) ? $list[0]['link'] : 'javascript:;'; ?>" target="<?php echo $list[0]['target'] ?>" <?php if ($wset['action_name'] ?? '') { ?>data-dd-action-name="<?= $wset['action_name'] ?>" <?php } ?>>
 			<img src="<?php echo $list[0]['img'] ?>" style="max-width: 100%;" />
 		</a>
 	</div>
