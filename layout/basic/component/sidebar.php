@@ -55,6 +55,17 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                         $menuItem['icon'] = $menuItem['icon'] ?? 'bi-clipboard';
                         $hasSub = !empty($menuItem['items']) && is_array($menuItem['items']);
                         $menuItem['page_id'] = $menuItem['page_id'] ?? '';
+                        if (!$menuItem['page_id']) {
+                            if (preg_match('/\/([a-zA-Z0-9]+)$/i', $menuItem['url'], $matches)) {
+                                $menuItem['page_id'] = G5_BBS_DIR . '-board-' . $matches[1];
+                            }
+                        }
+                        $menuItem['shortcut'] = $menuItem['shortcut'] ?? '';
+                        $menuItem['icon'] = $menuItem['icon'] ?? '';
+                        $menuItem['class'] = $menuItem['class'] ?? '';
+                        if (!$menuItem['class'] && $menuItem['page_id']) {
+                            $menuItem['class'] = 'da--menu-' . $menuItem['page_id'];
+                        }
 
                         if (!$menuItem['page_id']) {
                             if (preg_match('/\/([a-zA-Z0-9]+)$/i', $menuItem['url'], $matches)) {
@@ -70,7 +81,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                             $subMenus = $menuItem['items'];
                         }
                         ?>
-                        <div class="nav-item">
+                        <div class="nav-item da-menu--<?= $menuItem['page_id'] ?>">
                             <a
                                     class="nav-link <?= ($menuItem['page_id'] === $page_id) ? 'active' : ''; ?><?= ($hasSub) ? 'dropdown-toggle collapsed collapsed' : '' ?>"
                                     href="<?= $menuItem['url'] ?>"
@@ -98,7 +109,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                     <?php } ?>
                 <?php } // endforeach $siteMenus ?>
 
-                <div class="nav-item">
+                <div class="nav-item da-menu--device-mode">
                     <a class="nav-link" href="<?php echo get_device_change_url() ?>" data-placement="left">
                         <i class="<?php echo (G5_IS_MOBILE) ? 'bi-pc-display' : 'bi-tablet'; ?> nav-icon"></i>
                         <span class="nav-link-title"><?php echo (G5_IS_MOBILE) ? 'PC' : '모바일'; ?> 버전</span>
