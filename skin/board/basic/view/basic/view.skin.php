@@ -231,7 +231,18 @@ add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css">
             }
             ?>
             <div id="bo_v_con" class="<?php echo $is_convert ?>">
-                <?php echo get_view_thumbnail(na_view($view)); // 글내용 출력 ?>
+                <?php
+                /**
+                 * 이미지에 링크 삽입 시 이미지 크게보기 팝업 링크와 중복 삽입되므로
+                 * 중첩 <a> 태그를 치환합니다.
+                 */
+
+                $view_replaced = preg_replace(
+                    '/<a[\s]+([^>]+)><a[\s]+([^>]+)>((?:.(?!\<\/a\>))*.)<\/a><\/a>/m',
+                    '<a $1>$3</a>', get_view_thumbnail(na_view($view)));
+
+                echo $view_replaced; // 글내용 출력
+                ?>
             </div>
             <?php // if ($is_signature) { // 서명 ?>
 
