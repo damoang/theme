@@ -112,9 +112,9 @@ $ratio = na_img_ratio($thumb_w, $thumb_h, 75);
 									<?php echo $row['wr_comment'] ?>
 								</span>
 						<?php } ?>
-						<?php if ($row['da_member_memo']) { ?>
+						<?php if ($row['da_member_memo'] ?? '') { ?>
 							<!-- 다모앙 회원 메모 -->
-							<span class="float-end"><?= $row['da_member_memo'] ?? '' ?></span>
+							<span class="float-end"><?= $row['da_member_memo'] ?></span>
 						<?php } ?>
 					</div>
 					<div class="wr-num text-nowrap ps-2 d-none d-sm-block">
@@ -236,9 +236,9 @@ $ratio = na_img_ratio($thumb_w, $thumb_h, 75);
 											<span class="visually-hidden">추천</span>
 										</div>
 									<?php } ?>
-									<?php if ($row['da_member_memo']) { ?>
+									<?php if ($row['da_member_memo'] ?? '') { ?>
 										<!-- 다모앙 회원 메모 -->
-										<span class="float-end"><?= $row['da_member_memo'] ?? '' ?></span>
+										<span class="float-end"><?= $row['da_member_memo'] ?></span>
 									<?php } ?>
 									<div>
 										<?php echo na_date($row['wr_datetime'], 'orangered', 'H:i', 'm.d', 'Y.m.d') ?>
