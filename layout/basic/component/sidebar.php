@@ -2,6 +2,11 @@
 if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 ?>
 
+<!-- 배너 -->
+<div class="d-flex d-block d-lg-none justify-content-center mb-4">
+    <?php echo na_widget('damoang-image-banner', 'side-banner'); ?>
+</div>
+
 <div class="px-3 mb-4">
     <?php echo na_widget('outlogin'); // 외부로그인 ?>
 </div>
@@ -116,7 +121,8 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                     </a>
                 </div>
 
-                <div style="padding: 14px 0;">
+                <!-- 배너 -->
+                <div class="d-none d-lg-block justify-content-center my-4">
                     <?php echo na_widget('damoang-image-banner', 'side-banner'); ?>
                 </div>
 
