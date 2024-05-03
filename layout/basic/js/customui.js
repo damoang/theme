@@ -555,7 +555,7 @@
             }
         }
 
-        links = $("#sidebar-site-menu a.nav-link.dropdown-toggle").parent().find("div > a");
+        links = $("#sidebar-site-menu .da-menu--bbs-group-group").find("div > a");
         for (var i = 0; i < links.length; i++) {
             var temp_link_obj = $(links[i]);
             var temp_name = temp_link_obj.html().trim();
