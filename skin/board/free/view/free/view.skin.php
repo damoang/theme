@@ -325,10 +325,10 @@ add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css">
             <div class="row row-cols-1 row-cols-md-2 align-items-center">
                 <div class="col-sm-5 col-md-4 text-center">
                     <div class="row row-cols-1 row-cols-md-2 align-items-center">
-                        <div class="col-sm-auto col-md-auto pe-0">
+                        <div class="col-sm-auto col-md-auto">
                             <img src="<?php echo na_member_photo($view['mb_id']) ?>" class="rounded-circle">
                         </div>
-                        <div class="col-sm-auto col-md-auto ps-2 sg-name">
+                        <div class="col-sm-auto col-md-auto sg-name">
                             <?php echo $view['name'] ?>
                         </div>
                     </div>
