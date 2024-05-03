@@ -89,6 +89,7 @@
             , "list_search"
             , "img_preview"
             , "hide_nick"
+            , "hide_member_memo"
             , "mymenu_img"
             , "title_filtering"
             , "filtering_word"
@@ -191,6 +192,11 @@
                     set_hide_nick();
                 }
 
+                // 회원메모 감추기
+                if (ui_obj.hide_member_memo != null && ui_obj.hide_member_memo) {
+                    set_hide_member_memo();
+                }
+
                 //이미지 변경
                 if (ui_obj.mymenu_img != null && ui_obj.mymenu_img) {
                     set_change_mymenu_img(ui_obj?.hide_nick ?? false);
@@ -242,6 +248,11 @@
                 profile_img[i].style.display = "none";
             }
         }
+    }
+
+    // 회원메모 가리기
+    function set_hide_member_memo() {
+        $('.da-member-memo').toggleClass('d-none');
     }
 
     function set_change_mymenu_img(is_hide_nick){
