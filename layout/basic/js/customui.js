@@ -153,7 +153,7 @@
         try {
             set_ui_custom();
         } catch {
-            console.error('Failed to initialize custom UI settings:', error);
+            //console.error('Failed to initialize custom UI settings:', error);
         }
     }
 
@@ -341,16 +341,18 @@
                     removes[0].remove();
                 }
             }
-
+            var board_obj = get_board_mb_id();
             var toTop_as = toTop.querySelector("a i.bi-arrow-up-square-fill");
             if (toTop_as != null) {
                 toTop_as = toTop_as.parentElement;
-                var ex_hrefs = ["menu", "list", "forward", "back"];
-                var ex_icons = ["list", "filter-square-fill", "arrow-right-square-fill", "arrow-left-square-fill"];
+                var ex_hrefs = ["menu", "list", "my_write", "my_repll",  "forward", "back"];
+                var ex_titles = ["팝업메뉴", "목록으로", "내 글 - 현재 게시판", "내 댓글 - 현재 게시판",  "앞으로", "뒤로"];
+                var ex_icons = ["list", "filter-square-fill", "chat-square-text-fill", "chat-square-dots-fill", "arrow-right-square-fill", "arrow-left-square-fill"];
                 var add_button = false;
                 for (var i = 0; i < ex_hrefs.length; i++) {
                     // var check_add = add_button;
                     var tag_a = null;
+                    var tag_a_href = null;
                     switch (ex_hrefs[i]) {
                         case "menu":
                             tag_a = document.createElement("a");
@@ -371,7 +373,13 @@
                                     }
                                 }
                             });
-
+                            break;
+                        case "my_write":
+                        case "my_reply": 
+                            if (board_obj != null &&  board_obj.id != null && board_obj.board != null) {
+                                tag_a = document.createElement("a");
+                                tag_a_href = "/" + board_obj.board + "?sfl=mb_id%2C" + (ex_hrefs[i] == "my_write" ? 1: 0) + "&stx=" + board_obj.id;
+                            }                
                             break;
                         case "list":
                             if ((location.pathname.match(/\//g)?.length ?? 0) > 1) {
@@ -405,9 +413,14 @@
                     }
 
                     if (tag_a != null) {
-                        tag_a.href = "javascript:;"; //"#" + ex_hrefs[i];
-                        tag_a.className = "ui-custom-expand-icon ui-custom-expand-hidden d-none fs-1 m-3 mb-1 mt-1 bg-secondary bg-opacity-75";
+                        if (tag_a_href==null) {
+                            tag_a.href = "javascript:;"; //"#" + ex_hrefs[i];
+                        } else {
+                            tag_a.href = tag_a_href;
+                        }
+                        tag_a.className = "ui-custom-expand-icon ui-custom-expand-hidden d-block fs-1 m-3 mb-1 mt-1 bg-secondary bg-opacity-25";
                         tag_a.id = "ui-custom-expand-" + ex_hrefs[i];
+                        tag_a.title = ex_titles[i];
                         // if (check_add != add_button) {
                         //     tag_a.classList.remove("mt-0");
                         // }
@@ -423,15 +436,16 @@
                     toTop.classList.add('d-block');
 
                     toTop_as.classList.remove("d-sm-inline-block");
-                    toTop_as.classList.remove("d-block");
+                    toTop_as.classList.remove("d-none");
 
                     toTop_as.classList.add("ui-custom-expand-hidden");
                     toTop_as.classList.add("bg-secondary");
-                    toTop_as.classList.add("bg-opacity-75");
+                    toTop_as.classList.add("bg-opacity-25");
                     
-                    toTop_as.classList.add("d-none");
+                    toTop_as.classList.add("d-block");
                     toTop_as.classList.add("mt-1");
                     toTop_as.classList.add("mb-1");
+                    toTop_as.title = "맨 위로";
 
                     var tag_a = document.createElement("a");
                     tag_a.href = "javascript:;"; //"#" + ex_hrefs[i];
@@ -439,7 +453,8 @@
                     tag_a.id = "ui-custom-expand-button";
                     var tag_i = document.createElement("i");
                     tag_i.id = "ui-custom-expand-button-i"
-                    tag_i.className = "bi bi-caret-up-square-fill opacity-25";
+                    tag_i.className = "bi bi-caret-down-square-fill";
+                    tag_i.title = "확장버튼 감추기";
                     tag_a.appendChild(tag_i);
                     tag_a.addEventListener("click", function (e) {
                         var button = document.getElementById("ui-custom-expand-button-i");
@@ -448,11 +463,13 @@
                             button.classList.remove("bi-caret-up-square-fill");
                             button.classList.remove("opacity-25");
                             button.classList.add("bi-caret-down-square-fill");
+                            button.title = "확장버튼 감추기";
                             b_show = true;
                         } else {
                             button.classList.remove("bi-caret-down-square-fill");
                             button.classList.add("bi-caret-up-square-fill");
                             button.classList.add("opacity-25");
+                            button.title = "확장버튼 보이기";
                         }
                         var show_list = toTop.getElementsByClassName("ui-custom-expand-hidden");
                         for (var i = 0; i < show_list.length; i++) {
@@ -473,7 +490,7 @@
                     toTop_as.classList.remove("mt-1");
                     toTop_as.classList.remove("mb-0");
                     toTop_as.classList.remove("bg-secondary");
-                    toTop_as.classList.remove("bg-opacity-75");
+                    toTop_as.classList.remove("bg-opacity-25");
 
                     toTop_as.classList.add("d-none");
                     toTop_as.classList.add("d-sm-inline-block");    
@@ -520,11 +537,8 @@
                         break;
                 }
                 if (temp_link_org.indexOf(location.hostname) > 0 && link_exp.test(temp_link)) {
-                    //console.debug( temp_html + ":" + temp_link);
-                    //links_html += "<option value='" + temp_link + "'>" + temp_name + "</option>";
                     link_list.push({ link: temp_link, org: temp_link_org, name: temp_name });
                 } else {
-                    //console.debug( "- " + temp_html + ":" + temp_link);
 
                 }
             }
@@ -563,6 +577,41 @@
 
     var shortcut_map = {};
 
+    function get_board_mb_id(){
+        var link_obj = null;
+        var link_map = get_board_link_map();
+        if ((location.pathname.match(/\//g)?.length ?? 0) > 0) {
+            var board_name_length = location.pathname.indexOf("/", 1);
+            if (board_name_length == -1) {
+                board_name_length = location.pathname.length; 
+            }
+            var board_name = location.pathname.substring(1, board_name_length)
+            if (link_map[board_name] != null) {
+                link_obj = {};
+                link_obj.board = board_name;
+            }
+        }
+        var p_n = "mb_id";
+        var myw_link = link_map._myw.org
+        var q_s = myw_link.indexOf(p_n + "=");
+        var q_e = myw_link.indexOf("&",q_s);
+
+        if (q_s > -1) {
+            q_s += p_n.length + 1;
+            if (link_obj==null) {
+                link_obj = {};
+            }
+
+            if  (q_e==-1) {
+                link_obj.id = myw_link.substring(q_s);
+            } else {
+                link_obj.id = myw_link.substring(q_s,q_e);
+            }
+        }
+
+        return link_obj;
+    }
+
     function set_shortcut_custom(ui_obj){
         var removes = document.querySelectorAll('div.shortcut_custom');
         if (removes != null && removes.length > 0) {
@@ -576,9 +625,29 @@
         var offcanvas_menu_first = document.querySelector('.offcanvas-body .na-menu div.nav-item');
         var offcanvas_menu = document.querySelector('.offcanvas-body .na-menu div.nav');
     
+
+        var board_obj = get_board_mb_id();
+        if (board_obj != null &&  board_obj.id != null && board_obj.board != null) {
+            var temp_icon = ["bi-reply-all","bi-pencil-square"];
+            var temp_text = ["내 댓글 - 현재 게시판","내 글 - 현재 게시판"]
+            for(var i=1; i>-1;i--) {
+                var shortcut_div = document.createElement("div");
+                shortcut_div.className = "nav-item shortcut_custom";
+                var shortcut_link = document.createElement("a");
+                shortcut_link.className = "nav-link shortcut_custom";
+                shortcut_link.href = "/" + board_obj.board + "?sfl=mb_id%2C" + i + "&stx=" + board_obj.id;
+                shortcut_link.innerHTML = '<i class="' + temp_icon[i] + ' nav-icon"></i>&nbsp;' + temp_text[i];
+                shortcut_div.appendChild(shortcut_link);
+                sidebar_site_menu.insertBefore(shortcut_div,sidebar_site_menu_first);
+                offcanvas_menu.insertBefore(shortcut_div.cloneNode(true),offcanvas_menu_first);
+                //shortcut_map[i+""] = shortcut_link.href;
+            }
+
+
+        }
+
         var link_map = get_board_link_map();
         shortcut_map = {}
-    
         for (var i = 0; i < 10; i++) {
             var shortcut = (ui_obj["shortcut_" + i] ?? "").trim();
             if (shortcut != "" && link_map[shortcut] != null) {
@@ -658,7 +727,7 @@
             });    
         
         } catch(error) {
-            console.error('Failed to initialize custom UI settings:', error);
+            //console.error('Failed to initialize custom UI settings:', error);
         }
     }
     function set_ui_custom_trigger(){
@@ -667,7 +736,7 @@
             $("#reg_title_filtering").trigger('change');
             $("#reg_shortcut_use").trigger('change');
         } catch(error) {
-            console.error('Failed to initialize custom UI settings:', error);
+            //console.error('Failed to initialize custom UI settings:', error);
         }
     }
     
@@ -687,6 +756,6 @@
     try {
         set_ui_custom();
     } catch(error) {
-        console.error('Failed to initialize custom UI settings:', error);
+        //console.error('Failed to initialize custom UI settings:', error);
     }
 })();
