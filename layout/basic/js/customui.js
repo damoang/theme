@@ -889,7 +889,7 @@
             }
             return;
         } else {
-            console.debug(key);
+            //console.debug(key);
             return;
         }
     }
@@ -970,6 +970,6 @@
     try {
         set_ui_custom();
     } catch (error) {
-        console.error('Failed to initialize custom UI settings:', error);
+        //console.error('Failed to initialize custom UI settings:', error);
     }
 })();
