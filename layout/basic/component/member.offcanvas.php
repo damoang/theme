@@ -361,7 +361,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                     <div class="form-check form-switch form-check-inline">
                         <input class="form-check-input ui_custom_items" type="checkbox" name="hide_member_memo" value="1"
                             role="switch" id="reg_hide_member_memo" data-gtm-form-interact-field-id="0">
-                            <button type="button" id="btn_memo_toggle"  class="btn btn-primary btn-sm">토글</button>
+                            <button type="button" id="btn_memo_toggle"  class="btn btn-primary btn-sm">토글</button> - 단축키(M)                    
                     </div>
                 </div>
             </div>
