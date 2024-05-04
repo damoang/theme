@@ -137,9 +137,9 @@ add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
 											<?php echo $row['wr_comment'] ?>
 										</span>
 								<?php } ?>
-								<?php if ($row['da_member_memo']) { ?>
+								<?php if ($row['da_member_memo'] ?? '') { ?>
 									<!-- 다모앙 회원 메모 -->
-									<span class="float-end"><?= $row['da_member_memo'] ?? '' ?></span>
+									<span class="float-end"><?= $row['da_member_memo'] ?></span>
 								<?php } ?>
 							</div>	
 							<div class="">
