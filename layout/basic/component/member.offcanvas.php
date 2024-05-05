@@ -201,6 +201,18 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
         </li>
         <li class="list-group-item ui-custom-item">
             <div class="row align-items-center">
+                <label for="reg_back_button" class="col-sm-5 col-form-label">뒤로 가기 버튼</label>
+                <div class="col-sm-7">
+                    <div class="form-check form-switch form-check-inline">
+                        <input class="form-check-input ui_custom_items" type="checkbox" name="back_button" value="1"
+                            role="switch" id="reg_back_button" data-gtm-form-interact-field-id="0">
+
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item ui-custom-item">
+            <div class="row align-items-center">
                 <label for="reg_left_menu" class="col-sm-5 col-form-label">좌측 메뉴</label>
                 <div class="col-sm-7">
                     <div class="form-check form-switch form-check-inline">
@@ -225,16 +237,64 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
         </li>
         <li class="list-group-item ui-custom-item">
             <div class="row align-items-center">
-                <label for="reg_expand_quick" class="col-sm-5 col-form-label">확장 퀵버튼</label>
+                <label for="reg_left_quick_button" class="col-sm-5 col-form-label">좌측 퀵버튼</label>
                 <div class="col-sm-7">
                     <div class="form-check form-switch form-check-inline">
-                        <input class="form-check-input ui_custom_items" type="checkbox" name="expand_quick" value="1"
-                            role="switch" id="reg_expand_quick" data-gtm-form-interact-field-id="0">
+                        <input class="form-check-input ui_custom_items" type="checkbox" name="left_quick_button" value="1"
+                            role="switch" id="reg_left_quick_button" data-gtm-form-interact-field-id="0">
 
                     </div>
                 </div>
             </div>
         </li>
+        <li class="list-group-item ui-custom-item">
+            <div class="row align-items-center">
+                <label for="reg_expand_quick" class="col-sm-5 col-form-label">확장 퀵버튼</label>
+                <div class="col-sm-7">
+                    <div class="form-check form-switch form-check-inline">
+                        <input class="form-check-input ui_custom_items" type="checkbox" name="expand_quick" value="1"
+                            role="switch" id="reg_expand_quick" data-gtm-form-interact-field-id="0">
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item ui-custom-item ui-custom-expand-item">
+            <div class="row align-items-center">
+                <label for="reg_expand_write" class="col-sm-5 col-form-label">확장 퀵버튼 사용 - 글 작성, 댓글 작성</label>
+                <div class="col-sm-7">
+                    <div class="form-check form-switch form-check-inline">
+                        <input class="form-check-input ui_custom_items" type="checkbox" name="expand_write" value="1"
+                            role="switch" id="reg_expand_write" data-gtm-form-interact-field-id="0">
+
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item ui-custom-item ui-custom-expand-item">
+            <div class="row align-items-center">
+                <label for="reg_expand_mywr" class="col-sm-5 col-form-label">확장 퀵버튼 사용 - 내 글, 내 댓글</label>
+                <div class="col-sm-7">
+                    <div class="form-check form-switch form-check-inline">
+                        <input class="form-check-input ui_custom_items" type="checkbox" name="expand_mywr" value="1"
+                            role="switch" id="reg_expand_mywr" data-gtm-form-interact-field-id="0">
+
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item ui-custom-item ui-custom-expand-item">
+            <div class="row align-items-center">
+                <label for="expand_navigator" class="col-sm-5 col-form-label">확장 퀵버튼 사용 - 앞으로, 뒤로</label>
+                <div class="col-sm-7">
+                    <div class="form-check form-switch form-check-inline">
+                        <input class="form-check-input ui_custom_items" type="checkbox" name="expand_navigator" value="1"
+                            role="switch" id="reg_expand_navigator" data-gtm-form-interact-field-id="0">
+
+                    </div>
+                </div>
+            </div>
+        </li>
+
         <li class="list-group-item ui-custom-item">
             <div class="row align-items-center">
                 <label for="reg_menu_scroll" class="col-sm-5 col-form-label">메뉴 스크롤</label>
@@ -301,7 +361,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                     <div class="form-check form-switch form-check-inline">
                         <input class="form-check-input ui_custom_items" type="checkbox" name="hide_member_memo" value="1"
                             role="switch" id="reg_hide_member_memo" data-gtm-form-interact-field-id="0">
-
+                            <button type="button" id="btn_memo_toggle"  class="btn btn-primary btn-sm">토글</button> - 단축키(M)                    
                     </div>
                 </div>
             </div>
@@ -459,7 +519,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
             </div>
         </li>
-    </ul>
+      </ul>
       <?php } else { ?>
 
       <form id="memberLogin" class="pt-1" name="memberLogin" method="post"
