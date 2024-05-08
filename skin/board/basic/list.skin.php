@@ -152,3 +152,20 @@ function select_copy(sw) {
 }
 </script>
 <?php } ?>
+
+<script>
+	$(function () {
+		// row 링크
+		$('.list-group-item[data-url]').on('click', function (e) {
+			const $el = $(e.currentTarget);
+			const url = $el.data('url');
+			const which = e.which;
+
+			if ((which == 1 && (e.ctrlKey || e.metaKey)) || which == 2){
+				window.open(url, '_blank');
+			} else if(which == 1) {
+				window.location.href = url;
+			}
+		});
+	});
+</script>

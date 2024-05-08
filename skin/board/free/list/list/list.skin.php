@@ -95,7 +95,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
             //$img_popover = (!G5_IS_MOBILE && $img) ? ' data-bs-toggle="popover-img" data-img="'.na_thumb($img, 400, 225).'"' : '';
             $img_popover = (!G5_IS_MOBILE && $img && $list[$i]['wr_1'] != '1') ? ' data-bs-toggle="popover-img" data-img="'.na_thumb($img, 400, 225).'"' : '';
             ?>
-			<li class="list-group-item<?php echo $li_css; ?>" onclick="(event.target.localName=='div'||event.target.localName=='li')?location.href='<?php echo $row['href'] ?>':null" style="cursor:pointer">
+			<li class="list-group-item<?php echo $li_css; ?>" data-url="<?= $row['href'] ?>" style="cursor:pointer">
 
 			
 				<div class="d-flex align-items-center gap-1">

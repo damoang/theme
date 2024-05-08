@@ -93,7 +93,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
 			// 이미지 미리보기
 			$img_popover = (!G5_IS_MOBILE && $img) ? ' data-bs-toggle="popover-img" data-img="'.na_thumb($img, 400, 225).'"' : '';
 		?>
-			<li class="list-group-item<?php echo $li_css; ?>">
+			<li class="list-group-item<?php echo $li_css; ?>" data-url="<?= $row['href'] ?>" style="cursor: pointer;">
 
 				<div class="d-flex align-items-center gap-1">
 					<div class="col-1 wr-no d-none d-md-block">
