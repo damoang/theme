@@ -160,7 +160,7 @@ $one_cols = array(
   <script src="<?php echo G5_THEME_URL ?>/js/wrest.js?ver=<?php echo G5_JS_VER; ?>"></script>
   <script src="<?php echo G5_THEME_URL ?>/js/bootstrap.bundle.min.js?ver=<?php echo G5_JS_VER; ?>"></script>
   <script src="<?php echo G5_THEME_URL ?>/js/clipboard.min.js"></script>
-  <script src="<?php echo G5_THEME_URL ?>/js/nariya.js?ver=2404281"></script>
+  <script src="<?php echo G5_THEME_URL ?>/js/nariya.js?<?= filemtime(G5_THEME_PATH . '/js/nariya.js') ?>"></script>
   <script src="<?php echo LAYOUT_URL ?>/js/darkmode.js?ver=<?php echo G5_JS_VER; ?>" data-cfasync="false"></script>
   <script src="<?php echo LAYOUT_URL ?>/js/customui.js?ver=<?php echo G5_JS_VER; ?>" data-cfasync="false"></script>
   <script src="<?php echo LAYOUT_URL ?>/js/custom_features.js?ver=<?php echo G5_JS_VER; ?>" data-cfasync="false">
