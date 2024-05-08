@@ -13,6 +13,9 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
 // 멤버십
 na_membership('write', '멤버십 회원만 등록할 수 있습니다.');
 
+//하루 글쓰기 개수 제한 체크
+na_board_write_permit_check($bo_table, $member['mb_id']);
+
 ?>
 
 <section id="bo_w">
