@@ -28,7 +28,8 @@ if(is_file($board_skin_path.'/setup.skin.php'))
 				</div>
 			</div>
 		</div>
-	</li>	
+	</li>
+
 	<li class="list-group-item">
 		<div class="row gx-2">
 			<label class="col-md-2 col-form-label" for="idCheck<?php echo $idn; ?>">새글 알림</label>
@@ -157,7 +158,7 @@ if(is_file($board_skin_path.'/setup.skin.php'))
 					</div>
 				</div>
 
-				<div class="form-check form-switch">
+				<div class="form-check form-switch mb-2">
 					<?php $boset['noti_no'] = isset($boset['noti_no']) ? $boset['noti_no'] : ''; ?>
 					<input type="checkbox" name="boset[noti_no]" id="idCheck<?php echo $idn ?>" value="1"<?php echo get_checked('1', $boset['noti_no'])?> class="form-check-input" role="switch">
 					<label class="form-check-label" for="idCheck<?php echo $idn; $idn++; ?>">알림 사용안함</label>
@@ -166,11 +167,45 @@ if(is_file($board_skin_path.'/setup.skin.php'))
 					</div>
 				</div>
 
+                <div class="form-check form-switch">
+                    <?php $boset['check_write_permit'] = isset($boset['check_write_permit']) ? $boset['check_write_permit'] : ''; ?>
+                    <input type="checkbox" name="boset[check_write_permit]" id="idCheck<?php echo $idn ?>" value="1"<?php echo get_checked('1', $boset['check_write_permit'])?> class="form-check-input" role="switch">
+                    <label class="form-check-label" for="idCheck<?php echo $idn; $idn++; ?>">글쓰기 사용자 제한</label>
+                    <div class="form-text">
+                        허용된 회원만 글쓰기 가능
+                    </div>
+                </div>
 			</div>
 		</div>
-
 	</li>
-	<li class="list-group-item bg-body-tertiary">
+
+    <li class="list-group-item bg-body-tertiary write_permit">
+        <b>글쓰기 제한 추가 설정</b>
+    </li>
+    <li class="list-group-item write_permit">
+        <div class="row gx-2">
+            <label class="col-md-2 col-form-label" for="idCheck<?php echo $idn; ?>">글쓰기 허용 아이디(1일 1개)</label>
+            <div class="col-md-10">
+                <textarea id="idCheck<?php echo $idn; $idn++; ?>" rows="2" class="form-control" name="boset[bo_write_allow_one]"><?php echo isset($boset['bo_write_allow_one']) ? $boset['bo_write_allow_one'] : ''; ?></textarea>
+                <div class="form-text">
+                    회원 아이디를 콤마(,)로 구분하여 복수 회원 등록 가능
+                </div>
+            </div>
+        </div>
+    </li>
+
+    <li class="list-group-item write_permit">
+        <div class="row gx-2">
+            <label class="col-md-2 col-form-label" for="idCheck<?php echo $idn; ?>">글쓰기 허용 아이디(1일 3개)</label>
+            <div class="col-md-10">
+                <textarea id="idCheck<?php echo $idn; $idn++; ?>" rows="2" class="form-control" name="boset[bo_write_allow_three]"><?php echo isset($boset['bo_write_allow_three']) ? $boset['bo_write_allow_three'] : ''; ?></textarea>
+                <div class="form-text">
+                    회원 아이디를 콤마(,)로 구분하여 복수 회원 등록 가능
+                </div>
+            </div>
+        </div>
+    </li>
+	<li class="list-group-item bg-body-tertiary ">
 		<b>댓글 설정</b>
 	</li>
 	<li class="list-group-item">
@@ -306,6 +341,21 @@ if(is_file($board_skin_path.'/setup.skin.php'))
 </div>
 
 <script>
+$(document).ready(function() {
+    if($("input[name='boset[check_write_permit]'").is(":checked")) {
+        $("li.write_permit").slideDown();
+    } else {
+        $("li.write_permit").slideUp();
+    }
+
+    $("input[name='boset[check_write_permit]'").change(function() {
+        if($(this).is(":checked")) {
+            $("li.write_permit").slideDown();
+        } else {
+            $("li.write_permit").slideUp();
+        }
+    });
+});
 function fsetup_submit(f) {
 
 	if(document.pressed == "save") {

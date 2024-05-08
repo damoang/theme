@@ -27,7 +27,9 @@
 
                 //미리보기창 끄기
                 if (ui_obj.img_preview != null && ui_obj.img_preview) {
-                    ui_custom_style += "div.popover.bs-popover-auto.fade.show {display: none !important;}\n";
+                    $(function () {
+                        $('[data-bs-toggle="popover-img"]').data('bs-popover-disabled', 'true');
+                    })();
                 }
 
                 //root style 글씨체 및 크기
