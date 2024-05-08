@@ -628,6 +628,9 @@ $(function(){
 		$('[data-bs-toggle="popover-img"]:not([data-popover-initialized])').hover(function () {
 
 			var $element = $(this);
+			if ($element.data('bs-popover-disabled')) {
+				return;
+			}
 			debounce(function() {
 				$element.attr('data-popover-initialized', true);
 				$element.popover({
