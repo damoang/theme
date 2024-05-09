@@ -1171,7 +1171,7 @@
     var checkMultiClass = "ui-custom-check-multi-id";
 
     function memo_db_upgrade(event) {
-        db = event.target.result;
+        const db = event.target.result;
         // 메모ID용 스토어
         //{id:"",nick:"",img:"",last:"",access:"",ip:{ip:"",last:"", board:"",wr_id:"",c_id:""}}
         var idStore = db.createObjectStore(memoID, { keyPath: "id" });
