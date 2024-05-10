@@ -52,10 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 $(function ($) {
   // 소셜로그인 로그인 유지 쿠키
-  if (get_cookie('sociallogin_remeber') === 'true') {
-      $('.sociallogin_remeber').prop('checked', true);
-      $('.social-remember-alert').toggleClass('alert-light alert-danger');
-  }
+  document.cookie = 'sociallogin_remeber=false; path=/; max-age=0;';
   $('.sociallogin_remeber').on('change', function (e) {
       const checked = $(e.target).prop('checked');
       $('.sociallogin_remeber').prop('checked', checked);
