@@ -361,7 +361,39 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                     <div class="form-check form-switch form-check-inline">
                         <input class="form-check-input ui_custom_items" type="checkbox" name="hide_member_memo" value="1"
                             role="switch" id="reg_hide_member_memo" data-gtm-form-interact-field-id="0">
-                            <button type="button" id="btn_memo_toggle"  class="btn btn-primary btn-sm">토글</button> - 단축키(M)                    
+                            <button type="button" id="btn_memo_toggle"  class="btn btn-primary btn-sm">토글</button>(M)                    
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item ui-custom-item">
+            <div class="row align-items-center">
+                <label for="reg_hide_list_memo" class="col-sm-5 col-form-label">메모목록 가리기</label>
+                <div class="col-sm-7">
+                    <select class="form-select ui_custom_items" name="hide_list_memo" id="reg_hide_list_memo">
+                        <option value="">사용안함</option>
+                        <option value="all">전체</option>
+                        <option value="yellow">노랑</option>
+                        <option value="green">초록</option>
+                        <option value="purple">보라</option>
+                        <option value="red">빨강</option>
+                        <option value="blue">파랑</option>
+                    </select>
+                    <!-- <div class="form-check form-switch form-check-inline">
+                        <input class="form-check-input ui_custom_items" type="checkbox" name="hide_list_memo" value="1"
+                            role="switch" id="reg_hide_list_memo" data-gtm-form-interact-field-id="0">
+                    </div> -->
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item ui-custom-item ui-custom-memo-ip-check d-none">
+            <div class="row align-items-center">
+                <label for="reg_memo_ip_track" class="col-sm-5 col-form-label">메모 유저 IP 체크</label>
+                <div class="col-sm-7">
+                    <div class="form-check form-switch form-check-inline">
+                        <input class="form-check-input ui_custom_items" type="checkbox" name="memo_ip_track" value="1"
+                            role="switch" id="reg_memo_ip_track" data-gtm-form-interact-field-id="0">
+                            <button type="button" id="btn_memo_ip_clear"  class="btn btn-primary btn-sm">삭제</button>
                     </div>
                 </div>
             </div>
