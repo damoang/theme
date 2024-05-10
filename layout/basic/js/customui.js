@@ -1082,6 +1082,7 @@
         if (board_obj == null) {
         }
         var check_list = [];
+        var check_admin = /^admin$/;        
 
         //글 작성자 정보
         if (document.querySelector("section#bo_v_info > div") != null) {
@@ -1099,7 +1100,7 @@
                 var write_user_link = write_divs[0].querySelector("a.sv_member");
                 if (write_user_link != null) {
                     write_info.id = write_user_link.href.substring(write_user_link.href.indexOf("mb_id=") + 6);
-                    if (board_obj?.id == null || board_obj.id != write_info.id) {
+                    if ( !check_admin.test(write_info.id) && board_obj?.id == null || board_obj.id != write_info.id) {
                         var img_src = write_user_link.querySelector("img.mb-photo").src;
                         var img_position = img_src.indexOf('/data/member_image');
                         if (img_position > 0) {
@@ -1139,7 +1140,7 @@
                 var write_user_link = c_divs[0].querySelector("a.sv_member");
                 if (write_user_link != null) {
                     write_info.id = write_user_link.href.substring(write_user_link.href.indexOf("mb_id=") + 6);
-                    if (board_obj?.id == null || board_obj.id != write_info.id) {
+                    if ( !check_admin.test(write_info.id) && board_obj?.id == null || board_obj.id != write_info.id) {
                         var img_src = write_user_link.querySelector("img.mb-photo").src;
                         var img_position = img_src.indexOf('/data/member_image');
                         if (img_position > 0) {
