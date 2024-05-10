@@ -141,15 +141,6 @@ return [
                 'url' => '/truthroom',
                 'shortcut' => 'Ｊ',
             ],
-            '가입인사' => [
-                'url' => '/hello',
-                'shortcut' => 'Ｉ',
-            ],
-            '커뮤니티' => [
-                'url' => '/bbs/group.php?gr_id=community',
-                'page_id' => G5_BBS_DIR . '-group-community',
-                'shortcut' => 'Ｃ',
-            ],
         ]
     ],
     [
