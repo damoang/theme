@@ -164,6 +164,10 @@ $one_cols = array(
   <script src="<?php echo LAYOUT_URL ?>/js/darkmode.js?ver=<?php echo G5_JS_VER; ?>" data-cfasync="false"></script>
   <script src="<?php echo LAYOUT_URL ?>/js/customui.js?ver=<?php echo G5_JS_VER; ?>" data-cfasync="false"></script>
   <script src="<?php echo LAYOUT_URL ?>/js/custom_features.js?ver=<?php echo G5_JS_VER; ?>" data-cfasync="false">
+  <?php
+  // 레이아웃 스크립트
+  add_javascript('<script src="'.LAYOUT_URL.'/js/layout.js"></script>', 0);
+  ?>
   </script>
 
   <?php
