@@ -85,15 +85,13 @@ add_stylesheet('<link rel="stylesheet" href="' . get_social_skin_url() . '/style
                 </script>
             <?php } ?>
 
-            <div class="form-check text-start mt-2">
+            <div class="form-check text-start mt-3">
                 <input class="form-check-input sociallogin_remeber" type="checkbox" name="sociallogin_remeber" id="sociallogin_remeber" />
-                <label class="form-check-label" for="sociallogin_remeber">30일 동안 로그인 유지</label>
+                <label class="form-check-label" for="sociallogin_remeber">자동로그인</label>
                 <div class="alert alert-light social-remember-alert" role="alert">
-                    <p class="mb-0">
-                        <strong>로그인 유지 기능 사용 시 <u>최대 30일 동안</u> 로그인이 유지됩니다.</strong>
-                        <br>
-                        본인만 이용하는 PC/모바일 기기에서만 사용하세요.
-                    </p>
+                    <i class="bi bi-exclamation-triangle-fill"></i> <strong>자동로그인은 공공장소에서 정보 유출의 위험이 초래될 수 있습니다.</strong>
+                    <hr>
+                    <u>최대 30일 동안</u> 로그인이 유지되므로 여러 사람이 이용하는 기기에서 사용하지 마세요.
                 </div>
             </div>
         </div>
