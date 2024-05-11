@@ -5,16 +5,23 @@ Modified by Graysmile
 */
 
 function youtube(t) {
-    var e = [/<a [^>]*?href="(https?:\/\/youtu.be\/([a-zA-Z0-9\-_\/\?\=\&\&amp;]+))"[^>]*>/gi, /<a [^>]*?href="(https?:\/\/www.youtube.com\/watch\?v=([a-zA-Z0-9\-_\/\?\=\&\&amp;]+))"[^>]*>/gi];
-    for (var i in e) {
-        for (var a = t.$element.html();;) {
-            if (null == (o = e[i].exec(a))) 
-				break;
-            var r = o[1];
-            a = a.replace(o[0], "")
-        }
-        t.$element.html(a)
-    }
+    //var e = [/<a [^>]*?href="(https?:\/\/youtu.be\/([a-zA-Z0-9\-_\/\?\=\&\&amp;]+))"[^>]*>/gi, /<a [^>]*?href="(https?:\/\/www.youtube.com\/watch\?v=([a-zA-Z0-9\-_\/\?\=\&\&amp;]+))"[^>]*>/gi];
+    // for (var i in e) {
+    //     for (var a = t.$element.html();;) {
+	// 		//var o = e[i].exec(a);
+    //         // if (null == (o = e[i].exec(a))) {}
+	// 		// 	break;
+	// 		var o;
+    //         if (null == (o = e[i].exec(a))) 
+	// 			break;
+    //         var r = o[1];
+    //         a = a.replace(o[0], "")
+    //     }
+    //     t.$element.html(a)
+    // }
+	auto_link_del(t, /<a [^>]*?href="(https?:\/\/youtu.be\/([a-zA-Z0-9\-_\/\?\=\&\&amp;]+))"[^>]*>/gi);
+	auto_link_del(t, /<a [^>]*?href="(https?:\/\/www.youtube.com\/watch\?v=([a-zA-Z0-9\-_\/\?\=\&\&amp;]+))"[^>]*>/gi);
+    
     var n = [/https?:\/\/youtu.be\/([a-zA-Z0-9\-_\/\?\=\&\&amp;]+)/gi, /https?:\/\/www.youtube.com\/watch\?v=([a-zA-Z0-9\-_\/\?\=\&\&amp;]+)/gi],
         l = '<div class="ratio ratio-16x9"><iframe src="//www.youtube.com/embed/#[CODE]" frameborder="0" width="640" height="360" allowfullscreen></iframe></div>';
     for (var i in n) {
@@ -79,8 +86,9 @@ function Dailymotion(t) {
 }
 
 function auto_link_del(t, e) {
-    for (var i = t.$element.html(), a = (i.match(e) || []).length, r = 0; r < a; r++) {
+    for (var i = t.$element.html(), a = (i.match(e) || []).length, r = 0; r < a*2; r++) {
         var n = e.exec(i);
+		if(n == null || n[0] == null) continue;
         i = i.replace(n[0], "")
     }
     t.$element.html(i)
