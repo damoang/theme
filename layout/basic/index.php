@@ -238,6 +238,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                         </div>
 
 
+                    <?php echo na_widget('wr-list-recommend', 'idx-recommended-b', 'bo_list=free wr_notice=1 is_notice=1 wr_comment=0'); ?>
 
                     <?php } else { ?>
                         <div class="row row-cols-1 row-cols-lg-2">
@@ -251,7 +252,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                                     </a>
                                 </h3>
                                 <div class="line-top mb-4">
-                                    <?php echo na_widget('wr-list-recommend', 'idx-recommended-o', 'bo_list=free wr_notice=1 is_notice=1 wr_comment=0'); ?>
+                                    <?php echo na_widget('wr-list-recommend', 'idx-recommended-b', 'bo_list=free wr_notice=1 is_notice=1 wr_comment=0'); ?>
 
                                 </div>
                                 <!-- } 위젯 끝 -->
