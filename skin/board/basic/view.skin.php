@@ -27,6 +27,7 @@ $view_skin_path = $board_skin_path.'/view/'.$view_skin;
 
 // 다모앙 회원 메모
 $view = run_replace('da_board_view', $view);
+$view = run_replace('board_view', $view);
 
 // 내용 스킨
 $skin_file = $view_skin_path.'/view.skin.php';

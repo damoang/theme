@@ -5,16 +5,23 @@ Modified by Graysmile
 */
 
 function youtube(t) {
-    var e = [/<a (.*?)href="(https?:\/\/youtu.be\/([a-zA-Z0-9\-_\/\?\=\&\&amp;]+))"[^>]*>/gi, /<a (.*?)href="(https?:\/\/www.youtube.com\/watch\?v=([a-zA-Z0-9\-_\/\?\=\&\&amp;]+))"[^>]*>/gi];
-    for (var i in e) {
-        for (var a = t.$element.html();;) {
-            if (null == (o = e[i].exec(a))) 
-				break;
-            var r = o[1];
-            a = a.replace(o[0], "")
-        }
-        t.$element.html(a)
-    }
+    //var e = [/<a [^>]*?href="(https?:\/\/youtu.be\/([a-zA-Z0-9\-_\/\?\=\&\&amp;]+))"[^>]*>/gi, /<a [^>]*?href="(https?:\/\/www.youtube.com\/watch\?v=([a-zA-Z0-9\-_\/\?\=\&\&amp;]+))"[^>]*>/gi];
+    // for (var i in e) {
+    //     for (var a = t.$element.html();;) {
+	// 		//var o = e[i].exec(a);
+    //         // if (null == (o = e[i].exec(a))) {}
+	// 		// 	break;
+	// 		var o;
+    //         if (null == (o = e[i].exec(a))) 
+	// 			break;
+    //         var r = o[1];
+    //         a = a.replace(o[0], "")
+    //     }
+    //     t.$element.html(a)
+    // }
+	auto_link_del(t, /<a [^>]*?href="(https?:\/\/youtu.be\/([a-zA-Z0-9\-_\/\?\=\&\&amp;]+))"[^>]*>/gi);
+	auto_link_del(t, /<a [^>]*?href="(https?:\/\/www.youtube.com\/watch\?v=([a-zA-Z0-9\-_\/\?\=\&\&amp;]+))"[^>]*>/gi);
+    
     var n = [/https?:\/\/youtu.be\/([a-zA-Z0-9\-_\/\?\=\&\&amp;]+)/gi, /https?:\/\/www.youtube.com\/watch\?v=([a-zA-Z0-9\-_\/\?\=\&\&amp;]+)/gi],
         l = '<div class="ratio ratio-16x9"><iframe src="//www.youtube.com/embed/#[CODE]" frameborder="0" width="640" height="360" allowfullscreen></iframe></div>';
     for (var i in n) {
@@ -31,7 +38,7 @@ function youtube(t) {
 }
 
 function instargram(t) {
-    auto_link_del(t, /<a (.*?)href="(https?:\/\/www\.)?instagram\.com(\/p\/\w+\/?)"[^>]*>/gi);
+    auto_link_del(t, /<a [^>]*?href="(https?:\/\/www\.)?instagram\.com(\/p\/\w+\/?)"[^>]*>/gi);
     for (var e = /(https?:\/\/www\.)?instagram\.com(\/p\/\w+\/?)/gi, i = (t.$element.html().match(e) || []).length, a = t.$element.html(), r = '<blockquote width="510" height="315" class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instargram.com#[CODE]" data-instgrm-version="8"></blockquote>', n = 0; n < i; n++) {
         var l = e.exec(a);
         if (null == l) break;
@@ -41,7 +48,7 @@ function instargram(t) {
 }
 
 function KakaoPot(t) {
-    auto_link_del(t, /<a (.*?)href="(https?:\/\/|www\.)tv.kakao.com\/channel\/[0-9]+\/(livelink|cliplink)\/([A-Za-z0-9]+)"[^>]*>/gi);
+    auto_link_del(t, /<a [^>]*?href="(https?:\/\/|www\.)tv.kakao.com\/channel\/[0-9]+\/(livelink|cliplink)\/([A-Za-z0-9]+)"[^>]*>/gi);
     for (var e = /(https?:\/\/|www\.)tv.kakao.com\/channel\/[0-9]+\/(livelink|cliplink)\/([A-Za-z0-9]+)/gi, i = (t.$element.html().match(e) || []).length, a = t.$element.html(), r = '<div class="ratio ratio-16x9"><iframe width="604" height="360" src="https://tv.kakao.com/embed/player/#[CODE]?width=640&height=360&service=kakao_tv" frameborder="0" scrolling="no" ></iframe></div>', n = 0; n < i; n++) {
         var l = e.exec(a);
         if (null == l) break;
@@ -51,7 +58,7 @@ function KakaoPot(t) {
 }
 
 function Twitter(t) {
-    auto_link_del(t, /<a (.*?)href="http(s)?:\/\/(.*\.)?(twitter|x)\.com\/(\w+)\/?status\/(\w+)"[^>]*>/gi);
+    auto_link_del(t, /<a [^>]*?href="http(s)?:\/\/(.*\.)?(twitter|x)\.com\/(\w+)\/?status\/(\w+)"[^>]*>/gi);
     for (var e = /http(s)?:\/\/(.*\.)?(twitter|x)\.com\/(\w+)\/?status\/(\w+)/gi, i = (t.$element.html().match(e) || []).length, a = t.$element.html(), r = 0; r < i; r++) {
         var n = e.exec(a),
             l = n[4] + "/status/" + n[5];
@@ -61,7 +68,7 @@ function Twitter(t) {
 }
 
 function Vimeo(t) {
-    auto_link_del(t, /<a (.*?)href="(https?:\/\/|www\.)vimeo.com\/([A-Za-z0-9]+)"[^>]*>/gi);
+    auto_link_del(t, /<a [^>]*?href="(https?:\/\/|www\.)vimeo.com\/([A-Za-z0-9]+)"[^>]*>/gi);
     for (var e = /(https?:\/\/|www\.)vimeo.com\/([A-Za-z0-9]+)/gi, i = (t.$element.html().match(e) || []).length, a = t.$element.html(), r = '<div class="ratio ratio-16x9"><iframe src="https://player.vimeo.com/video/#[CODE]" width="717" height="403" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>', n = 0; n < i; n++) {
         var l = e.exec(a),
             o = l[2];
@@ -70,7 +77,7 @@ function Vimeo(t) {
 }
 
 function Dailymotion(t) {
-    auto_link_del(t, /<a (.*?)href="(https?:\/\/www\.)dailymotion.com\/video\/([A-Za-z0-9]+)"[^>]*>/gi);
+    auto_link_del(t, /<a [^>]*?href="(https?:\/\/www\.)dailymotion.com\/video\/([A-Za-z0-9]+)"[^>]*>/gi);
     for (var e = /(https?:\/\/www\.)dailymotion.com\/video\/([A-Za-z0-9]+)/gi, i = (t.$element.html().match(e) || []).length, a = t.$element.html(), r = '<div class="ratio ratio-16x9"><iframe frameborder="0" width="640" height="360" src="//www.dailymotion.com/embed/video/#[CODE]" allowfullscreen="" allow="autoplay"></iframe></div>', n = 0; n < i; n++) {
         var l = e.exec(a),
             o = l[2];
@@ -79,8 +86,9 @@ function Dailymotion(t) {
 }
 
 function auto_link_del(t, e) {
-    for (var i = t.$element.html(), a = (i.match(e) || []).length, r = 0; r < a; r++) {
+    for (var i = t.$element.html(), a = (i.match(e) || []).length, r = 0; r < a*2; r++) {
         var n = e.exec(i);
+		if(n == null || n[0] == null) continue;
         i = i.replace(n[0], "")
     }
     t.$element.html(i)
