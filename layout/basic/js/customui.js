@@ -28,10 +28,7 @@
                 //미리보기창 끄기
                 if (ui_obj.img_preview != null && ui_obj.img_preview) {
                     try {
-                        $(function () {
-                            $('[data-bs-toggle="popover-img"]').data('bs-popover-disabled', 'true');
-                        })();
-
+                        Array.from(document.querySelectorAll('[data-bs-toggle="popover-img"]')).forEach((item) => {item.dataset.bsPopoverDisabled = true;});
                     } catch(e) {
 
                     }
