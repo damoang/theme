@@ -27,9 +27,14 @@
 
                 //미리보기창 끄기
                 if (ui_obj.img_preview != null && ui_obj.img_preview) {
-                    $(function () {
-                        $('[data-bs-toggle="popover-img"]').data('bs-popover-disabled', 'true');
-                    })();
+                    try {
+                        $(function () {
+                            $('[data-bs-toggle="popover-img"]').data('bs-popover-disabled', 'true');
+                        })();
+
+                    } catch(e) {
+
+                    }
                 }
 
                 //root style 글씨체 및 크기
@@ -800,7 +805,7 @@
             if (board_name_length == -1) {
                 board_name_length = location.pathname.length;
             } else {
-                wr_id = location.pathname.substring(board_name_length + 2);
+                wr_id = location.pathname.substring(board_name_length + 1);
             }
             var board_name = location.pathname.substring(1, board_name_length)
             if (link_map[board_name] != null) {
@@ -813,21 +818,25 @@
         }
 
         var p_n = "mb_id";
-        var myw_link = link_map._myw.org
-        var q_s = myw_link.indexOf(p_n + "=");
-        var q_e = myw_link.indexOf("&", q_s);
-
-        if (q_s > -1) {
-            q_s += p_n.length + 1;
-            if (link_obj == null) {
-                link_obj = {};
-            }
-
-            if (q_e == -1) {
-                link_obj.id = myw_link.substring(q_s);
-            } else {
-                link_obj.id = myw_link.substring(q_s, q_e);
-            }
+        var myw_link_obj = document.querySelector("div#main-wrap div.my-2 span.profile_img");
+        if (myw_link_obj != null) {
+            var myw_link = document.querySelector("div#main-wrap div.my-2 span.profile_img")?.closest('a.sv_member').href
+        
+            var q_s = myw_link.indexOf(p_n + "=");
+            var q_e = myw_link.indexOf("&", q_s);
+    
+            if (q_s > -1) {
+                q_s += p_n.length + 1;
+                if (link_obj == null) {
+                    link_obj = {};
+                }
+    
+                if (q_e == -1) {
+                    link_obj.id = myw_link.substring(q_s);
+                } else {
+                    link_obj.id = myw_link.substring(q_s, q_e);
+                }
+            }    
         }
 
         return link_obj;
@@ -1172,7 +1181,7 @@
     var checkMultiClass = "ui-custom-check-multi-id";
 
     function memo_db_upgrade(event) {
-        const db = event.target.result;
+        var db = event.target.result;
         // 메모ID용 스토어
         //{id:"",nick:"",img:"",last:"",access:"",ip:{ip:"",last:"", board:"",wr_id:"",c_id:""}}
         var idStore = db.createObjectStore(memoID, { keyPath: "id" });
