@@ -29,8 +29,13 @@
                 if (ui_obj.img_preview != null && ui_obj.img_preview) {
                     try {
                         Array.from(document.querySelectorAll('[data-bs-toggle="popover-img"]')).forEach((item) => {item.dataset.bsPopoverDisabled = true;});
+                        /*
+                        $(function () {
+                            $('[data-bs-toggle="popover-img"]').data('bs-popover-disabled', 'true');
+                        })();
+                        */
                     } catch(e) {
-
+                        //console.error(e);
                     }
                 }
 
