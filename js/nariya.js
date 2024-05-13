@@ -626,7 +626,7 @@ $(function(){
 		
 		$('[data-bs-toggle="tooltip"]').tooltip('disable');
 
-	} else {
+	} else if (0) {
 		let debounceTimeout;
 		function debounce(func, delay) {
 			clearTimeout(debounceTimeout);
