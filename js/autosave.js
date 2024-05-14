@@ -96,7 +96,7 @@ $(function(){
     });
 
     $(document).on( "click", ".autosave_del", function(){
-        var $li = $(this).parents("li");
+        var $li = $(this).parent("li");
         var as_id = $li.data("as_id");
         $.get(g5_bbs_url+"/ajax.autosavedel.php", {"as_id":as_id}, function(data){
             if (data == -1) {
