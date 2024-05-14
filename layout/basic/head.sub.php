@@ -58,7 +58,6 @@ $one_cols = array(
   <link rel="manifest" href="<?= G5_THEME_URL ?>/img/favicon/site.webmanifest">
   <link rel="shortcut icon" href="<?= G5_THEME_URL ?>/img/favicon/favicon.ico">
   <meta name="msapplication-config" content="<?= G5_THEME_URL ?>/img/favicon/browserconfig.xml">
-  <meta name="theme-color" content="#ffffff">
 
   <script>
   (function() {
