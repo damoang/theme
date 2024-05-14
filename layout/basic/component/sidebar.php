@@ -136,6 +136,12 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                     (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
 
+                <!-- 배너 -->
+                <div class="d-none d-lg-block justify-content-center my-4">
+                    <?php echo na_widget('damoang-image-banner', 'side-banner'); ?>
+                </div>
+
+
             </div>
         </div>
     </div><!-- end .na-menu -->
