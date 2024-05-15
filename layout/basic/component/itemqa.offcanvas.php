@@ -30,7 +30,7 @@ if (!defined('_GNUBOARD_')) {
 					<a href="#item-<?php echo $uid ?>" class="accordion-button collapsed py-2" data-bs-toggle="collapse" data-bs-target="#item-<?php echo $uid ?>" aria-expanded="false" aria-controls="item<?php echo $uid ?>">
 						<div class="d-flex gap-2 align-items-center">
 							<div>
-								<img src="<?php echo ($img) ? $img : na_member_photo($row['mb_id']); ?>" class="rounded-circle" style="max-width:50px;">
+								<img src="<?php echo ($img) ? $img : na_member_photo($row['mb_id']); ?>" class="rounded-circle" style="max-width:50px;" onerror="this.onerror=null; this.src='<?php echo G5_IMG_URL . '/no_profile.gif' ?>';">
 							</div>
 							<div class="pe-2">
 								<div class="small text-secondary lh-lg">

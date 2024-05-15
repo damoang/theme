@@ -268,7 +268,7 @@ document.getElementById('moveToTureRoomBtn').addEventListener('click', function(
 			<div class="row row-cols-1 row-cols-md-2 align-items-center">
 				<div class="col-sm-5 col-md-4 pb-3">
 					<div class="text-center mb-2 mb-sm-0">
-						<img src="<?php echo na_member_photo($mbs['mb_id']) ?>" class="rounded-circle">
+						<img src="<?php echo na_member_photo($mbs['mb_id']) ?>" class="rounded-circle" onerror="this.onerror=null; this.src='<?php echo G5_IMG_URL . '/no_profile.gif' ?>';">
 					</div>
 					<div class="clearfix f-sm">
 						<span class="float-left">

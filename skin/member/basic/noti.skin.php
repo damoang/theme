@@ -80,7 +80,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 		<li class="list-group-item">
 			<div class="d-flex align-items-center">
 				<div>
-					<img src="<?php echo na_member_photo($list[$i]['mb_id']); ?>" class="rounded-circle" style="max-width:50px;">
+					<img src="<?php echo na_member_photo($list[$i]['mb_id']); ?>" class="rounded-circle" style="max-width:50px;" onerror="this.onerror=null; this.src='<?php echo G5_IMG_URL . '/no_profile.gif' ?>';">
 				</div>
 				<div class="flex-grow-1 px-2">
 					<a href="<?php echo $list[$i]['href'] ?>">
