@@ -90,6 +90,10 @@ add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
                 $row['num'] = '<span class="orangered">공지</span>';
             }
 
+            if ($list[$i]['wr_1'] == '1') {
+                $li_css .= ' da-member-only';
+            }
+
             // 이미지 미리보기
             //
             //$img_popover = (!G5_IS_MOBILE && $img) ? ' data-bs-toggle="popover-img" data-img="'.na_thumb($img, 400, 225).'"' : '';
@@ -117,7 +121,13 @@ add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
                                         <i class="bi bi-arrow-return-right"></i>
                                         <span class="visually-hidden">답변</span>
                                     <?php } ?>
-                                    <?php echo $row['subject']; // 제목 ?> <?php echo ($list[$i]['wr_1'] == '1') ? '<i class="fa fa-id-badge"></i>' : ''; ?>
+
+                                    <?php
+                                    // 회원만 보기
+                                    echo ($list[$i]['wr_1'] == '1') ? '<em class="border rounded p-1" style="font-size: 0.75em; font-style: normal;">회원</em>' : '';
+                                    ?>
+
+                                    <?php echo $row['subject']; // 제목 ?>
                                 </a>
 
                                 <?php if (!$sca && $is_category && $row['ca_name']) { ?>
