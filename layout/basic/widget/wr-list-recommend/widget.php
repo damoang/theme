@@ -81,6 +81,11 @@ $wr_notice = (isset($wset['is_notice']) && $wset['is_notice']) ? ' bg-body-terti
 		?>
 		<li class="list-group-item da-link-block <?php echo ($row['is_notice']) ? $wr_notice : ''; ?>">
 			<div class="d-flex align-items-center gap-1">
+				<?php if (!$row['is_notice']) { ?>
+				<!-- 추천 수 -->
+				<span class="badge text-bg-secondary"><?= intval($row['wr_good'] ?? 0) ?></span>
+				<?php } ?>
+				<!-- 제목 -->
 				<div class="text-truncate">
 					<a href="<?php echo $row['href'] ?>" <?php echo $img_popover ?> class="da-link-block">
 						<!-- 게시글 제목 텍스트 부분 클릭시 서버요청 2번 하는 버그 수정 -->
@@ -110,4 +115,3 @@ $wr_notice = (isset($wset['is_notice']) && $wset['is_notice']) ? ' bg-body-terti
 		</button>
 	</div>
 <?php } ?>
-
