@@ -116,16 +116,16 @@ add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
                     <div class="flex-grow-1">
                         <div class="d-flex flex-column flex-md-row align-items-md-center gap-2">
                             <div class="flex-fill">
-                                <a href="<?php echo $row['href'] ?>"<?php echo $img_popover ?> class="da-link-block <?php if ($list[$i]['wr_1'] == '1') { ?> da-member-only <?php } ?> ">
+                                <?php
+                                // 회원만 보기
+                                echo ($list[$i]['wr_1'] == '1') ? '<em class="border rounded p-1" style="font-size: 0.75em; font-style: normal;">회원만</em>' : '';
+                                ?>
+
+                                <a href="<?php echo $row['href'] ?>"<?php echo $img_popover ?> class="da-link-block">
                                     <?php if($row['icon_reply']) { ?>
                                         <i class="bi bi-arrow-return-right"></i>
                                         <span class="visually-hidden">답변</span>
                                     <?php } ?>
-
-                                    <?php
-                                    // 회원만 보기
-                                    echo ($list[$i]['wr_1'] == '1') ? '<em class="border rounded p-1" style="font-size: 0.75em; font-style: normal;">회원만</em>' : '';
-                                    ?>
 
                                     <?php echo $row['subject']; // 제목 ?>
                                 </a>
