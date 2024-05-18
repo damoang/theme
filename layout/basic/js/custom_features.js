@@ -19,7 +19,7 @@
   }
 
   // 게시판 공지사항 보기 설정
-  document.addEventListener("DOMContentLoaded", function () {
+  $(function () {
     const hideTrigger = $('#hide_notice');
     if (!hideTrigger.length) {
       return;
@@ -54,5 +54,5 @@
 
       notices.toggleClass('d-none');
     }
-  }, { once: true });
+  });
 })();
