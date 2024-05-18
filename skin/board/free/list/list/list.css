@@ -47,3 +47,10 @@
 .list-group-item:active{
 	background-color:brightness(var(--bs-list-group-action-active-bg), 0.8)!important;
 }
+
+a.da-member-only {
+	filter: blur(2px);
+}
+a.da-member-only:hover {
+	filter: none;
+}
