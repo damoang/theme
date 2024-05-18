@@ -648,3 +648,29 @@ a.da-link-block:before {
   top: 0;
   bottom: 0;
 }
+
+.list-group-item {
+  .subject-ellipsis {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .badge {
+    position: relative;
+    top: 3px;
+  }
+  .d-inline-flex {
+    .na-icon,
+    .float-end,
+    .count-plus
+     {
+      flex-shrink: 0;
+      top: 6px;
+      margin-left: 3px;
+    }
+    .float-end,
+    .count-plus {
+      margin-right: 3px;
+    }
+  }
+}
