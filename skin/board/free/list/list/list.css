@@ -47,3 +47,7 @@
 .list-group-item:active{
 	background-color:brightness(var(--bs-list-group-action-active-bg), 0.8)!important;
 }
+
+.da-member-only--blur {
+	filter: blur(4px);
+}

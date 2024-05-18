@@ -121,7 +121,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
                                 echo ($list[$i]['wr_1'] == '1') ? '<em class="border rounded p-1" style="font-size: 0.75em; font-style: normal;">회원만</em>' : '';
                                 ?>
 
-                                <a href="<?php echo $row['href'] ?>"<?php echo $img_popover ?> class="da-link-block">
+                                <a href="<?php echo $row['href'] ?>"<?php echo $img_popover ?> class="da-link-block <?php if ($list[$i]['wr_1'] == '1' && !$is_member) { ?> da-member-only--blur <?php } ?> ">
                                     <?php if($row['icon_reply']) { ?>
                                         <i class="bi bi-arrow-return-right"></i>
                                         <span class="visually-hidden">답변</span>
