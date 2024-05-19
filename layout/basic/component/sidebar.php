@@ -15,6 +15,27 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
     <div class="nav nav-pills nav-vertical">
 
 
+        <?php if ($member['mb_level'] == 5 || $member['mb_level'] == 10) { ?>
+            <div class="nav-item">
+                <a class="nav-link" href="/bbs/group.php?gr_id=nerv" data-placement="left">
+                    <i class="bi-youtube nav-icon"></i>
+                    <span class="nav-link-title">Nerv Group</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a class="nav-link" href="/meet" data-placement="left">
+                    <i class="bi-youtube nav-icon"></i>
+                    <span class="nav-link-title">회의록</span>
+                </a>
+            </div>
+            <div class="nav-item">
+                <a class="nav-link" href="/nerv" data-placement="left">
+                    <i class="bi-youtube nav-icon"></i>
+                    <span class="nav-link-title">Nerv Group</span>
+                </a>
+            </div>
+
+        <?php } ?>
 
         <div id="sidebar-site-menu" class="mb-3">
             <?php
