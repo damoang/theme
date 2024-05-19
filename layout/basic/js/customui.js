@@ -28,12 +28,14 @@
                 //미리보기창 끄기
                 if (ui_obj.img_preview != null && ui_obj.img_preview) {
                     try {
+                        Array.from(document.querySelectorAll('[data-bs-toggle="popover-img"]')).forEach((item) => {item.dataset.bsPopoverDisabled = true;});
+                        /*
                         $(function () {
                             $('[data-bs-toggle="popover-img"]').data('bs-popover-disabled', 'true');
                         })();
-
+                        */
                     } catch(e) {
-
+                        //console.error(e);
                     }
                 }
 
@@ -817,11 +819,21 @@
             }
         }
 
-        var p_n = "mb_id";
-        var myw_link_obj = document.querySelector("div#main-wrap div.my-2 span.profile_img");
-        if (myw_link_obj != null) {
-            var myw_link = document.querySelector("div#main-wrap div.my-2 span.profile_img")?.closest('a.sv_member').href
+        var myw_link = link_map["_myw"]?.org ?? "";
         
+        var myw_link_obj = document.querySelector("div#memberOffcanvas div.my-2 span.profile_img");
+        if (myw_link_obj != null) {
+            var temp_a = myw_link_obj.closest('a.sv_member');
+            if (temp_a != null) {
+                myw_link = temp_a.href
+            }        
+        }
+
+        if (myw_link.length > 0) {
+            var p_n = "mb_id";
+            if (myw_link.indexOf("sfl="+p_n) > -1) {
+                p_n = "stx";
+            }
             var q_s = myw_link.indexOf(p_n + "=");
             var q_e = myw_link.indexOf("&", q_s);
     
@@ -1067,7 +1079,7 @@
 				try {
                     if (confirm("기록을 삭제하시겠습니까?")) {
                         window.indexedDB.databases().then(function (databases) {
-                            if (user_id != null && user_id != "") {
+                            if (temp_obj.id != null && temp_obj.id != "") {
                                 if (databases.length > 0) {
                                     databases.forEach((database) => {
                                         if (database.name.indexOf(memoDBName)==0) {

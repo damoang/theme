@@ -17,7 +17,7 @@ if($edir && is_dir(NA_PATH.'/skin/emo/'.$edir)) {
 
 $handle = opendir($emo_path);
 while ($file = readdir($handle)) {
-	if(preg_match("/\.(jpg|jpeg|gif|png)$/i", $file)) {
+	if(preg_match("/(?<!_thumb)\.(jpg|jpeg|gif|png|webp)$/i", $file)) {
 		$emo[] = $file;
 	}
 }
@@ -28,6 +28,7 @@ $emoticon = array();
 for($i=0; $i < count($emo); $i++) {
 	$emoticon[$i]['name'] = $emo_skin.$emo[$i];
 	$emoticon[$i]['url'] = NA_URL.'/skin/emo/'.$emo_skin.$emo[$i];
+	$emoticon[$i]['thumb'] = preg_replace("/\.(jpg|jpeg|gif|png|webp)$/i", "", $emoticon[$i]['url']).'_thumb.webp';
 }
 
 // Emo Skin
@@ -35,7 +36,7 @@ $eskin = array();
 $ehandle = opendir(NA_PATH.'/skin/emo');
 while ($efile = readdir($ehandle)) {
 
-	if($efile == "." || $efile == ".." || preg_match("/\.(jpg|jpeg|gif|png)$/i", $efile)) continue;
+	if($efile == "." || $efile == ".." || preg_match("/(?<!_thumb)\.(jpg|jpeg|gif|png|webp)$/i", $efile)) continue;
 
 	if (is_dir(NA_PATH.'/skin/emo/'.$efile)) 
 		$eskin[] = $efile;
@@ -79,7 +80,8 @@ include_once(G5_THEME_PATH.'/app/clipboard.php');
 
 	<div id="emo_icon">
 		<?php for($i=0; $i < count($emoticon); $i++) { ?>
-			<img src="<?php echo $emoticon[$i]['url'] ?>" onclick="clip_insert('<?php echo $emoticon[$i]['name'] ?>');" class="emo-img border m-1" alt="emo-<?php echo $i; ?>">
+			<img src="<?php echo $emoticon[$i]['thumb'] ?>" onclick="clip_insert('<?php echo $emoticon[$i]['name'] ?>');" class="emo-img border m-1" alt="emo-<?php echo $i; ?>" 
+				onmouseenter="this.timer=setTimeout(function(){this.src='<?php echo $emoticon[$i]['url'] ?>'}.bind(this),500)" onmouseleave="clearTimeout(this.timer);this.src='<?php echo $emoticon[$i]['thumb'] ?>'">
 		<?php } ?>
 	</div>
 </div>
