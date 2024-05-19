@@ -51,7 +51,7 @@ return [
                 'shortcut' => 'Ｅ',
             ],
             '레퍼럴' => [
-                'url' => '/economy',
+                'url' => '/referral',
                 // 'icon' => 'bi-cart-plus-fill',
                 'shortcut' => 'O',
             ],
