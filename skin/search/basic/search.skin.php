@@ -3,6 +3,11 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
 
 // add_stylesheet('css 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
 add_stylesheet('<link rel="stylesheet" href="'.$search_skin_url.'/style.css">', 0);
+
+if ($member['mb_level'] < 2) { // 회원만 가능
+    alert('우리 "앙"님만 열람할 수 있어요!');
+    return;
+}
 ?>
 
 <form name="fsearch" onsubmit="return fsearch_submit(this);" method="get" class="px-3 mb-2 mx-auto">

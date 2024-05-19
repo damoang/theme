@@ -31,9 +31,11 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                     <?php
                 }
                 ?>
+                <?php if($member['mb_level'] >= 2) { ?>
                 <div class="nav-item nav-link">
                     <a href="<?= \G5_URL ?>/bbs/search.php?sfl=mb_id&stx=<?php echo $member['mb_id'] ?>&wr_is_comment=0">내 글</a>&nbsp;|&nbsp;<a href="<?= \G5_URL ?>/bbs/search.php?sfl=mb_id&stx=<?php echo $member['mb_id'] ?>&wr_is_comment=1">내 댓글</a>&nbsp;|&nbsp;<a href="/bbs/noti.php"><i class="bi bi-bell"></i>알림</a>
                 </div>
+                <?php } ?>
 
                 <!-- 사이드 메뉴 -->
                 <div class="nav-item">

@@ -73,6 +73,7 @@ if(IS_INDEX)
 						</span>
 					</a>
 				</div>
+				<?php if ($member['mb_level'] >= 2) { ?>
 				<div>
 					<a href="#search" data-bs-toggle="offcanvas" data-bs-target="#searchOffcanvas" aria-controls="searchOffcanvas" class="site-icon">
 						<span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="검색">
@@ -81,6 +82,7 @@ if(IS_INDEX)
 						</span>
 					</a>
 				</div>
+				<?php } ?>
 				<div>
 					<a href="#memberOffcanvas" data-bs-toggle="offcanvas" data-bs-target="#memberOffcanvas" aria-controls="memberOffcanvas" class="site-icon">
 						<span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="<?php echo ($is_member) ? '마이메뉴' : '로그인'; ?>">
