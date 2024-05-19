@@ -113,6 +113,7 @@ return [
                     '지켜본당' => '/watchingyou',
                     '집짓는당' => '/homebuilding',
                     '찰칵찍당' => '/photo',
+                    '책읽는당' => '/readingbooks',
                     '우주본당' => '/space',
                     '축구당' => '/soccer',
                     '캠핑간당' => '/camping',
