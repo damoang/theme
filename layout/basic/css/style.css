@@ -655,7 +655,7 @@ a.da-link-block:before {
     overflow: hidden;
     white-space: nowrap;
   }
-  .badge {
+  .badge.text-body-tertiary {
     position: relative;
     top: 3px;
   }
