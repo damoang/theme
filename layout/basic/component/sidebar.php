@@ -31,7 +31,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
             <div class="nav-item">
                 <a class="nav-link" href="/nerv" data-placement="left">
                     <i class="bi-youtube nav-icon"></i>
-                    <span class="nav-link-title">Nerv Group</span>
+                    <span class="nav-link-title">Document</span>
                 </a>
             </div>
 
