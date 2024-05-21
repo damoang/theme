@@ -107,6 +107,10 @@ add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
 					<div class="flex-grow-1">
 						<div class="d-flex flex-column flex-md-row align-items-md-center gap-2">
 							<div class="flex-fill">
+								<?php
+								// 회원만 보기
+								echo $row['da_member_only'] ?? '';
+								?>
 								<a href="<?php echo $row['href'] ?>">
 									<?php if($row['icon_reply']) { ?>
 										<i class="bi bi-arrow-return-right"></i>

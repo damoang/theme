@@ -86,11 +86,11 @@ $ratio = na_img_ratio($thumb_w, $thumb_h, 75);
 						</div>
 					<?php } ?>
 					<div class="flex-grow-1">
+						<?php
+						// 회원만 보기
+						echo $row['da_member_only'] ?? '';
+						?>
 						<a href="<?php echo $row['href'] ?>">
-							<?php
-							// 회원만 보기
-							echo $row['da_member_only'] ?? '';
-							?>
 							<?php if($row['icon_reply']) { ?>
 								<i class="bi bi-arrow-return-right"></i>
 								<span class="visually-hidden">답변</span>
