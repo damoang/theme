@@ -20,7 +20,7 @@ foreach ($list as &$item) {
 	}
 
 	$item['da_is_member_only'] = true;
-	$item['da_member_only'] = '<em class="border rounded p-1" style="font-size: 0.75em; font-style: normal;">회원만</em>';
+	$item['da_member_only'] = '<em class="border rounded p-1 me-1" style="font-size: 0.75em; font-style: normal;">회원만</em>';
 }
 
 // 분류 스킨
