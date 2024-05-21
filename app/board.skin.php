@@ -1,5 +1,9 @@
 <?php
 if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
+
+// 설정 기본 값
+$boset['check_only_permit'] = $boset['check_only_permit'] ?? '0';
+$boset['member_only_permit'] = $boset['member_only_permit'] ?? 'admin_only';
 ?>
 <style>
 	html, body {
@@ -167,6 +171,7 @@ if(is_file($board_skin_path.'/setup.skin.php'))
 					</div>
 				</div>
 
+				<!-- 글쓰기 사용자 제한 -->
                 <div class="form-check form-switch">
                     <?php $boset['check_write_permit'] = isset($boset['check_write_permit']) ? $boset['check_write_permit'] : ''; ?>
                     <input type="checkbox" name="boset[check_write_permit]" id="idCheck<?php echo $idn ?>" value="1"<?php echo get_checked('1', $boset['check_write_permit'])?> class="form-check-input" role="switch">
@@ -175,6 +180,16 @@ if(is_file($board_skin_path.'/setup.skin.php'))
                         허용된 회원만 글쓰기 가능
                     </div>
                 </div>
+
+				<!-- 회원만 보기 -->
+				<div class="form-check form-switch">
+					<?php $boset['check_member_only'] = isset($boset['check_member_only']) ? $boset['check_member_only'] : ''; ?>
+					<input type="checkbox" name="boset[check_member_only]" id="idCheck<?php echo $idn ?>" value="1"<?php echo get_checked('1', $boset['check_member_only'])?> class="form-check-input" role="switch">
+					<label class="form-check-label" for="idCheck<?php echo $idn; $idn++; ?>">회원만 보기</label>
+					<div class="form-text">
+						글을 회원만 볼 수 있도록 제한하는 옵션 제공
+					</div>
+				</div>
 			</div>
 		</div>
 	</li>
@@ -205,6 +220,27 @@ if(is_file($board_skin_path.'/setup.skin.php'))
             </div>
         </div>
     </li>
+
+
+	<li class="list-group-item bg-body-tertiary member_only">
+		<b>회원만 보기 추가 설정</b>
+	</li>
+	<li class="list-group-item member_only">
+		<div class="row gx-2">
+			<label class="col-md-2 col-form-label" for="idCheck<?php echo $idn; ?>">허용 대상</label>
+			<div class="col-md-10">
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" name="boset[member_only_permit]" id="inlineRadio1" value="admin_only" <?php echo get_checked('admin_only', $boset['member_only_permit'])?>>
+					<label class="form-check-label" for="inlineRadio1">관리자만 허용</label>
+				</div>
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" name="boset[member_only_permit]" id="inlineRadio2" value="all" <?php echo get_checked('all', $boset['member_only_permit'])?>>
+					<label class="form-check-label" for="inlineRadio2">회원에게 허용</label>
+				</div>
+			</div>
+		</div>
+	</li>
+
 	<li class="list-group-item bg-body-tertiary ">
 		<b>댓글 설정</b>
 	</li>
@@ -342,12 +378,7 @@ if(is_file($board_skin_path.'/setup.skin.php'))
 
 <script>
 $(document).ready(function() {
-    if($("input[name='boset[check_write_permit]'").is(":checked")) {
-        $("li.write_permit").slideDown();
-    } else {
-        $("li.write_permit").slideUp();
-    }
-
+	// 글쓰기 사용자 제한 설정
     $("input[name='boset[check_write_permit]'").change(function() {
         if($(this).is(":checked")) {
             $("li.write_permit").slideDown();
@@ -355,6 +386,17 @@ $(document).ready(function() {
             $("li.write_permit").slideUp();
         }
     });
+	$("input[name='boset[check_write_permit]'").triggerHandler('change');
+
+	// 회원만 보기 설정
+    $("input[name='boset[check_member_only]'").change(function() {
+        if($(this).is(":checked")) {
+            $("li.member_only").slideDown();
+        } else {
+            $("li.member_only").slideUp();
+        }
+    });
+	$("input[name='boset[check_member_only]'").triggerHandler('change');
 });
 function fsetup_submit(f) {
 
