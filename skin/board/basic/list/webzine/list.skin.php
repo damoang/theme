@@ -145,6 +145,10 @@ $ratio = na_img_ratio($thumb_w, $thumb_h, 75);
 			// 이미지(wr_10)
 			$img = na_check_img($row['wr_10']);
 			$img = $img ? na_thumb($img, $thumb_w, $thumb_h) : G5_THEME_URL.'/img/no_image.gif';
+			// 회원만 보기 설정된 글에서 썸네일 감춤
+			if ($list[$i]['da_is_member_only']) {
+				$img = G5_THEME_URL . '/img/no_image.gif';
+			}
 
 			//아이콘 체크
 			$wr_icon = '';
