@@ -35,6 +35,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 		<?php } ?>
 	</div>
 
+	<?php if ($member['mb_level'] >= 2) { ?>
 	<div class="order-3 pe-1">
 		<a href="#boardSearch" data-bs-toggle="collapse" data-bs-target="#boardSearch" aria-expanded="false" aria-controls="boardSearch" class="text-body-tertiary">
 			<span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="검색">
@@ -43,6 +44,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 			</span>
 		</a>
 	</div>
+	<?php } ?>
 	
 	<?php if ($is_admin) {  ?>
 	<div class="order-4 pe-1">

@@ -151,7 +151,7 @@ return [
     ],
     [
         'title' => 'Miscellaneous',
-        'items' => [
+        'items' => 	($member['mb_level'] >= 2) ? [
             'FAQ' => [
                 'url' => G5_BBS_URL . '/faq.php',
                 'page_id' => G5_BBS_DIR . '-page-faq',
@@ -171,6 +171,17 @@ return [
                 'url' => G5_BBS_URL . '/search.php',
                 'page_id' => G5_BBS_DIR . '-page-search',
                 'icon' => 'bi-search',
+            ],
+        ] :  [
+            'FAQ' => [
+                'url' => G5_BBS_URL . '/faq.php',
+                'page_id' => G5_BBS_DIR . '-page-faq',
+                'icon' => 'bi-question-circle',
+            ],
+            '새글모음' => [
+                'url' => G5_BBS_URL . '/new.php',
+                'page_id' => G5_BBS_DIR . '-page-new',
+                'icon' => 'bi-pencil',
             ],
         ],
     ],
