@@ -16,6 +16,23 @@ na_membership('write', '멤버십 회원만 등록할 수 있습니다.');
 //하루 글쓰기 개수 제한 체크
 na_board_write_permit_check($bo_table, $member['mb_id']);
 
+// 회원만 보기 설정
+$boset['check_member_only'] = $boset['check_member_only'] ?? '0';
+$boset['member_only_permit'] = $boset['member_only_permit'] ?? 'admin_only';
+$member_only_permit = false;
+if ($boset['check_member_only'] === '1') {
+	if ($boset['member_only_permit'] === 'all') {
+		// 전체 허용
+		$member_only_permit = true;
+	} else if ($boset['member_only_permit'] === 'admin_only' && $is_admin) {
+		// 관리자만 허용
+		$member_only_permit = true;
+	}
+}
+// 최고관리자는 항상 허용
+if ($is_admin === 'super') {
+	$member_only_permit = true;
+}
 ?>
 
 <section id="bo_w">
@@ -169,6 +186,21 @@ na_board_write_permit_check($bo_table, $member['mb_id']);
 			</div>
 		</div>
 	</li>
+
+	<?php
+	if ($member_only_permit || $write['wr_1'] == '1') {
+		// 설정 권한이 있거나 이미 설정된 글이라면 해제, 유지를 선택하도록 옵션 노출
+	?>
+		<li class="list-group-item">
+			<div class="row">
+			<label for="wr_1" class="col-sm-2 col-form-label">회원만 보기</label>
+			<div class="col-sm-10">
+				<input class="form-check-input" type="checkbox" name="wr_1" value="1" id="wr_1" <?php if ($write['wr_1'] == '1') echo 'checked'; ?>>
+				<label class="form-check-label" for="wr_1">로그인 한 회원만 볼 수 있습니다.</label>
+			</div>
+			</div>
+		</li>
+	<?php } ?>
 
 	<li class="list-group-item">
 		<label class="visually-hidden">내용<strong> 필수</strong></label>
