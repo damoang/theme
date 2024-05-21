@@ -626,36 +626,6 @@ $(function(){
 		
 		$('[data-bs-toggle="tooltip"]').tooltip('disable');
 
-	} else if (0) {
-		let debounceTimeout;
-		function debounce(func, delay) {
-			clearTimeout(debounceTimeout);
-			debounceTimeout = setTimeout(func, delay);
-		}
-
-		$('[data-bs-toggle="popover-img"]:not([data-popover-initialized])').hover(function () {
-
-			var $element = $(this);
-			if ($element.data('bs-popover-disabled')) {
-				return;
-			}
-			debounce(function() {
-				$element.attr('data-popover-initialized', true);
-				$element.popover({
-					html: true,
-					trigger: 'hover',
-					placement: 'left',
-					content: function () {
-						return '<div class="rounded overflow-hidden" style="max-height:200px;">' +
-							'<img src="' + $element.data('img') + '" class="w-100"/></div>';
-					}
-				}).popover('show');
-			}, 500); //썸네일 뜨는 시간 ms
-		});
-
-		$(document).on("mouseleave", '[data-bs-toggle="popover-img"]', function () {
-			clearTimeout(debounceTimeout);
-		});
 	}
 
 	window.addEventListener("resize", naClipHeight);

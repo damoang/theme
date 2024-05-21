@@ -59,9 +59,6 @@ for ($i=0; $i < $list_cnt; $i++) {
 		$wr_icon .= '<span class="na-icon na-image"></span>'.PHP_EOL;
 	}
 
-	// 이미지 미리보기
-	$img_popover = (!G5_IS_MOBILE && $img) ? ' data-bs-toggle="popover-img" data-img="'.na_thumb($img, 400, 225).'"' : '';
-
 	// 보드명, 분류명
 	if($is_bo_name) {
 		$ca_name = '';
@@ -79,7 +76,7 @@ for ($i=0; $i < $list_cnt; $i++) {
 	<li class="list-group-item da-link-block <?php echo ($row['is_notice']) ? $wr_notice : ''; ?>">
 		<div class="d-flex align-items-center gap-1">
 			<div class="text-truncate">
-				<a href="<?php echo $row['href'] ?>" <?php echo $img_popover ?> class="da-link-block">
+				<a href="<?php echo $row['href'] ?>" class="da-link-block">
 					<?php echo $wr_head ?>
 					<?php echo $row['subject'] ?>
 				</a>

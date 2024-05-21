@@ -89,9 +89,6 @@ add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
 				$row['subject'] = '<strong class="fw-medium">'.$row['subject'].'</strong>';
 				$row['num'] = '<span class="orangered">공지</span>';
 			}
-
-			// 이미지 미리보기
-			$img_popover = (!G5_IS_MOBILE && $img) ? ' data-bs-toggle="popover-img" data-img="'.na_thumb($img, 400, 225).'"' : '';
 		?>
 			<li class="list-group-item<?php echo $li_css; ?>">
 
@@ -110,7 +107,11 @@ add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
 					<div class="flex-grow-1 overflow-hidden">
 						<div class="d-flex flex-column flex-md-row align-items-md-center gap-2">
 							<div class="d-inline-flex flex-fill overflow-hidden">
-								<a href="<?php echo $row['href'] ?>"<?php echo $img_popover ?> class="da-link-block subject-ellipsis" title="<?php echo $row['wr_subject']; ?>">
+								<?php
+								// 회원만 보기
+								echo $row['da_member_only'] ?? '';
+								?>
+								<a href="<?php echo $row['href'] ?>" class="da-link-block subject-ellipsis" title="<?php echo $row['wr_subject']; ?>">
 									<?php if($row['icon_reply']) { ?>
 										<i class="bi bi-arrow-return-right"></i>
 										<span class="visually-hidden">답변</span>

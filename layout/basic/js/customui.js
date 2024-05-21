@@ -25,20 +25,6 @@
                     ui_custom_style += "#main-wrap .sticky-top {position: relative;}\n";
                 }
 
-                //미리보기창 끄기
-                if (ui_obj.img_preview != null && ui_obj.img_preview) {
-                    try {
-                        Array.from(document.querySelectorAll('[data-bs-toggle="popover-img"]')).forEach((item) => {item.dataset.bsPopoverDisabled = true;});
-                        /*
-                        $(function () {
-                            $('[data-bs-toggle="popover-img"]').data('bs-popover-disabled', 'true');
-                        })();
-                        */
-                    } catch(e) {
-                        //console.error(e);
-                    }
-                }
-
                 //root style 글씨체 및 크기
                 if (ui_obj.font_family != null) {
                     ui_root_style += "--bs-body-font-family:" + ui_obj.font_family + " !important;\n";
@@ -101,7 +87,6 @@
             , "expand_navigator"
             , "menu_scroll"
             , "list_search"
-            , "img_preview"
             , "hide_nick"
             , "hide_member_memo"
             , "hide_list_memo"

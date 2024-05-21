@@ -70,9 +70,6 @@ $ratio = na_img_ratio($thumb_w, $thumb_h, 75);
 				$row['subject'] = '<strong class="fw-medium">'.$row['subject'].'</strong>';
 				$row['num'] = '<span class="orangered">공지</span>';
 			}
-
-			// 이미지 미리보기
-			$img_popover = (!G5_IS_MOBILE && $img) ? ' data-bs-toggle="popover-img" data-img="'.na_thumb($img, 400, 225).'"' : '';
 		?>
 			<li class="list-group-item<?php echo $li_css; ?>">
 
@@ -89,7 +86,11 @@ $ratio = na_img_ratio($thumb_w, $thumb_h, 75);
 						</div>
 					<?php } ?>
 					<div class="flex-grow-1">
-						<a href="<?php echo $row['href'] ?>"<?php echo $img_popover ?>>
+						<?php
+						// 회원만 보기
+						echo $row['da_member_only'] ?? '';
+						?>
+						<a href="<?php echo $row['href'] ?>">
 							<?php if($row['icon_reply']) { ?>
 								<i class="bi bi-arrow-return-right"></i>
 								<span class="visually-hidden">답변</span>
@@ -146,6 +147,11 @@ $ratio = na_img_ratio($thumb_w, $thumb_h, 75);
 				$img = na_check_img($row['wr_10']);
 				$img = $img ? na_thumb($img, $thumb_w, $thumb_h) : G5_THEME_URL.'/img/no_image.gif';
 
+				// 회원만 보기 설정된 글에서 썸네일 감춤
+				if ($row['da_is_member_only'] ?? false) {
+					$img = G5_THEME_URL . '/img/no_image.gif';
+				}
+
 				//아이콘 체크
 				$wr_icon = '';
 				if (isset($row['icon_new']) && $row['icon_new'])
@@ -201,6 +207,10 @@ $ratio = na_img_ratio($thumb_w, $thumb_h, 75);
 
 						<div class="card-body d-flex align-items-start flex-column">
 							<div class="card-title small">
+								<?php
+								// 회원만 보기
+								echo $row['da_member_only'] ?? '';
+								?>
 								<a href="<?php echo $row['href'] ?>">
 									<?php echo $row['subject'] ?>
 								</a>

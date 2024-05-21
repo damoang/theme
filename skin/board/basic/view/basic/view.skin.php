@@ -1,7 +1,7 @@
 <?php
 
 if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
-// 회원만 보기가 설정되어 있고, 접속한 회원의 레벨이 2 미만인 경우
+
 // add_stylesheet('css 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
 add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css">', 0);
 
@@ -20,7 +20,11 @@ add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css">
 <article id="bo_v" class="mb-4">
     <header>
         <h1 id="bo_v_title" class="px-3 pb-2 mb-0 lh-base fs-5">
-            <?php echo $view_subject; // 글제목 출력 ?>  <?php echo ($write['wr_1']  == '1') ? '<i class="fa fa-id-badge"></i>' : ''; ?>
+            <?php
+            // 회원만 보기
+            echo $view['da_member_only'] ?? '';
+            ?>
+            <?php echo $view_subject; // 글제목 출력 ?>
         </h1>
     </header>
 
