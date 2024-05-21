@@ -10,6 +10,19 @@ na_membership('list', '멤버십 회원만 목록을 볼 수 있습니다.');
 // 다모앙 회원 메모
 $list = run_replace('da_board_list', $list);
 
+// 회원만 보기
+foreach ($list as &$item) {
+	$item['da_is_member_only'] = false;
+	$item['da_member_only'] = '';
+
+	if (empty($item['wr_1'])) {
+		continue;
+	}
+
+	$item['da_is_member_only'] = true;
+	$item['da_member_only'] = '<em class="border rounded p-1" style="font-size: 0.75em; font-style: normal;">회원만</em>';
+}
+
 // 분류 스킨
 $category_skin = isset($boset['category_skin']) && $boset['category_skin'] ? $boset['category_skin'] : 'basic';
 $category_skin_url = $board_skin_url.'/category/'.$category_skin;

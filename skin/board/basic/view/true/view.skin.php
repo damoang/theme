@@ -12,6 +12,10 @@ add_stylesheet('<link rel="stylesheet" href="'.$board_skin_url.'/style.css">', 0
 <article id="bo_v" class="mb-4">
     <header>
 		<h1 id="bo_v_title" class="px-3 pb-2 mb-0 lh-base fs-5">
+			<?php
+            // 회원만 보기
+            echo $view['da_member_only'] ?? '';
+            ?>
 			<?php echo $view_subject; // 글제목 출력 ?>
 		</h1>
     </header>

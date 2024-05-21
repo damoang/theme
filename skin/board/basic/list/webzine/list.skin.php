@@ -90,6 +90,10 @@ $ratio = na_img_ratio($thumb_w, $thumb_h, 75);
 					<?php } ?>
 					<div class="flex-grow-1">
 						<a href="<?php echo $row['href'] ?>"<?php echo $img_popover ?>>
+							<?php
+							// 회원만 보기
+							echo $row['da_member_only'] ?? '';
+							?>
 							<?php if($row['icon_reply']) { ?>
 								<i class="bi bi-arrow-return-right"></i>
 								<span class="visually-hidden">답변</span>
@@ -203,6 +207,10 @@ $ratio = na_img_ratio($thumb_w, $thumb_h, 75);
 					<div class="col-md-8 col-lg-9">
 						<div class="card-body d-flex flex-column h-100">
 							<div class="card-title">
+								<?php
+								// 회원만 보기
+								echo $row['da_member_only'] ?? '';
+								?>
 								<a href="<?php echo $row['href'] ?>" class="fw-bold">
 									<?php echo $row['subject'] ?>
 								</a>
