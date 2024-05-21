@@ -62,9 +62,6 @@ $wr_notice = (isset($wset['is_notice']) && $wset['is_notice']) ? ' bg-body-terti
 			$wr_icon .= '<span class="na-icon na-image"></span>' . PHP_EOL;
 		}
 
-		// 이미지 미리보기
-		$img_popover = (!G5_IS_MOBILE && $img) ? ' data-bs-toggle="popover-img" data-img="' . na_thumb($img, 400, 225) . '"' : '';
-
 		// 보드명, 분류명
 		if ($is_bo_name) {
 			$ca_name = '';
@@ -87,7 +84,7 @@ $wr_notice = (isset($wset['is_notice']) && $wset['is_notice']) ? ' bg-body-terti
 				<?php } ?>
 				<!-- 제목 -->
 				<div class="text-truncate">
-					<a href="<?php echo $row['href'] ?>" <?php echo $img_popover ?> class="da-link-block">
+					<a href="<?php echo $row['href'] ?>" class="da-link-block">
 						<!-- 게시글 제목 텍스트 부분 클릭시 서버요청 2번 하는 버그 수정 -->
 						<?php echo $wr_head ?>
 						<?php echo $row['subject'] ?>

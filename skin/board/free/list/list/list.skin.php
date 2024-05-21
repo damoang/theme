@@ -93,11 +93,6 @@ add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
             if ($list[$i]['wr_1'] == '1') {
                 $li_css .= ' da-member-only';
             }
-
-            // 이미지 미리보기
-            //
-            //$img_popover = (!G5_IS_MOBILE && $img) ? ' data-bs-toggle="popover-img" data-img="'.na_thumb($img, 400, 225).'"' : '';
-            $img_popover = (!G5_IS_MOBILE && $img && $list[$i]['wr_1'] != '1') ? ' data-bs-toggle="popover-img" data-img="'.na_thumb($img, 400, 225).'"' : '';
             ?>
             <li class="list-group-item da-link-block <?php echo $li_css; ?>">
                 <div class="d-flex align-items-center gap-1">
@@ -121,7 +116,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
                                 echo ($list[$i]['wr_1'] == '1') ? '<em class="border rounded p-1" style="font-size: 0.75em; font-style: normal;">회원만</em>' : '';
                                 ?>
 
-                                <a href="<?php echo $row['href'] ?>"<?php echo $img_popover ?> class="da-link-block">
+                                <a href="<?php echo $row['href'] ?>" class="da-link-block">
                                     <?php if($row['icon_reply']) { ?>
                                         <i class="bi bi-arrow-return-right"></i>
                                         <span class="visually-hidden">답변</span>

@@ -453,15 +453,6 @@ if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipi
                 </div>
             </div>
         </div>
-    </li><li class="list-group-item ui-custon-item">
-        <div class="row align-items-center">
-            <label for="reg_img_preview" class="col-sm-3 col-form-label">미리보기끔</label>
-            <div class="col-sm-9">
-                <div class="form-check form-switch form-check-inline">
-                    <input class="form-check-input ui_custom_items" type="checkbox" name="img_preview" value="1" role="switch" id="reg_img_preview" data-gtm-form-interact-field-id="0">						
-                </div>
-            </div>
-        </div>
     </li>
 
         <li class="list-group-item ui-custon-item">
