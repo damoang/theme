@@ -648,6 +648,12 @@ a.da-link-block:before {
   top: 0;
   bottom: 0;
 }
+/* 데스크탑 모드에서는 해제 */
+@media (min-width: 992px) {
+  #bo_list a.da-link-block::before {
+    display: none;
+  }
+}
 
 .list-group-item {
   .subject-ellipsis {
