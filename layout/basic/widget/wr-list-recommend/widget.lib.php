@@ -4,16 +4,16 @@ if (!defined('_GNUBOARD_'))
 
 // 기간 체크 시간 단위로
 function sql_hrterm($term, $field) {
-	$sql_term = '';
-	if($term && $field) {
-		if ($term > 0 || $term == 'hour') {
-			$term = ($term == 'hour') ? 0 : $term;
-			$chk_term = date("Y-m-d H:i:s", G5_SERVER_TIME - ((int)$term * 3600));
-			$sql_term = " and $field >= '{$chk_term}' ";
-		}
-	}
+    $sql_term = '';
+    if($term && $field) {
+        if ($term > 0 || $term == 'hour') {
+            $term = ($term == 'hour') ? 0 : $term;
+            $chk_term = date("Y-m-d H:i:s", G5_SERVER_TIME - ((int)$term * 3600));
+            $sql_term = " and $field >= '{$chk_term}' ";
+        }
+    }
 
-	return $sql_term;
+    return $sql_term;
 }
 
 // 게시물 추출

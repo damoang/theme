@@ -634,9 +634,9 @@ div a mark:hover {
   --bs-pagination-font-size: 1rem;
 }
 
-/* 
+/*
   목록의 전체 영역을 링크가 동작하도록 함
- */
+*/
 .list-group-item.da-link-block {
   position: relative;
 }
@@ -663,7 +663,7 @@ a.da-link-block:before {
     .na-icon,
     .float-end,
     .count-plus
-     {
+    {
       flex-shrink: 0;
       top: 6px;
       margin-left: 3px;
@@ -674,3 +674,4 @@ a.da-link-block:before {
     }
   }
 }
+

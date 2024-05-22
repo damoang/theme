@@ -6,20 +6,20 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 
 ?>
 <ul class="nav nav-tabs ps-3 pt-3">
-	<li class="nav-item">
-		<a class="nav-link<?php echo ($kind == "recv") ? ' active" aria-current="page' : ''; ?>" href="./memo.php?kind=recv">
-			받은쪽지
-		</a>
-	</li>
-	<li class="nav-item">
-		<a class="nav-link<?php echo ($kind == "send") ? ' active" aria-current="page' : ''; ?>" href="./memo.php?kind=send">
-			보낸쪽지
-		</a>
-	</li>
-	<li class="nav-item">
-		<a class="nav-link<?php echo ($kind == "") ? ' active" aria-current="page' : ''; ?>" href="./memo_form.php">
-			쪽지쓰기
-		</a>
-	</li>
+    <li class="nav-item">
+        <a class="nav-link<?php echo ($kind == "recv") ? ' active" aria-current="page' : ''; ?>" href="./memo.php?kind=recv">
+            받은쪽지
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link<?php echo ($kind == "send") ? ' active" aria-current="page' : ''; ?>" href="./memo.php?kind=send">
+            보낸쪽지
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link<?php echo ($kind == "") ? ' active" aria-current="page' : ''; ?>" href="./memo_form.php">
+            쪽지쓰기
+        </a>
+    </li>
 </ul>
 <div class="position-relative line-top" style="margin-top:-1px;"></div>

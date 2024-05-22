@@ -9,13 +9,13 @@ add_stylesheet('<link rel="stylesheet" href="'.$content_skin_url.'/style.css">',
     <header class="visually-hidden">
         <h1><?php echo $g5['title']; ?></h1>
     </header>
-	<div id="ctt_con">
-	<?php 
-		if(is_file(G5_THEME_PATH.'/page/'.$co_id.'.php')) {
-			include_once(G5_THEME_PATH.'/page/'.$co_id.'.php');
-		} else {
-			echo $str;
-		}
-	?>
+    <div id="ctt_con">
+    <?php
+        if(is_file(G5_THEME_PATH.'/page/'.$co_id.'.php')) {
+            include_once(G5_THEME_PATH.'/page/'.$co_id.'.php');
+        } else {
+            echo $str;
+        }
+    ?>
     </div>
 </article>

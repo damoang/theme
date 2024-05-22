@@ -5,32 +5,32 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 0);
 
 if($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipin'] || $config['cf_cert_hp'])) { ?>
-    <script src="<?php echo G5_JS_URL ?>/certify.js?v=<?php echo G5_JS_VER; ?>"></script>    
+    <script src="<?php echo G5_JS_URL ?>/certify.js?v=<?php echo G5_JS_VER; ?>"></script>
 <?php } ?>
 
 <div id="find_info" class="max-600 px-3 py-md-5 mx-auto mb-5<?php if($config['cf_cert_use'] != 0 && $config['cf_cert_find'] != 0) { ?> cert<?php } ?>">
-	<form name="fpasswordlost" action="<?php echo $action_url ?>" onsubmit="return fpasswordlost_submit(this);" method="post" autocomplete="off">
-		<div class="mb-3">
-			회원가입 시 등록하신 이메일 주소를 입력해 주세요.
-			<br>
-			해당 이메일로 아이디와 비밀번호 정보를 보내드립니다.
-		</div>
-		<label class="visually-hidden" for="mb_email">이메일<strong> 필수</strong></label>
-		<div class="input-group mb-3">
-			<span class="input-group-text" id="mb_email">@</span>
-			<input type="text" name="mb_email" id="mb_email" required class="form-control required email" maxlength="100">
-			<button type="submit" id="btn_sumbit" class="btn btn-primary">인증메일 보내기</button>
-		</div>		
+    <form name="fpasswordlost" action="<?php echo $action_url ?>" onsubmit="return fpasswordlost_submit(this);" method="post" autocomplete="off">
+        <div class="mb-3">
+            회원가입 시 등록하신 이메일 주소를 입력해 주세요.
+            <br>
+            해당 이메일로 아이디와 비밀번호 정보를 보내드립니다.
+        </div>
+        <label class="visually-hidden" for="mb_email">이메일<strong> 필수</strong></label>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="mb_email">@</span>
+            <input type="text" name="mb_email" id="mb_email" required class="form-control required email" maxlength="100">
+            <button type="submit" id="btn_sumbit" class="btn btn-primary">인증메일 보내기</button>
+        </div>
 
-		<div class="text-center small">
-				<?php echo captcha_html(); ?>
-		</div>
-	</form>
+        <div class="text-center small">
+                <?php echo captcha_html(); ?>
+        </div>
+    </form>
 
-    <?php if($config['cf_cert_use'] != 0 && $config['cf_cert_find'] != 0) { ?> 
+    <?php if($config['cf_cert_use'] != 0 && $config['cf_cert_find'] != 0) { ?>
     <div class="text-center border-top my-3">
         <h3 class="fs-5 my-4">본인인증으로 찾기</h3>
-		<div>
+        <div>
         <?php if(!empty($config['cf_cert_simple'])) { ?>
             <button type="button" id="win_sa_kakao_cert" class="btn btn-primary win_sa_cert" data-type="">간편인증</button>
         <?php } if(!empty($config['cf_cert_hp']) || !empty($config['cf_cert_ipin'])) { ?>
@@ -45,25 +45,25 @@ if($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipin
     <?php } ?>
 </div>
 
-<script>    
+<script>
 $(function() {
     $("#reg_zip_find").css("display", "inline-block");
     var pageTypeParam = "pageType=find";
 
-	<?php if($config['cf_cert_use'] && $config['cf_cert_simple']) { ?>
-	// TOSS 간편인증
-	var url = "<?php echo G5_INICERT_URL; ?>/ini_request.php";
-	var type = "";    
+    <?php if($config['cf_cert_use'] && $config['cf_cert_simple']) { ?>
+    // TOSS 간편인증
+    var url = "<?php echo G5_INICERT_URL; ?>/ini_request.php";
+    var type = "";
     var params = "";
     var request_url = "";
-    
-	
-	$(".win_sa_cert").click(function() {
-		type = $(this).data("type");
-		params = "?directAgency=" + type + "&" + pageTypeParam;
+
+
+    $(".win_sa_cert").click(function() {
+        type = $(this).data("type");
+        params = "?directAgency=" + type + "&" + pageTypeParam;
         request_url = url + params;
         call_sa(request_url);
-	});
+    });
     <?php } ?>
     <?php if($config['cf_cert_use'] && $config['cf_cert_ipin']) { ?>
     // 아이핀인증
@@ -81,9 +81,9 @@ $(function() {
     var params = "";
     $("#win_hp_cert").click(function() {
         params = "?" + pageTypeParam;
-        <?php     
+        <?php
         switch($config['cf_cert_hp']) {
-            case 'kcb':                
+            case 'kcb':
                 $cert_url = G5_OKNAME_URL.'/hpcert1.php';
                 $cert_type = 'kcb-hp';
                 break;
@@ -97,16 +97,16 @@ $(function() {
                 break;
             default:
                 $cert_url = '';
-				$cert_type = '';
+                $cert_type = '';
                 break;
         }
-		if(!$cert_url) {
-		?>
+        if(!$cert_url) {
+        ?>
 
-		na_alert('기본환경설정에서 휴대폰 본인확인 설정을 해주십시오.');
-		return false;	
+        na_alert('기본환경설정에서 휴대폰 본인확인 설정을 해주십시오.');
+        return false;
 
-		<?php } ?>
+        <?php } ?>
         certify_win_open("<?php echo $cert_type; ?>", "<?php echo $cert_url; ?>"+params);
         return;
     });
@@ -115,7 +115,7 @@ $(function() {
 
 function fpasswordlost_submit(f) {
 
-	<?php echo chk_captcha_js();  ?>
+    <?php echo chk_captcha_js();  ?>
 
     return true;
 }

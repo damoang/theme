@@ -248,7 +248,7 @@ box-shadow:0 1px 10px rgba(0,0,0,.1)}
 
 /* 페이징 */
 .pg_wrap {margin:10px 0 30px;text-align:center}
-.pg_wrap:after {display:block;visibility:hidden;clear:both;content:""} 
+.pg_wrap:after {display:block;visibility:hidden;clear:both;content:""}
 .pg {text-align:center}
 .pg_page, .pg_current,.qa_page {display:inline-block;vertical-align:middle;background:#eee;border:1px solid #eee}
 .pg a:focus, .pg a:hover {text-decoration:none}

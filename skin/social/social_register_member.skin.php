@@ -14,12 +14,12 @@ add_javascript('<script src="'.G5_JS_URL.'/jquery.register_form.js"></script>', 
 if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipin'] || $config['cf_cert_hp']))
     add_javascript('<script src="'.G5_JS_URL.'/certify.js?v='.G5_JS_VER.'"></script>', 15);
 
-$email_msg = $is_exists_email ? '등록할 이메일이 중복되었습니다.다른 이메일을 입력해 주세요.' : ''; 
+$email_msg = $is_exists_email ? '등록할 이메일이 중복되었습니다.다른 이메일을 입력해 주세요.' : '';
 ?>
 
 <!-- 회원가입약관 동의 시작 { -->
 <div id="social_register" class="social_register">
-    
+
     <form name="fregisterform" id="fregisterform" action="<?php echo $register_action_url; ?>" onsubmit="return fregisterform_submit(this);" method="POST" autocomplete="off">
 
         <p><i class="fa fa-check-circle" aria-hidden="true"></i> 회원가입약관 및 개인정보 수집 및 이용의 내용에 동의하셔야 회원가입 하실 수 있습니다.</p>
@@ -95,7 +95,7 @@ $email_msg = $is_exists_email ? '등록할 이메일이 중복되었습니다.�
                 <h2>개인정보 입력</h2>
                 <ul>
                     <li>
-                        <?php 
+                        <?php
                         if ($config['cf_cert_use']) {
                             if ($config['cf_cert_simple']) {
                                 echo '<button type="button" id="win_sa_kakao_cert" class="btn_frmline win_sa_cert" data-type="">간편인증</button>'.PHP_EOL;
@@ -217,7 +217,7 @@ $email_msg = $is_exists_email ? '등록할 이메일이 중복되었습니다.�
             var type = "";
             var params = "";
             var request_url = "";
-            
+
             $(".win_sa_cert").click(function() {
                 if (!cert_confirm()) return false;
                 type = $(this).data("type");
@@ -283,15 +283,15 @@ $email_msg = $is_exists_email ? '등록할 이메일이 중복되었습니다.�
 
         if (!f.agree.checked) {
             na_alert('회원가입약관의 내용에 동의하셔야 회원가입 하실 수 있습니다.', function() {
-	            f.agree.focus();				
-			});
+                f.agree.focus();
+            });
             return false;
         }
 
         if (!f.agree2.checked) {
             na_alert('개인정보 수집 및 이용의 내용에 동의하셔야 회원가입 하실 수 있습니다.', function(){
-	            f.agree2.focus();				
-			});
+                f.agree2.focus();
+            });
             return false;
         }
 
@@ -308,8 +308,8 @@ $email_msg = $is_exists_email ? '등록할 이메일이 중복되었습니다.�
             var msg = reg_mb_nick_check();
             if (msg) {
                 na_alert(msg, function(){
-	                f.reg_mb_nick.select();					
-				});
+                    f.reg_mb_nick.select();
+                });
                 return false;
             }
         }
@@ -319,8 +319,8 @@ $email_msg = $is_exists_email ? '등록할 이메일이 중복되었습니다.�
             var msg = reg_mb_email_check();
             if (msg) {
                 alert(msg, function(){
-	                f.reg_mb_email.select();
-				});
+                    f.reg_mb_email.select();
+                });
                 return false;
             }
         }
