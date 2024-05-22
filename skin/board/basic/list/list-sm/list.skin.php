@@ -104,9 +104,9 @@ add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
 							</label>
 						</div>
 					<?php } ?>
-					<div class="flex-grow-1 small overflow-hidden">
+					<div class="flex-grow-1 small overflow-x-clip" style="overflow-x:clip">
 						<div class="d-flex flex-column flex-md-row align-items-md-center gap-2">
-							<div class="d-inline-flex flex-fill overflow-hidden">
+							<div class="d-inline-flex flex-fill overflow-x-clip" style="overflow-x:clip">
 								<?php
 								// 회원만 보기
 								echo $row['da_member_only'] ?? '';

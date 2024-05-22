@@ -113,9 +113,9 @@ add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
                         </div>
 
                     <?php } ?>
-                    <div class="flex-grow-1 overflow-hidden">
+                    <div class="flex-grow-1 overflow-x-clip" style="overflow-x:clip">
                         <div class="d-flex flex-column flex-md-row align-items-md-center gap-2">
-                            <div class="d-inline-flex flex-fill overflow-hidden">
+                            <div class="d-inline-flex flex-fill overflow-x-clip" style="overflow-x:clip">
                                 <?php
                                 // 회원만 보기
                                 echo ($list[$i]['wr_1'] == '1') ? '<em class="border rounded p-1" style="font-size: 0.75em; font-style: normal; flex-shrink:0; margin-right: 3px;">회원만</em>' : '';
