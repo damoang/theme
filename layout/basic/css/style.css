@@ -674,3 +674,7 @@ a.da-link-block:before {
     }
   }
 }
+
+.overflow-x-clip {
+  overflow-x: clip;
+}
