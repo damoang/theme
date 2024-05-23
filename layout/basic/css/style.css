@@ -649,32 +649,34 @@ a.da-link-block:before {
   bottom: 0;
 }
 
-.list-group-item {
-  .subject-ellipsis {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-  .badge.text-body-tertiary {
-    position: relative;
-    top: 3px;
-  }
-  .d-inline-flex {
-    .na-icon,
-    .float-end,
-    .count-plus
-    {
-      flex-shrink: 0;
-      top: 6px;
-      margin-left: 3px;
-    }
-    .float-end,
-    .count-plus {
-      margin-right: 3px;
-    }
-  }
+.list-group-item .subject-ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.list-group-item .badge.text-body-tertiary {
+  position: relative;
+  top: 3px;
 }
 
-.overflow-x-clip {
-  overflow-x: clip;
+.list-group-item .d-inline-flex .na-icon,
+.list-group-item .d-inline-flex .float-end,
+.list-group-item .d-inline-flex .count-plus {
+  flex-shrink: 0;
+  top: 8px;
+  margin-left: 3px;
+}
+.list-group-item .d-inline-flex .float-end,
+.list-group-item .d-inline-flex .count-plus {
+  margin-right: 3px;
+}
+.list-group-item .wr-name .sv_wrap {
+  position: inherit;
+}
+.list-group-item .wr-name .sv_wrap a.sv_member {
+  position: relative;
+}
+.list-group-item .wr-name .sv_wrap .sv.sv_on{
+  left: unset;
+  top: unset;
 }

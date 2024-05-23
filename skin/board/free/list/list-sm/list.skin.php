@@ -107,9 +107,9 @@ add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
 							</label>
 						</div>
 					<?php } ?>
-					<div class="flex-grow-1 small overflow-x-clip" style="overflow-x:clip">
+					<div class="flex-grow-1 small overflow-hidden">
 						<div class="d-flex flex-column flex-md-row align-items-md-center gap-2">
-							<div class="d-inline-flex flex-fill overflow-x-clip" style="overflow-x:clip">
+							<div class="d-inline-flex flex-fill overflow-hidden">
 								<a href="<?php echo $row['href'] ?>"<?php echo $img_popover ?> class="da-link-block subject-ellipsis" title="<?php echo $row['wr_subject']; ?>">
 									<?php if($row['icon_reply']) { ?>
 										<i class="bi bi-arrow-return-right"></i>
