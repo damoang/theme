@@ -522,26 +522,28 @@
     }
 
     function check_content_blur(word_list) {
-        word_list = (word_list ?? "").trim()
-        var check_regex = /^[ㄱ-ㅎ가-힣a-zA-Z0-9\[\]\(\)]+$/;
-        var word_regex = "";
-        if (word_list != "") {
-            var word_arr = word_list.split(",");
-            word_arr.forEach(function (word) {
-                word = word.trim();
-                if (word != "" && check_regex.test(word)) {
-                    if (word_regex != "") {
-                        word_regex += "|";
+        if (document.getElementById(body_con_id) != null) {
+            word_list = (word_list ?? "").trim()
+            var check_regex = /^[ㄱ-ㅎ가-힣a-zA-Z0-9\[\]\(\)]+$/;
+            var word_regex = "";
+            if (word_list != "") {
+                var word_arr = word_list.split(",");
+                word_arr.forEach(function (word) {
+                    word = word.trim();
+                    if (word != "" && check_regex.test(word)) {
+                        if (word_regex != "") {
+                            word_regex += "|";
+                        }
+                        word_regex += word;
                     }
-                    word_regex += word;
-                }
-            });
-
-            if (word_regex != "") {
-                var re = new RegExp(word_regex, "i");
-                var title_text = document.getElementById("bo_v_title")?.innerText ?? "";
-                if (re.test(title_text)) {
-                    set_content_blur();
+                });
+    
+                if (word_regex != "") {
+                    var re = new RegExp(word_regex, "i");
+                    var title_text = document.getElementById("bo_v_title")?.innerText ?? "";
+                    if (re.test(title_text)) {
+                        set_content_blur();
+                    }
                 }
             }
         }
