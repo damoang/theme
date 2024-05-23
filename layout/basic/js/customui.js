@@ -64,7 +64,7 @@
 
       }
 
-      hide_nick(ui_obj);
+      //hide_nick(ui_obj);
 
     }
   }
@@ -94,6 +94,8 @@
       , "mymenu_img"
       , "title_filtering"
       , "filtering_word"
+      , "content_blur"
+      , "content_blur_word"
       , "shortcut_use"
       , "shortcut_1"
       , "shortcut_2"
@@ -163,8 +165,9 @@
 
   function get_ui_custom_values() {
     var ui_custom_storage_str = localStorage.getItem("ui_custom");
+    var ui_custom_obj = null;
     if (ui_custom_storage_str != null && ui_custom_storage_str != "") {
-      var ui_custom_obj = JSON.parse(ui_custom_storage_str);
+      ui_custom_obj = JSON.parse(ui_custom_storage_str);
       var ui_custom_keys = Object.keys(ui_custom_obj);
       ui_custom_keys.forEach(function (reg) {
         var temp_input = document.getElementById("reg_" + reg);
@@ -182,10 +185,11 @@
       });
 
       if (document.getElementById('ui_custom_json') != null) document.getElementById('ui_custom_json').value = ui_custom_storage_str;
-
-      set_ui_custom_trigger();
-      return ui_custom_obj;
     }
+
+    set_ui_custom_trigger();
+    return ui_custom_obj;
+
   }
 
   function hide_nick(ui_obj) {
@@ -232,6 +236,11 @@
       if (ui_obj.title_filtering ?? false) {
         set_title_filtering(ui_obj?.filtering_word);
       }
+
+      //본문 필터링
+      if (ui_obj.content_blur ?? false) {
+        check_content_blur(ui_obj?.content_blur_word);
+      }
     }
   }
 
@@ -271,26 +280,26 @@
     var filter_text = "보이기";
     switch (memo_state) {
       case "blur1":
-      filter_style = "blur(0.1em)"
-      filter_text = "블러1";
-      break;
+        filter_style = "blur(0.1em)"
+        filter_text = "블러1";
+        break;
       case "blur2":
-      filter_style = "blur(0.2em)"
-      filter_text = "블러2";
-      break;
+        filter_style = "blur(0.2em)"
+        filter_text = "블러2";
+        break;
       case "blur5":
-      filter_style = "blur(0.5em)"
-      filter_text = "블러5";
-      break;
+        filter_style = "blur(0.5em)"
+        filter_text = "블러5";
+        break;
       case "blur100":
-      filter_style = "blur(10em)"
-      filter_text = "블러100";
-      break;
+        filter_style = "blur(10em)"
+        filter_text = "블러100";
+        break;
       default:
-      if (memo_state == "") {
-        filter_text = "감추기";
-      }
-      break;
+        if (memo_state == "") {
+          filter_text = "감추기";
+        }
+        break;
     }
 
     for (var i = 0; i < memo_list.length; i++) {
@@ -302,7 +311,7 @@
         }
         var temp_em = memo_list[i].querySelectorAll('em.da-member-memo__memo');
         if (temp_em != null) {
-          temp_em.forEach((e) => {e.style.filter = filter_style});
+          temp_em.forEach((e) => { e.style.filter = filter_style });
           //temp_em.addEventListener('click',toggle_hide_member_memo)
           //temp_em.style.filter = filter_style;
         }
@@ -314,7 +323,7 @@
     }
   }
 
-  function set_hide_list_memo(memo_type){
+  function set_hide_list_memo(memo_type) {
     var memo_class = "da-member-memo__memo"
     if (memo_type != "all") {
       memo_class = "da-memo-color--" + memo_type;
@@ -333,22 +342,22 @@
     var change_state = null;
     switch (memo_state) {
       case "show":
-      change_state = "blur1"
-      break;
+        change_state = "blur1"
+        break;
       case "blur1":
-      //     change_state = "blur2"
-      //     break;
-      // case "blur2":
-      change_state = "blur5"
-      break;
+        //     change_state = "blur2"
+        //     break;
+        // case "blur2":
+        change_state = "blur5"
+        break;
       case "blur5":
-      change_state = "blur100"
-      break;
+        change_state = "blur100"
+        break;
       case "blur100":
-      break;
+        break;
       default:
-      change_state = "show"
-      break;
+        change_state = "show"
+        break;
     }
     if (change_state == null) {
       localStorage.removeItem(memo_state_key)
@@ -484,6 +493,85 @@
 
   }
 
+  var body_parent_id = "bo_v_atc";
+  var body_con_id = "bo_v_con";
+  var body_blur_id = "bo_v_con_blur";
+
+  function remove_blur(e) {
+    e.preventDefault();
+    var body_con = document.getElementById(body_con_id)
+    if (body_con.style.filter != "") {
+      var blur_txt = document.getElementById(body_blur_id);
+      if (blur_txt != null) {
+        blur_txt.remove();
+      }
+      document.getElementById(body_parent_id).style.removeProperty("position");
+      body_con.style.filter = "";
+      body_con.removeEventListener("click", remove_blur);
+    }
+  }
+  function set_blur_padding() {
+    var body_con = document.getElementById(body_con_id);
+    var blur_txt = document.getElementById(body_blur_id);
+    var paddingTB = ((body_con.offsetHeight - blur_txt.offsetHeight - 30));
+    console.debug(body_con.offsetHeight);
+    console.debug(blur_txt.offsetHeight);
+    blur_txt.style.top = body_con.offsetTop + "px";
+    blur_txt.style.paddingTop = "30px";
+    blur_txt.style.paddingBottom = paddingTB + "px";
+  }
+
+  function check_content_blur(word_list) {
+    if (document.getElementById(body_con_id) != null) {
+      word_list = (word_list ?? "").trim()
+      var check_regex = /^[ㄱ-ㅎ가-힣a-zA-Z0-9\[\]\(\)]+$/;
+      var word_regex = "";
+      if (word_list != "") {
+        var word_arr = word_list.split(",");
+        word_arr.forEach(function (word) {
+          word = word.trim();
+          if (word != "" && check_regex.test(word)) {
+            if (word_regex != "") {
+              word_regex += "|";
+            }
+            word_regex += word;
+          }
+        });
+
+        if (word_regex != "") {
+          var re = new RegExp(word_regex, "i");
+          var title_text = document.getElementById("bo_v_title")?.innerText ?? "";
+          if (re.test(title_text)) {
+            set_content_blur();
+          }
+        }
+      }
+    }
+  }
+
+  function set_content_blur() {
+    var body_con = document.getElementById(body_con_id);
+    body_con.style.filter = "blur(10em)";
+    body_con.addEventListener("click", remove_blur);
+    document.getElementById(body_parent_id).style.position = "relative";
+    var blur_txt = document.createElement("div");
+    blur_txt.id = body_blur_id;
+    blur_txt.style.textAlign = "center";
+    blur_txt.style.position = "absolute";
+    blur_txt.style.width = body_con.offsetWidth + "px";
+    blur_txt.style.fontSize = "2em";
+    blur_txt.style.fontWeight = "800";
+    blur_txt.style.cursor = "pointer";
+    //blur_txt.style.height = body_con.offsetHeight + "px";
+    blur_txt.addEventListener("click", remove_blur);
+    body_con.after(blur_txt);
+    var blur_img = document.createElement("img");
+    blur_img.src = "https://damoang.net//data/editor/b7767-664966b303898-9eea4d0b7513e8395986b5aa7c42d1854c10bc21.png";
+    blur_img.style.maxWidth = "150px";
+    blur_img.onload = set_blur_padding;
+    blur_txt.append(blur_img);
+  }
+
   function set_expand_quick(ui_obj) {
     var toTop = document.getElementById('toTop');
     if (toTop != null) {
@@ -510,1060 +598,1068 @@
           var tag_a_href = null;
           switch (ex_hrefs[i]) {
             case "menu":
-            tag_a = document.createElement("a");
-            tag_a.addEventListener("click", function (e) {
-              e.preventDefault();
-              var menu_div_list = document.querySelectorAll("header#header-navbar .container .d-flex > div");
-              var menuOffcanvas_tag = null;
-              if (menu_div_list.length > 0) {
-                for (var i = 0; i < menu_div_list.length; i++) {
-                  var temp_target = menu_div_list[i].querySelector("a")?.dataset?.bsTarget;
-                  if (temp_target != null && temp_target == '#menuOffcanvas') {
-                    menuOffcanvas_tag = menu_div_list[i].querySelector("a");
-                    break;
-                  }
-                }
-
-                if (menuOffcanvas_tag != null) {
-                  menuOffcanvas_tag.click();
-                }
-              }
-            });
-            break;
-            case "go_write":
-            if ((ui_obj.expand_write ?? false) && (board_obj != null && board_obj.id != null && board_obj.board != null)) {
-              tag_a = document.createElement("a");
-              tag_a_href = "/" + board_obj.board + "/write";
-            }
-            break;
-            break;
-            case "go_reply":
-            if ((ui_obj.expand_write ?? false) && (board_obj != null && board_obj.id != null && board_obj.board != null)) {
-              var reply_area = document.getElementById("wr_content")
-              if (reply_area != null) {
-                tag_a = document.createElement("a");
-                tag_a.addEventListener("click", function (e) {
-                  e.preventDefault();
-                  var reply_area = document.getElementById("wr_content")
-                  if (reply_area != null) {
-                    reply_area.focus();
-                  }
-                });
-              }
-            }
-            break;
-            case "my_write":
-            case "my_reply":
-            if ((ui_obj.expand_mywr ?? false) && (board_obj != null && board_obj.id != null && board_obj.board != null)) {
-              tag_a = document.createElement("a");
-              tag_a_href = "/" + board_obj.board + "?sfl=mb_id%2C" + (ex_hrefs[i] == "my_write" ? 1 : 0) + "&stx=" + board_obj.id;
-            }
-            break;
-            case "memo_toggle":
-            if ((ui_obj.hide_member_memo ?? false)) {
               tag_a = document.createElement("a");
               tag_a.addEventListener("click", function (e) {
                 e.preventDefault();
-                toggle_hide_member_memo();
-              });
-            }
-            break;
-            case "list":
-            if ((location.pathname.match(/\//g)?.length ?? 0) > 1) {
-            tag_a = document.createElement("a");
-            tag_a.addEventListener("click", function (e) {
-              e.preventDefault();
-              location.href = location.pathname.substring(0, location.pathname.indexOf("/", 1)) + (location.search ?? "")
-            });
-          }
-          break;
-          case "forward":
-          if ((ui_obj.expand_navigator ?? false) && (window?.navigation == null ? true : window?.navigation?.canGoForward)) {
-            tag_a = document.createElement("a");
-            tag_a.addEventListener("click", function (e) {
-              e.preventDefault();
-              history.forward();
-              //set_expand_quick();
-            });
-          }
-          break;
-          case "back":
-          if ((ui_obj.expand_navigator ?? false) && (window?.navigation == null ? true : window?.navigation?.canGoBack)) {
-            tag_a = document.createElement("a");
-            tag_a.addEventListener("click", function (e) {
-              e.preventDefault();
-              history.back();
-              //set_expand_quick()
-            });
-          }
-          break;
-          default:
-          tag_a = document.createElement("a");
-          break;
-        }
-
-        if (tag_a != null) {
-          if (tag_a_href == null) {
-            tag_a.href = "#" + ex_hrefs[i];
-          } else {
-            tag_a.href = tag_a_href;
-          }
-          tag_a.className = "ui-custom-expand-icon ui-custom-expand-hidden d-block fs-1 m-3 mb-1 mt-1 bg-secondary bg-opacity-25";
-          tag_a.id = "ui-custom-expand-" + ex_hrefs[i];
-          tag_a.title = ex_titles[i];
-          // if (check_add != add_button) {
-          //     tag_a.classList.remove("mt-0");
-          // }
-          var tag_i = document.createElement("i");
-          tag_i.className = "bi bi-" + ex_icons[i] + "";
-          tag_a.appendChild(tag_i);
-          toTop.insertBefore(tag_a, toTop_as);
-          add_button = true;
-        }
-      }
-
-      if (add_button) {
-        toTop.classList.add('d-block');
-
-        toTop_as.classList.remove("d-sm-inline-block");
-        toTop_as.classList.remove("d-none");
-
-        toTop_as.classList.add("ui-custom-expand-hidden");
-        toTop_as.classList.add("bg-secondary");
-        toTop_as.classList.add("bg-opacity-25");
-
-        toTop_as.classList.add("d-block");
-        toTop_as.classList.add("mt-1");
-        toTop_as.classList.add("mb-1");
-        toTop_as.title = "맨 위로";
-
-        var tag_a = document.createElement("a");
-        tag_a.href = "javascript:;"; //"#" + ex_hrefs[i];
-        tag_a.className = "ui-custom-expand-icon d-block fs-1 m-3 mt-1";
-        tag_a.id = "ui-custom-expand-button";
-        var tag_i = document.createElement("i");
-        tag_i.id = "ui-custom-expand-button-i"
-        tag_i.className = "bi bi-caret-down-square-fill";
-        tag_i.title = "확장버튼 감추기";
-        tag_a.appendChild(tag_i);
-        tag_a.addEventListener("click", toggle_expand_button);
-        toTop.appendChild(tag_a);
-
-
-        set_expand_button();
-        //toTop_as.classList.add("d-sm-block");
-      } else {
-        toTop_as.classList.remove("ui-custom-expand-hidden");
-        toTop_as.classList.remove("mt-1");
-        toTop_as.classList.remove("mb-0");
-        toTop_as.classList.remove("bg-secondary");
-        toTop_as.classList.remove("bg-opacity-25");
-
-        toTop_as.classList.add("d-none");
-        toTop_as.classList.add("d-sm-inline-block");
-      }
-    }
-  }
-}
-
-var expand_state_key = "ui_custom_expand_button";
-
-function set_expand_button() {
-  var expand_button_state = localStorage.getItem(expand_state_key);
-  var b_show = (expand_button_state == "show");
-  var button = document.getElementById("ui-custom-expand-button-i");
-  if (b_show) {
-    button.classList.remove("bi-caret-up-square-fill");
-    button.classList.remove("opacity-25");
-    button.classList.add("bi-caret-down-square-fill");
-    button.title = "확장버튼 감추기";
-    b_show = true;
-  } else {
-    button.classList.remove("bi-caret-down-square-fill");
-    button.classList.add("bi-caret-up-square-fill");
-    button.classList.add("opacity-25");
-    button.title = "확장버튼 보이기";
-  }
-  var show_list = toTop.getElementsByClassName("ui-custom-expand-hidden");
-  for (var i = 0; i < show_list.length; i++) {
-    if (b_show) {
-      show_list[i].classList.add("d-block");
-      show_list[i].classList.remove("d-none");
-    } else {
-      show_list[i].classList.remove("d-block");
-      show_list[i].classList.add("d-none");
-    }
-  }
-}
-function toggle_expand_button() {
-  var expand_button_state = localStorage.getItem(expand_state_key);
-  if (expand_button_state == "show") {
-    localStorage.removeItem(expand_state_key)
-  } else {
-    localStorage.setItem(expand_state_key, "show");
-  }
-  set_expand_button();
-}
-
-function get_board_link_map() {
-  var list = get_board_link_list();
-  var list_map = {};
-  list.forEach(function (item) {
-    list_map[item.link] = item;
-  });
-  return list_map;
-}
-
-function get_board_link_list() {
-  var links = $("#sidebar-site-menu div.nav-item > a").not("a.shortcut_custom");
-  var link_exp = /^[^0-9][a-z0-9_.=]+$/i;
-  var link_list = [];
-  for (var i = 0; i < links.length; i++) {
-    var temp_link_obj = $(links[i]);
-    var temp_link = temp_link_obj.prop('href').trim();
-    var temp_link_org = temp_link;
-    var temp_span = temp_link_obj.find('span');
-    if (temp_link.length > 0) {
-      var temp_name;
-      if (temp_span.length > 0) {
-        temp_name = temp_span.html();
-      } else {
-        temp_name = temp_link_obj.html();
-      }
-      temp_name = temp_name.replace(/[<].+[>].*[<\/].*[>]/gi, '').trim();
-      switch (temp_name) {
-        case "내 글":
-        temp_link = "_myw";
-        break;
-        case "내 댓글":
-        temp_link = "_myr";
-        break;
-        default:
-        temp_link = temp_link.substr(temp_link.lastIndexOf('/') + 1);
-        break;
-      }
-      if (temp_link_org.indexOf(location.hostname) > 0 && link_exp.test(temp_link)) {
-        link_list.push({ link: temp_link, org: temp_link_org, name: temp_name });
-      } else {
-
-      }
-    }
-  }
-
-  links = $("#sidebar-site-menu .da-menu--bbs-group-group").find("div > a");
-  for (var i = 0; i < links.length; i++) {
-    var temp_link_obj = $(links[i]);
-    var temp_name = temp_link_obj.html().trim();
-    var temp_link = temp_link_obj.prop('href').trim();
-    var temp_link_org = temp_link;
-    if (temp_link.length > 0) {
-      temp_link = temp_link.substr(temp_link.lastIndexOf('/') + 1);
-      link_list.push({ link: temp_link, org: temp_link_org, name: temp_name });
-    }
-  }
-
-  return link_list;
-}
-
-function set_board_link_option_html() {
-  var links_html = "<option value=''>선택안함</option>";
-  var link_list = get_board_link_list();
-  link_list.forEach(function (item) {
-    links_html += "\n<option value='" + item.link + "'>" + item.name + "</option>";
-  });
-  for (var i = 0; i < 10; i++) {
-    var selector = $("#reg_shortcut_" + i);
-    if (selector.length > 0) {
-      $("#reg_shortcut_" + i + " option").remove();
-      selector.append(links_html);
-    }
-  }
-}
-
-
-var shortcut_map = {};
-
-function get_board_mb_id() {
-  var link_obj = null;
-  var link_map = get_board_link_map();
-  if ((location.pathname.match(/\//g)?.length ?? 0) > 0) {
-  var wr_id = null;
-  var board_name_length = location.pathname.indexOf("/", 1);
-  if (board_name_length == -1) {
-    board_name_length = location.pathname.length;
-  } else {
-    wr_id = location.pathname.substring(board_name_length + 1);
-  }
-  var board_name = location.pathname.substring(1, board_name_length)
-  if (link_map[board_name] != null) {
-    link_obj = {};
-    link_obj.board = board_name;
-    if (wr_id != null) {
-      link_obj.wr_id = wr_id;
-    }
-  }
-}
-
-var myw_link = link_map["_myw"]?.org ?? "";
-
-var myw_link_obj = document.querySelector("div#memberOffcanvas div.my-2 span.profile_img");
-if (myw_link_obj != null) {
-  var temp_a = myw_link_obj.closest('a.sv_member');
-  if (temp_a != null) {
-    myw_link = temp_a.href
-  }
-}
-
-if (myw_link.length > 0) {
-  var p_n = "mb_id";
-  if (myw_link.indexOf("sfl="+p_n) > -1) {
-    p_n = "stx";
-  }
-  var q_s = myw_link.indexOf(p_n + "=");
-  var q_e = myw_link.indexOf("&", q_s);
-
-  if (q_s > -1) {
-    q_s += p_n.length + 1;
-    if (link_obj == null) {
-      link_obj = {};
-    }
-
-    if (q_e == -1) {
-      link_obj.id = myw_link.substring(q_s);
-    } else {
-      link_obj.id = myw_link.substring(q_s, q_e);
-    }
-  }
-}
-
-return link_obj;
-}
-
-function set_shortcut_custom(ui_obj) {
-  shortcut_map = {}
-
-  if (ui_obj.hide_member_memo != null && ui_obj.hide_member_memo) {
-    shortcut_map["M"] = "javascript:toggle_hide_member_memo();"
-  }
-
-  var removes = document.querySelectorAll('div.shortcut_custom');
-  if (removes != null && removes.length > 0) {
-    for (var i = 0; i < removes.length; i++) {
-      removes[i].remove();
-    }
-  }
-
-  if (ui_obj.shortcut_use ?? false) {
-    var sidebar_site_menu = document.getElementById('sidebar-site-menu');
-    var sidebar_site_menu_first = document.querySelector('#sidebar-site-menu > div');
-    var offcanvas_menu_first = document.querySelector('.offcanvas-body .na-menu div.nav-item');
-    var offcanvas_menu = document.querySelector('.offcanvas-body .na-menu div.nav');
-
-
-    var board_obj = get_board_mb_id();
-    if (board_obj != null && board_obj.id != null && board_obj.board != null) {
-      var temp_icon = ["bi-reply-all", "bi-pencil-square"];
-      var temp_text = ["내 댓글 - 현재 게시판", "내 글 - 현재 게시판"]
-      for (var i = 1; i > -1; i--) {
-        var shortcut_div = document.createElement("div");
-        shortcut_div.className = "nav-item shortcut_custom";
-        var shortcut_link = document.createElement("a");
-        shortcut_link.className = "nav-link shortcut_custom";
-        shortcut_link.href = "/" + board_obj.board + "?sfl=mb_id%2C" + i + "&stx=" + board_obj.id;
-        shortcut_link.innerHTML = '<i class="' + temp_icon[i] + ' nav-icon"></i>&nbsp;' + temp_text[i];
-        shortcut_div.appendChild(shortcut_link);
-        sidebar_site_menu.insertBefore(shortcut_div, sidebar_site_menu_first);
-        offcanvas_menu.insertBefore(shortcut_div.cloneNode(true), offcanvas_menu_first);
-      }
-    }
-
-    var link_map = get_board_link_map();
-    for (var i = 0; i < 10; i++) {
-      var shortcut = (ui_obj["shortcut_" + i] ?? "").trim();
-      if (shortcut != "" && link_map[shortcut] != null) {
-        var shortcut_div = document.createElement("div");
-        shortcut_div.className = "nav-item shortcut_custom";
-        var shortcut_link = document.createElement("a");
-        shortcut_link.className = "nav-link shortcut_custom";
-        shortcut_link.href = link_map[shortcut].org;
-        shortcut_link.innerHTML = '<i class="bi-list-stars nav-icon"></i> <span class="badge text-bg-secondary">' + i + '</span>&nbsp;' + link_map[shortcut].name;
-        shortcut_div.appendChild(shortcut_link);
-        sidebar_site_menu.insertBefore(shortcut_div, sidebar_site_menu_first);
-        offcanvas_menu.insertBefore(shortcut_div.cloneNode(true), offcanvas_menu_first);
-        shortcut_map[i + ""] = shortcut_link.href;
-      }
-    }
-  }
-
-  if (Object.keys(shortcut_map).length > 0) {
-    window.removeEventListener('keypress', handleShortCutKeyPress);
-    window.addEventListener('keypress', handleShortCutKeyPress);
-  }
-  //console.debug(shortcut_map)
-}
-
-function isShortCutInputElement(element) {
-  return ['INPUT', 'TEXTAREA', 'SELECT'].includes(element.tagName);
-}
-
-function isShortCutKeyCombination(event) {
-  return event.ctrlKey || event.shiftKey || event.altKey || event.metaKey;
-}
-
-function isShortCutContentEditableElement(element) {
-  while (element) {
-    if (element.contentEditable === 'true') {
-      return true;
-    }
-    element = element.parentElement;
-  }
-  return false;
-}
-
-function handleShortCutKeyPress(event) {
-  if (isShortCutInputElement(event.target) || isShortCutKeyCombination(event) || isShortCutContentEditableElement(event.target)) {
-    return;
-  }
-  var key = (event?.code ?? "").replace(/Key|Digit/, "");
-  if (shortcut_map[key] != null) {
-    if (key == "M") {
-      toggle_hide_member_memo();
-    } else {
-      window.location.href = shortcut_map[key];
-    }
-    return;
-  } else {
-    return;
-  }
-}
-//함수 모음 끝
-
-function set_ui_custom_click_event() {
-  try {
-    $("#reg_expand_quick").change(function () {
-      set_ui_custom_expand();
-    });
-
-    $("#reg_ui_custom").change(function () {
-      if ($("#reg_ui_custom").is(":checked")) {
-        $(".ui-custom-item").show();
-        set_ui_custom_expand();
-      } else {
-        $(".ui-custom-item").hide();
-      }
-    });
-    $("#reg_title_filtering").change(function () {
-      if ($("#reg_title_filtering").is(":checked")) {
-        $(".ui-custom-filtering").show();
-      } else {
-        $(".ui-custom-filtering").hide();
-      }
-    });
-    $("#reg_shortcut_use").change(function () {
-      if ($("#reg_shortcut_use").is(":checked")) {
-        $(".ui-custom-shortcut").show();
-      } else {
-        $(".ui-custom-shortcut").hide();
-      }
-    });
-
-  } catch (error) {
-    //console.error('Failed to initialize custom UI settings:', error);
-  }
-}
-function set_ui_custom_expand() {
-  if ($("#reg_shortcut_use").is(":checked")) {
-    $(".ui-custom-expand-item").show();
-  } else {
-    $(".ui-custom-expand-item").hide();
-  }
-}
-function set_ui_custom_trigger() {
-  try {
-    //$("#reg_expand_quick").trigger('change');
-    $("#reg_ui_custom").trigger('change');
-
-    $("#reg_title_filtering").trigger('change');
-    $("#reg_shortcut_use").trigger('change');
-
-  } catch (error) {
-    //console.error('Failed to initialize custom UI settings:', error);
-  }
-}
-
-//memo 추적 관련 기능 시작
-//indexedDB지원에 따라 UI표시 변경
-function check_indexDB() {
-  var check_ui = document.querySelector(".ui-custom-memo-ip-check");
-  if (check_ui != null) {
-    var memo_check = document.getElementById('reg_memo_ip_track');
-    if (window.indexedDB) {
-      check_ui.classList.remove("d-none");
-      if (memo_check != null) {
-        memo_check.addEventListener("change", change_memo_tracking);
-      }
-    } else {
-      if (memo_check != null && memo_check.checked) {
-        memo_check.checked = false;
-      }
-      check_ui.classList.add("d-none");
-    }
-  }
-}
-
-//사용여부 변경에 따른 경고문구 표시
-function change_memo_tracking() {
-  var memo_check = document.getElementById('reg_memo_ip_track');
-  if (memo_check.checked) {
-    var temp_obj = get_board_mb_id();
-    check_memo_user_id(temp_obj?.id, null, null, function () {
-      alert("빨간색 메모의 IP만 기록합니다.\n메모의 IP기록은 단순 참고만 하시기 바랍니다.");
-    });
-  }
-}
-
-//사용자 ID에 따른 DB체크 및 타 ID DB 삭제
-function check_memo_user_id(user_id, afterFn, checkedFn, notCheckedFn) {
-  if (window.indexedDB) {
-    window.indexedDB.databases().then(function (databases) {
-      if (user_id != null && user_id != "") {
-        var checked = false;
-        if (databases.length > 0) {
-          databases.forEach((database) => {
-            if (database.name.indexOf(memoDBName)==0) {
-              if (database.name == (memoDBName + user_id)) {
-                checked = true
-              } else {
-                window.indexedDB.deleteDatabase(database.name);
-              }
-            }
-          })
-        } else {
-          //checked = true
-        }
-        if (checked) {
-          if (checkedFn != null && (typeof checkedFn == 'function')) {
-            checkedFn();
-          }
-        } else {
-          if (notCheckedFn != null && (typeof notCheckedFn == 'function')) {
-            notCheckedFn();
-          }
-        }
-        if (afterFn != null && (typeof afterFn == 'function')) {
-          afterFn();
-        }
-      }
-    });
-  }
-}
-function delete_database(){
-  if (window.indexedDB) {
-    var temp_obj = get_board_mb_id();
-    if (temp_obj != null && temp_obj.id) {
-      try {
-        if (confirm("기록을 삭제하시겠습니까?")) {
-          window.indexedDB.databases().then(function (databases) {
-            if (temp_obj.id != null && temp_obj.id != "") {
-              if (databases.length > 0) {
-                databases.forEach((database) => {
-                  if (database.name.indexOf(memoDBName)==0) {
-                    if (database.name == (memoDBName + temp_obj.id)) {
-                      window.indexedDB.deleteDatabase(database.name);
+                var menu_div_list = document.querySelectorAll("header#header-navbar .container .d-flex > div");
+                var menuOffcanvas_tag = null;
+                if (menu_div_list.length > 0) {
+                  for (var i = 0; i < menu_div_list.length; i++) {
+                    var temp_target = menu_div_list[i].querySelector("a")?.dataset?.bsTarget;
+                    if (temp_target != null && temp_target == '#menuOffcanvas') {
+                      menuOffcanvas_tag = menu_div_list[i].querySelector("a");
+                      break;
                     }
                   }
+
+                  if (menuOffcanvas_tag != null) {
+                    menuOffcanvas_tag.click();
+                  }
+                }
+              });
+              break;
+            case "go_write":
+              if ((ui_obj.expand_write ?? false) && (board_obj != null && board_obj.id != null && board_obj.board != null)) {
+                tag_a = document.createElement("a");
+                tag_a_href = "/" + board_obj.board + "/write";
+              }
+              break;
+              break;
+            case "go_reply":
+              if ((ui_obj.expand_write ?? false) && (board_obj != null && board_obj.id != null && board_obj.board != null)) {
+                var reply_area = document.getElementById("wr_content")
+                if (reply_area != null) {
+                  tag_a = document.createElement("a");
+                  tag_a.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    var reply_area = document.getElementById("wr_content")
+                    if (reply_area != null) {
+                      reply_area.focus();
+                    }
+                  });
+                }
+              }
+              break;
+            case "my_write":
+            case "my_reply":
+              if ((ui_obj.expand_mywr ?? false) && (board_obj != null && board_obj.id != null && board_obj.board != null)) {
+                tag_a = document.createElement("a");
+                tag_a_href = "/" + board_obj.board + "?sfl=mb_id%2C" + (ex_hrefs[i] == "my_write" ? 1 : 0) + "&stx=" + board_obj.id;
+              }
+              break;
+            case "memo_toggle":
+              if ((ui_obj.hide_member_memo ?? false)) {
+                tag_a = document.createElement("a");
+                tag_a.addEventListener("click", function (e) {
+                  e.preventDefault();
+                  toggle_hide_member_memo();
                 });
               }
+              break;
+            case "list":
+              if ((location.pathname.match(/\//g)?.length ?? 0) > 1) {
+                tag_a = document.createElement("a");
+                tag_a.addEventListener("click", function (e) {
+                  e.preventDefault();
+                  location.href = location.pathname.substring(0, location.pathname.indexOf("/", 1)) + (location.search ?? "")
+                });
+              }
+              break;
+            case "forward":
+              if ((ui_obj.expand_navigator ?? false) && (window?.navigation == null ? true : window?.navigation?.canGoForward)) {
+                tag_a = document.createElement("a");
+                tag_a.addEventListener("click", function (e) {
+                  e.preventDefault();
+                  history.forward();
+                  //set_expand_quick();
+                });
+              }
+              break;
+            case "back":
+              if ((ui_obj.expand_navigator ?? false) && (window?.navigation == null ? true : window?.navigation?.canGoBack)) {
+                tag_a = document.createElement("a");
+                tag_a.addEventListener("click", function (e) {
+                  e.preventDefault();
+                  history.back();
+                  //set_expand_quick()
+                });
+              }
+              break;
+            default:
+              tag_a = document.createElement("a");
+              break;
+          }
+
+          if (tag_a != null) {
+            if (tag_a_href == null) {
+              tag_a.href = "#" + ex_hrefs[i];
+            } else {
+              tag_a.href = tag_a_href;
             }
-          });
+            tag_a.className = "ui-custom-expand-icon ui-custom-expand-hidden d-block fs-1 m-3 mb-1 mt-1 bg-secondary bg-opacity-25";
+            tag_a.id = "ui-custom-expand-" + ex_hrefs[i];
+            tag_a.title = ex_titles[i];
+            // if (check_add != add_button) {
+            //     tag_a.classList.remove("mt-0");
+            // }
+            var tag_i = document.createElement("i");
+            tag_i.className = "bi bi-" + ex_icons[i] + "";
+            tag_a.appendChild(tag_i);
+            toTop.insertBefore(tag_a, toTop_as);
+            add_button = true;
+          }
         }
-      } catch (e) {
-        console.debug(e);
+
+        if (add_button) {
+          toTop.classList.add('d-block');
+
+          toTop_as.classList.remove("d-sm-inline-block");
+          toTop_as.classList.remove("d-none");
+
+          toTop_as.classList.add("ui-custom-expand-hidden");
+          toTop_as.classList.add("bg-secondary");
+          toTop_as.classList.add("bg-opacity-25");
+
+          toTop_as.classList.add("d-block");
+          toTop_as.classList.add("mt-1");
+          toTop_as.classList.add("mb-1");
+          toTop_as.title = "맨 위로";
+
+          var tag_a = document.createElement("a");
+          tag_a.href = "javascript:;"; //"#" + ex_hrefs[i];
+          tag_a.className = "ui-custom-expand-icon d-block fs-1 m-3 mt-1";
+          tag_a.id = "ui-custom-expand-button";
+          var tag_i = document.createElement("i");
+          tag_i.id = "ui-custom-expand-button-i"
+          tag_i.className = "bi bi-caret-down-square-fill";
+          tag_i.title = "확장버튼 감추기";
+          tag_a.appendChild(tag_i);
+          tag_a.addEventListener("click", toggle_expand_button);
+          toTop.appendChild(tag_a);
+
+
+          set_expand_button();
+          //toTop_as.classList.add("d-sm-block");
+        } else {
+          toTop_as.classList.remove("ui-custom-expand-hidden");
+          toTop_as.classList.remove("mt-1");
+          toTop_as.classList.remove("mb-0");
+          toTop_as.classList.remove("bg-secondary");
+          toTop_as.classList.remove("bg-opacity-25");
+
+          toTop_as.classList.add("d-none");
+          toTop_as.classList.add("d-sm-inline-block");
+        }
       }
     }
   }
-}
 
-function get_write_info_list(board_obj) {
-  if (board_obj == null) {
-  }
-  var check_list = [];
-  var check_admin = /^admin$/;
+  var expand_state_key = "ui_custom_expand_button";
 
-  //글 작성자 정보
-  if (document.querySelector("section#bo_v_info > div") != null) {
-    var board_obj = get_board_mb_id();
-    var write_divs = document.querySelector("section#bo_v_info > div").querySelectorAll("div");
-    var write_info = {};
-    if (write_divs.length > 1) {
-      write_info.write_type = "write";
-      var check_memo_em = write_divs[0].querySelector(".da-member-memo__memo.da-memo-color--red");
-      if (check_memo_em != null) {
-        write_info.memo_user = true;
+  function set_expand_button() {
+    var expand_button_state = localStorage.getItem(expand_state_key);
+    var b_show = (expand_button_state == "show");
+    var button = document.getElementById("ui-custom-expand-button-i");
+    if (b_show) {
+      button.classList.remove("bi-caret-up-square-fill");
+      button.classList.remove("opacity-25");
+      button.classList.add("bi-caret-down-square-fill");
+      button.title = "확장버튼 감추기";
+      b_show = true;
+    } else {
+      button.classList.remove("bi-caret-down-square-fill");
+      button.classList.add("bi-caret-up-square-fill");
+      button.classList.add("opacity-25");
+      button.title = "확장버튼 보이기";
+    }
+    var show_list = toTop.getElementsByClassName("ui-custom-expand-hidden");
+    for (var i = 0; i < show_list.length; i++) {
+      if (b_show) {
+        show_list[i].classList.add("d-block");
+        show_list[i].classList.remove("d-none");
       } else {
-        write_info.memo_user = false;
+        show_list[i].classList.remove("d-block");
+        show_list[i].classList.add("d-none");
       }
-      var write_user_link = write_divs[0].querySelector("a.sv_member");
-      if (write_user_link != null) {
-        write_info.id = write_user_link.href.substring(write_user_link.href.indexOf("mb_id=") + 6);
-        if ( !check_admin.test(write_info.id) && board_obj?.id == null || board_obj.id != write_info.id) {
-          var img_src = write_user_link.querySelector("img.mb-photo").src;
-          var img_position = img_src.indexOf('/data/member_image');
-          if (img_position > 0) {
-            write_info.img = img_src.substring(img_position + 18);
+    }
+  }
+  function toggle_expand_button() {
+    var expand_button_state = localStorage.getItem(expand_state_key);
+    if (expand_button_state == "show") {
+      localStorage.removeItem(expand_state_key)
+    } else {
+      localStorage.setItem(expand_state_key, "show");
+    }
+    set_expand_button();
+  }
+
+  function get_board_link_map() {
+    var list = get_board_link_list();
+    var list_map = {};
+    list.forEach(function (item) {
+      list_map[item.link] = item;
+    });
+    return list_map;
+  }
+
+  function get_board_link_list() {
+    var links = $("#sidebar-site-menu div.nav-item > a").not("a.shortcut_custom");
+    var link_exp = /^[^0-9][a-z0-9_.=]+$/i;
+    var link_list = [];
+    for (var i = 0; i < links.length; i++) {
+      var temp_link_obj = $(links[i]);
+      var temp_link = temp_link_obj.prop('href').trim();
+      var temp_link_org = temp_link;
+      var temp_span = temp_link_obj.find('span');
+      if (temp_link.length > 0) {
+        var temp_name;
+        if (temp_span.length > 0) {
+          temp_name = temp_span.html();
+        } else {
+          temp_name = temp_link_obj.html();
+        }
+        temp_name = temp_name.replace(/[<].+[>].*[<\/].*[>]/gi, '').trim();
+        switch (temp_name) {
+          case "내 글":
+            temp_link = "_myw";
+            break;
+          case "내 댓글":
+            temp_link = "_myr";
+            break;
+          default:
+            temp_link = temp_link.substr(temp_link.lastIndexOf('/') + 1);
+            break;
+        }
+        if (temp_link_org.indexOf(location.hostname) > 0 && link_exp.test(temp_link)) {
+          link_list.push({ link: temp_link, org: temp_link_org, name: temp_name });
+        } else {
+
+        }
+      }
+    }
+
+    links = $("#sidebar-site-menu .da-menu--bbs-group-group").find("div > a");
+    for (var i = 0; i < links.length; i++) {
+      var temp_link_obj = $(links[i]);
+      var temp_name = temp_link_obj.html().trim();
+      var temp_link = temp_link_obj.prop('href').trim();
+      var temp_link_org = temp_link;
+      if (temp_link.length > 0) {
+        temp_link = temp_link.substr(temp_link.lastIndexOf('/') + 1);
+        link_list.push({ link: temp_link, org: temp_link_org, name: temp_name });
+      }
+    }
+
+    return link_list;
+  }
+
+  function set_board_link_option_html() {
+    var links_html = "<option value=''>선택안함</option>";
+    var link_list = get_board_link_list();
+    link_list.forEach(function (item) {
+      links_html += "\n<option value='" + item.link + "'>" + item.name + "</option>";
+    });
+    for (var i = 0; i < 10; i++) {
+      var selector = $("#reg_shortcut_" + i);
+      if (selector.length > 0) {
+        $("#reg_shortcut_" + i + " option").remove();
+        selector.append(links_html);
+      }
+    }
+  }
+
+
+  var shortcut_map = {};
+
+  function get_board_mb_id() {
+    var link_obj = null;
+    var link_map = get_board_link_map();
+    if ((location.pathname.match(/\//g)?.length ?? 0) > 0) {
+      var wr_id = null;
+      var board_name_length = location.pathname.indexOf("/", 1);
+      if (board_name_length == -1) {
+        board_name_length = location.pathname.length;
+      } else {
+        wr_id = location.pathname.substring(board_name_length + 1);
+      }
+      var board_name = location.pathname.substring(1, board_name_length)
+      if (link_map[board_name] != null) {
+        link_obj = {};
+        link_obj.board = board_name;
+        if (wr_id != null) {
+          link_obj.wr_id = wr_id;
+        }
+      }
+    }
+
+    var myw_link = link_map["_myw"]?.org ?? "";
+
+    var myw_link_obj = document.querySelector("div#memberOffcanvas div.my-2 span.profile_img");
+    if (myw_link_obj != null) {
+      var temp_a = myw_link_obj.closest('a.sv_member');
+      if (temp_a != null) {
+        myw_link = temp_a.href
+      }
+    }
+
+    if (myw_link.length > 0) {
+      var p_n = "mb_id";
+      if (myw_link.indexOf("sfl=" + p_n) > -1) {
+        p_n = "stx";
+      }
+      var q_s = myw_link.indexOf(p_n + "=");
+      var q_e = myw_link.indexOf("&", q_s);
+
+      if (q_s > -1) {
+        q_s += p_n.length + 1;
+        if (link_obj == null) {
+          link_obj = {};
+        }
+
+        if (q_e == -1) {
+          link_obj.id = myw_link.substring(q_s);
+        } else {
+          link_obj.id = myw_link.substring(q_s, q_e);
+        }
+      }
+    }
+
+    return link_obj;
+  }
+
+  function set_shortcut_custom(ui_obj) {
+    shortcut_map = {}
+
+    if (ui_obj.hide_member_memo != null && ui_obj.hide_member_memo) {
+      shortcut_map["M"] = "javascript:toggle_hide_member_memo();"
+    }
+
+    var removes = document.querySelectorAll('div.shortcut_custom');
+    if (removes != null && removes.length > 0) {
+      for (var i = 0; i < removes.length; i++) {
+        removes[i].remove();
+      }
+    }
+
+    if (ui_obj.shortcut_use ?? false) {
+      var sidebar_site_menu = document.getElementById('sidebar-site-menu');
+      var sidebar_site_menu_first = document.querySelector('#sidebar-site-menu > div');
+      var offcanvas_menu_first = document.querySelector('.offcanvas-body .na-menu div.nav-item');
+      var offcanvas_menu = document.querySelector('.offcanvas-body .na-menu div.nav');
+
+
+      var board_obj = get_board_mb_id();
+      if (board_obj != null && board_obj.id != null && board_obj.board != null) {
+        var temp_icon = ["bi-reply-all", "bi-pencil-square"];
+        var temp_text = ["내 댓글 - 현재 게시판", "내 글 - 현재 게시판"]
+        for (var i = 1; i > -1; i--) {
+          var shortcut_div = document.createElement("div");
+          shortcut_div.className = "nav-item shortcut_custom";
+          var shortcut_link = document.createElement("a");
+          shortcut_link.className = "nav-link shortcut_custom";
+          shortcut_link.href = "/" + board_obj.board + "?sfl=mb_id%2C" + i + "&stx=" + board_obj.id;
+          shortcut_link.innerHTML = '<i class="' + temp_icon[i] + ' nav-icon"></i>&nbsp;' + temp_text[i];
+          shortcut_div.appendChild(shortcut_link);
+          sidebar_site_menu.insertBefore(shortcut_div, sidebar_site_menu_first);
+          offcanvas_menu.insertBefore(shortcut_div.cloneNode(true), offcanvas_menu_first);
+        }
+      }
+
+      var link_map = get_board_link_map();
+      for (var i = 0; i < 10; i++) {
+        var shortcut = (ui_obj["shortcut_" + i] ?? "").trim();
+        if (shortcut != "" && link_map[shortcut] != null) {
+          var shortcut_div = document.createElement("div");
+          shortcut_div.className = "nav-item shortcut_custom";
+          var shortcut_link = document.createElement("a");
+          shortcut_link.className = "nav-link shortcut_custom";
+          shortcut_link.href = link_map[shortcut].org;
+          shortcut_link.innerHTML = '<i class="bi-list-stars nav-icon"></i> <span class="badge text-bg-secondary">' + i + '</span>&nbsp;' + link_map[shortcut].name;
+          shortcut_div.appendChild(shortcut_link);
+          sidebar_site_menu.insertBefore(shortcut_div, sidebar_site_menu_first);
+          offcanvas_menu.insertBefore(shortcut_div.cloneNode(true), offcanvas_menu_first);
+          shortcut_map[i + ""] = shortcut_link.href;
+        }
+      }
+    }
+
+    if (Object.keys(shortcut_map).length > 0) {
+      window.removeEventListener('keypress', handleShortCutKeyPress);
+      window.addEventListener('keypress', handleShortCutKeyPress);
+    }
+    //console.debug(shortcut_map)
+  }
+
+  function isShortCutInputElement(element) {
+    return ['INPUT', 'TEXTAREA', 'SELECT'].includes(element.tagName);
+  }
+
+  function isShortCutKeyCombination(event) {
+    return event.ctrlKey || event.shiftKey || event.altKey || event.metaKey;
+  }
+
+  function isShortCutContentEditableElement(element) {
+    while (element) {
+      if (element.contentEditable === 'true') {
+        return true;
+      }
+      element = element.parentElement;
+    }
+    return false;
+  }
+
+  function handleShortCutKeyPress(event) {
+    if (isShortCutInputElement(event.target) || isShortCutKeyCombination(event) || isShortCutContentEditableElement(event.target)) {
+      return;
+    }
+    var key = (event?.code ?? "").replace(/Key|Digit/, "");
+    if (shortcut_map[key] != null) {
+      if (key == "M") {
+        toggle_hide_member_memo();
+      } else {
+        window.location.href = shortcut_map[key];
+      }
+      return;
+    } else {
+      return;
+    }
+  }
+  //함수 모음 끝
+
+  function set_ui_custom_click_event() {
+    try {
+      $("#reg_expand_quick").change(function () {
+        set_ui_custom_expand();
+      });
+
+      $("#reg_ui_custom").change(function () {
+        if ($("#reg_ui_custom").is(":checked")) {
+          $(".ui-custom-item").show();
+          set_ui_custom_expand();
+        } else {
+          $(".ui-custom-item").hide();
+        }
+      });
+      $("#reg_title_filtering").change(function () {
+        if ($("#reg_title_filtering").is(":checked")) {
+          $(".ui-custom-filtering").show();
+        } else {
+          $(".ui-custom-filtering").hide();
+        }
+      });
+      $("#reg_content_blur").change(function () {
+        if ($("#reg_content_blur").is(":checked")) {
+          $(".ui-custom-content-blur").show();
+        } else {
+          $(".ui-custom-content-blur").hide();
+        }
+      });
+      $("#reg_shortcut_use").change(function () {
+        if ($("#reg_shortcut_use").is(":checked")) {
+          $(".ui-custom-shortcut").show();
+        } else {
+          $(".ui-custom-shortcut").hide();
+        }
+      });
+
+    } catch (error) {
+      //console.error('Failed to initialize custom UI settings:', error);
+    }
+  }
+  function set_ui_custom_expand() {
+    if ($("#reg_shortcut_use").is(":checked")) {
+      $(".ui-custom-expand-item").show();
+    } else {
+      $(".ui-custom-expand-item").hide();
+    }
+  }
+  function set_ui_custom_trigger() {
+    try {
+      //$("#reg_expand_quick").trigger('change');
+      $("#reg_ui_custom").trigger('change');
+
+      $("#reg_title_filtering").trigger('change');
+      $("#reg_content_blur").trigger('change');
+      $("#reg_shortcut_use").trigger('change');
+
+    } catch (error) {
+      //console.error('Failed to initialize custom UI settings:', error);
+    }
+  }
+
+  //memo 추적 관련 기능 시작
+  //indexedDB지원에 따라 UI표시 변경
+  function check_indexDB() {
+    var check_ui = document.querySelector(".ui-custom-memo-ip-check");
+    if (check_ui != null) {
+      var memo_check = document.getElementById('reg_memo_ip_track');
+      if (window.indexedDB) {
+        check_ui.classList.remove("d-none");
+        if (memo_check != null) {
+          memo_check.addEventListener("change", change_memo_tracking);
+        }
+      } else {
+        if (memo_check != null && memo_check.checked) {
+          memo_check.checked = false;
+        }
+        check_ui.classList.add("d-none");
+      }
+    }
+  }
+
+  //사용여부 변경에 따른 경고문구 표시
+  function change_memo_tracking() {
+    var memo_check = document.getElementById('reg_memo_ip_track');
+    if (memo_check.checked) {
+      var temp_obj = get_board_mb_id();
+      check_memo_user_id(temp_obj?.id, null, null, function () {
+        alert("빨간색 메모의 IP만 기록합니다.\n메모의 IP기록은 단순 참고만 하시기 바랍니다.");
+      });
+    }
+  }
+
+  //사용자 ID에 따른 DB체크 및 타 ID DB 삭제
+  function check_memo_user_id(user_id, afterFn, checkedFn, notCheckedFn) {
+    if (window.indexedDB) {
+      window.indexedDB.databases().then(function (databases) {
+        if (user_id != null && user_id != "") {
+          var checked = false;
+          if (databases.length > 0) {
+            databases.forEach((database) => {
+              if (database.name.indexOf(memoDBName) == 0) {
+                if (database.name == (memoDBName + user_id)) {
+                  checked = true
+                } else {
+                  window.indexedDB.deleteDatabase(database.name);
+                }
+              }
+            })
           } else {
-            write_info.img = null;
+            //checked = true
           }
-          write_info.nick = write_user_link.text.trim();
-          write_info.wr_id = board_obj?.wr_id;
-          write_info.lastElementChild = write_divs[0].lastElementChild;
-          write_info.ip = write_divs[0].lastElementChild.textContent;
-          write_info.time = write_divs[1].lastChild.textContent.trim();
-          if (write_info.time == "") {
-            write_info.time = write_divs[1].lastElementChild.textContent.trim();
+          if (checked) {
+            if (checkedFn != null && (typeof checkedFn == 'function')) {
+              checkedFn();
+            }
+          } else {
+            if (notCheckedFn != null && (typeof notCheckedFn == 'function')) {
+              notCheckedFn();
+            }
           }
-          check_list.push(write_info);
+          if (afterFn != null && (typeof afterFn == 'function')) {
+            afterFn();
+          }
+        }
+      });
+    }
+  }
+  function delete_database() {
+    if (window.indexedDB) {
+      var temp_obj = get_board_mb_id();
+      if (temp_obj != null && temp_obj.id) {
+        try {
+          if (confirm("기록을 삭제하시겠습니까?")) {
+            window.indexedDB.databases().then(function (databases) {
+              if (temp_obj.id != null && temp_obj.id != "") {
+                if (databases.length > 0) {
+                  databases.forEach((database) => {
+                    if (database.name.indexOf(memoDBName) == 0) {
+                      if (database.name == (memoDBName + temp_obj.id)) {
+                        window.indexedDB.deleteDatabase(database.name);
+                      }
+                    }
+                  });
+                }
+              }
+            });
+          }
+        } catch (e) {
+          console.debug(e);
         }
       }
     }
   }
 
-  //코멘트 작성자 정보
-  var c_list = document.querySelectorAll("#viewcomment #bo_vc > article");
-  for (var i = 0; i < c_list.length; i++) {
-    var c_item = c_list[i];
-    var c_id = c_item.id;
-    var c_divs = c_item.querySelectorAll("header > div >div")
-    if (c_divs.length > 2) {
+  function get_write_info_list(board_obj) {
+    if (board_obj == null) {
+    }
+    var check_list = [];
+    var check_admin = /^admin$/;
+
+    //글 작성자 정보
+    if (document.querySelector("section#bo_v_info > div") != null) {
+      var board_obj = get_board_mb_id();
+      var write_divs = document.querySelector("section#bo_v_info > div").querySelectorAll("div");
       var write_info = {};
-      write_info.write_type = "comment";
-      var check_memo_em = c_divs[0].querySelector(".da-member-memo__memo.da-memo-color--red");
-      if (check_memo_em != null) {
-        write_info.memo_user = true;
-      } else {
-        write_info.memo_user = false;
-      }
-      var write_user_link = c_divs[0].querySelector("a.sv_member");
-      if (write_user_link != null) {
-        write_info.id = write_user_link.href.substring(write_user_link.href.indexOf("mb_id=") + 6);
-        if ( !check_admin.test(write_info.id) && board_obj?.id == null || board_obj.id != write_info.id) {
-          var img_src = write_user_link.querySelector("img.mb-photo").src;
-          var img_position = img_src.indexOf('/data/member_image');
-          if (img_position > 0) {
-            write_info.img = img_src.substring(img_position + 18);
-          } else {
-            write_info.img = null;
+      if (write_divs.length > 1) {
+        write_info.write_type = "write";
+        var check_memo_em = write_divs[0].querySelector(".da-member-memo__memo.da-memo-color--red");
+        if (check_memo_em != null) {
+          write_info.memo_user = true;
+        } else {
+          write_info.memo_user = false;
+        }
+        var write_user_link = write_divs[0].querySelector("a.sv_member");
+        if (write_user_link != null) {
+          write_info.id = write_user_link.href.substring(write_user_link.href.indexOf("mb_id=") + 6);
+          if (!check_admin.test(write_info.id) && board_obj?.id == null || board_obj.id != write_info.id) {
+            var img_src = write_user_link.querySelector("img.mb-photo").src;
+            var img_position = img_src.indexOf('/data/member_image');
+            if (img_position > 0) {
+              write_info.img = img_src.substring(img_position + 18);
+            } else {
+              write_info.img = null;
+            }
+            write_info.nick = write_user_link.text.trim();
+            write_info.wr_id = board_obj?.wr_id;
+            write_info.lastElementChild = write_divs[0].lastElementChild;
+            write_info.ip = write_divs[0].lastElementChild.textContent;
+            write_info.time = write_divs[1].lastChild.textContent.trim();
+            if (write_info.time == "") {
+              write_info.time = write_divs[1].lastElementChild.textContent.trim();
+            }
+            check_list.push(write_info);
           }
-          write_info.nick = write_user_link.text.trim();
-          write_info.wr_id = board_obj?.wr_id;
-          write_info.c_id = c_id;
-          write_info.lastElementChild = c_divs[0].lastChild;
-          write_info.ip = c_divs[0].lastChild.textContent.trim().replace(/\(|\)/g, "");
-          write_info.time = c_divs[2].lastChild.textContent.trim();
-          if (write_info.time == "") {
-            write_info.time = c_divs[2].lastElementChild.textContent.trim();
-          }
-          check_list.push(write_info);
         }
       }
     }
+
+    //코멘트 작성자 정보
+    var c_list = document.querySelectorAll("#viewcomment #bo_vc > article");
+    for (var i = 0; i < c_list.length; i++) {
+      var c_item = c_list[i];
+      var c_id = c_item.id;
+      var c_divs = c_item.querySelectorAll("header > div >div")
+      if (c_divs.length > 2) {
+        var write_info = {};
+        write_info.write_type = "comment";
+        var check_memo_em = c_divs[0].querySelector(".da-member-memo__memo.da-memo-color--red");
+        if (check_memo_em != null) {
+          write_info.memo_user = true;
+        } else {
+          write_info.memo_user = false;
+        }
+        var write_user_link = c_divs[0].querySelector("a.sv_member");
+        if (write_user_link != null) {
+          write_info.id = write_user_link.href.substring(write_user_link.href.indexOf("mb_id=") + 6);
+          if (!check_admin.test(write_info.id) && board_obj?.id == null || board_obj.id != write_info.id) {
+            var img_src = write_user_link.querySelector("img.mb-photo").src;
+            var img_position = img_src.indexOf('/data/member_image');
+            if (img_position > 0) {
+              write_info.img = img_src.substring(img_position + 18);
+            } else {
+              write_info.img = null;
+            }
+            write_info.nick = write_user_link.text.trim();
+            write_info.wr_id = board_obj?.wr_id;
+            write_info.c_id = c_id;
+            write_info.lastElementChild = c_divs[0].lastChild;
+            write_info.ip = c_divs[0].lastChild.textContent.trim().replace(/\(|\)/g, "");
+            write_info.time = c_divs[2].lastChild.textContent.trim();
+            if (write_info.time == "") {
+              write_info.time = c_divs[2].lastElementChild.textContent.trim();
+            }
+            check_list.push(write_info);
+          }
+        }
+      }
+    }
+    return check_list;
   }
-  return check_list;
-}
 
-var memo_db_version = 1;
-var memoDBName = "memoTR_";
-var memoID = "memoID";
-var memoIP = "memoIP";
-var checkMultiClass = "ui-custom-check-multi-id";
+  var memo_db_version = 1;
+  var memoDBName = "memoTR_";
+  var memoID = "memoID";
+  var memoIP = "memoIP";
+  var checkMultiClass = "ui-custom-check-multi-id";
 
-function memo_db_upgrade(event) {
-  var db = event.target.result;
-  // 메모ID용 스토어
-  //{id:"",nick:"",img:"",last:"",access:"",ip:{ip:"",last:"", board:"",wr_id:"",c_id:""}}
-  var idStore = db.createObjectStore(memoID, { keyPath: "id" });
-  // 메모ID용 인덱스
-  var idIndex = idStore.createIndex("by_id", "id");
-  var idAccessIndex = idStore.createIndex("by_access", "access",{ unique: false });
+  function memo_db_upgrade(event) {
+    var db = event.target.result;
+    // 메모ID용 스토어
+    //{id:"",nick:"",img:"",last:"",access:"",ip:{ip:"",last:"", board:"",wr_id:"",c_id:""}}
+    var idStore = db.createObjectStore(memoID, { keyPath: "id" });
+    // 메모ID용 인덱스
+    var idIndex = idStore.createIndex("by_id", "id");
+    var idAccessIndex = idStore.createIndex("by_access", "access", { unique: false });
 
-  // 메모IP용 스토어
-  //{ip:"",id:{id:"",last:""}}}
-  var ipStore = db.createObjectStore(memoIP, { keyPath: "ip" });
-  // 메모IP용 인덱스
-  var ipIndex = ipStore.createIndex("by_ip", "ip");
-  var ipIdCntIndex = ipStore.createIndex("by_id_cnt", "id_cnt",{ unique: false });
-}
+    // 메모IP용 스토어
+    //{ip:"",id:{id:"",last:""}}}
+    var ipStore = db.createObjectStore(memoIP, { keyPath: "ip" });
+    // 메모IP용 인덱스
+    var ipIndex = ipStore.createIndex("by_ip", "ip");
+    var ipIdCntIndex = ipStore.createIndex("by_id_cnt", "id_cnt", { unique: false });
+  }
 
-//데이터 정제
-function get_info_map_data(board_obj, info_list) {
-  var info_map = {};
-  info_map.info_list = info_list;
-  info_map.memo_user_map = {};
-  info_map.memo_ip_map = {};
-  info_map.list_ip_map = {};
-  for (var i = info_list.length - 1; i > -1; i--) {
-    var temp = info_list[i];
-    if (info_map.list_ip_map[temp.ip] == null){
-      info_map.list_ip_map[temp.ip] = {ip:temp.ip,p:[]};
-    }
-    info_map.list_ip_map[temp.ip].p.push(i);
-
-    if (temp.memo_user) {
-      if (temp.time != null) {
-        if (temp.time.indexOf(":") == -1) {
-          temp.time += " 00:00";
-        }
-        let today = new Date();
-        if (temp.time.indexOf(".") == -1) {
-          let month = today.getMonth() + 1;
-          let date = today.getDate();
-          temp.time = today.getFullYear() + "." + (month >= 10 ? month : '0' + month) + "." + (date >= 10 ? date : '0' + date) + " " + temp.time.trim();
-        } else if (temp.time.lastIndexOf(".") == 2) {
-          temp.time = today.getFullYear() + "." + temp.time.trim();
-        } else if (temp.time.lastIndexOf(".") == 5) {
-          temp.time = today.getFullYear().toString().substring(0, 2) + temp.time.trim();
-        }
+  //데이터 정제
+  function get_info_map_data(board_obj, info_list) {
+    var info_map = {};
+    info_map.info_list = info_list;
+    info_map.memo_user_map = {};
+    info_map.memo_ip_map = {};
+    info_map.list_ip_map = {};
+    for (var i = info_list.length - 1; i > -1; i--) {
+      var temp = info_list[i];
+      if (info_map.list_ip_map[temp.ip] == null) {
+        info_map.list_ip_map[temp.ip] = { ip: temp.ip, p: [] };
       }
-      var temp_user_ip = { ip: temp.ip, last: temp.time, board: board_obj.board, wr_id: temp.wr_id, c_id: temp.c_id };
+      info_map.list_ip_map[temp.ip].p.push(i);
 
-      var temp_ip = { ip: temp.ip };
-      var temp_ip_user = { id: temp.id, nick: temp.nick, img: temp.img, board: board_obj.board, wr_id: temp.wr_id, c_id: temp.c_id, last: temp.time };
-      temp_ip.id = {}
-      temp_ip.id[temp.id] = temp_ip_user;
-
-      if (info_map.memo_ip_map[temp.ip] != null) {
-        if (info_map.memo_ip_map[temp.ip].id[temp.id] == null || info_map.memo_ip_map[temp.ip].id[temp.id].last < temp.time) {
-          info_map.memo_ip_map[temp.ip].id[temp.id] = temp_ip_user;
+      if (temp.memo_user) {
+        if (temp.time != null) {
+          if (temp.time.indexOf(":") == -1) {
+            temp.time += " 00:00";
+          }
+          let today = new Date();
+          if (temp.time.indexOf(".") == -1) {
+            let month = today.getMonth() + 1;
+            let date = today.getDate();
+            temp.time = today.getFullYear() + "." + (month >= 10 ? month : '0' + month) + "." + (date >= 10 ? date : '0' + date) + " " + temp.time.trim();
+          } else if (temp.time.lastIndexOf(".") == 2) {
+            temp.time = today.getFullYear() + "." + temp.time.trim();
+          } else if (temp.time.lastIndexOf(".") == 5) {
+            temp.time = today.getFullYear().toString().substring(0, 2) + temp.time.trim();
+          }
         }
-      } else {
-        info_map.memo_ip_map[temp.ip] = temp_ip;
-      }
+        var temp_user_ip = { ip: temp.ip, last: temp.time, board: board_obj.board, wr_id: temp.wr_id, c_id: temp.c_id };
 
-      if (info_map.memo_user_map[temp.id] != null) {
-        if (info_map.memo_user_map[temp.id].last < temp.time) {
-          info_map.memo_user_map[temp.id].last = temp.time;
-          info_map.memo_user_map[temp.id].nick = temp.nick;
-          info_map.memo_user_map[temp.id].img = temp.img;
+        var temp_ip = { ip: temp.ip };
+        var temp_ip_user = { id: temp.id, nick: temp.nick, img: temp.img, board: board_obj.board, wr_id: temp.wr_id, c_id: temp.c_id, last: temp.time };
+        temp_ip.id = {}
+        temp_ip.id[temp.id] = temp_ip_user;
+
+        if (info_map.memo_ip_map[temp.ip] != null) {
+          if (info_map.memo_ip_map[temp.ip].id[temp.id] == null || info_map.memo_ip_map[temp.ip].id[temp.id].last < temp.time) {
+            info_map.memo_ip_map[temp.ip].id[temp.id] = temp_ip_user;
+          }
+        } else {
+          info_map.memo_ip_map[temp.ip] = temp_ip;
         }
-        if (info_map.memo_user_map[temp.id].ip[temp.ip] != null) {
-          if (info_map.memo_user_map[temp.id].ip[temp.ip].last < temp_user_ip.last) {
+
+        if (info_map.memo_user_map[temp.id] != null) {
+          if (info_map.memo_user_map[temp.id].last < temp.time) {
+            info_map.memo_user_map[temp.id].last = temp.time;
+            info_map.memo_user_map[temp.id].nick = temp.nick;
+            info_map.memo_user_map[temp.id].img = temp.img;
+          }
+          if (info_map.memo_user_map[temp.id].ip[temp.ip] != null) {
+            if (info_map.memo_user_map[temp.id].ip[temp.ip].last < temp_user_ip.last) {
+              info_map.memo_user_map[temp.id].ip[temp.ip] = temp_user_ip;
+            }
+          } else {
             info_map.memo_user_map[temp.id].ip[temp.ip] = temp_user_ip;
           }
         } else {
-          info_map.memo_user_map[temp.id].ip[temp.ip] = temp_user_ip;
+          var temp_id = { id: temp.id, nick: temp.nick, img: temp.img, last: temp.time };
+          temp_id.ip = {};
+          temp_id.ip[temp.ip] = temp_user_ip;
+          info_map.memo_user_map[temp.id] = temp_id;
         }
-      } else {
-        var temp_id = { id: temp.id, nick: temp.nick, img: temp.img, last: temp.time };
-        temp_id.ip = {};
-        temp_id.ip[temp.ip] = temp_user_ip;
-        info_map.memo_user_map[temp.id] = temp_id;
+      }
+    }
+
+    info_map.check_ids = Object.keys(info_map.memo_user_map);
+    info_map.check_ips = Object.keys(info_map.memo_ip_map);
+    info_map.list_ips = Object.keys(info_map.list_ip_map);
+    info_map.now_stamp = Date.now();
+    info_map.updated_id = false;
+    info_map.updated_ip = false;
+    return info_map;
+  }
+
+  function start_memo_tracking() {
+    var removes = document.querySelectorAll("span." + checkMultiClass);
+    if (removes != null && removes.length > 0) {
+      for (var i = 0; i < removes.length; i++) {
+        removes[i].remove();
+      }
+    }
+    if (window.indexedDB) {
+      var temp_obj = get_board_mb_id();
+      if (temp_obj != null && temp_obj.id != null && temp_obj.wr_id != null) {
+        check_memo_user_id(temp_obj.id);
+        var info_list = get_write_info_list(temp_obj);
+        if (info_list.length > 0) {
+          //데이터 정제 시작
+          var info_map = get_info_map_data(temp_obj, info_list);
+          //데이터 정제 끝
+
+          var memo_db_request = indexedDB.open(memoDBName + temp_obj.id, memo_db_version);
+          memo_db_request.onupgradeneeded = memo_db_upgrade;
+          memo_db_request.onsuccess = function (event) {
+            var db = event.target.result;
+
+            var update_complete = function () {
+              if (info_map.updated_id && info_map.updated_ip) {
+                remove_timeover_memo(db, function () {
+                  show_check_ip_id(db, temp_obj, info_map);
+                });
+              }
+            }
+
+            //memo id 갱신
+            update_memo_id(db, info_map, () => { info_map.updated_id = true; update_complete() });
+
+            //memo ip 갱신
+            update_memo_ip(db, info_map, () => { info_map.updated_ip = true; update_complete() });
+          };
+        }
       }
     }
   }
 
-  info_map.check_ids = Object.keys(info_map.memo_user_map);
-  info_map.check_ips = Object.keys(info_map.memo_ip_map);
-  info_map.list_ips = Object.keys(info_map.list_ip_map);
-  info_map.now_stamp = Date.now();
-  info_map.updated_id = false;
-  info_map.updated_ip = false;
-  return info_map;
-}
-
-function start_memo_tracking() {
-  var removes = document.querySelectorAll("span."+checkMultiClass);
-  if (removes != null && removes.length > 0) {
-    for (var i = 0; i < removes.length; i++) {
-      removes[i].remove();
-    }
-  }
-  if (window.indexedDB) {
-    var temp_obj = get_board_mb_id();
-    if (temp_obj != null && temp_obj.id != null && temp_obj.wr_id != null) {
-      check_memo_user_id(temp_obj.id);
-      var info_list = get_write_info_list(temp_obj);
-      if (info_list.length > 0) {
-        //데이터 정제 시작
-        var info_map = get_info_map_data(temp_obj, info_list);
-        //데이터 정제 끝
-
-        var memo_db_request = indexedDB.open(memoDBName + temp_obj.id, memo_db_version);
-        memo_db_request.onupgradeneeded = memo_db_upgrade;
-        memo_db_request.onsuccess = function (event) {
-          var db = event.target.result;
-
-          var update_complete = function(){
-            if (info_map.updated_id && info_map.updated_ip) {
-              remove_timeover_memo(db,function(){
-                show_check_ip_id(db,temp_obj,info_map);
-              });
-            }
-          }
-
-          //memo id 갱신
-          update_memo_id(db, info_map, () => {info_map.updated_id = true; update_complete()});
-
-          //memo ip 갱신
-          update_memo_ip(db, info_map, () => {info_map.updated_ip = true; update_complete()});
-        };
-      }
-    }
-  }
-}
-
-function update_memo_id(db, info_map, complete){
-  var idStore = getDBObjectStore(db, memoID, "readwrite", complete);
-  var checked_id = 0;
-  info_map.check_ids.forEach((user_id) => {
-    var temp_req = idStore.get(user_id);
-    temp_req.onsuccess = function (e) {
-      var result = e.target.result;
-      var memo_user = info_map.memo_user_map[user_id];
-      var ips = Object.keys(memo_user.ip);
-      if (result == null) {
-        memo_user.access = info_map.now_stamp;
-        memo_user.ip_cnt = ips.length;
-        ips.forEach((ip) => {
-          memo_user.ip[ip].access = info_map.now_stamp;
-        });
-        idStore.add(memo_user)
-        checked_id++;
-      } else {
-        var changed = false;
-        if (result.last < memo_user.last) {
-          result.nick = memo_user.nick;
-          result.last = memo_user.last;
-          result.img = memo_user.img;
-          changed = true;
-        } else {
-          changed = true;
-        }
-        if (result.ip == null) {
-          result.ip = {};
-        }
-        var result_ips = Object.keys(result.ip);
-        ips.forEach((ip) => {
-          var check_ip = memo_user.ip[ip];
-          if (result.ip[ip] == null || result.ip[ip].last < check_ip.last) {
-            if (result.ip[ip] == null) {
-              result.ip_cnt = Object.keys(result.ip).length + 1;
-            }
-            result.ip[ip] = check_ip;
-          }
-          result.ip[ip].access = info_map.now_stamp;
-          changed = true;
-        });
-        if (changed) {
-          var check_access = info_map.now_stamp;
-          result_ips.forEach((ip)=>{
-            if (result.ip[ip].access < check_access) {
-              check_access = result.ip[ip].access;
-            }
+  function update_memo_id(db, info_map, complete) {
+    var idStore = getDBObjectStore(db, memoID, "readwrite", complete);
+    var checked_id = 0;
+    info_map.check_ids.forEach((user_id) => {
+      var temp_req = idStore.get(user_id);
+      temp_req.onsuccess = function (e) {
+        var result = e.target.result;
+        var memo_user = info_map.memo_user_map[user_id];
+        var ips = Object.keys(memo_user.ip);
+        if (result == null) {
+          memo_user.access = info_map.now_stamp;
+          memo_user.ip_cnt = ips.length;
+          ips.forEach((ip) => {
+            memo_user.ip[ip].access = info_map.now_stamp;
           });
-          result.access = check_access;
-          idStore.put(result);
+          idStore.add(memo_user)
           checked_id++;
         } else {
-          checked_id++;
-        }
-      }
-    };
-    temp_req.onerror = function (e) {
-      checked_id++;
-    };
-  });
-}
-
-function update_memo_ip(db,info_map,complete){
-  var checked_ip = 0;
-  var ipStore = getDBObjectStore(db, memoIP, "readwrite", complete);
-
-  //memo ip 갱신
-  info_map.check_ips.forEach((user_ip) => {
-    var temp_req = ipStore.get(user_ip);
-    temp_req.onsuccess = function (e) {
-      var result = e.target.result;
-      var memo_ip = info_map.memo_ip_map[user_ip];
-      var ids = Object.keys(memo_ip.id);
-
-      if (result == null) {
-        memo_ip.access = info_map.now_stamp;
-        ids.forEach((id) => {
-          memo_ip.id[id].access = info_map.now_stamp;
-        });
-        memo_ip.id_cnt = Object.keys(memo_ip.id).length;
-        ipStore.add(memo_ip);
-        checked_ip++;
-      } else {
-        var changed = false;
-        if (result.id == null) {
-          result.id = {};
-        }
-        ids.forEach((id) => {
-          var check_id = memo_ip.id[id];
-          if (result.id[id] == null || result.id[id].last < check_id.last) {
-            if (result.id[id] == null) {
-              result.id_cnt = Object.keys(result.id).length + 1;
-            }
-            result.id[id] = check_id;
+          var changed = false;
+          if (result.last < memo_user.last) {
+            result.nick = memo_user.nick;
+            result.last = memo_user.last;
+            result.img = memo_user.img;
+            changed = true;
+          } else {
+            changed = true;
           }
-          result.id[id].access = info_map.now_stamp;
-          changed = true;
-        });
-
-        if (changed) {
-          result.access = info_map.now_stamp;
-          ipStore.put(result);
-          checked_ip++;
-        } else {
-        }
-      }
-    };
-    temp_req.onerror = function (e) {
-      checked_ip++;
-    };
-  });
-
-}
-
-function show_check_ip_id(db,board_obj,info_map,complete){
-  var listStore = getDBObjectStore(db, memoIP, "readonly", complete);
-  info_map.list_ips.forEach((list_ip) => {
-    var temp_req = listStore.get(list_ip);
-    temp_req.onsuccess = function (e) {
-      var result = e.target.result;
-      if (result != null) {
-        var ip_p = info_map.list_ip_map[list_ip].p;
-        var ids = Object.keys(result.id);
-        ip_p.forEach((p) => {
-          var temp_info = info_map.info_list[p];
-          var same_ip_ids = [];
-          var same_ip_id_string = "";
-          if (board_obj.id != temp_info.id) {
-            ids.forEach((id)=>{
-              if (id != temp_info.id) {
-                same_ip_ids.push(result.id[id].nick);
+          if (result.ip == null) {
+            result.ip = {};
+          }
+          var result_ips = Object.keys(result.ip);
+          ips.forEach((ip) => {
+            var check_ip = memo_user.ip[ip];
+            if (result.ip[ip] == null || result.ip[ip].last < check_ip.last) {
+              if (result.ip[ip] == null) {
+                result.ip_cnt = Object.keys(result.ip).length + 1;
+              }
+              result.ip[ip] = check_ip;
+            }
+            result.ip[ip].access = info_map.now_stamp;
+            changed = true;
+          });
+          if (changed) {
+            var check_access = info_map.now_stamp;
+            result_ips.forEach((ip) => {
+              if (result.ip[ip].access < check_access) {
+                check_access = result.ip[ip].access;
               }
             });
+            result.access = check_access;
+            idStore.put(result);
+            checked_id++;
+          } else {
+            checked_id++;
+          }
+        }
+      };
+      temp_req.onerror = function (e) {
+        checked_id++;
+      };
+    });
+  }
+
+  function update_memo_ip(db, info_map, complete) {
+    var checked_ip = 0;
+    var ipStore = getDBObjectStore(db, memoIP, "readwrite", complete);
+
+    //memo ip 갱신
+    info_map.check_ips.forEach((user_ip) => {
+      var temp_req = ipStore.get(user_ip);
+      temp_req.onsuccess = function (e) {
+        var result = e.target.result;
+        var memo_ip = info_map.memo_ip_map[user_ip];
+        var ids = Object.keys(memo_ip.id);
+
+        if (result == null) {
+          memo_ip.access = info_map.now_stamp;
+          ids.forEach((id) => {
+            memo_ip.id[id].access = info_map.now_stamp;
+          });
+          memo_ip.id_cnt = Object.keys(memo_ip.id).length;
+          ipStore.add(memo_ip);
+          checked_ip++;
+        } else {
+          var changed = false;
+          if (result.id == null) {
+            result.id = {};
+          }
+          ids.forEach((id) => {
+            var check_id = memo_ip.id[id];
+            if (result.id[id] == null || result.id[id].last < check_id.last) {
+              if (result.id[id] == null) {
+                result.id_cnt = Object.keys(result.id).length + 1;
+              }
+              result.id[id] = check_id;
+            }
+            result.id[id].access = info_map.now_stamp;
+            changed = true;
+          });
+
+          if (changed) {
+            result.access = info_map.now_stamp;
+            ipStore.put(result);
+            checked_ip++;
+          } else {
+          }
+        }
+      };
+      temp_req.onerror = function (e) {
+        checked_ip++;
+      };
+    });
+
+  }
+
+  function show_check_ip_id(db, board_obj, info_map, complete) {
+    var listStore = getDBObjectStore(db, memoIP, "readonly", complete);
+    info_map.list_ips.forEach((list_ip) => {
+      var temp_req = listStore.get(list_ip);
+      temp_req.onsuccess = function (e) {
+        var result = e.target.result;
+        if (result != null) {
+          var ip_p = info_map.list_ip_map[list_ip].p;
+          var ids = Object.keys(result.id);
+          ip_p.forEach((p) => {
+            var temp_info = info_map.info_list[p];
+            var same_ip_ids = [];
+            var same_ip_id_string = "";
+            if (board_obj.id != temp_info.id) {
+              ids.forEach((id) => {
+                if (id != temp_info.id) {
+                  same_ip_ids.push(result.id[id].nick);
+                }
+              });
+            }
+
+            if (same_ip_ids.length > 0) {
+              var s = document.createElement('span');
+              s.className = "ui-custom-check-multi-id da-member-memo";
+              s.classList.add(checkMultiClass);
+              s.innerHTML = "<span class='badge rounded-pill align-middle da-member-memo__memo da-memo-color--yellow'> 유사 IP 계정 </span>&nbsp;<em class='badge rounded-pill align-middle da-member-memo__memo da-memo-color--red'> " + same_ip_ids.join(" </em>&nbsp;<em class='badge rounded-pill align-middle da-member-memo__memo da-memo-color--red'> ") + " </em>";
+              temp_info.lastElementChild.after(s);
+            }
+          });
+        }
+      };
+    });
+  }
+
+  function remove_timeover_memo(db, complete) {
+    var idStore = getDBObjectStore(db, memoID, "readwrite");
+    var idAccessIndex = idStore.index("by_access");
+    var limit_time = Date.now() - 30 * 24 * 60 * 60 * 1000; // 기간 최소 1달
+    var access_req = idAccessIndex.openCursor(IDBKeyRange.upperBound(limit_time));
+    var old_ips = {};
+    access_req.onsuccess = function (e) {
+      var cursor = e.target.result;
+      if (cursor) {
+        var temp_val = cursor.value;
+        var changed = false;
+        var check_access = null;
+        Object.keys(temp_val.ip).forEach((ip) => {
+          if (temp_val.ip[ip].access < limit_time) {
+            if (old_ips[ip] == null) {
+              old_ips[ip] = [];
+            }
+            old_ips[ip].push(cursor.primaryKey);
+            delete temp_val.ip[ip];
+            changed = true;
+          } else {
+            if (check_access == null || check_access > temp_val.ip[ip].access) {
+              check_access = temp_val.ip[ip].access;
+            }
+          }
+        });
+
+        if (Object.keys(temp_val.ip).length > 0) {
+          if (changed) {
+            if (check_access != null) {
+              temp_val.access = check_access;
+            }
+            idStore.put(temp_val);
+          }
+        } else {
+          idStore.delete(cursor.primaryKey);
+        }
+        cursor.continue();
+      } else {
+        var ipStore = getDBObjectStore(db, memoIP, "readwrite", complete);
+        Object.keys(old_ips).forEach((temp_ip) => {
+          var ip_req = ipStore.get(temp_ip);
+          ip_req.onsuccess = function (e) {
+            var memo_ip = e.target.result;
+            var ip_ids = old_ips[temp_ip];
+            ip_ids.forEach((temp_id) => {
+              if (memo_ip.id[temp_id] != null) {
+                delete memo_ip.id[temp_id];
+              }
+            });
+            memo_ip.id_cnt = Object.keys(memo_ip.id).length;
+            if (memo_ip.id_cnt === 0) {
+              ipStore.delete(memo_ip.ip);
+            } else {
+              ipStore.put(memo_ip);
+            }
           }
 
-          if (same_ip_ids.length>0) {
-            var s = document.createElement('span');
-            s.className = "ui-custom-check-multi-id da-member-memo";
-            s.classList.add(checkMultiClass);
-            s.innerHTML = "<span class='badge rounded-pill align-middle da-member-memo__memo da-memo-color--yellow'> 유사 IP 계정 </span>&nbsp;<em class='badge rounded-pill align-middle da-member-memo__memo da-memo-color--red'> " + same_ip_ids.join(" </em>&nbsp;<em class='badge rounded-pill align-middle da-member-memo__memo da-memo-color--red'> ") + " </em>";
-            temp_info.lastElementChild.after(s);
-          }
         });
       }
     };
-  });
-}
+  }
 
-function remove_timeover_memo(db,complete){
-  var idStore = getDBObjectStore(db, memoID, "readwrite");
-  var idAccessIndex = idStore.index("by_access");
-  var limit_time = Date.now() - 30*24*60*60*1000; // 기간 최소 1달
-  var access_req = idAccessIndex.openCursor(IDBKeyRange.upperBound(limit_time));
-  var old_ips = {};
-  access_req.onsuccess = function(e) {
-    var cursor = e.target.result;
-    if(cursor) {
-      var temp_val = cursor.value;
-      var changed = false;
-      var check_access = null;
-      Object.keys(temp_val.ip).forEach((ip) => {
-        if (temp_val.ip[ip].access < limit_time) {
-          if (old_ips[ip] == null) {
-            old_ips[ip] = [];
-          }
-          old_ips[ip].push(cursor.primaryKey);
-          delete temp_val.ip[ip];
-          changed = true;
-        } else {
-          if (check_access == null || check_access > temp_val.ip[ip].access) {
-            check_access = temp_val.ip[ip].access;
-          }
-        }
-      });
+  function getDBObjectStore(db, store_name, mode, complete) {
+    var tx = db.transaction(store_name, mode);
+    if (complete != null) {
+      tx.oncomplete = complete;
+    }
+    return tx.objectStore(store_name);
+  }
 
-      if (Object.keys(temp_val.ip).length > 0 ) {
-        if (changed) {
-          if (check_access != null) {
-            temp_val.access = check_access;
-          }
-          idStore.put(temp_val);
-        }
-      } else {
-        idStore.delete(cursor.primaryKey);
+  //memo 추적 관련 기능 끝
+
+  function set_ui_custom_onload() {
+    set_board_link_option_html();
+    check_indexDB();
+    set_ui_custom_click_event();
+    var btn_ui_apply = document.getElementById("btn_ui_apply");
+    if (btn_ui_apply) {
+      btn_ui_apply.addEventListener("click", ui_custom_apply);
+    }
+
+    var btn_memo_toggle = document.getElementById("btn_memo_toggle");
+    if (btn_memo_toggle) {
+      btn_memo_toggle.addEventListener("click", toggle_hide_member_memo);
+    }
+    var btn_memo_ip_clear = document.getElementById("btn_memo_ip_clear");
+    if (btn_memo_ip_clear) {
+      btn_memo_ip_clear.addEventListener("click", delete_database);
+    }
+    var ui_obj = get_ui_custom_values();
+    if (ui_obj) {
+      hide_nick(ui_obj);
+      if (ui_obj.ui_custom != null && ui_obj.ui_custom && ui_obj.memo_ip_track != null && ui_obj.memo_ip_track) {
+        start_memo_tracking();
       }
-      cursor.continue();
-    } else {
-      var ipStore = getDBObjectStore(db, memoIP, "readwrite",complete);
-      Object.keys(old_ips).forEach((temp_ip) => {
-        var ip_req = ipStore.get(temp_ip);
-        ip_req.onsuccess = function(e) {
-          var memo_ip = e.target.result;
-          var ip_ids = old_ips[temp_ip];
-          ip_ids.forEach((temp_id) => {
-            if (memo_ip.id[temp_id] != null) {
-              delete memo_ip.id[temp_id];
-            }
-          });
-          memo_ip.id_cnt = Object.keys(memo_ip.id).length;
-          if (memo_ip.id_cnt === 0) {
-            ipStore.delete(memo_ip.ip);
-          } else {
-            ipStore.put(memo_ip);
-          }
-        }
-
-      });
-    }
-  };
-}
-
-function getDBObjectStore(db, store_name, mode, complete) {
-  var tx = db.transaction(store_name, mode);
-  if (complete != null) {
-    tx.oncomplete = complete;
-  }
-  return tx.objectStore(store_name);
-}
-
-//memo 추적 관련 기능 끝
-
-function set_ui_custom_onload() {
-  set_board_link_option_html();
-  check_indexDB();
-  set_ui_custom_click_event();
-  var btn_ui_apply = document.getElementById("btn_ui_apply");
-  if (btn_ui_apply) {
-    btn_ui_apply.addEventListener("click", ui_custom_apply);
-  }
-
-  var btn_memo_toggle = document.getElementById("btn_memo_toggle");
-  if (btn_memo_toggle) {
-    btn_memo_toggle.addEventListener("click", toggle_hide_member_memo);
-  }
-  var btn_memo_ip_clear = document.getElementById("btn_memo_ip_clear");
-  if (btn_memo_ip_clear) {
-    btn_memo_ip_clear.addEventListener("click", delete_database);
-  }
-  var ui_obj = get_ui_custom_values();
-  if (ui_obj) {
-    hide_nick(ui_obj);
-    if (ui_obj.ui_custom != null && ui_obj.ui_custom && ui_obj.memo_ip_track != null && ui_obj.memo_ip_track) {
-      start_memo_tracking();
     }
   }
-}
-document.addEventListener("DOMContentLoaded", set_ui_custom_onload, { once: true });
+  document.addEventListener("DOMContentLoaded", set_ui_custom_onload, { once: true });
 
-try {
-  set_ui_custom();
-} catch (error) {
-  //console.error('Failed to initialize custom UI settings:', error);
-}
+  try {
+    set_ui_custom();
+  } catch (error) {
+    //console.error('Failed to initialize custom UI settings:', error);
+  }
 
 })();
