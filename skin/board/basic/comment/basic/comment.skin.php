@@ -622,6 +622,7 @@ if($is_ajax)
         <style>
             .semi-alert-message {
                 display: none;
+                width: 205px;
                 position: fixed;
                 top: 50%;
                 left: 50%;
