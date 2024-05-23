@@ -1,6 +1,6 @@
 (() => {
     'use strict'
-
+    
     function set_ui_custom() {
         try {
             document.getElementById('user_ui_custom_styles').remove();
@@ -64,7 +64,7 @@
 
             }
 
-            hide_nick(ui_obj);
+            //hide_nick(ui_obj);
 
         }
     }
@@ -94,6 +94,8 @@
             , "mymenu_img"
             , "title_filtering"
             , "filtering_word"
+            , "content_blur"
+            , "content_blur_word"
             , "shortcut_use"
             , "shortcut_1"
             , "shortcut_2"
@@ -163,8 +165,9 @@
 
     function get_ui_custom_values() {
         var ui_custom_storage_str = localStorage.getItem("ui_custom");
+        var ui_custom_obj = null;
         if (ui_custom_storage_str != null && ui_custom_storage_str != "") {
-            var ui_custom_obj = JSON.parse(ui_custom_storage_str);
+            ui_custom_obj = JSON.parse(ui_custom_storage_str);
             var ui_custom_keys = Object.keys(ui_custom_obj);
             ui_custom_keys.forEach(function (reg) {
                 var temp_input = document.getElementById("reg_" + reg);
@@ -182,10 +185,11 @@
             });
 
             if (document.getElementById('ui_custom_json') != null) document.getElementById('ui_custom_json').value = ui_custom_storage_str;
-
-            set_ui_custom_trigger();
-            return ui_custom_obj;
         }
+
+        set_ui_custom_trigger();
+        return ui_custom_obj;
+
     }
 
     function hide_nick(ui_obj) {
@@ -231,6 +235,11 @@
             //제목 필터링
             if (ui_obj.title_filtering ?? false) {
                 set_title_filtering(ui_obj?.filtering_word);
+            }
+
+            //본문 필터링
+            if (ui_obj.content_blur ?? false) {
+                check_content_blur(ui_obj?.content_blur_word);
             }
         }
     }
@@ -484,6 +493,85 @@
 
     }
 
+    var body_parent_id = "bo_v_atc";
+    var body_con_id = "bo_v_con";
+    var body_blur_id = "bo_v_con_blur";
+
+    function remove_blur(e) {
+        e.preventDefault();
+        var body_con = document.getElementById(body_con_id)
+        if (body_con.style.filter != "") {
+            var blur_txt = document.getElementById(body_blur_id);
+            if (blur_txt!=null){
+                blur_txt.remove();
+            }
+            document.getElementById(body_parent_id).style.removeProperty("position");
+            body_con.style.filter = "";
+            body_con.removeEventListener("click",remove_blur);
+        }
+    }
+    function set_blur_padding(){
+        var body_con = document.getElementById(body_con_id);
+        var blur_txt = document.getElementById(body_blur_id);
+        var paddingTB = ((body_con.offsetHeight - blur_txt.offsetHeight - 30));
+        console.debug(body_con.offsetHeight);
+        console.debug(blur_txt.offsetHeight);
+        blur_txt.style.top = body_con.offsetTop + "px";
+        blur_txt.style.paddingTop = "30px";
+        blur_txt.style.paddingBottom = paddingTB + "px";
+    }
+
+    function check_content_blur(word_list) {
+        if (document.getElementById(body_con_id) != null) {
+            word_list = (word_list ?? "").trim()
+            var check_regex = /^[ㄱ-ㅎ가-힣a-zA-Z0-9\[\]\(\)]+$/;
+            var word_regex = "";
+            if (word_list != "") {
+                var word_arr = word_list.split(",");
+                word_arr.forEach(function (word) {
+                    word = word.trim();
+                    if (word != "" && check_regex.test(word)) {
+                        if (word_regex != "") {
+                            word_regex += "|";
+                        }
+                        word_regex += word;
+                    }
+                });
+    
+                if (word_regex != "") {
+                    var re = new RegExp(word_regex, "i");
+                    var title_text = document.getElementById("bo_v_title")?.innerText ?? "";
+                    if (re.test(title_text)) {
+                        set_content_blur();
+                    }
+                }
+            }
+        }
+    }
+
+    function set_content_blur(){
+        var body_con = document.getElementById(body_con_id);
+        body_con.style.filter = "blur(10em)";
+        body_con.addEventListener("click",remove_blur);
+        document.getElementById(body_parent_id).style.position = "relative";
+        var blur_txt = document.createElement("div");
+        blur_txt.id = body_blur_id;
+        blur_txt.style.textAlign = "center";
+        blur_txt.style.position = "absolute";
+        blur_txt.style.width = body_con.offsetWidth + "px";
+        blur_txt.style.fontSize = "2em";
+        blur_txt.style.fontWeight = "800";
+        blur_txt.style.cursor = "pointer";
+        //blur_txt.style.height = body_con.offsetHeight + "px";
+        blur_txt.addEventListener("click",remove_blur);
+        body_con.after(blur_txt);
+        var blur_img = document.createElement("img");
+        blur_img.src = "https://damoang.net//data/editor/b7767-664966b303898-9eea4d0b7513e8395986b5aa7c42d1854c10bc21.png";
+        blur_img.style.maxWidth = "150px";
+        blur_img.onload = set_blur_padding;
+        blur_txt.append(blur_img);
+    }
+    
     function set_expand_quick(ui_obj) {
         var toTop = document.getElementById('toTop');
         if (toTop != null) {
@@ -959,6 +1047,13 @@
                     $(".ui-custom-filtering").hide();
                 }
             });
+            $("#reg_content_blur").change(function () {
+                if ($("#reg_content_blur").is(":checked")) {
+                    $(".ui-custom-content-blur").show();
+                } else {
+                    $(".ui-custom-content-blur").hide();
+                }
+            });
             $("#reg_shortcut_use").change(function () {
                 if ($("#reg_shortcut_use").is(":checked")) {
                     $(".ui-custom-shortcut").show();
@@ -984,6 +1079,7 @@
             $("#reg_ui_custom").trigger('change');
 
             $("#reg_title_filtering").trigger('change');
+            $("#reg_content_blur").trigger('change');
             $("#reg_shortcut_use").trigger('change');
 
         } catch (error) {

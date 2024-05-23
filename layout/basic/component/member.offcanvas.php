@@ -419,6 +419,26 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                 </div>
             </div>
         </li>
+        <li class="list-group-item ">
+            <div class="row align-items-center">
+                <label for="reg_content_blur" class="col-sm-5 col-form-label">본문 흐림</label>
+                <div class="col-sm-7">
+                    <div class="form-check form-switch form-check-inline">
+                        <input class="form-check-input ui_custom_items" type="checkbox" name="content_blur" value="1"
+                            role="switch" id="reg_content_blur" data-gtm-form-interact-field-id="0">
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item ui-custom-content-blur">
+            <div class="row">
+                <label for="reg_content_blur_word" class="col-sm-5 col-form-label">예 : 후방,스포</label>
+                <div class="col-sm-7">
+                    <input type="text" id="reg_content_blur_word" name="content_blur_word" value=""
+                        class="form-control ui_custom_items ">
+                </div>
+            </div>
+        </li>
         <li class="list-group-item">
             <div class="row align-items-center">
                 <label for="reg_shortcut_use" class="col-sm-5 col-form-label">숫자 단축키</label>
