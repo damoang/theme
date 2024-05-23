@@ -23,13 +23,13 @@ $one_cols = array(
 (IS_SHOP || in_array($page_id, $one_cols)) ? define('IS_ONECOL', true) : define('IS_ONECOL', false);
 
 ?>
-    <!doctype html>
+<!doctype html>
 <html lang="ko" data-bs-theme="light"
-      class="<?php echo (G5_IS_MOBILE) ? 'is-mobile' : 'is-pc'; ?> <?php echo (IS_SHOP) ? 'is-shop' : 'is-bbs'; ?>">
+    class="<?php echo (G5_IS_MOBILE) ? 'is-mobile' : 'is-pc'; ?> <?php echo (IS_SHOP) ? 'is-shop' : 'is-bbs'; ?>">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" id="meta_viewport"
-              content="width=device-width,initial-scale=1.0,minimum-scale=0,maximum-scale=10">
+            content="width=device-width,initial-scale=1.0,minimum-scale=0,maximum-scale=10">
         <meta name="HandheldFriendly" content="true">
         <meta name="format-detection" content="telephone=no">
         <?php

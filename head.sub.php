@@ -9,7 +9,7 @@ $g5_debug['php']['begin_time'] = $begin_time = get_microtime();
 
 // 쇼핑몰 타이틀
 if(IS_SHOP && isset($nariya['seo_shop_title']) && $nariya['seo_shop_title'])
-	$config['cf_title'] = $nariya['seo_shop_title'];
+    $config['cf_title'] = $nariya['seo_shop_title'];
 
 // 인덱스
 (defined('_INDEX_')) ? define('IS_INDEX', true) : define('IS_INDEX', false);
@@ -44,33 +44,33 @@ header("Pragma: no-cache"); // HTTP/1.0
 // 레이아웃 상수
 $layout_skin = '';
 if(IS_YC) {
-	if(IS_SHOP) {
-		$layout_skin = G5_IS_MOBILE ? $nariya['layout_shop_mo'] : $nariya['layout_shop_pc'];
-	} else {
-		$layout_skin = G5_IS_MOBILE ? $nariya['layout_mo'] : $nariya['layout_pc'];
-	}
+    if(IS_SHOP) {
+        $layout_skin = G5_IS_MOBILE ? $nariya['layout_shop_mo'] : $nariya['layout_shop_pc'];
+    } else {
+        $layout_skin = G5_IS_MOBILE ? $nariya['layout_mo'] : $nariya['layout_pc'];
+    }
 } else {
-	$layout_skin = G5_IS_MOBILE ? $nariya['layout_mo'] : $nariya['layout_pc'];
+    $layout_skin = G5_IS_MOBILE ? $nariya['layout_mo'] : $nariya['layout_pc'];
 }
 
 // 미리보기
 if (IS_DEMO) {
-	if (isset($_REQUEST['pv']) && $_REQUEST['pv'])
-		set_session('pv', na_fid($_REQUEST['pv']));
+    if (isset($_REQUEST['pv']) && $_REQUEST['pv'])
+        set_session('pv', na_fid($_REQUEST['pv']));
 
-	$pv_layout_ = na_fid(get_session('pv'));
+    $pv_layout_ = na_fid(get_session('pv'));
 
-	if ($pv_layout) {
-		if ($pv_layout == '1' || !is_dir(G5_THEME_PATH.'/layout/'.$pv_layout)) {
-			set_session('pv', '');
-		} else {
-			$layout_skin = $pv_layout;
-		}
-	}
+    if ($pv_layout) {
+        if ($pv_layout == '1' || !is_dir(G5_THEME_PATH.'/layout/'.$pv_layout)) {
+            set_session('pv', '');
+        } else {
+            $layout_skin = $pv_layout;
+        }
+    }
 }
 
-if (!$layout_skin) 
-	$layout_skin = 'basic';
+if (!$layout_skin)
+    $layout_skin = 'basic';
 
 define('LAYOUT_SKIN', $layout_skin);
 define('LAYOUT_URL', G5_THEME_URL.'/layout/'.$layout_skin);
@@ -81,11 +81,11 @@ define('LAYOUT_PATH', G5_THEME_PATH.'/layout/'.$layout_skin);
 
 // 페이지 타이틀
 if(isset($board['bo_subject']) && $board['bo_subject']) {
-	$page_title = $board['bo_subject'];
+    $page_title = $board['bo_subject'];
 } else if(isset($group['gr_subject']) && $group['gr_subject']) {
-	$page_title = $group['gr_subject'];
+    $page_title = $group['gr_subject'];
 } else {
-	$page_title = $g5['title'];
+    $page_title = $g5['title'];
 }
 
 $page_title = get_text($page_title);

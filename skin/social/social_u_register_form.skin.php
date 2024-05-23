@@ -13,156 +13,156 @@ add_stylesheet('<link rel="stylesheet" href="'.get_social_skin_url().'/style.css
 ?>
 
 <li class="list-group-item">
-	<div class="row align-items-center">
-		<label class="col-sm-3 col-form-label">SNS 로그인 관리</label>
-		<div class="col-sm-9">
-			<div class="reg-form sns-wrap-reg">
-				<div class="sns-wrap">
+    <div class="row align-items-center">
+        <label class="col-sm-3 col-form-label">SNS 로그인 관리</label>
+        <div class="col-sm-9">
+            <div class="reg-form sns-wrap-reg">
+                <div class="sns-wrap">
 
-				<?php foreach( $socials as $social=>$provider_name ){
-					
-					if( !option_array_checked($social, $config['cf_social_servicelist'])) {
-						continue;
-					}
+                <?php foreach( $socials as $social=>$provider_name ){
 
-					$social_nonce = social_nonce_create($social, $session_id);
-					$add_class='';
-					$title='';
-					if( in_array($social, $my_provides) ){
-						
-						$link_href = G5_SOCIAL_LOGIN_URL.'/unlink.php?provider='.$social.'&amp;social_nonce='.$social_nonce;
+                    if( !option_array_checked($social, $config['cf_social_servicelist'])) {
+                        continue;
+                    }
 
-						$title = $provider_name.' 연결을 해제합니다.';
-					} else {
-						$add_class = ' sns-icon-not';
+                    $social_nonce = social_nonce_create($social, $session_id);
+                    $add_class='';
+                    $title='';
+                    if( in_array($social, $my_provides) ){
 
-						$link_href = $self_url.'?provider='.$social.'&amp;mylink=1&amp;url='.$urlencode;
+                        $link_href = G5_SOCIAL_LOGIN_URL.'/unlink.php?provider='.$social.'&amp;social_nonce='.$social_nonce;
 
-						$title = $provider_name.' 계정을 연결 합니다.';
+                        $title = $provider_name.' 연결을 해제합니다.';
+                    } else {
+                        $add_class = ' sns-icon-not';
 
-					}
-				?>
+                        $link_href = $self_url.'?provider='.$social.'&amp;mylink=1&amp;url='.$urlencode;
 
-				<a href="<?php echo $link_href; ?>" id="sns-<?php echo $social; ?>" class="sns-icon social_link sns-<?php echo $social; ?><?php echo $add_class; ?>" title="<?php echo $title; ?>" data-provider="<?php echo $social; ?>" ><span class="ico"></span><span class="txt"><?php echo $provider_name; ?> 로그인</span></a>
+                        $title = $provider_name.' 계정을 연결 합니다.';
 
-				<?php }     //end foreach ?>
+                    }
+                ?>
 
-				</div>
-			</div>
-		</div>
-	</div>
+                <a href="<?php echo $link_href; ?>" id="sns-<?php echo $social; ?>" class="sns-icon social_link sns-<?php echo $social; ?><?php echo $add_class; ?>" title="<?php echo $title; ?>" data-provider="<?php echo $social; ?>" ><span class="ico"></span><span class="txt"><?php echo $provider_name; ?> 로그인</span></a>
 
-	<script>
+                <?php }     //end foreach ?>
 
-	function social_get_nonce(provider){
-		var socials = [];
+                </div>
+            </div>
+        </div>
+    </div>
 
-		<?php foreach( $socials as $social=>$v ){ ?>
-			socials["<?php echo $social; ?>"] = "<?php echo social_nonce_create($social, $session_id); ?>";
-		<?php } ?>
+    <script>
 
-		return (typeof socials[provider] != 'undefined') ? socials[provider] : '';
-	}
+    function social_get_nonce(provider){
+        var socials = [];
 
-	function social_link_fn(provider){
+        <?php foreach( $socials as $social=>$v ){ ?>
+            socials["<?php echo $social; ?>"] = "<?php echo social_nonce_create($social, $session_id); ?>";
+        <?php } ?>
 
-		provider = provider.toLowerCase();
+        return (typeof socials[provider] != 'undefined') ? socials[provider] : '';
+    }
 
-		var $icon = jQuery("#sns-"+provider);
+    function social_link_fn(provider){
 
-		if( $icon.length ){
+        provider = provider.toLowerCase();
 
-			var social_url = "<?php echo G5_SOCIAL_LOGIN_URL; ?>",
-				link_href = social_url+"/unlink.php?provider="+provider+"&social_nonce="+social_get_nonce(provider),
-				atitle = provider+" 연결을 해제합니다.";
+        var $icon = jQuery("#sns-"+provider);
 
-			$icon.attr({"href":link_href, "title":atitle}).removeClass("sns-icon-not");
-			
-			alert('연결 되었습니다');
+        if( $icon.length ){
 
-			return true;
-		}
+            var social_url = "<?php echo G5_SOCIAL_LOGIN_URL; ?>",
+                link_href = social_url+"/unlink.php?provider="+provider+"&social_nonce="+social_get_nonce(provider),
+                atitle = provider+" 연결을 해제합니다.";
 
-		return false;
-	}
+            $icon.attr({"href":link_href, "title":atitle}).removeClass("sns-icon-not");
 
-	jQuery(function($){
+            alert('연결 되었습니다');
 
-		var social_img_path = "<?php echo G5_SOCIAL_LOGIN_URL; ?>",
-			self_url = "<?php echo $self_url; ?>",
-			urlencode = "<?php echo $urlencode; ?>";
-			
-		$(".sns-wrap").on("click", ".social_link", function(e){
-			e.preventDefault();
+            return true;
+        }
 
-			var othis = $(this);
+        return false;
+    }
 
-			if( ! othis.hasClass('sns-icon-not') ){     //소셜계정 해제하기
+    jQuery(function($){
 
-				if (!confirm('정말 이 계정 연결을 해제하시겠습니까?')) {
-					return false;
-				}
+        var social_img_path = "<?php echo G5_SOCIAL_LOGIN_URL; ?>",
+            self_url = "<?php echo $self_url; ?>",
+            urlencode = "<?php echo $urlencode; ?>";
 
-				var ajax_url = "<?php echo G5_SOCIAL_LOGIN_URL.'/unlink.php' ?>",
-					mb_id = '',
-					provider = $(this).attr("data-provider");
+        $(".sns-wrap").on("click", ".social_link", function(e){
+            e.preventDefault();
 
-				if( ! provider ){
-					na_alert("잘못된 요청! provider 값이 없습니다.");
-					return false;
-				}
+            var othis = $(this);
 
-				$.ajax({
-					url: ajax_url,
-					type: 'POST',
-					data: {
-						'provider': provider,
-						'mb_id': mb_id,
-						'nonce' : social_get_nonce(provider)
-					},
-					dataType: 'json',
-					cache : false,
-					async: false,
-					success: function(data, textStatus) {
-						if (data.error) {
-							alert(data.error);
-							return false;
-						} else {
-							var atitle = provider+" 계정을 연결 합니다.",
-								link_href = self_url+"?provider="+provider+"&mylink=1&url="+urlencode;
-							
-							othis.attr({"href":link_href, "title":atitle}).addClass("sns-icon-not");
+            if( ! othis.hasClass('sns-icon-not') ){     //소셜계정 해제하기
 
-						}
-					},
-					error: function(data) {
-						try { console.log(data) } catch (e) { alert(data.error) };
-					}
-				});
+                if (!confirm('정말 이 계정 연결을 해제하시겠습니까?')) {
+                    return false;
+                }
 
-			} else {        //소셜계정 연결하기
+                var ajax_url = "<?php echo G5_SOCIAL_LOGIN_URL.'/unlink.php' ?>",
+                    mb_id = '',
+                    provider = $(this).attr("data-provider");
 
-				var pop_url = $(this).attr("href");
-				var is_popup = "<?php echo G5_SOCIAL_USE_POPUP; ?>";
-				
-				if( is_popup ){
-					var newWin = window.open(
-						pop_url, 
-						"social_sing_on", 
-						"location=0,status=0,scrollbars=1,width=600,height=500"
-					);
+                if( ! provider ){
+                    na_alert("잘못된 요청! provider 값이 없습니다.");
+                    return false;
+                }
 
-					if(!newWin || newWin.closed || typeof newWin.closed=='undefined')
-						 na_alert('브라우저에서 팝업이 차단되어 있습니다. 팝업 활성화 후 다시 시도해 주세요.');
+                $.ajax({
+                    url: ajax_url,
+                    type: 'POST',
+                    data: {
+                        'provider': provider,
+                        'mb_id': mb_id,
+                        'nonce' : social_get_nonce(provider)
+                    },
+                    dataType: 'json',
+                    cache : false,
+                    async: false,
+                    success: function(data, textStatus) {
+                        if (data.error) {
+                            alert(data.error);
+                            return false;
+                        } else {
+                            var atitle = provider+" 계정을 연결 합니다.",
+                                link_href = self_url+"?provider="+provider+"&mylink=1&url="+urlencode;
 
-				} else {
-					location.replace(pop_url);
-				}
+                            othis.attr({"href":link_href, "title":atitle}).addClass("sns-icon-not");
 
-			}
-			return false;
-		});
-	});
-	</script>
+                        }
+                    },
+                    error: function(data) {
+                        try { console.log(data) } catch (e) { alert(data.error) };
+                    }
+                });
+
+            } else {        //소셜계정 연결하기
+
+                var pop_url = $(this).attr("href");
+                var is_popup = "<?php echo G5_SOCIAL_USE_POPUP; ?>";
+
+                if( is_popup ){
+                    var newWin = window.open(
+                        pop_url,
+                        "social_sing_on",
+                        "location=0,status=0,scrollbars=1,width=600,height=500"
+                    );
+
+                    if(!newWin || newWin.closed || typeof newWin.closed=='undefined')
+                        na_alert('브라우저에서 팝업이 차단되어 있습니다. 팝업 활성화 후 다시 시도해 주세요.');
+
+                } else {
+                    location.replace(pop_url);
+                }
+
+            }
+            return false;
+        });
+    });
+    </script>
 
 </li>

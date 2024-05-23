@@ -56,16 +56,16 @@ $(function ($) {
     document.cookie = 'sociallogin_remeber=false; path=/; max-age=0;';
   }
   $('.sociallogin_remeber').on('change', function (e) {
-      const checked = $(e.target).prop('checked');
-      $('.sociallogin_remeber').prop('checked', checked);
-      if (checked) {
-          document.cookie = 'sociallogin_remeber=true; path=/; secure';
-          if (window.g5_cookie_domain) {
-              document.cookie += `domain=${window.g5_cookie_domain};`;
-          }
-      } else {
-          document.cookie = 'sociallogin_remeber=false; path=/; max-age=0;';
+    const checked = $(e.target).prop('checked');
+    $('.sociallogin_remeber').prop('checked', checked);
+    if (checked) {
+      document.cookie = 'sociallogin_remeber=true; path=/; secure';
+      if (window.g5_cookie_domain) {
+        document.cookie += `domain=${window.g5_cookie_domain};`;
       }
-      $('.social-remember-alert').toggleClass('alert-light alert-danger');
+    } else {
+      document.cookie = 'sociallogin_remeber=false; path=/; max-age=0;';
+    }
+    $('.social-remember-alert').toggleClass('alert-light alert-danger');
   });
 });

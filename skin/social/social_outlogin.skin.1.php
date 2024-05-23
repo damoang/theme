@@ -67,13 +67,13 @@ add_stylesheet('<link rel="stylesheet" href="'.get_social_skin_url().'/style.css
 
                     var pop_url = $(this).attr("href");
                     var newWin = window.open(
-                        pop_url, 
-                        "social_sing_on", 
+                        pop_url,
+                        "social_sing_on",
                         "location=0,status=0,scrollbars=1,width=600,height=500"
                     );
 
                     if(!newWin || newWin.closed || typeof newWin.closed=='undefined')
-                         na_alert('브라우저에서 팝업이 차단되어 있습니다. 팝업 활성화 후 다시 시도해 주세요.');
+                        na_alert('브라우저에서 팝업이 차단되어 있습니다. 팝업 활성화 후 다시 시도해 주세요.');
 
                     return false;
                 });
