@@ -90,7 +90,7 @@
 
       , "menu_scroll"
       , "list_search"
-            , "list_toggle"
+      , "list_toggle"
       , "hide_nick"
 
       , "hide_member_memo"
@@ -99,11 +99,11 @@
 
       , "mymenu_img"
 
-            , "read_history"
-            , "read_history_em"
-            , "read_history_reply_cnt"
-            , "read_history_noti"
-            , "read_history_noti_reply"
+      , "read_history"
+      , "read_history_em"
+      , "read_history_reply_cnt"
+      , "read_history_noti"
+      , "read_history_noti_reply"
 
 
       , "title_filtering"
@@ -211,10 +211,10 @@
   function hide_nick(ui_obj) {
     if (ui_obj != null) {
       if (ui_obj.ui_custom != null && ui_obj.ui_custom) {
-                //목록 감추기
-                if (ui_obj.list_toggle != null && ui_obj.list_toggle) {
-                    set_list_toggle();
-                }
+        //목록 감추기
+        if (ui_obj.list_toggle != null && ui_obj.list_toggle) {
+          set_list_toggle();
+        }
 
         //닉네임 감추기
         if (ui_obj.hide_nick != null && ui_obj.hide_nick) {
@@ -249,13 +249,13 @@
           set_expand_quick(ui_obj);
         }
 
-                if (ui_obj.read_history ?? false) {
-                    check_read_history(ui_obj);
-                }    
+        if (ui_obj.read_history ?? false) {
+          check_read_history(ui_obj);
+        }
 
-                if (ui_obj.memo_ip_track ?? false) {
-                    start_memo_tracking();
-                }    
+        if (ui_obj.memo_ip_track ?? false) {
+          start_memo_tracking();
+        }
       }
       //단축키
       set_shortcut_custom(ui_obj);
@@ -273,61 +273,61 @@
   }
 
   //함수 모음 시작
-    function set_list_toggle(){
-        var parent_write = document.getElementById(body_parent_id);
-        if (parent_write != null) {
-            var list_title = document.querySelector("#bo_list_wrap > div > div");
-            var write_title = document.getElementById("bo_v_title");
+  function set_list_toggle() {
+    var parent_write = document.getElementById(body_parent_id);
+    if (parent_write != null) {
+      var list_title = document.querySelector("#bo_list_wrap > div > div");
+      var write_title = document.getElementById("bo_v_title");
 
-            list_title.addEventListener("click",list_toggle_event);
-            list_title.style.cursor = "pointer";
-            
-            write_title.addEventListener("click",list_toggle_event);
-            write_title.style.cursor = "pointer";
+      list_title.addEventListener("click", list_toggle_event);
+      list_title.style.cursor = "pointer";
 
-            list_toggle(false);
+      write_title.addEventListener("click", list_toggle_event);
+      write_title.style.cursor = "pointer";
+
+      list_toggle(false);
+    }
+  }
+  function list_toggle_event(e) {
+    list_toggle();
+  }
+
+  function list_toggle(force_list_mode) {
+    var parent_write = document.getElementById(body_parent_id);
+    if (parent_write != null) {
+      var view_mode = !parent_write.classList.contains("d-none");
+      if (document.getElementById("bo_v_title").style.cursor == "pointer") {
+
+        var info_write = document.getElementById(info_write_id);
+        var view_comment = document.getElementById(view_comment_id);
+        var write_comment = document.getElementById(write_comment_id);
+        var board_list = document.getElementById(board_list_id);
+
+
+        if (force_list_mode ?? view_mode) {
+          //list mode로 변경
+          parent_write.classList.add("d-none");
+          info_write.classList.add("d-none");
+          view_comment.classList.add("d-none");
+          write_comment.classList.add("d-none");
+          board_list.classList.remove("d-none");
+
+        } else {
+          //view mode로 변경
+          parent_write.classList.remove("d-none");
+          info_write.classList.remove("d-none");
+          view_comment.classList.remove("d-none");
+          write_comment.classList.remove("d-none");
+
+          board_list.classList.add("d-none");
+
         }
+      }
+      if (force_list_mode == null) {
+        location.replace(view_mode ? "#bo_list_wrap" : "#main-wrap");
+      }
     }
-    function list_toggle_event(e){
-        list_toggle();
-    }
-
-    function list_toggle(force_list_mode){
-        var parent_write = document.getElementById(body_parent_id);
-        if (parent_write != null) {
-            var view_mode = !parent_write.classList.contains("d-none");
-            if (document.getElementById("bo_v_title").style.cursor == "pointer") {
-
-                var info_write = document.getElementById(info_write_id);
-                var view_comment = document.getElementById(view_comment_id);
-                var write_comment = document.getElementById(write_comment_id);
-                var board_list = document.getElementById(board_list_id);
-    
-    
-                if (force_list_mode ?? view_mode) {
-                    //list mode로 변경
-                    parent_write.classList.add("d-none");
-                    info_write.classList.add("d-none");
-                    view_comment.classList.add("d-none");
-                    write_comment.classList.add("d-none");
-                    board_list.classList.remove("d-none");
-    
-                } else {
-                    //view mode로 변경
-                    parent_write.classList.remove("d-none");
-                    info_write.classList.remove("d-none");
-                    view_comment.classList.remove("d-none");
-                    write_comment.classList.remove("d-none");
-    
-                    board_list.classList.add("d-none");    
-    
-                }    
-            }
-            if (force_list_mode==null) {                    
-                location.replace(view_mode ? "#bo_list_wrap" : "#main-wrap");
-            }
-        }
-    }
+  }
 
   function set_hide_nick() {
     var profiles = document.getElementsByClassName('sv_member ellipsis-1');
@@ -581,10 +581,10 @@
   var body_con_id = "bo_v_con";
   var body_blur_id = "bo_v_con_blur";
 
-    var info_write_id = "bo_v_info";
-    var view_comment_id = "viewcomment";
-    var write_comment_id = "bo_vc_w";
-    var board_list_id = "bo_list";
+  var info_write_id = "bo_v_info";
+  var view_comment_id = "viewcomment";
+  var write_comment_id = "bo_vc_w";
+  var board_list_id = "bo_list";
 
   function remove_blur(e) {
     e.preventDefault();
@@ -754,15 +754,15 @@
                 });
               }
               break;
-                        case "list_toggle":
-                            if ( (ui_obj.list_toggle ?? false ) && ( location.pathname.match(/\//g)?.length ?? 0) > 1) {
-                                tag_a = document.createElement("a");
-                                tag_a.addEventListener("click", function (e) {
-                                    e.preventDefault();
-                                    list_toggle();
-                                });
-                            }
-                            break;
+            case "list_toggle":
+              if ((ui_obj.list_toggle ?? false) && (location.pathname.match(/\//g)?.length ?? 0) > 1) {
+                tag_a = document.createElement("a");
+                tag_a.addEventListener("click", function (e) {
+                  e.preventDefault();
+                  list_toggle();
+                });
+              }
+              break;
             case "forward":
               if ((ui_obj.expand_navigator ?? false) && (window?.navigation == null ? true : window?.navigation?.canGoForward)) {
                 tag_a = document.createElement("a");
@@ -1032,9 +1032,9 @@
       shortcut_map["M"] = "javascript:toggle_hide_member_memo();"
     }
 
-        if (ui_obj?.list_toggle ?? false) {
-            shortcut_map["D"] = "javascript:list_toggle();"
-        }
+    if (ui_obj?.list_toggle ?? false) {
+      shortcut_map["D"] = "javascript:list_toggle();"
+    }
 
     var removes = document.querySelectorAll('div.shortcut_custom');
     if (removes != null && removes.length > 0) {
@@ -1069,7 +1069,7 @@
 
       var link_map = get_board_link_map();
       for (var i = 1; i < 11; i++) {
-                var shortcut_i = i < 10 ? i : i - 10;
+        var shortcut_i = i < 10 ? i : i - 10;
         var shortcut = (ui_obj["shortcut_" + shortcut_i] ?? "").trim();
         if (shortcut != "" && link_map[shortcut] != null) {
           var shortcut_div = document.createElement("div");
@@ -1111,39 +1111,22 @@
     return false;
   }
 
-    function handleShortCutKeyPress(event) {
-        if (isShortCutInputElement(event.target) || isShortCutKeyCombination(event) || isShortCutContentEditableElement(event.target)) {
-            return;
-        }
-        var key = (event?.code ?? "").replace(/Key|Digit/, "");
-        if (shortcut_map[key] != null) {
-            switch(key) {
-                case "M":
-                    toggle_hide_member_memo();
-                    break;
-                case "D":
-                    list_toggle();
-                    break;
-                default:
-                    window.location.href = shortcut_map[key];
-                    break;
-            }
-            return;
-        } else {
-            return;
-        }
-    }
-    //함수 모음 끝
   function handleShortCutKeyPress(event) {
     if (isShortCutInputElement(event.target) || isShortCutKeyCombination(event) || isShortCutContentEditableElement(event.target)) {
       return;
     }
     var key = (event?.code ?? "").replace(/Key|Digit/, "");
     if (shortcut_map[key] != null) {
-      if (key == "M") {
-        toggle_hide_member_memo();
-      } else {
-        window.location.href = shortcut_map[key];
+      switch (key) {
+        case "M":
+          toggle_hide_member_memo();
+          break;
+        case "D":
+          list_toggle();
+          break;
+        default:
+          window.location.href = shortcut_map[key];
+          break;
       }
       return;
     } else {
@@ -1158,15 +1141,15 @@
         set_ui_custom_expand();
       });
 
-            $("#reg_read_history").change(function () {
-                set_ui_custom_read_history();
-            });
+      $("#reg_read_history").change(function () {
+        set_ui_custom_read_history();
+      });
 
       $("#reg_ui_custom").change(function () {
         if ($("#reg_ui_custom").is(":checked")) {
           $(".ui-custom-item").show();
           set_ui_custom_expand();
-                    set_ui_custom_read_history();
+          set_ui_custom_read_history();
         } else {
           $(".ui-custom-item").hide();
         }
@@ -1204,13 +1187,13 @@
       $(".ui-custom-expand-item").hide();
     }
   }
-    function set_ui_custom_read_history() {
-        if ($("#reg_read_history").is(":checked")) {
-            $(".ui-custom-read-history").show();
-        } else {
-            $(".ui-custom-read-history").hide();
-        }
+  function set_ui_custom_read_history() {
+    if ($("#reg_read_history").is(":checked")) {
+      $(".ui-custom-read-history").show();
+    } else {
+      $(".ui-custom-read-history").hide();
     }
+  }
   function set_ui_custom_trigger() {
     try {
       //$("#reg_expand_quick").trigger('change');
@@ -1768,316 +1751,315 @@
 
   //memo 추적 관련 기능 끝
 
-    //글 방문 기록 기능 시작
-    //"read_history", "read_history_em", "read_history_reply_cnt", "read_history_noti", "read_history_noti_reply"
-    var read_db_version = 1;
-    var readDBName = "readHT_";
-    var readWrite = "write";
-    //var readNoti = "noti";
-    var readReplyCntClass = "ui-custom-read-reply-cnt";
-    function read_db_upgrade(event) {
-        var db = event.target.result;
-        var key_str = "url";
-        // 일반글용 스토어
-        //{url:"",board:"",wr_id:0,noti:false,access:"",reply:0}
-        var writeStore = db.createObjectStore(readWrite, { keyPath: key_str });
-        // 일반글용 인덱스
-        var writeIndex = writeStore.createIndex("by_"+key_str, key_str);
-        var writeAccessIndex = writeStore.createIndex("by_access", "access",{ unique: false });
-        //var writeBoardIndex = writeStore.createIndex("by_board", "board",{ unique: false });
-        var writeNotiIndex = writeStore.createIndex("by_noti", "noti",{ unique: false });
-    }
+  //글 방문 기록 기능 시작
+  var read_db_version = 1;
+  var readDBName = "readHT_";
+  var readWrite = "write";
+  //var readNoti = "noti";
+  var readReplyCntClass = "ui-custom-read-reply-cnt";
+  function read_db_upgrade(event) {
+    var db = event.target.result;
+    var key_str = "url";
+    // 일반글용 스토어
+    //{url:"",board:"",wr_id:0,noti:false,access:"",reply:0}
+    var writeStore = db.createObjectStore(readWrite, { keyPath: key_str });
+    // 일반글용 인덱스
+    var writeIndex = writeStore.createIndex("by_" + key_str, key_str);
+    var writeAccessIndex = writeStore.createIndex("by_access", "access", { unique: false });
+    //var writeBoardIndex = writeStore.createIndex("by_board", "board",{ unique: false });
+    var writeNotiIndex = writeStore.createIndex("by_noti", "noti", { unique: false });
+  }
 
-    //사용자 ID에 따른 방문 기록 DB체크 및 타 ID DB 삭제
-    function check_read_user_id(user_id, afterFn, checkedFn, notCheckedFn) {
-        if (window.indexedDB) {
+  //사용자 ID에 따른 방문 기록 DB체크 및 타 ID DB 삭제
+  function check_read_user_id(user_id, afterFn, checkedFn, notCheckedFn) {
+    if (window.indexedDB) {
+      window.indexedDB.databases().then(function (databases) {
+        if (user_id != null && user_id != "") {
+          var checked = false;
+          if (databases.length > 0) {
+            databases.forEach((database) => {
+              if (database.name.indexOf(readDBName) == 0) {
+                if (database.name == (readDBName + user_id)) {
+                  checked = true
+                } else {
+                  window.indexedDB.deleteDatabase(database.name);
+                }
+              }
+            })
+          } else {
+            //checked = true
+          }
+          if (checked) {
+            if (checkedFn != null && (typeof checkedFn == 'function')) {
+              checkedFn();
+            }
+          } else {
+            if (notCheckedFn != null && (typeof notCheckedFn == 'function')) {
+              notCheckedFn();
+            }
+          }
+          if (afterFn != null && (typeof afterFn == 'function')) {
+            afterFn();
+          }
+        }
+      });
+    }
+  }
+
+  function delete_read_database() {
+    if (window.indexedDB) {
+      var temp_obj = get_board_mb_id();
+      if (temp_obj != null && temp_obj.id) {
+        try {
+          if (confirm("방문 기록을 삭제하시겠습니까?")) {
             window.indexedDB.databases().then(function (databases) {
-                if (user_id != null && user_id != "") {
-                    var checked = false;
-                    if (databases.length > 0) {
-                        databases.forEach((database) => {
-                            if (database.name.indexOf(readDBName)==0) {
-                                if (database.name == (readDBName + user_id)) {
-                                    checked = true
-                                } else {
-                                    window.indexedDB.deleteDatabase(database.name);
-                                }
-                                }
-                        })
-                    } else {
-                        //checked = true
+              if (temp_obj.id != null && temp_obj.id != "") {
+                if (databases.length > 0) {
+                  databases.forEach((database) => {
+                    if (database.name.indexOf(readDBName) == 0) {
+                      if (database.name == (readDBName + temp_obj.id)) {
+                        window.indexedDB.deleteDatabase(database.name);
+                      }
                     }
-                    if (checked) {
-                        if (checkedFn != null && (typeof checkedFn == 'function')) {
-                            checkedFn();
-                        }
-                    } else {
-                        if (notCheckedFn != null && (typeof notCheckedFn == 'function')) {
-                            notCheckedFn();
-                        }
-                    }
-                    if (afterFn != null && (typeof afterFn == 'function')) {
-                        afterFn();
-                    }
+                  });
                 }
+              }
             });
+          }
+        } catch (e) {
+          console.debug(e);
         }
+      }
+    }
+  }
+  function check_read_history(ui_obj) {
+    var removes = document.querySelectorAll("span." + readReplyCntClass);
+    if (removes != null && removes.length > 0) {
+      for (var i = 0; i < removes.length; i++) {
+        removes[i].remove();
+      }
     }
 
-    function delete_read_database(){
-        if (window.indexedDB) {
-            var temp_obj = get_board_mb_id();
-            if (temp_obj != null && temp_obj.id) {
-                try {
-                    if (confirm("방문 기록을 삭제하시겠습니까?")) {
-                        window.indexedDB.databases().then(function (databases) {
-                            if (temp_obj.id != null && temp_obj.id != "") {
-                                if (databases.length > 0) {
-                                    databases.forEach((database) => {
-                                        if (database.name.indexOf(readDBName)==0) {
-                                            if (database.name == (readDBName + temp_obj.id)) {
-                                                window.indexedDB.deleteDatabase(database.name);
-                                            }
-                                        }
-                                    });
-                                }
-                            }
-                        });
-                    }
-                } catch (e) {
-                    console.debug(e);
-                }
-            }
-        }
-    }
-    function check_read_history(ui_obj){
-        var removes = document.querySelectorAll("span."+readReplyCntClass);
-        if (removes != null && removes.length > 0) {
-            for (var i = 0; i < removes.length; i++) {
-                removes[i].remove();
-            }
-        }
+    if (window.indexedDB) {
+      var board_info = get_board_mb_id();
+      if (board_info != null && board_info.id != null) {
+        check_read_user_id(board_info.id);
+        if (ui_obj?.read_history ?? false) {
+          if (board_info.board != null) {
+            board_info.now_stamp = Date.now();
+            board_info.noti_list = document.querySelectorAll("section#bo_list > ul > li.da-link-block.bg-light-subtle a.da-link-block");
+            board_info.write_list = document.querySelectorAll("section#bo_list > ul > li.da-link-block a.da-link-block");
 
-        if (window.indexedDB) {
-            var board_info = get_board_mb_id();
-            if (board_info != null && board_info.id != null) {
-                check_read_user_id(board_info.id);
-                if (ui_obj?.read_history ?? false) {
-                    if (board_info.board != null) {
-                        board_info.now_stamp = Date.now();
-                        board_info.noti_list = document.querySelectorAll("section#bo_list > ul > li.da-link-block.bg-light-subtle a.da-link-block");
-                        board_info.write_list = document.querySelectorAll("section#bo_list > ul > li.da-link-block a.da-link-block");
+            board_info.noti_ids = [];
+            board_info.write_ids = [];
+            Array.from(board_info.noti_list).forEach((item) => {
+              var temp_str = item.href;
+              temp_str = temp_str.substring(temp_str.indexOf(board_info.board));
+              if (temp_str.indexOf("?") > 0) {
+                temp_str = temp_str.substring(0, temp_str.indexOf("?"));
+              }
+              board_info.noti_ids.push(temp_str);
+            });
+            Array.from(board_info.write_list).forEach((item) => {
+              var temp_str = item.href;
+              temp_str = temp_str.substring(temp_str.indexOf(board_info.board));
+              if (temp_str.indexOf("?") > 0) {
+                temp_str = temp_str.substring(0, temp_str.indexOf("?"));
+              }
+              board_info.write_ids.push(temp_str);
+            });
 
-                        board_info.noti_ids = [];
-                        board_info.write_ids = [];
-                        Array.from(board_info.noti_list).forEach((item) => {
-                            var temp_str = item.href;
-                            temp_str = temp_str.substring(temp_str.indexOf(board_info.board));
-                            if (temp_str.indexOf("?")>0) {
-                                temp_str = temp_str.substring(0,temp_str.indexOf("?"));
-                            }
-                            board_info.noti_ids.push(temp_str);
-                        });
-                        Array.from(board_info.write_list).forEach((item) => {
-                            var temp_str = item.href;
-                            temp_str = temp_str.substring(temp_str.indexOf(board_info.board));
-                            if (temp_str.indexOf("?")>0) {
-                                temp_str = temp_str.substring(0,temp_str.indexOf("?"));
-                            }
-                            board_info.write_ids.push(temp_str);
-                        });
+            var read_db_request = indexedDB.open(readDBName + board_info.id, read_db_version);
+            read_db_request.onupgradeneeded = read_db_upgrade;
+            read_db_request.onsuccess = function (event) {
+              var db = event.target.result;
+              //게시글 정보 업데이트
+              update_read_history(db, board_info, function () {
+                update_read_history_noti(db, board_info, ui_obj);
+                set_read_history(db, board_info, ui_obj);
+              });
 
-                        var read_db_request = indexedDB.open(readDBName + board_info.id, read_db_version);
-                        read_db_request.onupgradeneeded = read_db_upgrade;
-                        read_db_request.onsuccess = function (event) {
-                            var db = event.target.result;
-                            //게시글 정보 업데이트
-                            update_read_history(db,board_info,function(){
-                                update_read_history_noti(db,board_info,ui_obj);
-                                set_read_history(db,board_info,ui_obj);
-                            });
+              //list 표시
+              //삭제
 
-                            //list 표시
-                            //삭제
-    
-                            // var update_complete = function(){
-                            //     if (info_map.updated_id && info_map.updated_ip) {
-                            //         remove_timeover_memo(db,function(){
-                            //             show_check_ip_id(db,temp_obj,info_map);
-                            //         });
-                            //     }
-                            // }
-        
-                            // //memo id 갱신
-                            // update_memo_id(db, info_map, () => {info_map.updated_id = true; update_complete()});
-        
-                            // //memo ip 갱신
-                            // update_memo_ip(db, info_map, () => {info_map.updated_ip = true; update_complete()});
-    
-                        };
-                    }    
-                }
-            }
-        }    
-    }
+              // var update_complete = function(){
+              //     if (info_map.updated_id && info_map.updated_ip) {
+              //         remove_timeover_memo(db,function(){
+              //             show_check_ip_id(db,temp_obj,info_map);
+              //         });
+              //     }
+              // }
 
-    function update_read_history(db,board_info,complete){
-        var writeStore = getDBObjectStore(db, readWrite, "readwrite", complete);
-        if (board_info.wr_id != null) {
-            var reply_cnt = document.querySelector("#bo_v_info div.pe-2:has(i.bi-chat-dots)")?.innerText ?? "0\n댓글";
-            if (reply_cnt.indexOf("댓글") > 0) {
-                reply_cnt = Number(reply_cnt.replace("댓글","").trim(),0);
-                var temp_url = board_info.board+"/"+board_info.wr_id;
-                var temp_req = writeStore.get(temp_url);
-                temp_req.onsuccess = function (e) {
-                    var result = e.target.result;
-                    if (result == null) {
-                        var temp_result = {url:temp_url,board:board_info.board,wr_id:board_info.wr_id,noti:0,access:board_info.now_stamp,reply:reply_cnt}
-                        writeStore.add(temp_result);
-                    } else {
-                        result.access = board_info.now_stamp;
-                        result.reply = reply_cnt;
-                        writeStore.put(result);
-                    }
-                }
-            }
-        }
-        
-		var urlAccessIndex = writeStore.index("by_access");
-		var limit_time = board_info.now_stamp - 30*24*60*60*1000; // 기간 최소 1달
-		var access_req = urlAccessIndex.openCursor(IDBKeyRange.upperBound(limit_time));
-		access_req.onsuccess = function(e) {				
-			var cursor = e.target.result;
-			if(cursor) {
-				var temp_val = cursor.value;
-                if (board_info.wr_id != null && temp_val.url != board_info.board+"/"+board_info.wr_id && temp_val.noti == 0) {
-                    writeStore.delete(cursor.primaryKey);
-                }
-				cursor.continue();
-            }
-        }
-    }
-    
-    function update_read_history_noti(db,board_info,ui_obj,complete){
-        var run_complete = false;
-        if (board_info.noti_ids.length>0) {
-            var writeStore = getDBObjectStore(db, readWrite, "readwrite", complete);
-            var notiIndex = writeStore.index("by_noti");
-            var noti_true_req = notiIndex.openCursor(IDBKeyRange.only(1));
-            noti_true_req.onsuccess = function(e) {				
-                var cursor = e.target.result;
-                if(cursor) {
-                    var temp_val = cursor.value;
-                    if (temp_val.board == board_info.board) {
-                        var ids = []
-                        if (!board_info.noti_ids.includes(temp_val.url)) {
-                            temp_val.noti = 0;
-                            writeStore.put(temp_val);
-                        }
-                    }
-                    cursor.continue();
-                }
+              // //memo id 갱신
+              // update_memo_id(db, info_map, () => {info_map.updated_id = true; update_complete()});
+
+              // //memo ip 갱신
+              // update_memo_ip(db, info_map, () => {info_map.updated_ip = true; update_complete()});
+
             };
-
-            board_info.noti_ids.forEach((url,index) => {
-                var noti_update_req = writeStore.get(url);
-                noti_update_req.onsuccess = function(e) {
-                    var result = e.target.result;
-                    var display_important = false;
-                    if (result != null) {
-                        if (result.noti == 0) {
-                            result.noti = 1;
-                            writeStore.put(result);
-                        }
-                        if (ui_obj.read_history_noti_reply ?? false) {
-                            var a_link = board_info.noti_list[index];
-                            var parent_node = a_link.parentNode;
-                            var cnt = parent_node.querySelector("span.count-plus");
-                            if (cnt != null) {
-                                cnt = Number(cnt.innerText.trim());
-                            } else {
-                                cnt = 0;
-                            }
-                            var diff = cnt - result.reply;
-                            if (diff > 0) {
-                                display_important = true;
-                            }
-                        }
-                    } else {
-                        if (ui_obj.read_history_noti ?? false) {
-                            display_important = true;
-                        }
-                    }
-                    if (display_important) {
-                        board_info.noti_list[index].closest("li.bg-light-subtle").style = "display : block !important";
-                    }
-                }
-            });
-
+          }
         }
-        if (!run_complete && complete != null && typeof complete == 'function') {
-            complete();
-        }        
+      }
+    }
+  }
+
+  function update_read_history(db, board_info, complete) {
+    var writeStore = getDBObjectStore(db, readWrite, "readwrite", complete);
+    if (board_info.wr_id != null) {
+      var reply_cnt = document.querySelector("#bo_v_info div.pe-2:has(i.bi-chat-dots)")?.innerText ?? "0\n댓글";
+      if (reply_cnt.indexOf("댓글") > 0) {
+        reply_cnt = Number(reply_cnt.replace("댓글", "").trim(), 0);
+        var temp_url = board_info.board + "/" + board_info.wr_id;
+        var temp_req = writeStore.get(temp_url);
+        temp_req.onsuccess = function (e) {
+          var result = e.target.result;
+          if (result == null) {
+            var temp_result = { url: temp_url, board: board_info.board, wr_id: board_info.wr_id, noti: 0, access: board_info.now_stamp, reply: reply_cnt }
+            writeStore.add(temp_result);
+          } else {
+            result.access = board_info.now_stamp;
+            result.reply = reply_cnt;
+            writeStore.put(result);
+          }
+        }
+      }
     }
 
-    function set_read_history(db,board_info,ui_obj){
-        if (board_info.write_ids.length>0) {
-            var writeStore = getDBObjectStore(db, readWrite, "readonly");
-            board_info.write_ids.forEach((url,index) => {
-                if (url != board_info.board+"/"+board_info.wr_id) {
-                    var noti_update_req = writeStore.get(url);
-                    noti_update_req.onsuccess = function(e) {
-                        var result = e.target.result;
-                        if (result != null ) {
-                            var a_link = board_info.write_list[index];
-                            var parent_node = a_link.parentNode;
-                            if (ui_obj.read_history_em != null) {
-                                switch(ui_obj.read_history_em){
-                                    case "background":
-                                        a_link.classList.add("bg-primary");
-                                        break;                                        
-                                    case "bold":
-                                        a_link.classList.add("font-weight-bold");
-                                        break;
-                                    case "italic":
-                                        a_link.classList.add("font-italic");
-                                        break;
-                                    case "underline":
-                                        a_link.classList.add("text-decoration-underline");
-                                        break;
-                                    case "linethrough":
-                                        a_link.classList.add("text-decoration-line-through");
-                                        break;
-                                    case "blur":
-                                        parent_node.style.filter = "blur(0.2em)";
-                                        break;
-                                    default:break;            
-                                }
-                            }
-                            if (ui_obj.read_history_reply_cnt ?? false) {
-                                var cnt = parent_node.querySelector("span.count-plus");
-                                if (cnt != null) {
-                                    cnt = Number(cnt.innerText.trim());
-                                } else {
-                                    cnt = 0;
-                                }
-                                var diff = cnt - result.reply;
-                                if (diff > 0) {
-                                    var float_end = parent_node.querySelector("span.float-end");
-                                    var diff_span = document.createElement("span");
-                                    diff_span.className = "count-plus ui-custom-read-reply-cnt text-primary"
-                                    diff_span.innerHTML = diff;
-                                    parent_node.insertBefore(diff_span,float_end);                                
-                                }    
-                            }
-                        }
-                    }    
-                }
-            });
+    var urlAccessIndex = writeStore.index("by_access");
+    var limit_time = board_info.now_stamp - 30 * 24 * 60 * 60 * 1000; // 기간 최소 1달
+    var access_req = urlAccessIndex.openCursor(IDBKeyRange.upperBound(limit_time));
+    access_req.onsuccess = function (e) {
+      var cursor = e.target.result;
+      if (cursor) {
+        var temp_val = cursor.value;
+        if (board_info.wr_id != null && temp_val.url != board_info.board + "/" + board_info.wr_id && temp_val.noti == 0) {
+          writeStore.delete(cursor.primaryKey);
         }
+        cursor.continue();
+      }
     }
+  }
 
-    //글 방문 기록 기능 끝
+  function update_read_history_noti(db, board_info, ui_obj, complete) {
+    var run_complete = false;
+    if (board_info.noti_ids.length > 0) {
+      var writeStore = getDBObjectStore(db, readWrite, "readwrite", complete);
+      var notiIndex = writeStore.index("by_noti");
+      var noti_true_req = notiIndex.openCursor(IDBKeyRange.only(1));
+      noti_true_req.onsuccess = function (e) {
+        var cursor = e.target.result;
+        if (cursor) {
+          var temp_val = cursor.value;
+          if (temp_val.board == board_info.board) {
+            var ids = []
+            if (!board_info.noti_ids.includes(temp_val.url)) {
+              temp_val.noti = 0;
+              writeStore.put(temp_val);
+            }
+          }
+          cursor.continue();
+        }
+      };
+
+      board_info.noti_ids.forEach((url, index) => {
+        var noti_update_req = writeStore.get(url);
+        noti_update_req.onsuccess = function (e) {
+          var result = e.target.result;
+          var display_important = false;
+          if (result != null) {
+            if (result.noti == 0) {
+              result.noti = 1;
+              writeStore.put(result);
+            }
+            if (ui_obj.read_history_noti_reply ?? false) {
+              var a_link = board_info.noti_list[index];
+              var parent_node = a_link.parentNode;
+              var cnt = parent_node.querySelector("span.count-plus");
+              if (cnt != null) {
+                cnt = Number(cnt.innerText.trim());
+              } else {
+                cnt = 0;
+              }
+              var diff = cnt - result.reply;
+              if (diff > 0) {
+                display_important = true;
+              }
+            }
+          } else {
+            if (ui_obj.read_history_noti ?? false) {
+              display_important = true;
+            }
+          }
+          if (display_important) {
+            board_info.noti_list[index].closest("li.bg-light-subtle").style = "display : block !important";
+          }
+        }
+      });
+
+    }
+    if (!run_complete && complete != null && typeof complete == 'function') {
+      complete();
+    }
+  }
+
+  function set_read_history(db, board_info, ui_obj) {
+    if (board_info.write_ids.length > 0) {
+      var writeStore = getDBObjectStore(db, readWrite, "readonly");
+      board_info.write_ids.forEach((url, index) => {
+        if (url != board_info.board + "/" + board_info.wr_id) {
+          var noti_update_req = writeStore.get(url);
+          noti_update_req.onsuccess = function (e) {
+            var result = e.target.result;
+            if (result != null) {
+              var a_link = board_info.write_list[index];
+              var parent_node = a_link.parentNode;
+              if (ui_obj.read_history_em != null) {
+                switch (ui_obj.read_history_em) {
+                  case "background":
+                    a_link.classList.add("bg-primary");
+                    break;
+                  case "bold":
+                    a_link.classList.add("font-weight-bold");
+                    break;
+                  case "italic":
+                    a_link.classList.add("font-italic");
+                    break;
+                  case "underline":
+                    a_link.classList.add("text-decoration-underline");
+                    break;
+                  case "linethrough":
+                    a_link.classList.add("text-decoration-line-through");
+                    break;
+                  case "blur":
+                    parent_node.style.filter = "blur(0.2em)";
+                    break;
+                  default: break;
+                }
+              }
+              if (ui_obj.read_history_reply_cnt ?? false) {
+                var cnt = parent_node.querySelector("span.count-plus");
+                if (cnt != null) {
+                  cnt = Number(cnt.innerText.trim());
+                } else {
+                  cnt = 0;
+                }
+                var diff = cnt - result.reply;
+                if (diff > 0) {
+                  var float_end = parent_node.querySelector("span.float-end");
+                  var diff_span = document.createElement("span");
+                  diff_span.className = "count-plus ui-custom-read-reply-cnt text-primary"
+                  diff_span.innerHTML = diff;
+                  parent_node.insertBefore(diff_span, float_end);
+                }
+              }
+            }
+          }
+        }
+      });
+    }
+  }
+
+  //글 방문 기록 기능 끝
 
   function set_ui_custom_onload() {
     set_board_link_option_html();
@@ -2088,37 +2070,20 @@
       btn_ui_apply.addEventListener("click", ui_custom_apply);
     }
 
-        var btn_memo_toggle = document.getElementById("btn_memo_toggle");
-        if (btn_memo_toggle) {
-            btn_memo_toggle.addEventListener("click", toggle_hide_member_memo);
-        }
-        var btn_memo_ip_clear = document.getElementById("btn_memo_ip_clear");
-        if (btn_memo_ip_clear) {
-            btn_memo_ip_clear.addEventListener("click", delete_memo_database);
-        }
-        var ui_obj = get_ui_custom_values();
-        if (ui_obj) {
-            hide_nick(ui_obj);
-        }
-    }
-    //set_ui_custom_onload();
-    document.addEventListener("DOMContentLoaded", set_ui_custom_onload, { once: true });
     var btn_memo_toggle = document.getElementById("btn_memo_toggle");
     if (btn_memo_toggle) {
       btn_memo_toggle.addEventListener("click", toggle_hide_member_memo);
     }
     var btn_memo_ip_clear = document.getElementById("btn_memo_ip_clear");
     if (btn_memo_ip_clear) {
-      btn_memo_ip_clear.addEventListener("click", delete_database);
+      btn_memo_ip_clear.addEventListener("click", delete_memo_database);
     }
     var ui_obj = get_ui_custom_values();
     if (ui_obj) {
       hide_nick(ui_obj);
-      if (ui_obj.ui_custom != null && ui_obj.ui_custom && ui_obj.memo_ip_track != null && ui_obj.memo_ip_track) {
-        start_memo_tracking();
-      }
     }
   }
+  //set_ui_custom_onload();
   document.addEventListener("DOMContentLoaded", set_ui_custom_onload, { once: true });
 
   try {
@@ -2127,4 +2092,4 @@
     //console.error('Failed to initialize custom UI settings:', error);
   }
 
-})();
+}) ();
