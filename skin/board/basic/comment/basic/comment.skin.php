@@ -80,10 +80,13 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
         // 댓글목록
 
         $comment_cnt = count($list);
-        for ($i=0; $i<$comment_cnt; $i++) {
+        $wr_names = [];
+        for ($i = 0; $i < $comment_cnt; $i++) {
             $comment_id = $list[$i]['wr_id'];
             $comment_depth = strlen($list[$i]['wr_comment_reply']) * 1;
             $comment = $list[$i]['content'];
+
+            $wr_names[$list[$i]['wr_comment_reply']] = $list[$i]['wr_name'];
 
             // 이미지
             $comment = preg_replace("/\[\<a\s*href\=\"(http|https|ftp)\:\/\/([^[:space:]]+)\.(gif|png|jpg|jpeg|bmp|webp)\"\s*[^\>]*\>[^\s]*\<\/a\>\]/i", "<img src=\"$1://$2.$3\" alt=\"\">", $comment);
@@ -104,6 +107,7 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
 
             $comment_name = get_text($list[$i]['wr_name']);
             $by_writer = ($view['mb_id'] && $view['mb_id'] == $list[$i]['mb_id']) ? 'bg-body-secondary' : 'bg-body-tertiary';
+            $parent_wr_name = $wr_names[substr($list[$i]['wr_comment_reply'], 0, -1)];
 
         ?>
         <article id="c_<?php echo $comment_id ?>" <?php if ($comment_depth) { ?>style="margin-left:<?php echo $comment_depth ?>rem;"<?php } ?>>
@@ -138,6 +142,9 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
                 </header>
                 <div class="comment-content p-3">
                     <div class="<?php echo $is_convert ?>">
+                        <?php if ($comment_depth) { ?>
+                            <em class="da-commented-to"><strong>@<?= $parent_wr_name ?></strong>님에게 답글</em>
+                        <?php } ?>
                         <?php
                         $is_lock = false;
                         if (strstr($list[$i]['wr_option'], "secret")) {
@@ -660,3 +667,14 @@ if($is_ajax)
     });
     </script>
 <?php } ?>
+
+<style>
+    .da-commented-to {
+        display: block;
+        position: relative;
+        top: -0.5rem;
+        color: rgb(var(--bs-secondary-rgb));
+        font-size: 0.875em;
+        font-style: normal;
+    }
+</style>
