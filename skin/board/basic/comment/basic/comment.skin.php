@@ -106,7 +106,7 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
             $is_comment_reply_edit = ($list[$i]['is_reply'] || $list[$i]['is_edit'] || $list[$i]['is_del']) ? 1 : 0;
 
             $comment_name = get_text($list[$i]['wr_name']);
-            $by_writer = ($view['mb_id'] && $view['mb_id'] == $list[$i]['mb_id']) ? 'bg-body-secondary' : 'bg-body-tertiary';
+            $by_writer = ($view['mb_id'] && $view['mb_id'] == $list[$i]['mb_id']) ? 'bg-secondary-subtle' : 'bg-body-tertiary';
             $parent_wr_name = $wr_names[substr($list[$i]['wr_comment_reply'], 0, -1)];
 
         ?>
