@@ -141,7 +141,7 @@
 #social_register .form_01 div {margin:0 0 20px}
 #social_register .captcha {display:block;margin:5px 0 0}
 #social_register .reg_mb_img_file img {max-width:100%;height:auto}
-#social_register #reg_mb_icon, 
+#social_register #reg_mb_icon,
 #social_register #reg_mb_img {float:right}
 
 /*기존 계정에 연결하기*/
@@ -193,5 +193,5 @@
 html.remodal-is-locked {overflow-y:scroll !important}
 
 @media only screen and (min-width:641px) {
-	#sns-link-pnl.remodal {max-width:400px;padding:50px}
+  #sns-link-pnl.remodal {max-width:400px;padding:50px}
 }

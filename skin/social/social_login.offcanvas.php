@@ -61,7 +61,7 @@ add_stylesheet('<link rel="stylesheet" href="' . get_social_skin_url() . '/style
 
         <?php if (G5_SOCIAL_USE_POPUP && !$social_pop_once) {
             $social_pop_once = true;
-            ?>
+        ?>
             <script>
                 $(function ($) {
                     $(".sns-wrap").on("click", "a.social_link_win", function (e) {

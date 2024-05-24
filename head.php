@@ -7,9 +7,9 @@ if (G5_IS_MOBILE) {
 }
 
 if(G5_COMMUNITY_USE === false) {
-	define('G5_IS_COMMUNITY_PAGE', true);
-	include_once(G5_THEME_SHOP_PATH.'/shop.head.php');
-	return;
+    define('G5_IS_COMMUNITY_PAGE', true);
+    include_once(G5_THEME_SHOP_PATH.'/shop.head.php');
+    return;
 }
 
 include_once(G5_LIB_PATH.'/latest.lib.php');
