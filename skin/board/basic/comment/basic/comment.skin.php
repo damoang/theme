@@ -1,6 +1,5 @@
 <?php
 if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
-
 // 댓글 여분필드 사용 내역
 // wr_7 : 신고(lock)
 // wr_9 : 대댓글 대상
@@ -605,7 +604,9 @@ if($is_ajax)
     // 댓글 링크 복사
     function copy_comment_link(commentId) {
         if (commentId !== "") {
-            var fullCommentLink = "https://damoang.net/<?php echo $bo_table;?>/<?php echo $wr_id;?>#c_" + commentId;
+            var fullCommentLink = window.location.protocol
+                + "//" + window.location.host
+                + "/<?php echo $bo_table;?>/<?php echo $wr_id;?>#c_" + commentId;
 
             navigator.clipboard.writeText(fullCommentLink).then(() => {
                 show_message("댓글 주소가 복사되었습니다");
@@ -651,6 +652,7 @@ if($is_ajax)
     $(function() {
         $('.comment-textarea').on('keyup', 'textarea', function (e){
             $(this).css('height', 'auto');
+
             $(this).height(this.scrollHeight - 22);
         });
 
