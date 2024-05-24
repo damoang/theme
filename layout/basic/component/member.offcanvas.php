@@ -319,18 +319,18 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                 </div>
             </div>
         </li>
-        <!-- <li class="list-group-item ui-custom-item">
+        <li class="list-group-item ui-custom-item">
             <div class="row align-items-center">
-                <label for="reg_list_hide" class="col-sm-5 col-form-label">목록 감추기</label>
+                <label for="reg_list_toggle" class="col-sm-5 col-form-label">목록 토글(D)</label>
                 <div class="col-sm-7">
                     <div class="form-check form-switch form-check-inline">
-                        <input class="form-check-input ui_custom_items" type="checkbox" name="list_hide" value="1"
-                            role="switch" id="reg_list_hide" data-gtm-form-interact-field-id="0">
+                        <input class="form-check-input ui_custom_items" type="checkbox" name="list_toggle" value="1"
+                            role="switch" id="reg_list_toggle" data-gtm-form-interact-field-id="0">
 
                     </div>
                 </div>
             </div>
-        </li> -->
+        </li>
         <li class="list-group-item ui-custom-item">
             <div class="row align-items-center">
                 <label for="reg_hide_nick" class="col-sm-5 col-form-label">닉감추기</label>
@@ -399,7 +399,71 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                 </div>
             </div>
         </li>
-        <li class="list-group-item ">
+        <li class="list-group-item">
+            <div class="row align-items-center">
+                <label for="reg_read_history" class="col-sm-5 col-form-label">읽은 글 기록</label>
+                <div class="col-sm-7">
+                    <div class="form-check form-switch form-check-inline">
+                        <input class="form-check-input ui_custom_items" type="checkbox" name="read_history" value="1"
+                            role="switch" id="reg_read_history" data-gtm-form-interact-field-id="0">
+
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item ui-custom-read-history">
+            <div class="row align-items-center">
+                <label for="reg_read_history_em" class="col-sm-5 col-form-label">읽은 글 강조</label>
+                <div class="col-sm-7">
+                    <select class="form-select ui_custom_items" name="read_history_em" id="reg_read_history_em">
+                        <option value="">사용안함</option>
+                        <option value="background">배경색</option>
+                        <option value="bold">굵은글씨</option>
+                        <option value="italic">기울임</option>
+                        <option value="underline">밑줄</option>
+                        <option value="linethrough">취소선</option>
+                        <option value="blur">블러</option>
+                    </select>
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item ui-custom-read-history">
+            <div class="row align-items-center">
+                <label for="reg_read_history_reply_cnt" class="col-sm-5 col-form-label">읽은 글 댓글 증감</label>
+                <div class="col-sm-7">
+                    <div class="form-check form-switch form-check-inline">
+                        <input class="form-check-input ui_custom_items" type="checkbox" name="read_history_reply_cnt" value="1"
+                            role="switch" id="reg_read_history_reply_cnt" data-gtm-form-interact-field-id="0">
+
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item ui-custom-read-history">
+            <div class="row align-items-center">
+                <label for="reg_read_history_noti" class="col-sm-5 col-form-label">읽지 않은 공지</label>
+                <div class="col-sm-7">
+                    <div class="form-check form-switch form-check-inline">
+                        <input class="form-check-input ui_custom_items" type="checkbox" name="read_history_noti" value="1"
+                            role="switch" id="reg_read_history_noti" data-gtm-form-interact-field-id="0">
+
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item ui-custom-read-history">
+            <div class="row align-items-center">
+                <label for="reg_read_history_noti_reply" class="col-sm-5 col-form-label">댓글 수 변경된 공지</label>
+                <div class="col-sm-7">
+                    <div class="form-check form-switch form-check-inline">
+                        <input class="form-check-input ui_custom_items" type="checkbox" name="read_history_noti_reply" value="1"
+                            role="switch" id="reg_read_history_noti_reply" data-gtm-form-interact-field-id="0">
+
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item">
             <div class="row align-items-center">
                 <label for="reg_title_filtering" class="col-sm-5 col-form-label">제목 필터링</label>
                 <div class="col-sm-7">
