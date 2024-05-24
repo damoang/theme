@@ -1,6 +1,5 @@
 <?php
 if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
-
 // 댓글 여분필드 사용 내역
 // wr_7 : 신고(lock)
 // wr_9 : 대댓글 대상
@@ -186,6 +185,10 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
                                 </a>
                             <?php } ?>
                         <?php } ?>
+                            <button type="button" onclick="copy_comment_link('<?php echo $comment_id ?>');" class="btn btn-basic" title="복사">
+                                <i class="bi bi-copy"></i>
+                                <span class="d-none d-sm-inline-block">복사</span>
+                            </button>
                             <button type="button" onclick="na_singo('<?php echo $bo_table ?>', '<?php echo $list[$i]['wr_id'] ?>', '0', 'c_<?php echo $comment_id ?>');" class="btn btn-basic" title="신고">
                                 <i class="bi bi-eye-slash"></i>
                                 <span class="d-none d-sm-inline-block">신고</span>
@@ -598,9 +601,58 @@ if($is_ajax)
 
     comment_box('', 'c'); // 댓글 입력폼이 보이도록 처리하기위해서 추가 (root님)
 
+    // 댓글 링크 복사
+    function copy_comment_link(commentId) {
+        if (commentId !== "") {
+            var fullCommentLink = window.location.protocol
+                + "//" + window.location.host
+                + "/<?php echo $bo_table;?>/<?php echo $wr_id;?>#c_" + commentId;
+
+            navigator.clipboard.writeText(fullCommentLink).then(() => {
+                show_message("댓글 주소가 복사되었습니다");
+            }).catch(error => {
+                show_message("댓글 복사에 실패하였습니다. 유지관리 게시판에 에러메시지를 포함하여 신고 바랍니다." + error);
+            });
+        }
+    }
+    // 알림 메시지를 화면 중앙에 출력한다.
+    function show_message(message) {
+        var $message = $('<div class="semi-alert-message">' + message + '</div>');
+
+        var msgStyle = `
+        <style>
+            .semi-alert-message {
+                display: none;
+                width: 205px;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: #000;
+                color: #fff;
+                padding: 5px 10px;
+                border-radius: 5px;
+                z-index: 1000;
+            }
+        </style>`;
+        $("head").append(msgStyle);
+        $('body').append($message);
+
+        $message.css({
+            display: 'block'
+        });
+
+        setTimeout(() => {
+            $message.fadeOut(500, function() {
+                $(this).remove();
+            });
+        }, 1000);
+    }
+
     $(function() {
         $('.comment-textarea').on('keyup', 'textarea', function (e){
             $(this).css('height', 'auto');
+
             $(this).height(this.scrollHeight - 22);
         });
 
