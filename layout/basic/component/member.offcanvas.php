@@ -139,116 +139,69 @@ display: none;
     ?>
 
     <?php } else { ?>
-
-    <form id="memberLogin" class="pt-1" name="memberLogin" method="post"
-        action="<?php echo G5_HTTPS_BBS_URL ?>/login_check.php" autocomplete="off">
-        <input type="hidden" name="url" value="<?php echo $urlencode; ?>">
         <?php
-        $host = $_SERVER['HTTP_HOST'];
-        $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https://" : "http://";
-
-        $full_url = $protocol . $host;
-
-        if ($host == 'localhost' || $host == '127.0.0.1') { ?>
-            <div class="input-group mb-2">
-                <span class="input-group-text">
-                    <i class="bi bi-person text-muted"></i>
-                </span>
-                <div class="form-floating">
-                    <input type="text" name="mb_id" id="memberId" class="form-control required nofocus" placeholder="아이디">
-                    <label for="mb_id100">아이디</label>
-                </div>
-            </div>
-
-            <div class="input-group mb-3">
-                <span class="input-group-text">
-                    <i class="bi bi-shield-lock text-muted"></i>
-                </span>
-                <div class="form-floating">
-                    <input type="password" name="mb_password" id="memberPw" class="form-control required nofocus" placeholder="비밀번호">
-                    <label for="mb_pw100">비밀번호</label>
-                </div>
-            </div>
-
-            <div class="d-flex gap-3 mb-3">
-                <div>
-                    <a href="<?php echo G5_BBS_URL ?>/register.php" class="btn btn-basic py-2">
-                        <i class="bi bi-person-plus"></i>
-                        회원가입
-                    </a>
-                </div>
-                <div class="flex-grow-1">
-                    <button type="submit" class="btn btn-primary w-100 py-2">
-                        로그인
-                    </button>
-                </div>
-            </div>
-
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <div>
-                    <div class="form-check form-check-inline form-switch">
-                        <input class="form-check-input auto-login" type="checkbox" name="auto_login" role="switch" id="memberAutoLogin">
-                        <label class="form-check-label" for="memberAutoLogin">자동로그인</label>
+        // 개발환경에서 아이디로 로그인 활성화
+        if (
+            in_array($_ENV['APP_ENV'] ?? 'prod', ['dev', 'rc', 'stage', 'local'])
+            || ($_ENV['DA_ID_LOGIN'] ?? 'false') === 'true'
+        ) { ?>
+            <form id="memberLogin" class="pt-1" name="memberLogin" method="post" action="<?php echo G5_HTTPS_BBS_URL ?>/login_check.php" autocomplete="off">
+                <input type="hidden" name="url" value="<?php echo $urlencode; ?>">
+                <div class="input-group mb-2">
+                    <span class="input-group-text">
+                        <i class="bi bi-person text-muted"></i>
+                    </span>
+                    <div class="form-floating">
+                        <input type="text" name="mb_id" id="memberId" class="form-control required nofocus" placeholder="아이디">
+                        <label for="mb_id100">아이디</label>
                     </div>
                 </div>
-                <div>
-                    <a href="<?php echo G5_BBS_URL ?>/password_lost.php">
-                        <i class="bi bi-search"></i>
-                        아이디/비밀번호 찾기
-                    </a>
-                </div>
-            </div>
 
-            <?php
-        } else if ($full_url == 'https://damoang.net') {
-            // HTTPS 프로토콜을 포함하여 검사
-            // echo "This content is hidden on production";
-        } else if ($full_url == 'https://rc.damoang.net' || $full_url == 'https://dev.damoang.net') {
-            // RC 서버 또는 개발 서버에 대한 처리
-            ?>
-            <div class="input-group mb-2">
-                <span class="input-group-text">
-                    <i class="bi bi-person text-muted"></i>
-                </span>
-                        <div class="form-floating">
-                            <input type="text" name="mb_id" id="memberId" class="form-control required nofocus" placeholder="아이디">
-                            <label for="memberId">아이디</label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">
+                        <i class="bi bi-shield-lock text-muted"></i>
+                    </span>
+                    <div class="form-floating">
+                        <input type="password" name="mb_password" id="memberPw" class="form-control required nofocus" placeholder="비밀번호">
+                        <label for="mb_pw100">비밀번호</label>
+                    </div>
+                </div>
+
+                <div class="d-flex gap-3 mb-3">
+                    <div>
+                        <a href="<?php echo G5_BBS_URL ?>/register.php" class="btn btn-basic py-2">
+                            <i class="bi bi-person-plus"></i>
+                            회원가입
+                        </a>
+                    </div>
+                    <div class="flex-grow-1">
+                        <button type="submit" class="btn btn-primary w-100 py-2">
+                            로그인
+                        </button>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div>
+                        <div class="form-check form-check-inline form-switch">
+                            <input class="form-check-input auto-login" type="checkbox" name="auto_login" role="switch" id="memberAutoLogin">
+                            <label class="form-check-label" for="memberAutoLogin">자동로그인</label>
                         </div>
                     </div>
-
-                    <div class="input-group mb-3">
-                <span class="input-group-text">
-                    <i class="bi bi-shield-lock text-muted"></i>
-                </span>
-                <div class="form-floating">
-                    <input type="password" name="mb_password" id="memberPw" class="form-control required nofocus" placeholder="비밀번호">
-                    <label for="memberPw">비밀번호</label>
+                    <div>
+                        <a href="<?php echo G5_BBS_URL ?>/password_lost.php">
+                            <i class="bi bi-search"></i>
+                            아이디/비밀번호 찾기
+                        </a>
+                    </div>
                 </div>
-            </div>
+            </form>
+        <?php } ?>
 
-            <div class="d-flex gap-3 mb-3">
-                <div class="flex-grow-1">
-                    <button type="submit" class="btn btn-primary w-100 py-2">
-                        로그인
-                    </button>
-                </div>
-            </div>
-            <?php
-            if ($full_url == 'https://rc.damoang.net') {
-                echo "This is the release candidate environment.";
-            } else {
-                echo "This is the development environment.";
-            }
-        } else {
-            echo "Accessed from unknown host: $host with protocol $protocol";
-        }
+        <?php
+        // 소셜로그인 사용시 소셜로그인 버튼
+        @include_once(get_social_skin_path().'/social_login.offcanvas.php');
         ?>
-
-    </form>
-    <?php
-    // 소셜로그인 사용시 소셜로그인 버튼
-    @include_once(get_social_skin_path().'/social_login.offcanvas.php');
-    ?>
     <?php } ?>
     </div>
 </div>
