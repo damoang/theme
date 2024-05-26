@@ -169,6 +169,11 @@ return [
                 // 'icon' => 'bi-bell',
                 'shortcut' => 'Ｋ',
             ],
+            '릴리즈 노트' => [
+                'url' => '/release',
+                // 'icon' => 'bi-bell',
+//                'shortcut' => 'Ｋ',
+            ],
             '유지관리' => [
                 'url' => '/bug',
                 // 'icon' => 'bi-tools',
