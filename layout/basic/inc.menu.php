@@ -180,7 +180,7 @@ return [
                 'shortcut' => 'Ｂ',
             ],
             '광고앙' => [
-                'url' => '/advertiser',
+                'url' => get_pretty_url('content', 'advertiser'),
             ],
             '거버넌스' => [
                 'url' => '/governance',
