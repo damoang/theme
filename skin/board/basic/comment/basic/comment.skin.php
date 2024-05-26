@@ -1,6 +1,5 @@
 <?php
 if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
-
 // 댓글 여분필드 사용 내역
 // wr_7 : 신고(lock)
 // wr_9 : 대댓글 대상
@@ -81,10 +80,13 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
         // 댓글목록
 
         $comment_cnt = count($list);
-        for ($i=0; $i<$comment_cnt; $i++) {
+        $wr_names = [];
+        for ($i = 0; $i < $comment_cnt; $i++) {
             $comment_id = $list[$i]['wr_id'];
             $comment_depth = strlen($list[$i]['wr_comment_reply']) * 1;
             $comment = $list[$i]['content'];
+
+            $wr_names[$list[$i]['wr_comment_reply']] = $list[$i]['wr_name'];
 
             // 이미지
             $comment = preg_replace("/\[\<a\s*href\=\"(http|https|ftp)\:\/\/([^[:space:]]+)\.(gif|png|jpg|jpeg|bmp|webp)\"\s*[^\>]*\>[^\s]*\<\/a\>\]/i", "<img src=\"$1://$2.$3\" alt=\"\">", $comment);
@@ -104,7 +106,8 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
             $is_comment_reply_edit = ($list[$i]['is_reply'] || $list[$i]['is_edit'] || $list[$i]['is_del']) ? 1 : 0;
 
             $comment_name = get_text($list[$i]['wr_name']);
-            $by_writer = ($view['mb_id'] && $view['mb_id'] == $list[$i]['mb_id']) ? 'bg-body-secondary' : 'bg-body-tertiary';
+            $by_writer = ($view['mb_id'] && $view['mb_id'] == $list[$i]['mb_id']) ? 'bg-secondary-subtle' : 'bg-body-tertiary';
+            $parent_wr_name = $wr_names[substr($list[$i]['wr_comment_reply'], 0, -1)];
 
         ?>
         <article id="c_<?php echo $comment_id ?>" <?php if ($comment_depth) { ?>style="margin-left:<?php echo $comment_depth ?>rem;"<?php } ?>>
@@ -139,6 +142,9 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
                 </header>
                 <div class="comment-content p-3">
                     <div class="<?php echo $is_convert ?>">
+                        <?php if ($comment_depth) { ?>
+                            <em class="da-commented-to"><strong>@<?= $parent_wr_name ?></strong>님에게 답글</em>
+                        <?php } ?>
                         <?php
                         $is_lock = false;
                         if (strstr($list[$i]['wr_option'], "secret")) {
@@ -169,7 +175,7 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
                         ?>
                             <?php if ($list[$i]['is_reply']) { ?>
                                 <button type="button" class="btn btn-basic" onclick="comment_box('<?php echo $comment_id ?>','c','<?php echo $comment_name;?>');" class="btn btn-basic btn-sm" title="답글">
-                                    <i class="bi bi-arrow-return-right"></i>
+                                    <i class="bi bi-chat-dots"></i>
                                     답글
                                 </button>
                             <?php } ?>
@@ -186,6 +192,10 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
                                 </a>
                             <?php } ?>
                         <?php } ?>
+                            <button type="button" onclick="copy_comment_link('<?php echo $comment_id ?>');" class="btn btn-basic" title="복사">
+                                <i class="bi bi-copy"></i>
+                                <span class="d-none d-sm-inline-block">복사</span>
+                            </button>
                             <button type="button" onclick="na_singo('<?php echo $bo_table ?>', '<?php echo $list[$i]['wr_id'] ?>', '0', 'c_<?php echo $comment_id ?>');" class="btn btn-basic" title="신고">
                                 <i class="bi bi-eye-slash"></i>
                                 <span class="d-none d-sm-inline-block">신고</span>
@@ -598,9 +608,58 @@ if($is_ajax)
 
     comment_box('', 'c'); // 댓글 입력폼이 보이도록 처리하기위해서 추가 (root님)
 
+    // 댓글 링크 복사
+    function copy_comment_link(commentId) {
+        if (commentId !== "") {
+            var fullCommentLink = window.location.protocol
+                + "//" + window.location.host
+                + "/<?php echo $bo_table;?>/<?php echo $wr_id;?>#c_" + commentId;
+
+            navigator.clipboard.writeText(fullCommentLink).then(() => {
+                show_message("댓글 주소가 복사되었습니다");
+            }).catch(error => {
+                show_message("댓글 복사에 실패하였습니다. 유지관리 게시판에 에러메시지를 포함하여 신고 바랍니다." + error);
+            });
+        }
+    }
+    // 알림 메시지를 화면 중앙에 출력한다.
+    function show_message(message) {
+        var $message = $('<div class="semi-alert-message">' + message + '</div>');
+
+        var msgStyle = `
+        <style>
+            .semi-alert-message {
+                display: none;
+                width: 205px;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: #000;
+                color: #fff;
+                padding: 5px 10px;
+                border-radius: 5px;
+                z-index: 1000;
+            }
+        </style>`;
+        $("head").append(msgStyle);
+        $('body').append($message);
+
+        $message.css({
+            display: 'block'
+        });
+
+        setTimeout(() => {
+            $message.fadeOut(500, function() {
+                $(this).remove();
+            });
+        }, 1000);
+    }
+
     $(function() {
         $('.comment-textarea').on('keyup', 'textarea', function (e){
             $(this).css('height', 'auto');
+
             $(this).height(this.scrollHeight - 22);
         });
 
@@ -608,3 +667,14 @@ if($is_ajax)
     });
     </script>
 <?php } ?>
+
+<style>
+    .da-commented-to {
+        display: block;
+        position: relative;
+        top: -0.5rem;
+        color: rgb(var(--bs-secondary-rgb));
+        font-size: 0.875em;
+        font-style: normal;
+    }
+</style>
