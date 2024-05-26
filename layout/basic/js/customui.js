@@ -1213,7 +1213,7 @@
     }
   }
   function set_ui_custom_expand() {
-    if ($("#reg_shortcut_use").is(":checked")) {
+    if ($("#reg_expand_quick").is(":checked")) {
       $(".ui-custom-expand-item").show();
     } else {
       $(".ui-custom-expand-item").hide();
