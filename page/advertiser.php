@@ -3,6 +3,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 ?>
 
 <div>
+    <br/>
     <h3>긴 배너</h3>
     <br/>
     <a href="https://smartstore.naver.com/oilpangone/products/9013411649"><img src="https://damoang.net/data/editor/2405/comment_237388223_aUnJ5cSX_fc8019b56b15177a0aadee58cd98def4a76a91e8.jpg" ></a><br/><br/>
