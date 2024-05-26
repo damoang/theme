@@ -174,6 +174,9 @@ return [
                 // 'icon' => 'bi-tools',
                 'shortcut' => 'Ｂ',
             ],
+            '광고앙' => [
+                'url' => '/',
+            ],
             '거버넌스' => [
                 'url' => '/governance',
                 'shortcut' => 'Ｖ',
