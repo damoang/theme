@@ -76,6 +76,7 @@ if (!preg_match('/macintosh|mac os x/i', $agent)) {
     'KeyK': '/notice',
     'KeyL': '/lecture',
     'KeyN': '/new',
+    'KeyO': '/referral',
     'KeyP': '/pds',
     'KeyQ': '/qa',
     // Refresh the page when 'R' is pressed
