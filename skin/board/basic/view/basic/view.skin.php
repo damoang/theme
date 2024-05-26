@@ -85,129 +85,145 @@ add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css">
             <?php } ?>
 
             <?php ob_start(); ?>
-            <?php if ($update_href || $delete_href || $copy_href || $move_href) { ?>
-            <div class="ms-auto dropstart">
-                <button type="button" class="btn btn-basic btn-sm" data-bs-toggle="dropdown" aria-expanded="false"
-                        title="글버튼">
-                    <i class="bi bi-three-dots-vertical"></i>
-                    <span class="visually-hidden">글버튼</span>
-                </button>
-                <ul class="dropdown-menu">
-                    <?php if ($update_href) { ?>
-                        <li><a href="<?php echo $update_href ?>" class="dropdown-item">
-                                <i class="bi bi-pencil-square"></i>
-                                수정하기
-                            </a></li>
-                    <?php } ?>
-                    <?php if ($delete_href) { ?>
-                        <li><a href="<?php echo $delete_href ?>" onclick="del(this.href); return false;"
-                            class="dropdown-item">
-                                <i class="bi bi-trash"></i>
-                                삭제하기
-                            </a></li>
-                    <?php } ?>
-                    <?php if ($copy_href || $move_href) { ?>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                    <?php } ?>
-                    <?php if ($copy_href) { ?>
-                        <li><a href="<?php echo $copy_href ?>" onclick="board_move(this.href); return false;"
-                            class="dropdown-item">
-                                <i class="bi bi-stickies"></i>
-                                복사하기
-                            </a></li>
-                    <?php } ?>
-                    <?php if ($move_href) { ?>
-                        <li><a href="<?php echo $move_href ?>" onclick="board_move(this.href); return false;"
-                            class="dropdown-item">
-                                <i class="bi bi-arrows-move"></i>
-                                이동하기
-                            </a></li>
-                    <?php } ?>
-                </ul>
-            </div>
-
-            <div>
-                <?php } else { ?>
-                <div class="ms-auto">
-                    <?php } ?>
-                    <?php if ($member['mb_level'] == 5 or $member['mb_level'] == 10): ?>
-
-
-                        <button id="moveToTureRoomBtn" class="btn btn-basic btn-sm">
-                            <i class="bi-universal-access"></i> 진실의 방으로
+            <div class="d-flex align-items-center ms-auto">
+                <?php if ($update_href || $delete_href || $copy_href || $move_href) { ?>
+                    <div class="dropstart">
+                        <button type="button" class="btn btn-basic btn-sm" data-bs-toggle="dropdown" aria-expanded="false"
+                                title="글버튼" style="white-space: nowrap;">
+                            <i class="bi bi-three-dots-vertical"></i>
+                            <span class="visually-hidden">글버튼</span>
                         </button>
+                        <ul class="dropdown-menu">
+                            <?php if ($update_href) { ?>
+                                <li><a href="<?php echo $update_href ?>" class="dropdown-item">
+                                        <i class="bi bi-pencil-square"></i>
+                                        수정하기
+                                    </a></li>
+                            <?php } ?>
+                            <?php if ($delete_href) { ?>
+                                <li><a href="<?php echo $delete_href ?>" onclick="del(this.href); return false;" class="dropdown-item">
+                                        <i class="bi bi-trash"></i>
+                                        삭제하기
+                                    </a></li>
+                            <?php } ?>
+                            <?php if ($copy_href || $move_href) { ?>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                            <?php } ?>
+                            <?php if ($copy_href) { ?>
+                                <li><a href="<?php echo $copy_href ?>" onclick="board_move(this.href); return false;" class="dropdown-item">
+                                        <i class="bi bi-stickies"></i>
+                                        복사하기
+                                    </a></li>
+                            <?php } ?>
+                            <?php if ($move_href) { ?>
+                                <li><a href="<?php echo $move_href ?>" onclick="board_move(this.href); return false;" class="dropdown-item">
+                                        <i class="bi bi-arrows-move"></i>
+                                        이동하기
+                                    </a></li>
+                            <?php } ?>
+                        </ul>
+                    </div>
+                <?php } ?>
 
-                        <script>
-                            document.getElementById('moveToTureRoomBtn').addEventListener('click', function () {
-                                $.ajax({
-                                    type: "POST",
-                                    url: "./move_to_tureroom.php", // 서버 측 스크립트 파일 경로
-                                    data: {
-                                        // 이동할 데이터나 조건 등을 설정
-                                        bo_table: "tureroom",
-                                        // 추가 데이터
-                                    },
-                                    success: function (response) {
-                                        // 성공적으로 처리된 후의 동작 (예: 알림 표시)
-                                        alert("이동 완료: " + response);
-                                    },
-                                    error: function (xhr, status, error) {
-                                        // 오류 처리
-                                        alert("오류 발생");
-                                    }
+                <!-- 설정에 따라 어드민 또는 작성자만 노출 -->
+                <?php if (($boset['check_category_move'] && in_array($boset['category_move_permit'], ["admin_only", "admin_and_member"]) && $is_admin == "super") ||
+                    ($boset['check_category_move'] && $boset['category_move_permit'] == "admin_and_member" && $member['mb_id'] == $view['mb_id'])): ?>
+                    <select id="categorySelect" class="form-select form-select-sm ms-2">
+                        <option value="">카테고리 선택</option>
+                        <?php
+                        $categories = explode('|', $board['bo_category_list']);
+                        foreach ($categories as $category) {
+                            if ($category !== $category_name) {
+                                echo '<option value="'.htmlspecialchars($category).'">'.htmlspecialchars($category).'</option>';
+                            }
+                        }
+                        ?>
+                    </select>
+
+                    <script>
+                        document.getElementById('categorySelect').addEventListener('change', function() {
+                            var selectedCategory = this.value;
+                            if (selectedCategory) {
+                                var message = '[' + selectedCategory + '] 카테고리로 이동하시겠습니까?';
+                                na_confirm(message, function() {
+                                    var form = document.createElement('form');
+                                    form.method = 'POST';
+                                    form.action = window.location.href;
+
+                                    var categoryField = document.createElement('input');
+                                    categoryField.type = 'hidden';
+                                    categoryField.name = 'targetCategory';
+                                    categoryField.value = selectedCategory;
+                                    form.appendChild(categoryField);
+
+                                    var idField = document.createElement('input');
+                                    idField.type = 'hidden';
+                                    idField.name = 'targetWrId';
+                                    idField.value = <?php echo $view['wr_id']; ?>;
+                                    form.appendChild(idField);
+
+                                    document.body.appendChild(form);
+                                    form.submit();
                                 });
+                            }
+                        });
+                    </script>
+
+<!--                    <button id="moveToTureRoomBtn" class="btn btn-basic btn-sm ms-2" style="white-space: nowrap;">-->
+<!--                        <i class="bi-universal-access"></i> 진실의 방으로-->
+<!--                    </button>-->
+
+                    <script>
+                        document.getElementById('moveToTureRoomBtn').addEventListener('click', function () {
+                            $.ajax({
+                                type: "POST",
+                                url: "./move_to_tureroom.php", // 서버 측 스크립트 파일 경로
+                                data: {
+                                    // 이동할 데이터나 조건 등을 설정
+                                    bo_table: "tureroom",
+                                    // 추가 데이터
+                                },
+                                success: function (response) {
+                                    // 성공적으로 처리된 후의 동작 (예: 알림 표시)
+                                    alert("이동 완료: " + response);
+                                },
+                                error: function (xhr, status, error) {
+                                    // 오류 처리
+                                    alert("오류 발생");
+                                }
                             });
-                        </script>
+                        });
+                    </script>
+                <?php endif; ?>
 
+                <?php if ($update_href) { ?>
+                    <a href="<?php echo $update_href ?>" class="btn btn-basic btn-sm ms-2" style="white-space: nowrap;">
+                        <i class="bi bi-pencil-square"></i>
+                        수정
+                    </a>
+                <?php } ?>
+                <?php if ($delete_href) { ?>
+                    <a href="<?php echo $delete_href ?>" onclick="del(this.href); return false;" class="btn btn-basic btn-sm ms-2" style="white-space: nowrap;">
+                        <i class="bi bi-trash"></i>
+                    </a>
+                <?php } ?>
 
-                    <?php endif; ?>
-
-
-                    <?php if ($update_href) { ?>
-
-
-                        <a href="<?php echo $update_href ?>" class="btn btn-basic btn-sm">
-                            <i class="bi bi-pencil-square"></i>
-                            수정
-                        </a>
-                    <?php } ?>
-                    <?php if ($delete_href) { ?>
-                        <a href="<?php echo $delete_href ?>" onclick="del(this.href); return false;"
-                        class="btn btn-basic btn-sm">
-                            <i class="bi bi-trash"></i>
-                        </a>
-                    <?php } ?>
-                </div>
                 <?php if ($search_href) { ?>
-                    <div>
-                        <a href="<?php echo $search_href ?>" class="btn btn-basic btn-sm">
-                            <i class="bi bi-<?php echo ($stx) ? 'binoculars' : 'bookmarks'; ?>"></i>
-                            <span class="d-none d-sm-inline-block"><?php echo ($stx) ? '검색' : '분류'; ?></span>
-                        </a>
-                    </div>
+                    <a href="<?php echo $search_href ?>" class="btn btn-basic btn-sm ms-2" style="white-space: nowrap;">
+                        <i class="bi bi-<?php echo ($stx) ? 'binoculars' : 'bookmarks'; ?>"></i>
+                        <span class="d-none d-sm-inline-block"><?php echo ($stx) ? '검색' : '분류'; ?></span>
+                    </a>
                 <?php } ?>
-                <?php if ($reply_href) { ?>
-                    <div>
-                    </div>
-                <?php } ?>
-                <?php if ($write_href) { ?>
-                    <div>
-                        <!-- 쓰기버튼 삭제
-                        <a href="<?php echo $write_href ?>" class="btn btn-primary btn-sm">
-                            <i class="bi bi-pencil"></i>
-                            <span class="d-none d-sm-inline-block">쓰기</span>
-                        </a>
-                        -->
-                    </div>
-
-                <?php } ?>
-                <?php
-                $link_buttons = ob_get_contents();
-                ob_end_flush();
-                ?>
             </div>
+
+            <?php
+            $link_buttons = ob_get_contents();
+            ob_end_flush();
+            ?>
+
+        </div>
     </section>
 
     <section id="bo_v_atc" class="border-bottom p-3">

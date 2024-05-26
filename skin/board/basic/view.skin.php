@@ -45,6 +45,16 @@ if ($view['wr_1'] == '1') {
     $view['da_member_only'] = '<em class="border rounded p-1" style="font-size: 0.75em; font-style: normal;">회원만</em>';
 }
 
+// 카테고리 이동
+if (!empty($boset['check_category_move'] && isset($_POST['targetCategory']) && isset($_POST['targetWrId']))) {
+    $relativePath = '../../../app/change.category.php';
+    $currentPath = __DIR__;
+    $absolutePath = realpath($currentPath . '/' . $relativePath);
+    include($absolutePath);
+
+    header('Location: ' . $_SERVER['REQUEST_URI']);
+    exit;
+}
 
 // 내용 스킨
 $skin_file = $view_skin_path.'/view.skin.php';
