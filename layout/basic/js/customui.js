@@ -1325,7 +1325,7 @@
         if (write_user_link != null) {
           write_info.id = write_user_link.href.substring(write_user_link.href.indexOf("mb_id=") + 6);
           if (!check_admin.test(write_info.id) && board_obj?.id == null || board_obj.id != write_info.id) {
-            var img_src = write_user_link.querySelector("img.mb-photo").src;
+            var img_src = write_user_link.querySelector("span.profile_img img, img.mb-photo")?.src ?? "";
             var img_position = img_src.indexOf('/data/member_image');
             if (img_position > 0) {
               write_info.img = img_src.substring(img_position + 18);
@@ -1365,7 +1365,7 @@
         if (write_user_link != null) {
           write_info.id = write_user_link.href.substring(write_user_link.href.indexOf("mb_id=") + 6);
           if (!check_admin.test(write_info.id) && board_obj?.id == null || board_obj.id != write_info.id) {
-            var img_src = write_user_link.querySelector("img.mb-photo").src;
+            var img_src = write_user_link.querySelector("span.profile_img img, img.mb-photo")?.src ?? "";
             var img_position = img_src.indexOf('/data/member_image');
             if (img_position > 0) {
               write_info.img = img_src.substring(img_position + 18);
