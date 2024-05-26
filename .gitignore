@@ -2,3 +2,5 @@
 google_cloud_ops_agent_provisioning/
 
 *.swp
+*.bak
+.DS_Store
