@@ -14,19 +14,21 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
     <a href="https://smartstore.naver.com/aumu?nt_source=damoang&nt_medium=banner&nt_detail=garo"><img src="https://damoang.net/data/file/banners/015f0b5e4ca48f7d44e78ebd6f62e722_MJ2tjoQr_644bd3018095322f344c700c8367820d1b18b941.gif"></a><br/><br/>
     <a href="https://smartstore.naver.com/farmartholic/products/10322631983"><img src="https://damoang.net/data/file/banners/015f0b5e4ca48f7d44e78ebd6f62e722_dHIuWmft_44800559d7ec84eb2084a7db531b586ef983f5d9.webp"></a><br/><br/>
     <a href="https://smartstore.naver.com/skcwindowfilm/products/438041022"><img src="https://damoang.net/data/file/banners/71b4a9186c9a565849840477974bc730_vjMGQxhl_01e7a118ac11b5222a01471e70dbe10b770d8fa0.gif"></a><br/><br/>
-
+    <br/><br/>
     <h3>사이드 배너</h3>
     <a href="https://mj123123.cafe24.com/intking"><img src="https://damoang.net/data/file/main/015f0b5e4ca48f7d44e78ebd6f62e722_okJwxveB_c6b9ed39b9396558318ccdda410aed0e2a1cfdbd.png"></a>
     <a href="https://smartstore.naver.com/lostone_seoul"><img src="https://damoang.net/data/editor/2405/comment_3716871170_0XBn5AoL_335c5bc4344705c5f3986db1a223e275b03e9198.gif"></a><br/><br/>
     <a href="https://www.griun.co.kr/?utm_source=damoang&utm_medium=banner"><img src="https://damoang.net/data/file/banners/015f0b5e4ca48f7d44e78ebd6f62e722_KaHgzveh_4dbfb09b1902d5fb477d8e8e988dc9d0ce639d57.webp">
     <a href="https://smartstore.naver.com/skcwindowfilm/products/438041022"><img src="https://damoang.net/data/file/banners/015f0b5e4ca48f7d44e78ebd6f62e722_uLbzS9tr_ab700a98eaf5bff85b60ce14379e5960bf463b09.webp"></a><br/><br/>
     <a href="https://bit.ly/3ymGlEj "><img src="https://damoang.net/data/file/banners/f28b5896bb5b70ec2e61f0a18713be5a_BehOx5U6_87f0076c5bba3fc00b8d6db96d24ea8bf836ae65.jpg"></a><br/><br/>
-    6번 째 사이드바 광고주님 자리 {emo:damoang-emo-029.gif:50} <br/><br/>
-    7번 째 사이드바 광고주님 자리 <br/><br/>
-    8번 째 사이드바 광고주님 자리 <br/><br/>
-    9번 째 사이드바 광고주님 자리 <br/><br/>
-    10번 째 사이드바 광고주님 자리 <br/><br/>
-
+    <br/><br/>
+    <h4>5번째 사이드바 광고주님 자리</h4> <br/><br/>
+    <h4>6번째 사이드바 광고주님 자리</h4> <br/><br/>
+    <h4>7번째 사이드바 광고주님 자리</h4> <br/><br/>
+    <h4>8번째 사이드바 광고주님 자리</h4> <br/><br/>
+    <h4>9번째 사이드바 광고주님 자리</h4> <br/><br/>
+    <h4>10번째 사이드바 광고주님 자리</h4> <br/><br/>
+    <br/><br/>
     <h3>직접홍보 게시판</h3>
     우리정보통신 <br/>
     농부가간다 <br/>
