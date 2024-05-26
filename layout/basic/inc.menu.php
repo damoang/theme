@@ -2,16 +2,35 @@
 
 return [
     [
+        'title' => ($member['mb_level'] >= 5) ?'Nerv' : "",
+        'items' => 	($member['mb_level'] >= 5) ? [
+            'FAQ' => [
+                'url' => G5_BBS_URL . '/group.php?gr_id=nerv',
+                'icon' => 'bi-question-circle',
+            ],
+            '회의록' => [
+                'url' => '/meet',
+                'icon' => 'bi-pencil',
+            ],
+            'Document' => [
+                'url' =>  '/nerv',
+                'icon' => 'bi-search',
+            ],
+            'notion' => [
+                'url' => 'https://www.notion.so/jphan32/NERV-TF-b2155d6027fa47978f5657ea758900ec',
+                'icon' => 'bi-search',
+            ],
+        ] :  [
+
+        ],
+    ],
+    [
+        'title' => 'DAMOANG',
         'items' => [
             '앙상불' => [
                 'url' => '/event',
                 'shortcut' => 'Ａ',
                 // Ａ단축키는 알림 링크에 사용됨
-            ],
-            '공지사항' => [
-                'url' => '/notice',
-                // 'icon' => 'bi-bell',
-                'shortcut' => 'Ｋ',
             ],
             '자유게시판' => [
                 'url' => '/free',
@@ -22,6 +41,7 @@ return [
                 'url' => '/qa',
                 // 'icon' => 'bi-question-circle',
                 'shortcut' => 'Ｑ',
+                'icon' => 'bi-question-circle',
             ],
             '새소식' => [
                 'url' => '/new',
@@ -50,16 +70,21 @@ return [
                 // 'icon' => 'bi-cart-plus-fill',
                 'shortcut' => 'Ｅ',
             ],
-            '레퍼럴' => [
-                'url' => '/referral',
-                // 'icon' => 'bi-cart-plus-fill',
-                'shortcut' => 'O',
-            ],
             '갤러리' => [
                 'url' => '/gallery',
                 // 'icon' => 'bi-images',
                 'shortcut' => 'Ｇ',
             ],
+            '레퍼럴' => [
+                'url' => '/referral',
+                // 'icon' => 'bi-cart-plus-fill',
+                'shortcut' => 'O',
+            ],
+        ]
+    ],
+    [
+        'title' => '소모임',
+        'items' => [
             '소모임' => [
                 'url' => '/bbs/group.php?gr_id=group',
                 'page_id' => G5_BBS_DIR . '-group-group',
@@ -134,20 +159,33 @@ return [
                     '필기도구당' => '/stationery',
                 ]
             ],
-            '거버넌스' => [
-                'url' => '/governance',
-                'shortcut' => 'Ｖ',
+        ],
+    ],
+    [
+        'title' => 'GOVERNANCE',
+        'items' => [
+            '공지사항' => [
+                'url' => '/notice',
+                // 'icon' => 'bi-bell',
+                'shortcut' => 'Ｋ',
             ],
             '유지관리' => [
                 'url' => '/bug',
                 // 'icon' => 'bi-tools',
                 'shortcut' => 'Ｂ',
             ],
+            '거버넌스' => [
+                'url' => '/governance',
+                'shortcut' => 'Ｖ',
+            ],
             '진실의 방' => [
                 'url' => '/truthroom',
                 'shortcut' => 'Ｊ',
             ],
-        ]
+            '레벨강등 열람' => [
+                'url' => '/',
+            ],
+        ],
     ],
     [
         'title' => 'Miscellaneous',
@@ -206,3 +244,5 @@ return [
         ],
     ],
 ];
+
+
