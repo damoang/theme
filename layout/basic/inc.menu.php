@@ -32,6 +32,13 @@ return [
                 'shortcut' => 'Ａ',
                 // Ａ단축키는 알림 링크에 사용됨
             ],
+            '앙맵' => [
+                'url' => '/angmap',
+                'shortcut' => 'M',
+                    'icon' => 'bi-star-fill',
+
+                // Ａ단축키는 알림 링크에 사용됨
+            ],
             '자유게시판' => [
                 'url' => '/free',
                 // 'icon' => 'bi-chat-dots',
