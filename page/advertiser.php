@@ -37,105 +37,31 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
     <h3>직접홍보 게시판</h3>
     <br/><br/>
     링크 : <a href="/promotion">https://damoang.net/promotion</a>
-    <div class="table-responsive">
-        <table class="table table-bordered mb-0">
-            <tbody>
-            <tr class="bg-light">
-                <th class="text-center">직접 홍보 광고주님 </th>
-                <th class="text-center">광고주님 닉네임 </th>
 
-            </tr>
-            <tr>
-                <td> 우리정보통신 </td>
-                <td>인터넷끝판왕1</td>
-            </tr>
-            <tr>
-                <td>   농부가간다 </td>
-                <td>농부</td>
-            </tr>
-            <tr>
-                <td> 테라베이 </td>
-                <td>작은시작</td>
-            </tr>
-            <tr>
-                <td> 모스란다 </td>
-                <td>하오문주</td>
-            </tr>
-            <tr>
-                <td> 스테디커피 </td>
-                <td>폴스타</td>
-            </tr>
-            <tr>
-                <td> 법률사무소 메리츠 스카이 </td>
-                <td>김퇴근</td>
-            </tr>
-            <tr>
-                <td> 리틀빅애드컨설팅  </td>
-                <td>링크</td>
-            </tr>
-           <tr>
-                <td>   진1937  </td>
-                <td>진1937</td>
-            </tr>
-             <tr>
-                <td>티달빛  </td>
-                <td>커피뽁는차쟁이</td>
-            </tr>
-             <tr>
-                <td>고도몰  </td>
-                <td>NHN커머스</td>
-            </tr>
-             <tr>
-                <td> 리에코  </td>
-                <td>삐누</td>
-            </tr>        
-           <tr>
-                <td> 브릭스제주  </td>
-                <td>carrotcarrot</td>
-            </tr>
-             <tr>
-                <td> 로스톤  </td>
-                <td> caost</td>
-            </tr>
-          <tr>
-                <td> 그리운 Griun (TYPEE)  </td>
-                <td>nini</td>
-            </tr>
-             <tr>
-                <td>일디오커피로스터스 </td>
-                <td>링크</td>
-            </tr>
-             <tr>
-                <td>씽크와이드 </td>
-                <td>링크</td>
-            </tr>
-             <tr>
-                <td>지피컴퍼니 </td>
-                <td>링크</td>
-            </tr>
-             <tr>
-                <td>(주)알로식품연구소  </td>
-                <td>바람아이</td>
-            </tr>  
-             <tr>
-                <td>강녕상회</td>
-                <td>배츄우</td>
-            </tr>       
-             <tr>
-                <td>올필름</td>
-                <td>올핌름</td>
-            </tr>       
-             <tr>
-                <td>젠틀파파</td>
-                <td>얼리답터</td>
-            </tr>
-            <tr>
-                <td>모찌덕후</td>
-                <td>블랙핑크</td>
-            </tr>        
-            </tbody>
-        </table>
-        </div>
+   <ol class="breadcrumb>
+     <li>우리정보통신</li>
+     <li>농부가간다</li>
+    <li> 테라베이 </li>
+    <li> 모스란다 </li>
+    <li> 스테디커피 </li>
+    <li> 법률사무소 메리츠 스카이 </li>
+    <li> 리틀빅애드컨설팅  </li>
+    <li>진1937</li>
+    <li>티달빛  </li>
+    <li>고도몰  </li>
+    <li> 리에코  </li>
+    <li> 브릭스제주  </li>
+    <li> 로스톤  </li>
+    <li> 그리운 Griun (TYPEE)  </li>
+    <li>일디오커피로스터스 </li>
+    <li>씽크와이드 </li>
+    <li>지피컴퍼니 </li>
+    <li>(주)알로식품연구소  </li>
+    <li>강녕상회</li>
+    <li>올필름</li>
+    <li>젠틀파파</li>
+    <li>모찌덕후</li>
+    </ol>
 
 
 </div>
