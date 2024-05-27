@@ -119,12 +119,16 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                 <td>바람아이</td>
             </tr>  
              <tr>
+                <td>강녕상회</td>
+                <td>배츄우</td>
+            </tr>       
+             <tr>
                 <td>올필름</td>
                 <td>올핌름</td>
             </tr>       
              <tr>
-                <td>모찌덕후</td>
-                <td>블랙핑크</td>
+                <td>젠틀파파</td>
+                <td>얼리답터</td>
             </tr>
             <tr>
                 <td>모찌덕후</td>
