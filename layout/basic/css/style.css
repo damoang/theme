@@ -658,13 +658,15 @@ a.da-link-block:before {
   position: relative;
   top: 3px;
 }
-
+.list-group-item .d-inline-flex {
+  align-items: center;
+}
 .list-group-item .d-inline-flex .na-icon,
 .list-group-item .d-inline-flex .float-end,
 .list-group-item .d-inline-flex .count-plus {
   flex-shrink: 0;
-  top: 8px;
   margin-left: 3px;
+  vertical-align: middle;
 }
 .list-group-item .d-inline-flex .float-end,
 .list-group-item .d-inline-flex .count-plus {
