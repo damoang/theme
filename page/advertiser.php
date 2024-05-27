@@ -34,6 +34,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
     <br/><br/><br/>
     <h3>직접홍보 게시판</h3>
     <br/><br/>
+    링크 : <a href="/promotion">https://damoang.net/promotion</a>
     <div class="table-responsive">
         <table class="table table-bordered mb-0">
             <tbody>
