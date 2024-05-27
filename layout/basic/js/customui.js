@@ -239,27 +239,25 @@
         //팝업메뉴 왼쪽으로
         set_left_menu_over((ui_obj.left_menu_over != null && ui_obj.left_menu_over));
 
-        //퀵버튼 왼쪽으로
-        set_left_quick_button((ui_obj.left_quick_button != null && ui_obj.left_quick_button));
         //백버튼 활성화
         set_back_button((ui_obj.back_button != null && ui_obj.back_button));
 
-        //확장버튼
-        if (ui_obj.expand_quick != null && ui_obj.expand_quick) {
-          set_expand_quick(ui_obj);
-        }
-
-        if (ui_obj.read_history ?? false) {
-          check_read_history(ui_obj);
-        }
 
         if (ui_obj.memo_ip_track ?? false) {
           start_memo_tracking();
         }
       }
+
       //단축키
       set_shortcut_custom(ui_obj);
 
+      //단축버튼 왼쪽으로
+      set_left_quick_button((ui_obj.left_quick_button != null && ui_obj.left_quick_button));
+      //단축버튼 확장
+      if (ui_obj.expand_quick != null && ui_obj.expand_quick) {
+        set_expand_quick(ui_obj);
+      }
+      
       //제목 필터링
       if (ui_obj.title_filtering ?? false) {
         set_title_filtering(ui_obj?.filtering_word);
@@ -269,6 +267,12 @@
       if (ui_obj.content_blur ?? false) {
         check_content_blur(ui_obj?.content_blur_word);
       }
+
+      //읽은 글 체크
+      if (ui_obj.read_history ?? false) {
+        check_read_history(ui_obj);
+      }
+
     }
   }
 
@@ -1137,6 +1141,34 @@
 
   function set_ui_custom_click_event() {
     try {
+      Array.from(document.querySelectorAll("#user-ui-custom .ui-custom-tabs .ui-custom-tab a.nav-link")).forEach((click_item) => {
+        click_item.addEventListener("click",function(e){
+          e.preventDefault();
+          Array.from(document.querySelectorAll("#user-ui-custom .ui-custom-tabs .ui-custom-tab a.nav-link.active")).forEach((item) => {
+            if (click_item != item) {
+              document.querySelector(item.getAttribute('href')).classList.add("d-none");
+              item.classList.remove("active");
+            }
+          });
+          click_item.classList.add("active");
+          document.querySelector(click_item.getAttribute('href')).classList.remove("d-none");
+        });
+      });
+
+      Array.from(document.querySelectorAll("#user-ui-custom .ui-custom-ul-tabs .ui-custom-ul-tab a.nav-link")).forEach((click_item) => {
+        click_item.addEventListener("click",function(e){
+          e.preventDefault();
+          Array.from(document.querySelectorAll("#user-ui-custom .ui-custom-ul-tabs .ui-custom-ul-tab a.nav-link.active")).forEach((item) => {
+            if (click_item != item) {
+              document.querySelector(item.getAttribute('href')).classList.add("d-none");
+              item.classList.remove("active");
+            }
+          });
+          click_item.classList.add("active");
+          document.querySelector(click_item.getAttribute('href')).classList.remove("d-none");
+        });
+      });
+
       $("#reg_expand_quick").change(function () {
         set_ui_custom_expand();
       });
@@ -1181,7 +1213,7 @@
     }
   }
   function set_ui_custom_expand() {
-    if ($("#reg_shortcut_use").is(":checked")) {
+    if ($("#reg_expand_quick").is(":checked")) {
       $(".ui-custom-expand-item").show();
     } else {
       $(".ui-custom-expand-item").hide();
@@ -1325,7 +1357,7 @@
         if (write_user_link != null) {
           write_info.id = write_user_link.href.substring(write_user_link.href.indexOf("mb_id=") + 6);
           if (!check_admin.test(write_info.id) && board_obj?.id == null || board_obj.id != write_info.id) {
-            var img_src = write_user_link.querySelector("img.mb-photo").src;
+            var img_src = write_user_link.querySelector("span.profile_img img, img.mb-photo")?.src ?? "";
             var img_position = img_src.indexOf('/data/member_image');
             if (img_position > 0) {
               write_info.img = img_src.substring(img_position + 18);
@@ -1365,7 +1397,7 @@
         if (write_user_link != null) {
           write_info.id = write_user_link.href.substring(write_user_link.href.indexOf("mb_id=") + 6);
           if (!check_admin.test(write_info.id) && board_obj?.id == null || board_obj.id != write_info.id) {
-            var img_src = write_user_link.querySelector("img.mb-photo").src;
+            var img_src = write_user_link.querySelector("span.profile_img img, img.mb-photo")?.src ?? "";
             var img_position = img_src.indexOf('/data/member_image');
             if (img_position > 0) {
               write_info.img = img_src.substring(img_position + 18);
@@ -2077,6 +2109,10 @@
     var btn_memo_ip_clear = document.getElementById("btn_memo_ip_clear");
     if (btn_memo_ip_clear) {
       btn_memo_ip_clear.addEventListener("click", delete_memo_database);
+    }
+    var btn_read_history_clear = document.getElementById("btn_read_history_clear");
+    if (btn_read_history_clear) {
+      btn_memo_ip_clear.addEventListener("click", delete_read_database);
     }
     var ui_obj = get_ui_custom_values();
     if (ui_obj) {
