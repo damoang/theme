@@ -38,8 +38,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
     <br/><br/>
     링크 : <a href="/promotion">https://damoang.net/promotion</a>
 
-   <ol class="breadcrumb>
-     <li>우리정보통신</li>
+    <li>우리정보통신</li>
      <li>농부가간다</li>
     <li> 테라베이 </li>
     <li> 모스란다 </li>
@@ -61,7 +60,6 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
     <li>올필름</li>
     <li>젠틀파파</li>
     <li>모찌덕후</li>
-    </ol>
 
 
 </div>
