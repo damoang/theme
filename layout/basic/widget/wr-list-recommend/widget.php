@@ -72,7 +72,7 @@ $wr_notice = (isset($wset['is_notice']) && $wset['is_notice']) ? ' bg-body-terti
             }
 
             if ($ca_name) {
-                $row['subject'] = '[' . $ca_name . '] ' . $row['subject'];
+                $row['subject'] = '<small>[' . $ca_name . ']</small> ' . $row['subject'];
             }
         }
         ?>
