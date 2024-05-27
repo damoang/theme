@@ -37,28 +37,28 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
     <h3>직접홍보 게시판</h3>
     <br/><br/>
     링크 : <a href="/promotion">https://damoang.net/promotion</a>
-
-    <li>우리정보통신</li>
-     <li>농부가간다</li>
-    <li> 테라베이 </li>
-    <li> 모스란다 </li>
-    <li> 스테디커피 </li>
-    <li> 법률사무소 메리츠 스카이 </li>
-    <li> 리틀빅애드컨설팅  </li>
-    <li>진1937</li>
-    <li>티달빛  </li>
-    <li>고도몰  </li>
-    <li> 리에코  </li>
-    <li> 브릭스제주  </li>
-    <li> 로스톤  </li>
-    <li> 그리운 Griun (TYPEE)  </li>
-    <li>일디오커피로스터스 </li>
-    <li>씽크와이드 </li>
-    <li>지피컴퍼니 </li>
-    <li>(주)알로식품연구소  </li>
-    <li>강녕상회</li>
-    <li>올필름</li>
-    <li>젠틀파파</li>
+    <br/><br/>
+    <li>우리정보통신</li>><br/>
+     <li>농부가간다</li>><br/>
+    <li> 테라베이 </li>><br/>
+    <li> 모스란다 </li>><br/>
+    <li> 스테디커피 </li>><br/>
+    <li> 법률사무소 메리츠 스카이 </li>><br/>
+    <li> 리틀빅애드컨설팅  </li>><br/>
+    <li>진1937</li>><br/>
+    <li>티달빛  </li>><br/>
+    <li>고도몰  </li>><br/>
+    <li> 리에코  </li>><br/>
+    <li> 브릭스제주  </li>><br/>
+    <li> 로스톤  </li>><br/>
+    <li> 그리운 Griun (TYPEE)  </li>><br/>
+    <li>일디오커피로스터스 </li>><br/>
+    <li>씽크와이드 </li>><br/>
+    <li>지피컴퍼니 </li>><br/>
+    <li>(주)알로식품연구소  </li>><br/>
+    <li>강녕상회</li>><br/>
+    <li>올필름</li>><br/>
+    <li>젠틀파파</li>><br/>
     <li>모찌덕후</li>
 
 
