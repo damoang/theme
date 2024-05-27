@@ -328,7 +328,7 @@ if (!defined('_GNUBOARD_')) {
                 </li>
                 <li class="list-group-item ui-custom-item">
                     <div class="row align-items-center">
-                        <label for="reg_hide_member_memo" class="col-sm-5 col-form-label" title="회원 메모를 감춰줍니다. M을 누르면 흐려집니다.">회원메모 가리기(M)</label>
+                        <label for="reg_hide_member_memo" class="col-sm-5 col-form-label" title="회원 메모를 감춰줍니다. U을 누르면 흐려집니다.">회원메모 가리기(U)</label>
                         <div class="col-sm-7">
                             <div class="form-check form-switch p-0">
                                 <input class="form-check-input ui_custom_items float-end mt-2" type="checkbox" name="hide_member_memo" value="1" role="switch" id="reg_hide_member_memo">
