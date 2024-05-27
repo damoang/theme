@@ -99,10 +99,6 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                 <td> 그리운 Griun (TYPEE)  </td>
                 <td>nini</td>
             </tr>
-              <tr>
-                <td>   지피컴퍼니  </td>
-                <td>링크</td>
-            </tr>
              <tr>
                 <td>일디오커피로스터스 </td>
                 <td>링크</td>
