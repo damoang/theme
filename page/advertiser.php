@@ -33,24 +33,90 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
     <h4>10번째 사이드바 광고주님 자리</h4> <br/><br/>
     <br/><br/><br/>
     <h3>직접홍보 게시판</h3>
-    <br/>
-    우리정보통신 <br/>
-    농부가간다 <br/>
-    테라베이 <br/>
-    모스란다 <br/>
-    스테디커피 <br/>
-    법률사무소 메리츠 스카이 <br/>
-    리틀빅애드컨설팅 <br/>
-    진1937 <br/>
-    티달빛 <br/>
-    리에코 <br/>
-    브릭스제주 <br/>
-    로스톤 <br/>
-    그리운 Griun (TYPEE) <br/>
-    지피컴퍼니 <br/>
-    일디오커피로스터스 <br/>
-    씽크와이드 <br/>
-    지피컴퍼니 <br/>
-    (주)알로식품연구소 <br/>
+    <br/><br/>
+    <div class="table-responsive">
+        <table class="table table-bordered mb-0">
+            <tbody>
+            <tr class="bg-light">
+                <th class="text-center">직접 홍보 광고주님 </th>
+                <th class="text-center">집접 홍보 첫 게시글 </th>
+
+            </tr>
+            <tr>
+                <td> 우리정보통신 </td>
+                <td>링크</td>
+            </tr>
+            <tr>
+                <td>   농부가간다 </td>
+                <td>링크</td>
+            </tr>
+            <tr>
+                <td> 테라베이 </td>
+                <td>링크</td>
+            </tr>
+            <tr>
+                <td> 모스란다 </td>
+                <td>링크</td>
+            </tr>
+            <tr>
+                <td> 스테디커피 </td>
+                <td>링크</td>
+            </tr>
+            <tr>
+                <td> 법률사무소 메리츠 스카이 </td>
+                <td>링크</td>
+            </tr>
+            <tr>
+                <td> 리틀빅애드컨설팅  </td>
+                <td>링크</td>
+            </tr>
+           <tr>
+                <td>   진1937  </td>
+                <td>링크</td>
+            </tr>
+             <tr>
+                <td>티달빛  </td>
+                <td>링크</td>
+            </tr>
+             <tr>
+                <td> 리에코  </td>
+                <td>링크</td>
+            </tr>
+           <tr>
+                <td> 브릭스제주  </td>
+                <td>링크</td>
+            </tr>
+             <tr>
+                <td> 로스톤  </td>
+                <td>링크</td>
+            </tr>
+          <tr>
+                <td> 그리운 Griun (TYPEE)  </td>
+                <td>링크</td>
+            </tr>
+              <tr>
+                <td>   지피컴퍼니  </td>
+                <td>링크</td>
+            </tr>
+             <tr>
+                <td>일디오커피로스터스 </td>
+                <td>링크</td>
+            </tr>
+             <tr>
+                <td>씽크와이드 </td>
+                <td>링크</td>
+            </tr>
+             <tr>
+                <td>지피컴퍼니 </td>
+                <td>링크</td>
+            </tr>
+             <tr>
+                <td>(주)알로식품연구소  </td>
+                <td>링크</td>
+            </tr>                
+            </tbody>
+        </table>
+        </div>
+
 
 </div>
