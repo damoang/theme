@@ -1,5 +1,10 @@
 <?php
-if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
+if (!defined('_GNUBOARD_')) {
+    exit;
+}
+
+// 와이드 이미지 배너
+echo na_widget('damoang-image-banner', 'board-head');
 ?>
 
 <!-- <div class="row row-cols-1 row-cols-sm-2"> -->
