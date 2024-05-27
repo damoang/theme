@@ -32,7 +32,7 @@ return [
                 'shortcut' => 'Ａ',
                 // Ａ단축키는 알림 링크에 사용됨
             ],
-            '앙맵' => [
+            '앙지도' => [
                 'url' => '/angmap',
                 'shortcut' => 'M',
                     'icon' => 'bi-star-fill',
