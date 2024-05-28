@@ -2036,24 +2036,6 @@
                 update_read_history_noti(db, board_info, ui_obj);
                 set_read_history(db, board_info, ui_obj);
               });
-
-              //list 표시
-              //삭제
-
-              // var update_complete = function(){
-              //     if (info_map.updated_id && info_map.updated_ip) {
-              //         remove_timeover_memo(db,function(){
-              //             show_check_ip_id(db,temp_obj,info_map);
-              //         });
-              //     }
-              // }
-
-              // //memo id 갱신
-              // update_memo_id(db, info_map, () => {info_map.updated_id = true; update_complete()});
-
-              // //memo ip 갱신
-              // update_memo_ip(db, info_map, () => {info_map.updated_ip = true; update_complete()});
-
             };
           }
         }
@@ -2118,7 +2100,7 @@
           cursor.continue();
         }
       };
-
+      var diplay_cnt = 0;
       board_info.noti_ids.forEach((url, index) => {
         var noti_update_req = writeStore.get(url);
         noti_update_req.onsuccess = function (e) {
@@ -2149,7 +2131,11 @@
             }
           }
           if (display_important) {
-            board_info.noti_list[index].closest("li.bg-light-subtle").style = "display : block !important";
+            board_info.noti_list[index].closest("li.bg-light-subtle").style = "display : block !important;opacity:0.3;/*transform: rotateX(-30deg) translateY(" + ((diplay_cnt+1)*5) + "0%);*/ filter:blur(0.3em);";
+            setTimeout(function(){
+              board_info.noti_list[index].closest("li.bg-light-subtle").style = "display : block !important;opacity:1; transition:all 1s";              
+            },diplay_cnt*300 + 10);
+            diplay_cnt++;
           }
         }
       });
@@ -2207,7 +2193,12 @@
                   var diff_span = document.createElement("span");
                   diff_span.className = "count-plus ui-custom-read-reply-cnt text-primary"
                   diff_span.innerHTML = diff;
+                  diff_span.style= "opacity:0;";
                   parent_node.insertBefore(diff_span, float_end);
+                  setTimeout(function(){
+                    diff_span.style= "opacity:1;transition:all 1s;";    
+                  },500);
+                  //diff_span.style.style
                 }
               }
             }
