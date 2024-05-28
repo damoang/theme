@@ -2,3 +2,12 @@
 google_cloud_ops_agent_provisioning/
 
 *.swp
+# macOS OS 생성파일
+.DS_Store
+.AppleDouble
+.LSOverride
+# Windows OS 생성파일. thumbnail cache files
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
