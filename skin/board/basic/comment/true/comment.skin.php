@@ -154,7 +154,7 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
                                     $cmt['wr_content'] = '';
                                 $c_wr_content = $cmt['wr_content'];
                             }
-                        ?>ㅁ
+                        ?>
                             <?php if ($list[$i]['is_reply']) { ?>
                             <button type="button" class="btn btn-basic" onclick="comment_box('<?php echo $comment_id ?>','c','<?php echo $comment_name;?>');" class="btn btn-basic btn-sm" title="답글">
                                     <i class="bi bi-arrow-return-right"></i>
