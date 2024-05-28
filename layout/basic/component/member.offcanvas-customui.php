@@ -232,7 +232,7 @@ if (!defined('_GNUBOARD_')) {
                 </li>
             </ul>
             <ul id="ui-custom-ul-menu" class="list-group p-0 ui-custom-ul-subs d-none">
-                <li class="list-group-item ui-custom-item">
+            <li class="list-group-item ui-custom-item">
                     <div class="row align-items-center">
                         <label for="reg_left_menu" class="col-sm-5 col-form-label" title="메뉴를 왼쪽으로 설정합니다.">왼쪽 메뉴</label>
                         <div class="col-sm-7">
@@ -242,6 +242,16 @@ if (!defined('_GNUBOARD_')) {
                         </div>
                     </div>
                 </li>
+                <!-- <li class="list-group-item ui-custom-item">
+                    <div class="row align-items-center">
+                        <label for="reg_menu_off" class="col-sm-5 col-form-label" title="메인 화면의 메뉴를 표시하지 않습니다.">메뉴 끄기</label>
+                        <div class="col-sm-7">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input ui_custom_items float-end mt-2" type="checkbox" name="menu_off" value="1" role="switch" id="reg_menu_off">
+                            </div>
+                        </div>
+                    </div>
+                </li> -->
                 <li class="list-group-item ui-custom-item">
                     <div class="row align-items-center">
                         <label for="reg_left_menu_over" class="col-sm-5 col-form-label" title="상단의 호출 메뉴를 왼쪽으로 설정합니다.">왼쪽 호출메뉴</label>

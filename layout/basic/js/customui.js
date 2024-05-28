@@ -2,23 +2,23 @@
   'use strict'
   var body_opacity_init = false;
 
-  function set_body_op_start(){
+  function set_body_op_start() {
     body_opacity_init = true;
     if (document?.body != null) {
       document.body.classList.add('opacity-0');
       document.body.classList.remove('cu_init');
     }
   }
-  
-  function set_body_op_end(){
+
+  function set_body_op_end() {
     if (body_opacity_init) {
       document.body.classList.remove('opacity-0');
       document.body.classList.add('cu_init');
     }
   }
 
-  function remove_ui_custom_styles(){
-    if (document.getElementById('user_ui_custom_styles')!=null) {
+  function remove_ui_custom_styles() {
+    if (document.getElementById('user_ui_custom_styles') != null) {
       document.getElementById('user_ui_custom_styles').remove();
     }
   }
@@ -36,6 +36,7 @@
         //화면 너비 설정
         if (ui_obj.show_width != null) {
           ui_custom_style += ".container {max-width: " + ui_obj.show_width + "px !important;}\n";
+          ui_custom_style += "#main-wrap div.order-1 a[data-dd-action-name='Boards Ads Banner'] > img {width:100%;}\n";
         }
         //메뉴 스크롤 적용
         if (ui_obj.menu_scroll != null && ui_obj.menu_scroll) {
@@ -57,14 +58,19 @@
 
         //media 992px 이상
         //왼쪽 메뉴 적용
-        if (ui_obj.left_menu != null && ui_obj.left_menu) {
-          ui_media992_style += ".order-2 {order: 0 !important;}\n";
-        }
-        //메뉴바 크기 설정
-        if (ui_obj.menu_width != null) {
-          var content_width = 100 - ui_obj.menu_width;
-          ui_media992_style += ".col-lg-9 {width: " + content_width + "% !important;}\n";
-          ui_media992_style += ".col-lg-3 {width: " + ui_obj.menu_width + "% !important;}\n";
+        if ((ui_obj.menu_off ?? false) && 1 == 0) {
+          ui_custom_style += "#main-wrap .container div.order-2 {display:none;}\n";
+          ui_media992_style += ".col-lg-9 {width: 100% !important;}\n";
+        } else {
+          if (ui_obj.left_menu != null && ui_obj.left_menu) {
+            ui_media992_style += ".order-2 {order: 0 !important;}\n";
+          }
+          //메뉴바 크기 설정
+          if (ui_obj.menu_width != null) {
+            var content_width = 100 - ui_obj.menu_width;
+            ui_media992_style += ".col-lg-9 {width: " + content_width + "% !important;}\n";
+            ui_media992_style += ".col-lg-3 {width: " + ui_obj.menu_width + "% !important;}\n";
+          }
         }
         //검색메뉴 항상 보임
         if (ui_obj.list_search != null && ui_obj.list_search) {
@@ -89,6 +95,13 @@
             "animation-direction: alternate;\n}\n";
           ui_custom_style += "@keyframes cu_body_op {\n 0% {opacity: 0;} \n 50% {opacity: 70;} \n 100% {opacity: 1;}\n}\n";
         }
+        if (ui_obj.expand_quick != null && ui_obj.expand_quick) {
+          ui_custom_style += "div#toTop a.ui-custom-expand-hidden.d-block {transition: all 0.7s;height: 100%;}\n" +
+            "div#toTop a.ui-custom-expand-hidden.d-none-start {display: block !important;opacity: 0;transform: scale(0.5) rotate(180deg);border-radius: 100%;}\n" +
+            "div#toTop a.ui-custom-expand-hidden.d-none {display: block !important;transition: all 0.5s;opacity: 0;transform: scale(0.5) rotate(180deg);border-radius: 100%;}\n" +
+            "div#toTop a#ui-custom-expand-button {transition: all 0.7s;}\n" +
+            "div#toTop a#ui-custom-expand-button:has(i.opacity-25) {transition: all 0.5s;transform: rotate(180deg) scale(1.2);}\n";
+        }
       }
       //hide_nick(ui_obj);
     }
@@ -110,6 +123,7 @@
       , "back_button"
 
       , "left_menu"
+      , "menu_off"
       , "left_menu_over"
       , "left_quick_button"
 
@@ -201,12 +215,14 @@
     if (document.getElementById('ui_custom_json') != null) document.getElementById('ui_custom_json').value = json_str;
 
     alert("변경사항이 적용되었습니다.");
-
     try {
       set_ui_custom();
-      draw_ui_custom();
-    } catch {
-      //console.error('Failed to initialize custom UI settings:', error);
+      is_set_expand_button = false;
+      setTimeout(function () {
+        draw_ui_custom(true);
+      }, 100);
+    } catch (e) {
+      console.error('Failed to initialize custom UI settings:', error);
     }
   }
 
@@ -239,8 +255,12 @@
 
   }
 
-  function hide_nick(ui_obj) {
-    if (ui_obj != null) {      
+  function hide_nick(ui_obj, reload) {
+    //console.debug("hide_nick start");
+    if (reload == null) {
+      reload = false;
+    }
+    if (ui_obj != null) {
       //본문 필터링
       if (ui_obj.content_blur ?? false) {
         check_content_blur(ui_obj?.content_blur_word);
@@ -300,10 +320,33 @@
       //단축버튼 왼쪽으로
       set_left_quick_button((ui_obj.left_quick_button != null && ui_obj.left_quick_button));
       //단축버튼 확장
-      if (ui_obj.expand_quick != null && ui_obj.expand_quick) {
-        set_expand_quick(ui_obj);
+      if ((ui_obj.expand_quick != null && ui_obj.expand_quick)) {
+        if (!is_set_expand_button) {
+          is_set_expand_button = true;
+          if (reload) {
+            set_expand_button_hide();
+            setTimeout(function () {
+              set_expand_quick(ui_obj, reload);
+            }, 550);
+          } else {
+            set_expand_quick(ui_obj, reload);
+          }
+        }
+      } else if (reload ?? false) {
+        var expand_button = document.getElementById("ui-custom-expand-button");
+        if (expand_button != null) {
+          expand_button.remove();
+          var toTop = document.getElementById('toTop');
+          if (toTop != null) {
+            toTop.classList.remove("d-block");
+          }
+          var toTop_as = toTop.querySelector("#toTop a:has(i.bi-arrow-up-square-fill)");
+          if (toTop_as != null) {
+            toTop_as.classList.add("d-none");
+            toTop_as.classList.add("d-sm-inline-block");
+          }
+        }
       }
-
     }
   }
 
@@ -341,20 +384,20 @@
 
         if (force_list_mode ?? view_mode) {
           //list mode로 변경
-          parent_write.classList.add("d-none");
-          info_write.classList.add("d-none");
-          view_comment.classList.add("d-none");
-          write_comment.classList.add("d-none");
-          board_list.classList.remove("d-none");
+          if (parent_write) parent_write.classList.add("d-none");
+          if (info_write) info_write.classList.add("d-none");
+          if (view_comment) view_comment.classList.add("d-none");
+          if (write_comment) write_comment.classList.add("d-none");
+          if (board_list) board_list.classList.remove("d-none");
 
         } else {
           //view mode로 변경
-          parent_write.classList.remove("d-none");
-          info_write.classList.remove("d-none");
-          view_comment.classList.remove("d-none");
-          write_comment.classList.remove("d-none");
+          if (parent_write) parent_write.classList.remove("d-none");
+          if (info_write) info_write.classList.remove("d-none");
+          if (view_comment) view_comment.classList.remove("d-none");
+          if (write_comment) write_comment.classList.remove("d-none");
 
-          board_list.classList.add("d-none");
+          if (board_list) board_list.classList.add("d-none");
 
         }
       }
@@ -625,22 +668,47 @@
     e.preventDefault();
     var body_con = document.getElementById(body_con_id)
     if (body_con.style.filter != "") {
+      body_con.style.removeProperty('transition');
+      var remove_transition = function(e){
+        body_con.style.removeProperty('transition');
+        body_con.removeEventListener('transitionend', remove_transition);
+      };
+      body_con.style.filter = "blur(5em)";
+      body_con.style.opacity = "0.7";
+      body_con.style.setProperty('transition', 'all 0.2s');
+    
+      setTimeout(function(){
+        body_con.style.setProperty('transition', 'all 0.7s');
+        body_con.addEventListener('transitionend', remove_transition);
+        body_con.style.removeProperty('filter');
+        body_con.style.removeProperty('opacity');
+        body_con.style.removeProperty('max-height');
+        body_con.style.removeProperty('overflow');
+      },200);      
+      body_con.removeEventListener("click", remove_blur);
+      
       var blur_txt = document.getElementById(body_blur_id);
       if (blur_txt != null) {
-        blur_txt.remove();
+        blur_txt.style.setProperty('opacity', '0.5');
+        var remove_blur_txt_transition = function(e){
+          blur_txt.remove();
+          document.getElementById(body_parent_id).style.removeProperty("position");
+        };
+        blur_txt.addEventListener('transitionend', remove_blur_txt_transition);
+        setTimeout(function(){
+          blur_txt.style.setProperty('transition', 'all 1s');
+          blur_txt.style.setProperty('opacity', '0');          
+        },100);
       }
-      document.getElementById(body_parent_id).style.removeProperty("position");
-      body_con.style.filter = "";
-      body_con.removeEventListener("click", remove_blur);
     }
   }
   function set_blur_padding() {
     var body_con = document.getElementById(body_con_id);
     var blur_txt = document.getElementById(body_blur_id);
     blur_txt.style.removeProperty("height");
-    var paddingTB = ((body_con.offsetHeight - blur_txt.offsetHeight - 30));
+    var paddingTB = ((body_con.offsetHeight - blur_txt.offsetHeight)) / 2;
     blur_txt.style.top = body_con.offsetTop + "px";
-    blur_txt.style.paddingTop = "30px";
+    blur_txt.style.paddingTop = paddingTB + "px";
     blur_txt.style.paddingBottom = paddingTB + "px";
   }
 
@@ -674,7 +742,15 @@
 
   function set_content_blur() {
     var body_con = document.getElementById(body_con_id);
-    body_con.style.filter = "blur(10em)";
+    body_con.style.filter = "blur(3em)";
+    body_con.style.opacity = "0.7";
+    body_con.style.maxHeight = "700px";
+    body_con.style.overflow = "hidden";
+    setTimeout(function(){
+      body_con.style.setProperty('transition', 'all 1s');
+      body_con.style.filter = "blur(20em)";      
+      body_con.style.opacity = "0.5";
+    },300);
     body_con.addEventListener("click", remove_blur);
     document.getElementById(body_parent_id).style.position = "relative";
     var blur_txt = document.createElement("div");
@@ -695,11 +771,10 @@
     blur_txt.append(blur_img);
   }
 
-  function set_expand_quick(ui_obj) {
+  function set_expand_quick(ui_obj, reload) {
     var toTop = document.getElementById('toTop');
     if (toTop != null) {
       toTop.classList.remove('d-block');
-
       var removes = toTop.getElementsByClassName("ui-custom-expand-icon");
       if (removes != null && removes.length > 0) {
         while (removes.length > 0) {
@@ -828,7 +903,7 @@
             } else {
               tag_a.href = tag_a_href;
             }
-            tag_a.className = "ui-custom-expand-icon ui-custom-expand-hidden d-block fs-1 m-3 mb-1 mt-1 bg-secondary bg-opacity-25";
+            tag_a.className = "ui-custom-expand-icon ui-custom-expand-hidden d-none-start fs-1 m-3 mb-1 mt-1 bg-secondary bg-opacity-25";
             tag_a.id = "ui-custom-expand-" + ex_hrefs[i];
             tag_a.title = ex_titles[i];
             // if (check_add != add_button) {
@@ -846,13 +921,14 @@
           toTop.classList.add('d-block');
 
           toTop_as.classList.remove("d-sm-inline-block");
-          toTop_as.classList.remove("d-none");
+          toTop_as.classList.remove("d-block");
 
           toTop_as.classList.add("ui-custom-expand-hidden");
           toTop_as.classList.add("bg-secondary");
           toTop_as.classList.add("bg-opacity-25");
 
-          toTop_as.classList.add("d-block");
+          toTop_as.classList.add("d-none-start");
+          //toTop_as.style.setProperty('display', 'none', 'important');
           toTop_as.classList.add("mt-1");
           toTop_as.classList.add("mb-1");
           toTop_as.title = "맨 위로";
@@ -863,14 +939,18 @@
           tag_a.id = "ui-custom-expand-button";
           var tag_i = document.createElement("i");
           tag_i.id = "ui-custom-expand-button-i"
-          tag_i.className = "bi bi-caret-down-square-fill";
+          tag_i.className = "bi bi-caret-down-square-fill opacity-25";
           tag_i.title = "확장버튼 감추기";
           tag_a.appendChild(tag_i);
           tag_a.addEventListener("click", toggle_expand_button);
           toTop.appendChild(tag_a);
 
+          if (reload) {
+            setTimeout(set_expand_button, 100);
+          } else {
+            setTimeout(set_expand_button, 300);
+          }
 
-          set_expand_button();
           //toTop_as.classList.add("d-sm-block");
         } else {
           toTop_as.classList.remove("ui-custom-expand-hidden");
@@ -888,29 +968,45 @@
 
   var expand_state_key = "ui_custom_expand_button";
 
+  function set_expand_button_hide(start) {
+    var show_list = toTop.getElementsByClassName("ui-custom-expand-hidden");
+    var start_str = "";
+    if (start ?? false) {
+      start_str = "start";
+    }
+    for (var i = 0; i < show_list.length; i++) {
+      show_list[i].classList.add("d-none" + start_str);
+    }
+    var button = document.getElementById("ui-custom-expand-button-i");
+    if (button != null) {
+      button.classList.add("opacity-25");
+      button.title = "확장버튼 보이기";
+    }
+  }
+
+  var is_set_expand_button = false;
   function set_expand_button() {
     var expand_button_state = localStorage.getItem(expand_state_key);
     var b_show = (expand_button_state == "show");
     var button = document.getElementById("ui-custom-expand-button-i");
-    if (b_show) {
-      button.classList.remove("bi-caret-up-square-fill");
-      button.classList.remove("opacity-25");
-      button.classList.add("bi-caret-down-square-fill");
-      button.title = "확장버튼 감추기";
-      b_show = true;
-    } else {
-      button.classList.remove("bi-caret-down-square-fill");
-      button.classList.add("bi-caret-up-square-fill");
-      button.classList.add("opacity-25");
-      button.title = "확장버튼 보이기";
+    if (button != null) {
+      if (b_show) {
+        button.classList.remove("opacity-25");
+        button.title = "확장버튼 감추기";
+      } else {
+        button.classList.add("opacity-25");
+        button.title = "확장버튼 보이기";
+      }
     }
     var show_list = toTop.getElementsByClassName("ui-custom-expand-hidden");
     for (var i = 0; i < show_list.length; i++) {
+      show_list[i].classList.remove("d-none-start");
       if (b_show) {
-        show_list[i].classList.add("d-block");
         show_list[i].classList.remove("d-none");
+        show_list[i].classList.add("d-block");
       } else {
         show_list[i].classList.remove("d-block");
+        //show_list[i].classList.remove("d-none-start");
         show_list[i].classList.add("d-none");
       }
     }
@@ -1172,7 +1268,7 @@
   function set_ui_custom_click_event() {
     try {
       Array.from(document.querySelectorAll("#user-ui-custom .ui-custom-tabs .ui-custom-tab a.nav-link")).forEach((click_item) => {
-        click_item.addEventListener("click",function(e){
+        click_item.addEventListener("click", function (e) {
           e.preventDefault();
           Array.from(document.querySelectorAll("#user-ui-custom .ui-custom-tabs .ui-custom-tab a.nav-link.active")).forEach((item) => {
             if (click_item != item) {
@@ -1186,7 +1282,7 @@
       });
 
       Array.from(document.querySelectorAll("#user-ui-custom .ui-custom-ul-tabs .ui-custom-ul-tab a.nav-link")).forEach((click_item) => {
-        click_item.addEventListener("click",function(e){
+        click_item.addEventListener("click", function (e) {
           e.preventDefault();
           Array.from(document.querySelectorAll("#user-ui-custom .ui-custom-ul-tabs .ui-custom-ul-tab a.nav-link.active")).forEach((item) => {
             if (click_item != item) {
@@ -2123,15 +2219,15 @@
 
   //글 방문 기록 기능 끝
 
-    //화면 그리기
-  function draw_ui_custom(){
+  //화면 그리기
+  function draw_ui_custom(reload) {
     var ui_custom_storage_str = localStorage.getItem("ui_custom");
     if (ui_custom_storage_str != null && ui_custom_storage_str != "") {
       var ui_obj = JSON.parse(ui_custom_storage_str);
       if (ui_obj) {
-        hide_nick(ui_obj);
+        hide_nick(ui_obj, reload);
       }
-    }    
+    }
   }
 
   function set_ui_custom_onload() {
@@ -2159,12 +2255,25 @@
       btn_read_history_clear.addEventListener("click", delete_read_database);
     }
     get_ui_custom_values();
-    //alert("change");
+  }
+
+  function set_page_show(event) {
+    //console.debug(event.eventPhase);
+    if (event.persisted || (window.performance && window.performance.navigation.type == 2)) {
+      draw_ui_custom(true);
+    }
+  }
+  function set_page_hide(event) {
+    //console.debug("hide_page");
+    //set_expand_button_hide();  
+    is_set_expand_button = false;
   }
   document.addEventListener("DOMContentLoaded", set_ui_custom_onload, { once: true });
+  window.addEventListener("pageshow", set_page_show);
+  window.addEventListener("pagehide", set_page_hide);
   try {
     set_ui_custom();
   } catch (error) {
     //console.error('Failed to initialize custom UI settings:', error);
   }
-}) ();
+})();
