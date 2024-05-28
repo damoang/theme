@@ -1,18 +1,37 @@
 (() => {
   'use strict'
+  var body_opacity_init = false;
+
+  function set_body_op_start(){
+    body_opacity_init = true;
+    if (document?.body != null) {
+      document.body.classList.add('opacity-0');
+      document.body.classList.remove('cu_init');
+    }
+  }
+  
+  function set_body_op_end(){
+    if (body_opacity_init) {
+      document.body.classList.remove('opacity-0');
+      document.body.classList.add('cu_init');
+    }
+  }
+
+  function remove_ui_custom_styles(){
+    if (document.getElementById('user_ui_custom_styles')!=null) {
+      document.getElementById('user_ui_custom_styles').remove();
+    }
+  }
 
   function set_ui_custom() {
-    try {
-      document.getElementById('user_ui_custom_styles').remove();
-    } catch {
-    }
     var ui_custom_storage_str = localStorage.getItem("ui_custom");
+    var ui_custom_style = "";
     if (ui_custom_storage_str != null && ui_custom_storage_str != "") {
       var ui_obj = JSON.parse(ui_custom_storage_str);
       var ui_keys = Object.keys(ui_obj);
-      var ui_custom_style = "";
       var ui_root_style = "";
       var ui_media992_style = "";
+
       if (ui_obj.ui_custom != null && ui_obj.ui_custom) {
         //화면 너비 설정
         if (ui_obj.show_width != null) {
@@ -20,8 +39,8 @@
         }
         //메뉴 스크롤 적용
         if (ui_obj.menu_scroll != null && ui_obj.menu_scroll) {
-          ui_custom_style += "#header-copy.header-copy {display: none;}\n";
-          ui_custom_style += "#header-navbar.site-navbar {position: relative !important;display: block !important; height: 64px !important;}\n";
+          ui_custom_style += "#header-copy.header-copy {display: block;}\n";
+          ui_custom_style += "#header-navbar.site-navbar {position: fixed !important;display: block !important; height: 64px !important;}\n";
           ui_custom_style += "#main-wrap .sticky-top {position: relative;}\n";
         }
 
@@ -58,14 +77,25 @@
         if (ui_media992_style != "") {
           ui_custom_style += "@media (min-width: 992px) {\n" + ui_media992_style + "}\n";
         }
-        if (ui_custom_style != "") {
-          document.head.innerHTML += "<style id=\"user_ui_custom_styles\">\n" + ui_custom_style + "</style>";
+        if (body_opacity_init != null) {
+          ui_custom_style += "body {opacity:0;}\n";
+          ui_custom_style += "body.cu_init {\n" +
+            "opacity:1;" +
+            "animation-name: cu_body_op;" +
+            "animation-duration: 0.1s;" +
+            "animation-delay: 0s;" +
+            "animation-iteration-count: 1;" +
+            "animation-timing-function: linear;" +
+            "animation-direction: alternate;\n}\n";
+          ui_custom_style += "@keyframes cu_body_op {\n 0% {opacity: 0;} \n 50% {opacity: 70;} \n 100% {opacity: 1;}\n}\n";
         }
-
       }
-
       //hide_nick(ui_obj);
-
+    }
+    remove_ui_custom_styles();
+    if (ui_custom_style != "") {
+      set_body_op_start();
+      document.head.innerHTML += "<style id=\"user_ui_custom_styles\">\n" + ui_custom_style + "</style>";
     }
   }
 
@@ -174,6 +204,7 @@
 
     try {
       set_ui_custom();
+      draw_ui_custom();
     } catch {
       //console.error('Failed to initialize custom UI settings:', error);
     }
@@ -209,7 +240,20 @@
   }
 
   function hide_nick(ui_obj) {
-    if (ui_obj != null) {
+    if (ui_obj != null) {      
+      //본문 필터링
+      if (ui_obj.content_blur ?? false) {
+        check_content_blur(ui_obj?.content_blur_word);
+      }
+      //제목 필터링
+      if (ui_obj.title_filtering ?? false) {
+        set_title_filtering(ui_obj?.filtering_word);
+      }
+      //읽은 글 체크
+      if (ui_obj.read_history ?? false) {
+        check_read_history(ui_obj);
+      }
+
       if (ui_obj.ui_custom != null && ui_obj.ui_custom) {
         //목록 감추기
         if (ui_obj.list_toggle != null && ui_obj.list_toggle) {
@@ -220,6 +264,13 @@
         if (ui_obj.hide_nick != null && ui_obj.hide_nick) {
           set_hide_nick();
         }
+
+
+        //팝업메뉴 왼쪽으로
+        set_left_menu_over((ui_obj.left_menu_over != null && ui_obj.left_menu_over));
+
+        //백버튼 활성화
+        set_back_button((ui_obj.back_button != null && ui_obj.back_button));
 
         // 회원메모 감추기
         if (ui_obj.hide_member_memo != null && ui_obj.hide_member_memo) {
@@ -236,17 +287,12 @@
           set_change_mymenu_img(ui_obj?.hide_nick ?? false);
         }
 
-        //팝업메뉴 왼쪽으로
-        set_left_menu_over((ui_obj.left_menu_over != null && ui_obj.left_menu_over));
-
-        //백버튼 활성화
-        set_back_button((ui_obj.back_button != null && ui_obj.back_button));
-
-
         if (ui_obj.memo_ip_track ?? false) {
           start_memo_tracking();
         }
       }
+
+      set_body_op_end();
 
       //단축키
       set_shortcut_custom(ui_obj);
@@ -256,21 +302,6 @@
       //단축버튼 확장
       if (ui_obj.expand_quick != null && ui_obj.expand_quick) {
         set_expand_quick(ui_obj);
-      }
-      
-      //제목 필터링
-      if (ui_obj.title_filtering ?? false) {
-        set_title_filtering(ui_obj?.filtering_word);
-      }
-
-      //본문 필터링
-      if (ui_obj.content_blur ?? false) {
-        check_content_blur(ui_obj?.content_blur_word);
-      }
-
-      //읽은 글 체크
-      if (ui_obj.read_history ?? false) {
-        check_read_history(ui_obj);
       }
 
     }
@@ -606,9 +637,8 @@
   function set_blur_padding() {
     var body_con = document.getElementById(body_con_id);
     var blur_txt = document.getElementById(body_blur_id);
+    blur_txt.style.removeProperty("height");
     var paddingTB = ((body_con.offsetHeight - blur_txt.offsetHeight - 30));
-    console.debug(body_con.offsetHeight);
-    console.debug(blur_txt.offsetHeight);
     blur_txt.style.top = body_con.offsetTop + "px";
     blur_txt.style.paddingTop = "30px";
     blur_txt.style.paddingBottom = paddingTB + "px";
@@ -655,7 +685,7 @@
     blur_txt.style.fontSize = "2em";
     blur_txt.style.fontWeight = "800";
     blur_txt.style.cursor = "pointer";
-    //blur_txt.style.height = body_con.offsetHeight + "px";
+    blur_txt.style.height = body_con.offsetHeight + "px";
     blur_txt.addEventListener("click", remove_blur);
     body_con.after(blur_txt);
     var blur_img = document.createElement("img");
@@ -1033,7 +1063,7 @@
     shortcut_map = {}
 
     if (ui_obj.hide_member_memo != null && ui_obj.hide_member_memo) {
-      shortcut_map["M"] = "javascript:toggle_hide_member_memo();"
+      shortcut_map["U"] = "javascript:toggle_hide_member_memo();"
     }
 
     if (ui_obj?.list_toggle ?? false) {
@@ -1119,10 +1149,10 @@
     if (isShortCutInputElement(event.target) || isShortCutKeyCombination(event) || isShortCutContentEditableElement(event.target)) {
       return;
     }
-    var key = (event?.code ?? "").replace(/Key|Digit/, "");
+    var key = (event?.code ?? "").replace(/Key|Digit|Numpad/, "");
     if (shortcut_map[key] != null) {
       switch (key) {
-        case "M":
+        case "U":
           toggle_hide_member_memo();
           break;
         case "D":
@@ -2093,7 +2123,21 @@
 
   //글 방문 기록 기능 끝
 
+    //화면 그리기
+  function draw_ui_custom(){
+    var ui_custom_storage_str = localStorage.getItem("ui_custom");
+    if (ui_custom_storage_str != null && ui_custom_storage_str != "") {
+      var ui_obj = JSON.parse(ui_custom_storage_str);
+      if (ui_obj) {
+        hide_nick(ui_obj);
+      }
+    }    
+  }
+
   function set_ui_custom_onload() {
+    draw_ui_custom();
+
+    //개인설정 그리기
     set_board_link_option_html();
     check_indexDB();
     set_ui_custom_click_event();
@@ -2112,20 +2156,15 @@
     }
     var btn_read_history_clear = document.getElementById("btn_read_history_clear");
     if (btn_read_history_clear) {
-      btn_memo_ip_clear.addEventListener("click", delete_read_database);
+      btn_read_history_clear.addEventListener("click", delete_read_database);
     }
-    var ui_obj = get_ui_custom_values();
-    if (ui_obj) {
-      hide_nick(ui_obj);
-    }
+    get_ui_custom_values();
+    //alert("change");
   }
-  //set_ui_custom_onload();
   document.addEventListener("DOMContentLoaded", set_ui_custom_onload, { once: true });
-
   try {
     set_ui_custom();
   } catch (error) {
     //console.error('Failed to initialize custom UI settings:', error);
   }
-
 }) ();

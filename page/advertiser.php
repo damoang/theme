@@ -11,7 +11,9 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
     <a href="https://smartstore.naver.com/dingreen"><img src="https://damoang.net/data/file/banners/015f0b5e4ca48f7d44e78ebd6f62e722_eIEiASdk_ae77791f0b971a127e0c4ea6f9bbba4692a8de02.gif"></a><br/><br/>
     <a href="https://mj123123.cafe24.com/intking"><img src="https://damoang.net/data/editor/2405/comment_3716871170_F28Rqvax_b69648f787231953208fb7d3573a7d34e73e2cee.gif"></a><br/><br/>
     <a href="https://smartstore.naver.com/bonnemere/products/6780017941"><img src="https://damoang.net/data/editor/2405/comment_3716871170_RBcEJt9s_ef530bc5cfbe76483eebb37ccc02587bee1897c5.gif"></a><br/><br/>
-    <a href="https://buddyback.co.kr/category/%EC%8A%A4%ED%8A%B8%EB%A0%88%EC%B9%AD%EA%B8%B0%EC%96%B4/24/"><img src="https://damoang.net/data/file/banners/015f0b5e4ca48f7d44e78ebd6f62e722_JNwKLlnF_3a8373b26cc78a8aba81d41893e6fa1edcd7960a.webp"></a><br/><br/>
+    <a href="https://buddyback.co.kr/category/%EC%8A%A4%ED%8A%B8%EB%A0%88%EC%B9%AD%EA%B8%B0%EC%96%B4/24/">
+        
+        <img src="https://damoang.net/data/editor/2405/comment_1954376459_8Pp2Jkcx_b61a73f34a8e465c167869757ca2ff23e79aa0e6.gif"></a><br/><br/>
     <a href="https://1chopick.com/product/list.html?cate_no=61"><img src="https://damoang.net/data/editor/2405/comment_2949741484_hAFuV1z0_8119986b536b8afdd8153ad1a297081d8c22b0e8.webp"></a><br/><br/>
     <a href="https://smartstore.naver.com/aumu?nt_source=damoang&nt_medium=banner&nt_detail=garo"><img src="https://damoang.net/data/file/banners/015f0b5e4ca48f7d44e78ebd6f62e722_MJ2tjoQr_644bd3018095322f344c700c8367820d1b18b941.gif"></a><br/><br/>
     <a href="https://smartstore.naver.com/farmartholic/products/10322631983"><img src="https://damoang.net/data/file/banners/015f0b5e4ca48f7d44e78ebd6f62e722_dHIuWmft_44800559d7ec84eb2084a7db531b586ef983f5d9.webp"></a><br/><br/>
@@ -33,24 +35,31 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
     <h4>10번째 사이드바 광고주님 자리</h4> <br/><br/>
     <br/><br/><br/>
     <h3>직접홍보 게시판</h3>
-    <br/>
-    우리정보통신 <br/>
-    농부가간다 <br/>
-    테라베이 <br/>
-    모스란다 <br/>
-    스테디커피 <br/>
-    법률사무소 메리츠 스카이 <br/>
-    리틀빅애드컨설팅 <br/>
-    진1937 <br/>
-    티달빛 <br/>
-    리에코 <br/>
-    브릭스제주 <br/>
-    로스톤 <br/>
-    그리운 Griun (TYPEE) <br/>
-    지피컴퍼니 <br/>
-    일디오커피로스터스 <br/>
-    씽크와이드 <br/>
-    지피컴퍼니 <br/>
-    (주)알로식품연구소 <br/>
+    <br/><br/>
+    링크 : <a href="/promotion">https://damoang.net/promotion</a>
+    <br/><br/>
+    <li>우리정보통신</li><br/>
+     <li>농부가간다</li><br/>
+    <li> 테라베이 </li><br/>
+    <li> 모스란다 </li><br/>
+    <li> 스테디커피 </li><br/>
+    <li> 법률사무소 메리츠 스카이 </li><br/>
+    <li> 리틀빅애드컨설팅  </li><br/>
+    <li>진1937</li><br/>
+    <li>티달빛  </li><br/>
+    <li>고도몰  </li><br/>
+    <li> 리에코  </li><br/>
+    <li> 브릭스제주  </li><br/>
+    <li> 로스톤  </li><br/>
+    <li> 그리운 Griun (TYPEE)  </li><br/>
+    <li>일디오커피로스터스 </li><br/>
+    <li>씽크와이드 </li><br/>
+    <li>지피컴퍼니 </li><br/>
+    <li>(주)알로식품연구소</li><br/>
+    <li>강녕상회</li><br/>
+    <li>올필름</li><br/>
+    <li>젠틀파파</li><br/>
+    <li>모찌덕후</li>
+
 
 </div>
