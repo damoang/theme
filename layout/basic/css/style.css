@@ -656,7 +656,7 @@ a.da-link-block:before {
 }
 .list-group-item .badge.text-body-tertiary {
   position: relative;
-  top: 3px;
+  align-self: center;
 }
 
 .list-group-item .d-inline-flex .na-icon,
