@@ -25,9 +25,11 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
     <a href="https://mj123123.cafe24.com/intking"><img src="https://damoang.net/data/editor/2405/comment_3716871170_0XBn5AoL_335c5bc4344705c5f3986db1a223e275b03e9198.gif"></a><br/><br/>
     <a href="https://smartstore.naver.com/lostone_seoul"><img src="https://damoang.net/data/file/banners/015f0b5e4ca48f7d44e78ebd6f62e722_KaHgzveh_4dbfb09b1902d5fb477d8e8e988dc9d0ce639d57.webp">
     <a href="https://www.griun.co.kr/?utm_source=damoang&utm_medium=banner"><img src="https://damoang.net/data/file/banners/015f0b5e4ca48f7d44e78ebd6f62e722_uLbzS9tr_ab700a98eaf5bff85b60ce14379e5960bf463b09.webp"></a><br/><br/>
-    <a href="https://bit.ly/3ymGlEj "><img src="https://damoang.net/data/file/banners/f28b5896bb5b70ec2e61f0a18713be5a_BehOx5U6_87f0076c5bba3fc00b8d6db96d24ea8bf836ae65.jpg"></a><br/><br/>
+    <a href="https://bit.ly/3ymGlEj"><img src="https://damoang.net/data/file/banners/f28b5896bb5b70ec2e61f0a18713be5a_BehOx5U6_87f0076c5bba3fc00b8d6db96d24ea8bf836ae65.jpg"></a><br/><br/>
+    <a href="https://smartstore.naver.com/steady_coffee"><img src=" https://damoang.net/data/file/banners/3caac7cdc7671dc247c1198f5a901c2c_bhOsJ9yj_b07921c2ee45cc8619c0649f940dec64c3bfea4a.jpg"></a><br/><br/>
+
+       
     <br/><br/><br/>
-    <h4>5번째 사이드바 광고주님 자리</h4> <br/><br/>
     <h4>6번째 사이드바 광고주님 자리</h4> <br/><br/>
     <h4>7번째 사이드바 광고주님 자리</h4> <br/><br/>
     <h4>8번째 사이드바 광고주님 자리</h4> <br/><br/>
