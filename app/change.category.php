@@ -2,8 +2,6 @@
 global $bo_table;
 if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
-global $is_admin, $member, $board, $view;
-
 $targetCategory = $_POST['targetCategory'];
 $targetWrId = $_POST['targetWrId'];
 

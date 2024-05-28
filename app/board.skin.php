@@ -458,62 +458,40 @@ if(is_file($board_skin_path.'/setup.skin.php'))
         if (document.pressed == "save") {
             var messageFormat = f.elements['boset[category_move_message]'].value;
             var allowedVariables = ['auth_member', 'src_cat', 'dest_cat'];
-            var bracePattern = /{{([^}]+)}}|{([^}]+)}/g;
+            var doubleBracePattern = /{{(.*?)}}/g;
             var invalidVariables = [];
-            var braceErrors = [];
-            var hasUnmatchedBraces = false;
+            var hasBraceErrors = false;
 
-            // 중괄호 짝 검사
-            var stack = [];
-            for (var i = 0; i < messageFormat.length; i++) {
-                if (messageFormat[i] === '{') {
-                    stack.push('{');
-                } else if (messageFormat[i] === '}') {
-                    if (stack.length === 0) {
-                        hasUnmatchedBraces = true;
-                        break;
-                    }
-                    stack.pop();
+            messageFormat = messageFormat.replace(doubleBracePattern, function(match, variable) {
+                if (allowedVariables.includes(variable)) {
+                    return '';
+                } else {
+                    invalidVariables.push(match);
+                    return '';
                 }
-            }
+            });
 
-            if (stack.length > 0) {
-                hasUnmatchedBraces = true;
-            }
-
-            var match;
-            while ((match = bracePattern.exec(messageFormat)) !== null) {
-                var variable = match[1] || match[2];
-                var isDoubleBraced = !!match[1];
-
-                if (!isDoubleBraced) {
-                    braceErrors.push(`잘못된 중괄호 사용: ${match[0]}`);
-                } else if (!allowedVariables.includes(variable)) {
-                    invalidVariables.push(match[0]);
-                }
-            }
-
-            if (invalidVariables.length > 0 || braceErrors.length > 0 || hasUnmatchedBraces) {
-                var errorMessage = '';
-                if (invalidVariables.length > 0) {
-                    errorMessage += '메세지 형식에 올바르지 않은 변수가 사용되었습니다.\n\n';
-                    errorMessage += '허용된 변수: ' + allowedVariables.join(', ') + '\n\n';
-                    errorMessage += '잘못된 변수: ' + invalidVariables.join(', ') + '\n\n';
-                }
-                if (braceErrors.length > 0) {
-                    errorMessage += braceErrors.join('\n') + '\n';
-                }
-                if (hasUnmatchedBraces) {
-                    errorMessage += '중괄호({, })의 짝이 맞지 않습니다.';
-                }
+            if (invalidVariables.length > 0) {
+                var errorMessage = '메세지 형식에 올바르지 않은 변수가 사용되었습니다.\n\n';
+                errorMessage += '허용된 변수: ' + allowedVariables.join(', ') + '\n\n';
+                errorMessage += '잘못된 변수: ' + invalidVariables.join(', ') + '\n\n';
                 na_alert(errorMessage, function() {
                     f.elements['boset[category_move_message]'].focus();
                 });
                 return false;
             }
+
+            if (/[{}]/.test(messageFormat)) {
+                na_alert('올바른 메세지 형식이 아닙니다.', function() {
+                    f.elements['boset[category_move_message]'].focus();
+                });
+                return false;
+            }
+
+            // 설정 저장 확인
             na_confirm('PC/모바일 동일 설정값을 적용하시겠습니까?\n\n취소시 현재 모드의 설정값만 저장됩니다.', function() {
                 var catMoveMSG = f.elements['boset[category_move_message]'];
-                catMoveMSG.value = catMoveMSG.value === "" ? "<?php echo DEFAULT_CATEGORY_MOVE_MESSAGE; ?>" : bosetCMM;
+                catMoveMSG.value = catMoveMSG.value === "" ? "<?php echo DEFAULT_CATEGORY_MOVE_MESSAGE; ?>" : catMoveMSG.value;
                 f.both.value = 1;
                 f.submit();
             }, function() {
