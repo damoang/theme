@@ -196,10 +196,12 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
                                 </a>
                             <?php } ?>
                         <?php } ?>
+                            <?php if(!empty($is_member)) { // 로그인한 회원만 복사 가능 ?>
                             <button type="button" onclick="copy_comment_link('<?php echo $comment_id ?>');" class="btn btn-basic" title="복사">
                                 <i class="bi bi-copy"></i>
                                 <span class="d-none d-sm-inline-block">복사</span>
                             </button>
+                            <?php } ?>
                             <button type="button" onclick="na_singo('<?php echo $bo_table ?>', '<?php echo $list[$i]['wr_id'] ?>', '0', 'c_<?php echo $comment_id ?>');" class="btn btn-basic" title="신고">
                                 <i class="bi bi-eye-slash"></i>
                                 <span class="d-none d-sm-inline-block">신고</span>
