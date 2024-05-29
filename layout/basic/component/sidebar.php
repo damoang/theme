@@ -90,10 +90,10 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                                 data-placement="left"
                                 <?= ($hasSub) ? 'role="button" data-bs-toggle="collapse" data-bs-target="#' . $menuToggleId . '" aria-expanded="false" aria-controls="' . $menuToggleId . '"' : '' ?>
                             >
-                                <i class="<?= $menuItem['icon'] ?> nav-icon"></i>
-                                <span class="nav-link-title">
+                                <span class="d-flex align-items-center gap-2 nav-link-title">
+                                    <i class="<?= $menuItem['icon'] ?> nav-icon"></i>
                                     <?php if ($menuItem['shortcut']) { ?>
-                                        <span class="badge text-bg-secondary"><?= $menuItem['shortcut'] ?></span>
+                                        <span class="badge p-1 text-bg-secondary"><?= $menuItem['shortcut'] ?></span>
                                     <?php } ?>
                                     <?= $menuTitle ?>
                                 </span>
