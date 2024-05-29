@@ -269,7 +269,7 @@ if(is_file($board_skin_path.'/setup.skin.php'))
                     <label class="form-check-label" for="inlineRadio1">관리자만 허용</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="boset[category_move_permit]" id="inlineRadio2" value="admin_and_member" <?php echo get_checked('all', $boset['category_move_permit'])?>>
+                    <input class="form-check-input" type="radio" name="boset[category_move_permit]" id="inlineRadio2" value="admin_and_member" <?php echo get_checked('admin_and_member', $boset['category_move_permit'])?>>
                     <label class="form-check-label" for="inlineRadio2">글쓴이에게 허용</label>
                 </div>
             </div>
