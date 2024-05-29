@@ -39,18 +39,19 @@ return [
 
                 // Ａ단축키는 알림 링크에 사용됨
             ],
-            '자유게시판' => [
-                'url' => '/free',
-                // 'icon' => 'bi-chat-dots',
-                'shortcut' => 'Ｆ',
-            ],
-            '앙삐용삐용' => [
+            '삐앙삐앙' => [
                 'url' => '/angreport',
                 'shortcut' => 'X',
                     'icon' => 'bi-person-bounding-box',
 
                 // Ａ단축키는 알림 링크에 사용됨
             ],
+            '자유게시판' => [
+                'url' => '/free',
+                // 'icon' => 'bi-chat-dots',
+                'shortcut' => 'Ｆ',
+            ],
+
             '질문과 답변' => [
                 'url' => '/qa',
                 // 'icon' => 'bi-question-circle',
