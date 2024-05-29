@@ -1,5 +1,5 @@
-Theme Name: Nariya-Marigold 0.1a
-Theme URI: https://amina.co.kr/1/marigold
+Theme Name: Damoang
+Theme URI: https://damoang.net
 Maker: 한별아빠
 Maker URI: https://amina.co.kr
 Version: 0.1a
