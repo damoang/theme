@@ -31,40 +31,6 @@ if(IS_INDEX)
                     include_once LAYOUT_PATH.'/component/menu.php';
                     ?>
                 </div>
-
-                <div class="dropdown">
-                    <a href="#dark" id="bd-theme" data-bs-toggle="dropdown" aria-expanded="false" class="site-icon">
-                        <span class="theme-icon-active" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="다크모드">
-                            <i class="bi bi-sun"></i>
-                            <span class="visually-hidden">다크모드</span>
-                        </span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-end py-0 shadow-none border navbar-dropdown-caret theme-dropdown-menu" aria-labelledby="bd-theme" data-bs-popper="static">
-                        <div class="card position-relative border-0">
-                            <div class="card-body p-1">
-                                <button type="button" class="dropdown-item rounded-1" data-bs-theme-value="light">
-                                    <span class="me-2 theme-icon">
-                                        <i class="bi bi-sun"></i>
-                                    </span>
-                                    Light
-                                </button>
-                                <button type="button" class="dropdown-item rounded-1 my-1" data-bs-theme-value="dark">
-                                    <span class="me-2 theme-icon">
-                                        <i class="bi bi-moon-stars"></i>
-                                    </span>
-                                    Dark
-                                </button>
-                                <button type="button" class="dropdown-item rounded-1" data-bs-theme-value="auto">
-                                    <span class="me-2 theme-icon">
-                                        <i class="bi bi-circle-half"></i>
-                                    </span>
-                                    Auto
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <div>
                     <a href="#newOffcanvas" data-bs-toggle="offcanvas" data-bs-target="#newOffcanvas" aria-controls="newOffcanvas" class="site-icon">
                         <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="새글/새댓글">
