@@ -42,7 +42,7 @@ return [
             '삐앙삐앙' => [
                 'url' => '/angreport',
                 'shortcut' => 'X',
-                    'icon' => ':bi-webcam-fill',
+                    'icon' => 'bi-webcam-fill',
 
                 // Ａ단축키는 알림 링크에 사용됨
             ],
@@ -187,7 +187,8 @@ return [
             '릴리즈 노트' => [
                 'url' => '/release',
                 // 'icon' => 'bi-bell',
-//                'shortcut' => 'Ｋ',
+                'shortcut' => '·',
+
             ],
             '유지관리' => [
                 'url' => '/bug',
@@ -196,6 +197,8 @@ return [
             ],
             '광고앙' => [
                 'url' => get_pretty_url('content', 'advertiser'),
+                'shortcut' => '·',
+                
             ],
             '거버넌스' => [
                 'url' => '/governance',
