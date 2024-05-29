@@ -44,6 +44,13 @@ return [
                 // 'icon' => 'bi-chat-dots',
                 'shortcut' => 'Ｆ',
             ],
+            '앙삐용삐용' => [
+                'url' => '/angreport',
+                'shortcut' => 'X',
+                    'icon' => 'bi-person-bounding-box',
+
+                // Ａ단축키는 알림 링크에 사용됨
+            ],
             '질문과 답변' => [
                 'url' => '/qa',
                 // 'icon' => 'bi-question-circle',
@@ -198,7 +205,9 @@ return [
                 'shortcut' => 'Ｊ',
             ],
             '레벨강등 열람' => [
-                'url' => '/',
+                'url' => '/disciplinelog',
+                'shortcut' => 'Y',
+                'icon' => 'bi-person-fill-dash',
             ],
         ],
     ],
