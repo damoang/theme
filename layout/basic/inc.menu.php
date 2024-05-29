@@ -42,7 +42,7 @@ return [
             '삐앙삐앙' => [
                 'url' => '/angreport',
                 'shortcut' => 'X',
-                    'icon' => 'bi-person-bounding-box',
+                    'icon' => ':bi-webcam-fill',
 
                 // Ａ단축키는 알림 링크에 사용됨
             ],
