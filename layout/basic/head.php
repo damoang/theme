@@ -4,12 +4,6 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 // 사이트 메뉴
 $siteMenus = include 'inc.menu.php';
 
-if(IS_SHOP) {
-    $member['todayview_cnt'] = get_boxcart_datas_count();
-    $member['cart_cnt'] = get_view_today_items_count();
-    $member['wishlist_cnt'] = get_wishlist_datas_count();
-}
-
 // 메뉴 및 페이지 위치 생성
 list($menu, $nav) = na_menu();
 

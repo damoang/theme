@@ -111,36 +111,6 @@ textarea.required {
   border-radius:50%;
 }
 
-/* 쇼핑몰 상품 아이콘 */
-.shop_icon { display:inline-block;
-  color: #fff;
-  line-height: 20px;
-  padding: 0 5px;
-  font-size: 12px;
-  margin-right: 4px;
-  border-radius: 2px;
-}
-
-.shop_icon_1 {
-  background:#3ec1d3;
-}
-
-.shop_icon_2 {
-  background:#ffb722;
-}
-
-.shop_icon_3 {
-  background:#2dd49f;
-}
-
-.shop_icon_4 {
-  background:#556ee6;
-}
-
-.shop_icon_5 {
-  background:#ff5081;
-}
-
 /********************************************************
 ■ 나리야 CSS
 ********************************************************/

@@ -104,16 +104,6 @@ if(is_file($board_skin_path.'/setup.skin.php'))
         <div class="row gx-2">
             <label class="col-md-2 col-form-label">부가 기능</label>
             <div class="col-md-10">
-                <?php if(IS_YC) { ?>
-                    <div class="form-check form-switch mb-2">
-                        <?php $boset['bo_shop'] = isset($boset['bo_shop']) ? $boset['bo_shop'] : ''; ?>
-                        <input type="checkbox" name="boset[bo_shop]" id="idCheck<?php echo $idn ?>" value="1"<?php echo get_checked('1', $boset['bo_shop'])?> class="form-check-input" role="switch">
-                        <label class="form-check-label" for="idCheck<?php echo $idn; $idn++; ?>">쇼핑몰 레이아웃 사용</label>
-                        <div class="form-text">
-                            커뮤니티/쇼핑몰 분리해서 사이트 운영시 적용
-                        </div>
-                    </div>
-                <?php } ?>
                 <div class="form-check form-switch mb-2">
                     <?php $boset['post_convert'] = isset($boset['post_convert']) ? $boset['post_convert'] : ''; ?>
                     <input type="checkbox" name="boset[post_convert]" id="idCheck<?php echo $idn ?>" value="1"<?php echo get_checked('1', $boset['post_convert'])?> class="form-check-input" role="switch">

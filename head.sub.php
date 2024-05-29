@@ -4,13 +4,6 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
 $g5_debug['php']['begin_time'] = $begin_time = get_microtime();
 
-// 쇼핑몰 체크
-(IS_YC && defined('_SHOP_')) ? define('IS_SHOP', true) : define('IS_SHOP', false);
-
-// 쇼핑몰 타이틀
-if(IS_SHOP && isset($nariya['seo_shop_title']) && $nariya['seo_shop_title'])
-    $config['cf_title'] = $nariya['seo_shop_title'];
-
 // 인덱스
 (defined('_INDEX_')) ? define('IS_INDEX', true) : define('IS_INDEX', false);
 
@@ -43,15 +36,7 @@ header("Pragma: no-cache"); // HTTP/1.0
 
 // 레이아웃 상수
 $layout_skin = '';
-if(IS_YC) {
-    if(IS_SHOP) {
-        $layout_skin = G5_IS_MOBILE ? $nariya['layout_shop_mo'] : $nariya['layout_shop_pc'];
-    } else {
-        $layout_skin = G5_IS_MOBILE ? $nariya['layout_mo'] : $nariya['layout_pc'];
-    }
-} else {
-    $layout_skin = G5_IS_MOBILE ? $nariya['layout_mo'] : $nariya['layout_pc'];
-}
+$layout_skin = G5_IS_MOBILE ? $nariya['layout_mo'] : $nariya['layout_pc'];
 
 // 미리보기
 if (IS_DEMO) {
@@ -77,7 +62,7 @@ define('LAYOUT_URL', G5_THEME_URL.'/layout/'.$layout_skin);
 define('LAYOUT_PATH', G5_THEME_PATH.'/layout/'.$layout_skin);
 
 // 홈주소
-(IS_SHOP) ? define('HOME_URL', G5_SHOP_URL) : define('HOME_URL', G5_URL);
+define('HOME_URL', G5_URL);
 
 // 페이지 타이틀
 if(isset($board['bo_subject']) && $board['bo_subject']) {

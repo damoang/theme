@@ -262,17 +262,6 @@ box-shadow:0 1px 10px rgba(0,0,0,.1)}
 
 .pg_current {display:inline-block;background:#3a8afd;border:1px solid #3a8afd;color:#fff;font-weight:bold;height:30px;line-height:30px;padding:0 10px;min-width:30px;border-radius:3px}
 
-/* ########## 쇼핑몰 컨텐츠 ########## */
-
-/* 주문상세내역 중 현금영수증 발급 */
-#scash {}
-#scash section {padding:10px 0}
-#scash h2 {margin:0 0 10px;text-align:center}
-#scash .basic_tbl th {padding:0 10px;border-top:1px solid #eee;border-bottom:1px solid #eee;background:#f2f5f9;text-align:left}
-#scash_apply {padding:10px 0 20px;text-align:center}
-#scash_apply button {padding:10px;border:0;background:#565e60;color:#fff}
-#scash_copy {text-align:center}
-
 /* 모바일 리사이징  */
 #bo_v_con img {
     margin-top:1em;

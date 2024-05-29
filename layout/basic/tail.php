@@ -1,16 +1,14 @@
 <?php
 if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
-if (!IS_YC) {
-    $default['de_admin_company_name'] = '다모앙'; // 회사명
-    $default['de_admin_company_owner'] = '김선도'; // 대표자명
-    $default['de_admin_company_addr'] = '서울특별시 강남구 테헤란로70길 12, 4층 402-J49호(대치동)'; // 주소
-    $default['de_admin_company_saupja_no'] = '276-13-02570'; // 사업자 등록번호
-    $default['de_admin_company_tel'] = '02-123-4567'; // 전화
-    $default['de_admin_company_fax'] = '02-123-4568'; // 팩스
-    $default['de_admin_tongsin_no'] = '제 OO구 - 123호'; // 통신판매업신고
-    $default['de_admin_info_name'] = '김선도'; //개인정보관리책임자
-}
+$default['de_admin_company_name'] = '다모앙'; // 회사명
+$default['de_admin_company_owner'] = '김선도'; // 대표자명
+$default['de_admin_company_addr'] = '서울특별시 강남구 테헤란로70길 12, 4층 402-J49호(대치동)'; // 주소
+$default['de_admin_company_saupja_no'] = '276-13-02570'; // 사업자 등록번호
+$default['de_admin_company_tel'] = '02-123-4567'; // 전화
+$default['de_admin_company_fax'] = '02-123-4568'; // 팩스
+$default['de_admin_tongsin_no'] = '제 OO구 - 123호'; // 통신판매업신고
+$default['de_admin_info_name'] = '김선도'; //개인정보관리책임자
 
 // 메인이 아닐 경우
 if (!IS_INDEX) {
@@ -93,34 +91,21 @@ if (!IS_INDEX) {
             <i class="bi bi-house-door"></i>
             <span class="visually-hidden">홈으로</span>
         </a>
-    <a href="#menuOffcanvas" class="btn-menu btn btn-basic btn-sm" data-bs-toggle="offcanvas"
+        <a href="#menuOffcanvas" class="btn-menu btn btn-basic btn-sm" data-bs-toggle="offcanvas"
         data-bs-target="#menuOffcanvas" aria-controls="menuOffcanvas" title="전체메뉴">
             <i class="bi bi-list"></i>
             <span class="visually-hidden">전체메뉴</span>
         </a>
-    <a href="#loginOffcanvas" class="btn-member btn btn-basic btn-sm" data-bs-toggle="offcanvas"
+        <a href="#loginOffcanvas" class="btn-member btn btn-basic btn-sm" data-bs-toggle="offcanvas"
         data-bs-target="#memberOffcanvas" aria-controls="memberOffcanvas" title="마이메뉴">
             <i class="bi bi-person-circle"></i>
             <span class="visually-hidden">마이메뉴</span>
         </a>
-    <a href="#newOffcanvas" class="btn-new btn btn-basic btn-sm" data-bs-toggle="offcanvas"
+        <a href="#newOffcanvas" class="btn-new btn btn-basic btn-sm" data-bs-toggle="offcanvas"
         data-bs-target="#newOffcanvas" aria-controls="newOffcanvas" title="새글/새댓글">
             <i class="bi bi-lightning"></i>
             <span class="visually-hidden">새글/새댓글</span>
         </a>
-        <?php if (IS_YC) { ?>
-            <?php if (IS_SHOP) { ?>
-                <a href="<?php echo G5_URL ?>" class="btn btn-basic btn-sm">
-                    <i class="bi bi-arrow-right-circle"></i>
-                    <?php echo $config['cf_title'] ?>
-                </a>
-            <?php } else { ?>
-                <a href="<?php echo G5_SHOP_URL ?>" class="btn btn-basic btn-sm">
-                    <i class="bi bi-arrow-right-circle"></i>
-                    <?php echo (isset($nariya['seo_shop_title']) && $nariya['seo_shop_title']) ? $nariya['seo_shop_title'] : '쇼핑몰'; ?>
-                </a>
-            <?php } ?>
-        <?php } ?>
     </div>
     <?php
     $offcanvas_buttons = ob_get_contents();
@@ -144,11 +129,6 @@ include_once LAYOUT_PATH . '/component/new.offcanvas.php';
 // 알림 오프캔버스
 if ($is_member)
     include_once LAYOUT_PATH . '/component/noti.offcanvas.php';
-
-// 번역 오프캔버스
-//include_once LAYOUT_PATH.'/component/trans.offcanvas.php';
-
-
 
 // 신고 모달
 include_once LAYOUT_PATH . '/component/singo.modal.php';

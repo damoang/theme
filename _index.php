@@ -7,11 +7,6 @@ if (G5_IS_MOBILE) {
     return;
 }
 
-if(G5_COMMUNITY_USE === false) {
-    include_once(G5_THEME_SHOP_PATH.'/index.php');
-    return;
-}
-
 include_once(G5_THEME_PATH.'/head.php');
 
 include_once(LAYOUT_PATH.'/index.php');

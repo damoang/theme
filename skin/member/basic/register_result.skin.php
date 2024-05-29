@@ -37,12 +37,6 @@ $default['de_member_reg_coupon_minimum'] = isset($default['de_member_reg_coupon_
                 회원 탈퇴는 언제든지 가능하며 일정기간이 지난 후, 회원님의 정보는 삭제하고 있습니다.
             </div>
         </li>
-        <?php if(IS_YC && $default['de_member_reg_coupon_use'] && get_session('ss_member_reg_coupon') == 1) { ?>
-            <li id="result_coupon" class="list-group-item py-md-4">
-                <i class="fa fa-gift" aria-hidden="true"></i>
-                주문시 사용하실 수 있는 <strong><?php echo display_price($default['de_member_reg_coupon_price']); ?> 할인 쿠폰</strong><?php echo ($default['de_member_reg_coupon_minimum'] ? '(주문금액 '.display_price($default['de_member_reg_coupon_minimum']).'이상)' : ''); ?>이 발행되었으니, 마이페이지에서 확인하실 수 있습니다.
-            </li>
-        <?php } ?>
         <li class="list-group-item text-center">
             <a href="<?php echo G5_URL ?>">
                 <i class="bi bi-house-fill"></i>

@@ -30,11 +30,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
     </li>
     <li class="list-group-item small bg-body-tertiary">
         <i class="bi bi-info-circle"></i>
-        <?php if(IS_YC) { ?>
-            게시물, 사용후기, 상품문의에 대해 최대 <b><?php echo NA_MAX_SINGO ?></b>개까지 신고할 수 있습니다.
-        <?php } else { ?>
-            게시물에 대해 최대 <b><?php echo NA_MAX_SINGO ?></b>개까지 신고할 수 있습니다.
-        <?php } ?>
+        게시물에 대해 최대 <b><?php echo NA_MAX_SINGO ?></b>개까지 신고할 수 있습니다.
     </li>
     <li class="list-group-item pt-3 pb-0">
         <?php

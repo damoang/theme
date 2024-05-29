@@ -2,17 +2,6 @@
 if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
 //타이틀 안하는 페이지
-$shop_notitle = (IS_SHOP) ? array(
-    G5_SHOP_DIR.'-shop-list', // 상품목록 페이지(PC)
-    G5_MOBILE_DIR.'-'.G5_SHOP_DIR.'-shop-list', // 상품목록 페이지(모바일)
-    G5_SHOP_DIR.'-page-list', // 상품목록 페이지(PC)
-    G5_MOBILE_DIR.'-'.G5_SHOP_DIR.'-page-list', // 상품목록 페이지(모바일)
-    G5_SHOP_DIR.'-shop-item', // 상품상세페이지(PC)
-    G5_MOBILE_DIR.'-'.G5_SHOP_DIR.'-shop-item', // 상품상세페이지(모바일)
-    G5_SHOP_DIR.'-page-item', // 상품상세페이지(PC)
-    G5_MOBILE_DIR.'-'.G5_SHOP_DIR.'-page-item', // 상품상세페이지(모바일)
-) : array();
-
 $notitle = array(
     G5_BBS_DIR.'-page-login', // 로그인 페이지
     G5_BBS_DIR.'-page-register', // 회원가입약관 페이지
@@ -22,7 +11,7 @@ $notitle = array(
     G5_BBS_DIR.'-page-member_confirm', // 비밀번호 확인 페이지
 );
 
-if(in_array($file_id, $shop_notitle) || in_array($file_id, $notitle)) {
+if (in_array($file_id, $notitle)) {
     return;
 }
 

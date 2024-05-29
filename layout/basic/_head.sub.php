@@ -2,9 +2,6 @@
 // 이 파일은 새로운 파일 생성시 반드시 포함되어야 함
 if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
-// 쇼핑몰 레이아웃 크기 : sm, lg
-define('IS_SHOP_LAYOUT', 'sm');
-
 // 1단 칼럼 페이지 아이디($pid)
 $one_cols = array(
     G5_BBS_DIR . '-page-password_lost', // 아이디 및 비밀번호 찾기 페이지
@@ -20,12 +17,12 @@ $one_cols = array(
 );
 
 // 1단 체크
-(IS_SHOP || in_array($page_id, $one_cols)) ? define('IS_ONECOL', true) : define('IS_ONECOL', false);
+(in_array($page_id, $one_cols)) ? define('IS_ONECOL', true) : define('IS_ONECOL', false);
 
 ?>
 <!doctype html>
 <html lang="ko" data-bs-theme="light"
-    class="<?php echo (G5_IS_MOBILE) ? 'is-mobile' : 'is-pc'; ?> <?php echo (IS_SHOP) ? 'is-shop' : 'is-bbs'; ?>">
+    class="<?php echo (G5_IS_MOBILE) ? 'is-mobile' : 'is-pc'; ?> is-bbs">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" id="meta_viewport"
@@ -208,10 +205,6 @@ $one_cols = array(
             var g5_sca = "<?php echo isset($sca) ? $sca : ''; ?>";
             var g5_editor = "<?php echo ($config['cf_editor'] && isset($board['bo_use_dhtml_editor']) && $board['bo_use_dhtml_editor']) ? $config['cf_editor'] : ''; ?>";
             var g5_cookie_domain = "<?php echo G5_COOKIE_DOMAIN ?>";
-            <?php if (IS_YC) { ?>
-            var g5_theme_shop_url = "<?php echo G5_THEME_SHOP_URL ?>";
-            var g5_shop_url = "<?php echo G5_SHOP_URL ?>";
-            <?php } ?>
             <?php if(defined('G5_IS_ADMIN')) { ?>
             var g5_admin_url = "<?php echo G5_ADMIN_URL ?>";
             <?php } ?>
