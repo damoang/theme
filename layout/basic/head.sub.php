@@ -63,6 +63,7 @@ if (!preg_match('/macintosh|mac os x/i', $agent)) {
     'use strict';
 
     const shortcuts = {
+        // abcdefghijklmnopqrstuvwxyz
     'KeyA': '/event',
     'KeyB': '/bug',
     'KeyC': '/bbs/group.php?gr_id=community',
@@ -85,6 +86,8 @@ if (!preg_match('/macintosh|mac os x/i', $agent)) {
     'KeyT': '/tutorial',
     'KeyV': '/governance',
     'KeyW': '/promotion',
+    'KeyX': '/angreport',
+    'KeyY': '/disciplinelog',
     'KeyZ': '/bbs/noti.php',
     // 추가 단축키와 페이지를 여기에 추가하세요.
     };
