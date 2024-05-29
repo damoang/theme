@@ -104,10 +104,11 @@ return [
         'title' => '소모임',
         'items' => [
             '소모임' => [
-                'url' => '/bbs/group.php?gr_id=group',
+                'url' => G5_BBS_URL . '/group.php?gr_id=group',
                 'page_id' => G5_BBS_DIR . '-group-group',
                 'shortcut' => 'Ｓ',
                 'items' => [
+                    '모아보기' => G5_BBS_URL . '/group.php?gr_id=group',
                     'AI당' => '/ai',
                     'LOL당' => '/lol',
                     'OTT당' => '/ott',

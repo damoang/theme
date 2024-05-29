@@ -80,13 +80,13 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                             ?>
                             <div class="nav-item">
                                 <a
-                                    class="nav-link <?= ($menuItem['page_id'] === $page_id) ? 'active' : ''; ?><?= ($hasSub) ? 'dropdown-toggle collapsed collapsed' : '' ?>"
+                                    class="nav-link <?= ($menuItem['page_id'] === $page_id) ? ' active ' : ''; ?><?= ($hasSub) ? ' dropdown-toggle collapsed collapsed ' : '' ?>"
                                     href="<?= $menuItem['url'] ?>"
                                     data-placement="left"
                                     <?= ($hasSub) ? 'role="button" data-bs-toggle="collapse" data-bs-target="#' . $menuToggleId . '" aria-expanded="false" aria-controls="' . $menuToggleId . '"' : '' ?>
                                 >
                                     <i class="<?= $menuItem['icon'] ?> nav-icon"></i>
-                                    <span class="nav-link-title" <?= ($hasSub) ? ' onclick="na_href(\'' . $menuUrlOrigin . '\', \'_self\');"' : '' ?>>
+                                    <span class="nav-link-title">
                                         <?php if ($menuItem['shortcut']) { ?>
                                             <span class="badge text-bg-secondary"><?= $menuItem['shortcut'] ?></span>
                                         <?php } ?>
