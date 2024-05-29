@@ -92,7 +92,7 @@ document.getElementById("view").value = "<?php echo $view ?>";
         <li class="list-group-item">
             <div class="d-flex align-items-center">
                 <div class="pe-2">
-                    <img src="<?php echo $new_img ?>" class="rounded-circle" style="max-width:50px;">
+                    <img src="<?php echo $new_img ?>" class="rounded-circle" style="max-width:50px;" onerror="this.onerror=null; this.src='<?php echo G5_IMG_URL . '/no_profile.gif' ?>';">
                 </div>
                 <div class="flex-grow-1">
                     <?php if($list[$i]['comment']) { ?>

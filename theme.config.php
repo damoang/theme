@@ -2,7 +2,8 @@
 if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
 // 나리야 빌더
-define('_NARIYA_', 'NB-BS53');
+if (!defined('_NARIYA_'))
+    define('_NARIYA_', 'NB-BS53');
 
 // 테마가 지원하는 장치 설정 pc, mobile
 // 선언하지 않거나 값을 지정하지 않으면 그누보드5의 설정을 따른다.
