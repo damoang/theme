@@ -42,7 +42,7 @@ if (!defined('_GNUBOARD_')) {
             <li class="list-group-item">
                 <div class="d-flex align-items-center">
                     <div class="pe-2">
-                        <img src="<?php echo na_member_photo($noti[$i]['mb_id']) ?>" class="rounded-circle" style="max-width:60px;">
+                        <img src="<?php echo na_member_photo($noti[$i]['mb_id']) ?>" class="rounded-circle" style="max-width:60px;" onerror="this.onerror=null; this.src='<?php echo G5_IMG_URL . '/no_profile.gif' ?>';">
                     </div>
                     <div class="flex-grow-1 text-truncate">
                         <a href="<?php echo $noti[$i]['href'] ?>">

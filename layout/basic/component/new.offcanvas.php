@@ -77,7 +77,7 @@ if (!defined('_GNUBOARD_')) {
             <li class="list-group-item">
                 <div class="d-flex align-items-center gap-2">
                     <div>
-                        <img src="<?php echo $img ?>" class="rounded-circle" style="max-width:60px;">
+                        <img src="<?php echo $img ?>" class="rounded-circle" style="max-width:60px;" onerror="this.onerror=null; this.src='<?php echo G5_IMG_URL . '/no_profile.gif' ?>';">
                     </div>
                     <div class="flex-grow-1">
                         <a href="<?php echo $row['href'] ?>" class="small ellipsis-2 mb-1">
