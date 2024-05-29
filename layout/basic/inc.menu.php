@@ -1,5 +1,8 @@
 <?php
 
+// 전각 문자표
+// ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ
+
 return [
     [
         'title' => ($member['mb_level'] >= 5) ?'Nerv' : "",
@@ -34,14 +37,14 @@ return [
             ],
             '앙지도' => [
                 'url' => '/angmap',
-                'shortcut' => 'M',
+                'shortcut' => 'Ｍ',
                     'icon' => 'bi-star-fill',
 
                 // Ａ단축키는 알림 링크에 사용됨
             ],
             '삐앙삐앙' => [
                 'url' => '/angreport',
-                'shortcut' => 'X',
+                'shortcut' => 'Ｘ',
                     'icon' => 'bi-webcam-fill',
 
                 // Ａ단축키는 알림 링크에 사용됨
@@ -93,7 +96,7 @@ return [
             '레퍼럴' => [
                 'url' => '/referral',
                 // 'icon' => 'bi-cart-plus-fill',
-                'shortcut' => 'O',
+                'shortcut' => 'Ｏ',
             ],
         ]
     ],
@@ -101,10 +104,11 @@ return [
         'title' => '소모임',
         'items' => [
             '소모임' => [
-                'url' => '/bbs/group.php?gr_id=group',
+                'url' => G5_BBS_URL . '/group.php?gr_id=group',
                 'page_id' => G5_BBS_DIR . '-group-group',
                 'shortcut' => 'Ｓ',
                 'items' => [
+                    '모아보기' => G5_BBS_URL . '/group.php?gr_id=group',
                     'AI당' => '/ai',
                     'LOL당' => '/lol',
                     'OTT당' => '/ott',
@@ -210,7 +214,7 @@ return [
             ],
             '레벨강등 열람' => [
                 'url' => '/disciplinelog',
-                'shortcut' => 'Y',
+                'shortcut' => 'Ｙ',
                 'icon' => 'bi-person-fill-dash',
             ],
         ],

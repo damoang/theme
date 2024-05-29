@@ -1264,9 +1264,9 @@
           var shortcut_div = document.createElement("div");
           shortcut_div.className = "nav-item shortcut_custom";
           var shortcut_link = document.createElement("a");
-          shortcut_link.className = "nav-link shortcut_custom";
+          shortcut_link.className = "nav-link shortcut_custom d-flex align-items-center gap-2 nav-link-title";
           shortcut_link.href = "/" + board_obj.board + "?sfl=mb_id%2C" + i + "&stx=" + board_obj.id;
-          shortcut_link.innerHTML = '<i class="' + temp_icon[i] + ' nav-icon"></i>&nbsp;' + temp_text[i];
+          shortcut_link.innerHTML = '<i class="' + temp_icon[i] + ' nav-icon"></i>' + temp_text[i];
           shortcut_div.appendChild(shortcut_link);
           sidebar_site_menu.insertBefore(shortcut_div, sidebar_site_menu_first);
           offcanvas_menu.insertBefore(shortcut_div.cloneNode(true), offcanvas_menu_first);
@@ -1281,9 +1281,9 @@
           var shortcut_div = document.createElement("div");
           shortcut_div.className = "nav-item shortcut_custom";
           var shortcut_link = document.createElement("a");
-          shortcut_link.className = "nav-link shortcut_custom";
+          shortcut_link.className = "nav-link shortcut_custom d-flex align-items-center gap-2 nav-link-title";
           shortcut_link.href = link_map[shortcut].org;
-          shortcut_link.innerHTML = '<i class="bi-list-stars nav-icon"></i> <span class="badge text-bg-secondary">' + shortcut_i + '</span>&nbsp;' + link_map[shortcut].name;
+          shortcut_link.innerHTML = '<i class="bi-list-stars nav-icon"></i> <span class="badge p-1 text-bg-secondary" style="width: 1.3rem;">' + shortcut_i + '</span>' + link_map[shortcut].name;
           shortcut_div.appendChild(shortcut_link);
           sidebar_site_menu.insertBefore(shortcut_div, sidebar_site_menu_first);
           offcanvas_menu.insertBefore(shortcut_div.cloneNode(true), offcanvas_menu_first);
