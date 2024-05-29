@@ -90,6 +90,10 @@ add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
                 $row['num'] = '<span class="orangered">공지</span>';
             }
 
+            if ($list[$i]['wr_1'] == '1') {
+                $li_css .= ' da-member-only';
+            }
+
             // 이미지 미리보기
             //
             //$img_popover = (!G5_IS_MOBILE && $img) ? ' data-bs-toggle="popover-img" data-img="'.na_thumb($img, 400, 225).'"' : '';
@@ -109,15 +113,21 @@ add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
                         </div>
 
                     <?php } ?>
-                    <div class="flex-grow-1">
+                    <div class="flex-grow-1 overflow-hidden">
                         <div class="d-flex flex-column flex-md-row align-items-md-center gap-2">
-                            <div class="flex-fill">
-                                <a href="<?php echo $row['href'] ?>"<?php echo $img_popover ?> class="da-link-block">
+                            <div class="d-inline-flex flex-fill overflow-hidden">
+                                <?php
+                                // 회원만 보기
+                                echo ($list[$i]['wr_1'] == '1') ? '<em class="border rounded p-1" style="font-size: 0.75em; font-style: normal; flex-shrink:0; margin-right: 3px;">회원만</em>' : '';
+                                ?>
+
+                                <a href="<?php echo $row['href'] ?>"<?php echo $img_popover ?> class="da-link-block subject-ellipsis" title="<?php echo $row['wr_subject']; ?>">
                                     <?php if($row['icon_reply']) { ?>
                                         <i class="bi bi-arrow-return-right"></i>
                                         <span class="visually-hidden">답변</span>
                                     <?php } ?>
-                                    <?php echo $row['subject']; // 제목 ?> <?php echo ($list[$i]['wr_1'] == '1') ? '<i class="fa fa-id-badge"></i>' : ''; ?>
+
+                                    <?php echo $row['subject']; // 제목 ?>
                                 </a>
 
                                 <?php if (!$sca && $is_category && $row['ca_name']) { ?>
@@ -132,8 +142,8 @@ add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
                                 <?php if($row['wr_comment']) { ?>
                                     <span class="visually-hidden">댓글</span>
                                     <span class="count-plus orangered">
-											<?php echo $row['wr_comment'] ?>
-										</span>
+                                            <?php echo $row['wr_comment'] ?>
+                                        </span>
                                 <?php } ?>
                                 <?php if ($row['da_member_memo'] ?? '') { ?>
                                     <!-- 다모앙 회원 메모 -->

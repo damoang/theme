@@ -634,9 +634,9 @@ div a mark:hover {
   --bs-pagination-font-size: 1rem;
 }
 
-/* 
+/*
   목록의 전체 영역을 링크가 동작하도록 함
- */
+*/
 .list-group-item.da-link-block {
   position: relative;
 }
@@ -647,4 +647,36 @@ a.da-link-block:before {
   right: 0;
   top: 0;
   bottom: 0;
+}
+
+.list-group-item .subject-ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.list-group-item .badge.text-body-tertiary {
+  position: relative;
+  align-self: center;
+}
+
+.list-group-item .d-inline-flex .na-icon,
+.list-group-item .d-inline-flex .float-end,
+.list-group-item .d-inline-flex .count-plus {
+  flex-shrink: 0;
+  margin-left: 3px;
+  align-self: center;
+}
+.list-group-item .d-inline-flex .float-end,
+.list-group-item .d-inline-flex .count-plus {
+  margin-right: 3px;
+}
+.list-group-item .wr-name .sv_wrap {
+  position: inherit;
+}
+.list-group-item .wr-name .sv_wrap a.sv_member {
+  position: relative;
+}
+.list-group-item .wr-name .sv_wrap .sv.sv_on{
+  left: unset;
+  top: unset;
 }

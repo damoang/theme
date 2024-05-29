@@ -23,7 +23,7 @@ $comment_skin_path = $board_skin_path.'/comment/'.$comment_skin;
 
 $skin_file = $comment_skin_path.'/comment.skin.php';
 if (is_file($skin_file)) {
-	include_once $skin_file;
+    include_once $skin_file;
 } else {
-	echo '<div class="text-center px-3 py-5">'.str_replace(G5_PATH, '', $skin_file).' 스킨 파일이 없습니다.</div>'.PHP_EOL;
+    echo '<div class="text-center px-3 py-5">'.str_replace(G5_PATH, '', $skin_file).' 스킨 파일이 없습니다.</div>'.PHP_EOL;
 }

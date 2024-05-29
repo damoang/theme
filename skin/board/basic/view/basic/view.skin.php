@@ -1,7 +1,7 @@
 <?php
 
 if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
-// 회원만 보기가 설정되어 있고, 접속한 회원의 레벨이 2 미만인 경우
+
 // add_stylesheet('css 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
 add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css">', 0);
 
@@ -16,11 +16,16 @@ add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css">
 <!--          </div>-->
 <?php echo na_widget('damoang-image-banner', 'board-head'); ?>
 
-           <?php echo $config['cf_10'];?>
+<?php echo $config['cf_10'];?>
+
 <article id="bo_v" class="mb-4">
     <header>
         <h1 id="bo_v_title" class="px-3 pb-2 mb-0 lh-base fs-5">
-            <?php echo $view_subject; // 글제목 출력 ?>  <?php echo ($write['wr_1']  == '1') ? '<i class="fa fa-id-badge"></i>' : ''; ?>
+            <?php
+            // 회원만 보기
+            echo $view['da_member_only'] ?? '';
+            ?>
+            <?php echo $view_subject; // 글제목 출력 ?>
         </h1>
     </header>
 
@@ -37,9 +42,6 @@ add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css">
                 ?>
                 <span class="d-block"><?php echo $ip; ?></span>
             </div>
-
-
-
             <div>
                 <span class="visually-hidden">작성일</span>
                 <?php echo na_date($view['wr_datetime'], 'orangered', 'H:i', 'm.d H:i', 'Y.m.d H:i'); ?>
@@ -81,6 +83,7 @@ add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css">
                     <span class="visually-hidden">비추천</span>
                 </div>
             <?php } ?>
+
             <?php ob_start(); ?>
             <?php if ($update_href || $delete_href || $copy_href || $move_href) { ?>
             <div class="ms-auto dropstart">
@@ -98,7 +101,7 @@ add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css">
                     <?php } ?>
                     <?php if ($delete_href) { ?>
                         <li><a href="<?php echo $delete_href ?>" onclick="del(this.href); return false;"
-                               class="dropdown-item">
+                            class="dropdown-item">
                                 <i class="bi bi-trash"></i>
                                 삭제하기
                             </a></li>
@@ -110,14 +113,14 @@ add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css">
                     <?php } ?>
                     <?php if ($copy_href) { ?>
                         <li><a href="<?php echo $copy_href ?>" onclick="board_move(this.href); return false;"
-                               class="dropdown-item">
+                            class="dropdown-item">
                                 <i class="bi bi-stickies"></i>
                                 복사하기
                             </a></li>
                     <?php } ?>
                     <?php if ($move_href) { ?>
                         <li><a href="<?php echo $move_href ?>" onclick="board_move(this.href); return false;"
-                               class="dropdown-item">
+                            class="dropdown-item">
                                 <i class="bi bi-arrows-move"></i>
                                 이동하기
                             </a></li>
@@ -172,7 +175,7 @@ add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css">
                     <?php } ?>
                     <?php if ($delete_href) { ?>
                         <a href="<?php echo $delete_href ?>" onclick="del(this.href); return false;"
-                           class="btn btn-basic btn-sm">
+                        class="btn btn-basic btn-sm">
                             <i class="bi bi-trash"></i>
                         </a>
                     <?php } ?>
@@ -192,11 +195,11 @@ add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css">
                 <?php if ($write_href) { ?>
                     <div>
                         <!-- 쓰기버튼 삭제
-          <a href="<?php echo $write_href ?>" class="btn btn-primary btn-sm">
-            <i class="bi bi-pencil"></i>
-            <span class="d-none d-sm-inline-block">쓰기</span>
-          </a>
-        -->
+                        <a href="<?php echo $write_href ?>" class="btn btn-primary btn-sm">
+                            <i class="bi bi-pencil"></i>
+                            <span class="d-none d-sm-inline-block">쓰기</span>
+                        </a>
+                        -->
                     </div>
 
                 <?php } ?>
@@ -338,26 +341,25 @@ add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css">
                         </div>
                     </div>
                     <!-- <div class="clearfix f-sm text-center">
-            <span class="float-left">
-              <?php echo na_xp_icon($view['mb_id'], '', $view) ?>
-              <?php echo $view['wr_name'] ?>
-            </span>
-            <span class="float-right">
-              레벨 <?php echo $mbs['as_level'] ?>
-            </span>
-          </div> -->
+                        <span class="float-left">
+                        <?php echo na_xp_icon($view['mb_id'], '', $view) ?>
+                        <?php echo $view['wr_name'] ?>
+                        </span>
+                        <span class="float-right">
+                        레벨 <?php echo $mbs['as_level'] ?>
+                        </span>
+                    </div> -->
                     <!-- <div class="progress" title="레벨업까지 <?php echo number_format($mbs['as_max'] - $mbs['as_exp']); ?> 경험치 필요">
-            <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="<?php echo $per ?>"
-              aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $per ?>%">
-              <span class="sr-only"><?php echo $per ?>%</span>
-            </div>
-          </div> -->
+                        <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="<?php echo $per ?>"
+                        aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $per ?>%">
+                        <span class="sr-only"><?php echo $per ?>%</span>
+                        </div>
+                    </div> -->
                 </div>
                 <div class="col-sm-7 col-md-8">
                     <ul class="na-list">
                         <p><?php echo $signature ?></p>
                         <?php
-                        
                         if (!isset($list_cnt)){
                             $list_cnt = 0;
                         }
@@ -395,10 +397,10 @@ add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css">
                                         <?php echo $icon_file ?>
                                         <?php if (isset($list[$i]['wr_comment']) && $list[$i]['wr_comment']) { ?>
                                             <div class="na-info">
-                    <span class="count-plus orangered">
-                      <span class="sr-only">댓글</span>
-                      <?php echo $list[$i]['wr_comment']; ?>
-                    </span>
+                                                <span class="count-plus orangered">
+                                                <span class="sr-only">댓글</span>
+                                                <?php echo $list[$i]['wr_comment']; ?>
+                                                </span>
                                             </div>
                                         <?php } ?>
                                     </div>
@@ -483,7 +485,7 @@ add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css">
                                     </div>
                                     <div class="text-truncate">
                                         <a href="<?php echo $view['file'][$i]['href'] ?>" class="view_file_download"
-                                           title="<?php echo $view['file'][$i]['content'] ?>">
+                                            title="<?php echo $view['file'][$i]['content'] ?>">
                                             <?php echo $view['file'][$i]['source'] ?>
                                             <span class="visually-hidden">파일크기</span>
                                             <span class="small">(<?php echo $view['file'][$i]['size'] ?>)</span>
@@ -519,8 +521,8 @@ add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css">
         <?php if ($prev_href) { ?>
             <div>
                 <a href="<?php echo $prev_href ?>" class="btn btn-basic btn-sm"
-                   title="<?php echo $prev_wr_subject; ?> <?php echo date("Y.m.d", strtotime($prev_wr_date)) ?>"
-                   title="이전글">
+                title="<?php echo $prev_wr_subject; ?> <?php echo date("Y.m.d", strtotime($prev_wr_date)) ?>"
+                title="이전글">
                     <i class="bi bi-chevron-left"></i>
                     <span class="d-none d-sm-inline-block">이전글</span>
                 </a>
@@ -529,8 +531,8 @@ add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css">
         <?php if ($next_href) { ?>
             <div>
                 <a href="<?php echo $next_href ?>" class="btn btn-basic btn-sm"
-                   title="<?php echo $next_wr_subject; ?> <?php echo date("Y.m.d", strtotime($next_wr_date)) ?>"
-                   title="다음글">
+                title="<?php echo $next_wr_subject; ?> <?php echo date("Y.m.d", strtotime($next_wr_date)) ?>"
+                title="다음글">
                     <span class="d-none d-sm-inline-block">다음글</span>
                     <i class="bi bi-chevron-right"></i>
                 </a>
@@ -545,31 +547,34 @@ add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css">
         <?php echo $link_buttons; // 버튼 출력 ?>
     </div>
 </article>
+
+<div class="mb-3">
 <?php if (is_mobile()) { ?>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6922133409882969"
-            crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>
     <!-- 수평형 -->
     <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-6922133409882969"
-         data-ad-slot="5448923097"
-         data-ad-format="auto"
-         data-full-width-responsive="true"></ins>
+        style="display:block"
+        data-ad-client="ca-pub-6922133409882969"
+        data-ad-slot="5448923097"
+        data-ad-format="auto"
+        data-full-width-responsive="true"></ins>
     <script>
         (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
 <?php } else { ?>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6922133409882969"
-            crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>
     <!-- 게시풀 하단 -->
     <ins class="adsbygoogle"
-         style="display:inline-block;width:860px;height:100px"
-         data-ad-client="ca-pub-6922133409882969"
-         data-ad-slot="3013497299"></ins>
+        style="display:inline-block;width:860px;height:100px"
+        data-ad-client="ca-pub-6922133409882969"
+        data-ad-slot="3013497299"></ins>
     <script>
         (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
 <?php } ?>
+</div>
 
 
 </script>

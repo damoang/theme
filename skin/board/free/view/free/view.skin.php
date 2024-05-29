@@ -536,6 +536,8 @@ add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css">
         <?php echo $link_buttons; // 버튼 출력 ?>
     </div>
 </article>
+
+<div class="mb-3">
 <?php if (is_mobile()) { ?>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6922133409882969"
             crossorigin="anonymous"></script>
@@ -561,6 +563,7 @@ add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css">
         (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
 <?php } ?>
+</div>
 
 
 </script>

@@ -17,23 +17,21 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
         <div class="na-menu">
             <div class="nav nav-pills nav-vertical">
-
                 <?php
-                if (!empty($config['cf_9'])) {
-                    ?>
+                if (!empty($config['cf_9'])) { ?>
                     <div class="nav-item">
-                        <a class="nav-link" href="<?php echo $config['cf_9'];?>" data-placement="left" target="_blank">
+                        <a class="nav-link" href="<?php echo $config['cf_9']; ?>" data-placement="left" target="_blank">
                             <i class="bi-youtube nav-icon"></i>
-                            <span class="nav-link-title">▶️ 다모앙 방송국
-            </span>
+                            <span class="nav-link-title">▶️ 다모앙 방송국</span>
                         </a>
                     </div>
-                    <?php
-                }
-                ?>
-                <div class="nav-item nav-link">
-                    <a href="<?= \G5_URL ?>/bbs/search.php?sfl=mb_id&stx=<?php echo $member['mb_id'] ?>&wr_is_comment=0">내 글</a>&nbsp;|&nbsp;<a href="<?= \G5_URL ?>/bbs/search.php?sfl=mb_id&stx=<?php echo $member['mb_id'] ?>&wr_is_comment=1">내 댓글</a>&nbsp;|&nbsp;<a href="/bbs/noti.php"><i class="bi bi-bell"></i>알림</a>
-                </div>
+                <?php } ?>
+
+                <?php if($member['mb_level'] >= 2) { ?>
+                    <div class="nav-item nav-link">
+                        <a href="<?= \G5_URL ?>/bbs/search.php?sfl=mb_id&stx=<?php echo $member['mb_id'] ?>&wr_is_comment=0">내 글</a>&nbsp;|&nbsp;<a href="<?= \G5_URL ?>/bbs/search.php?sfl=mb_id&stx=<?php echo $member['mb_id'] ?>&wr_is_comment=1">내 댓글</a>&nbsp;|&nbsp;<a href="/bbs/noti.php"><i class="bi bi-bell"></i>알림</a>
+                    </div>
+                <?php } ?>
 
                 <!-- 사이드 메뉴 -->
                 <div class="nav-item">
@@ -82,21 +80,24 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                             ?>
                             <div class="nav-item">
                                 <a
-                                        class="nav-link <?= ($menuItem['page_id'] === $page_id) ? 'active' : ''; ?><?= ($hasSub) ? 'dropdown-toggle collapsed collapsed' : '' ?>"
-                                        href="<?= $menuItem['url'] ?>"
-                                        data-placement="left"
+                                    class="nav-link <?= ($menuItem['page_id'] === $page_id) ? 'active' : ''; ?><?= ($hasSub) ? 'dropdown-toggle collapsed collapsed' : '' ?>"
+                                    href="<?= $menuItem['url'] ?>"
+                                    data-placement="left"
                                     <?= ($hasSub) ? 'role="button" data-bs-toggle="collapse" data-bs-target="#' . $menuToggleId . '" aria-expanded="false" aria-controls="' . $menuToggleId . '"' : '' ?>
                                 >
                                     <i class="<?= $menuItem['icon'] ?> nav-icon"></i>
                                     <span class="nav-link-title" <?= ($hasSub) ? ' onclick="na_href(\'' . $menuUrlOrigin . '\', \'_self\');"' : '' ?>>
-                      <?php if ($menuItem['shortcut']) { ?><span class="badge text-bg-secondary"><?= $menuItem['shortcut'] ?></span><?php } ?>
+                                        <?php if ($menuItem['shortcut']) { ?>
+                                            <span class="badge text-bg-secondary"><?= $menuItem['shortcut'] ?></span>
+                                        <?php } ?>
                                         <?= $menuTitle ?>
-                    </span>
+                                    </span>
                                 </a>
 
                                 <!-- 서브 메뉴 -->
                                 <?php if ($hasSub): ?>
-                                    <div id="<?= $menuToggleId ?>" class="nav-collapse collapse" data-bs-parent="#sidebar-site-menu">
+                                    <div id="<?= $menuToggleId ?>" class="nav-collapse collapse"
+                                        data-bs-parent="#sidebar-site-menu">
                                         <?php foreach ($subMenus as $subMenuTitle => $subMenuUrl): ?>
                                             <a class="nav-link" href="<?= $subMenuUrl ?>">
                                                 <?= $subMenuTitle ?>

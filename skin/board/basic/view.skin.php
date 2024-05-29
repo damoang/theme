@@ -1,6 +1,13 @@
 <?php
 if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
 
+// 회원만 보기가 설정되어 있고, 접속한 회원의 레벨이 2 미만인 경우
+// 회원만 가능
+if ($view['wr_1'] == '1' && $member['mb_level'] < 2) {
+    alert('우리 "앙"님만 열람할 수 있어요!');
+    return;
+}
+
 // 멤버십
 na_membership('view', '멤버십 회원만 열람할 수 있습니다.');
 
@@ -18,7 +25,7 @@ $is_convert = (isset($boset['post_convert']) && $boset['post_convert']) ? 'na-co
 
 // SyntaxHighLighter
 if(isset($boset['code']) && $boset['code'])
-	na_script('code');
+    na_script('code');
 
 // 분류 스킨
 $view_skin = isset($boset['view_skin']) && $boset['view_skin'] ? $boset['view_skin'] : 'basic';
@@ -27,11 +34,22 @@ $view_skin_path = $board_skin_path.'/view/'.$view_skin;
 
 // 다모앙 회원 메모
 $view = run_replace('da_board_view', $view);
+$view = run_replace('board_view', $view);
+
+// 회원만 보기
+$view['da_is_member_only'] = false;
+$view['da_member_only'] = '';
+
+if ($view['wr_1'] == '1') {
+    $view['da_is_member_only'] = true;
+    $view['da_member_only'] = '<em class="border rounded p-1" style="font-size: 0.75em; font-style: normal;">회원만</em>';
+}
+
 
 // 내용 스킨
 $skin_file = $view_skin_path.'/view.skin.php';
 if (is_file($skin_file)) {
-	include_once $skin_file;
+    include_once $skin_file;
 } else {
-	echo '<div class="text-center px-3 py-5">'.str_replace(G5_PATH, '', $skin_file).' 스킨 파일이 없습니다.</div>'.PHP_EOL;
+    echo '<div class="text-center px-3 py-5">'.str_replace(G5_PATH, '', $skin_file).' 스킨 파일이 없습니다.</div>'.PHP_EOL;
 }

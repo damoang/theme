@@ -13,9 +13,6 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
 <div class="na-menu">
     <div class="nav nav-pills nav-vertical">
-
-
-
         <div id="sidebar-site-menu" class="mb-3">
             <?php
             if (!empty($config['cf_9'])) {
@@ -23,16 +20,16 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                 <div class="nav-item">
                     <a class="nav-link" href="<?php echo $config['cf_9'];?>" data-placement="left" target="_blank">
                         <i class="bi-youtube nav-icon"></i>
-                        <span class="nav-link-title">▶️ 다모앙 방송국
-          </span>
+                        <span class="nav-link-title">▶️ 다모앙 방송국</span>
                     </a>
                 </div>
-                <?php
-            }
-            ?>
-            <div class="nav-item nav-link">
-            <a href="<?= \G5_URL ?>/bbs/search.php?sfl=mb_id&stx=<?php echo $member['mb_id'] ?>&wr_is_comment=0">내 글</a>&nbsp;|&nbsp;<a href="<?= \G5_URL ?>/bbs/search.php?sfl=mb_id&stx=<?php echo $member['mb_id'] ?>&wr_is_comment=1">내 댓글</a>&nbsp;|&nbsp;<a href="/bbs/noti.php"><i class="bi bi-bell"></i>알림</a>
-            </div>
+            <?php } ?>
+
+            <?php if($member['mb_level'] >= 2) { ?>
+                <div class="nav-item nav-link">
+                    <a href="<?= \G5_URL ?>/bbs/search.php?sfl=mb_id&stx=<?php echo $member['mb_id'] ?>&wr_is_comment=0">내 글</a>&nbsp;|&nbsp;<a href="<?= \G5_URL ?>/bbs/search.php?sfl=mb_id&stx=<?php echo $member['mb_id'] ?>&wr_is_comment=1">내 댓글</a>&nbsp;|&nbsp;<a href="/bbs/noti.php"><i class="bi bi-bell"></i>알림</a>
+                </div>
+            <?php } ?>
 
             <!-- 사이드 메뉴 -->
             <div class="nav-item">
@@ -41,7 +38,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                 // 메뉴. `inc.menu.php` 파일에서 정의 됨
                 foreach ($siteMenus as $menuGroupIndex => $menuGroup) {
                     $groupTitle = $menuGroup['title'] ?? null;
-                    ?>
+                ?>
 
                     <?php if ($groupTitle): ?>
                         <div class="dropdown-header"><?= $groupTitle ?></div>
@@ -88,16 +85,18 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                         ?>
                         <div class="nav-item da-menu--<?= $menuItem['page_id'] ?>">
                             <a
-                                    class="nav-link <?= ($menuItem['page_id'] === $page_id) ? 'active' : ''; ?><?= ($hasSub) ? 'dropdown-toggle collapsed collapsed' : '' ?>"
-                                    href="<?= $menuItem['url'] ?>"
-                                    data-placement="left"
+                                class="nav-link <?= ($menuItem['page_id'] === $page_id) ? 'active' : ''; ?><?= ($hasSub) ? 'dropdown-toggle collapsed collapsed' : '' ?>"
+                                href="<?= $menuItem['url'] ?>"
+                                data-placement="left"
                                 <?= ($hasSub) ? 'role="button" data-bs-toggle="collapse" data-bs-target="#' . $menuToggleId . '" aria-expanded="false" aria-controls="' . $menuToggleId . '"' : '' ?>
                             >
                                 <i class="<?= $menuItem['icon'] ?> nav-icon"></i>
                                 <span class="nav-link-title" <?= ($hasSub) ? ' onclick="na_href(\'' . $menuUrlOrigin . '\', \'_self\');"' : '' ?>>
-                    <?php if ($menuItem['shortcut']) { ?><span class="badge text-bg-secondary"><?= $menuItem['shortcut'] ?></span><?php } ?>
+                                    <?php if ($menuItem['shortcut']) { ?>
+                                        <span class="badge text-bg-secondary"><?= $menuItem['shortcut'] ?></span>
+                                    <?php } ?>
                                     <?= $menuTitle ?>
-                  </span>
+                                </span>
                             </a>
 
                             <!-- 서브 메뉴 -->
@@ -127,14 +126,20 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                 </div>
 
                 <script async
-                        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6922133409882969"
-                        crossorigin="anonymous"></script>
+                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6922133409882969"
+                    crossorigin="anonymous"></script>
                 <!-- sub -->
                 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6922133409882969"
-                     data-ad-slot="3231235128" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                    data-ad-slot="3231235128" data-ad-format="auto" data-full-width-responsive="true"></ins>
                 <script>
                     (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
+
+                <!-- 배너 -->
+                <div class="d-none d-lg-block justify-content-center my-4">
+                    <?php echo na_widget('damoang-image-banner', 'side-banner'); ?>
+                </div>
+
 
             </div>
         </div>

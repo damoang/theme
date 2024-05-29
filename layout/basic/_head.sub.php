@@ -23,13 +23,13 @@ $one_cols = array(
 (IS_SHOP || in_array($page_id, $one_cols)) ? define('IS_ONECOL', true) : define('IS_ONECOL', false);
 
 ?>
-    <!doctype html>
+<!doctype html>
 <html lang="ko" data-bs-theme="light"
-      class="<?php echo (G5_IS_MOBILE) ? 'is-mobile' : 'is-pc'; ?> <?php echo (IS_SHOP) ? 'is-shop' : 'is-bbs'; ?>">
+    class="<?php echo (G5_IS_MOBILE) ? 'is-mobile' : 'is-pc'; ?> <?php echo (IS_SHOP) ? 'is-shop' : 'is-bbs'; ?>">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" id="meta_viewport"
-              content="width=device-width,initial-scale=1.0,minimum-scale=0,maximum-scale=10">
+            content="width=device-width,initial-scale=1.0,minimum-scale=0,maximum-scale=10">
         <meta name="HandheldFriendly" content="true">
         <meta name="format-detection" content="telephone=no">
         <?php
@@ -146,10 +146,6 @@ $one_cols = array(
                         if (ui_obj.hide_nick != null && ui_obj.hide_nick) {
                             var profile_html = $(".sv_member.ellipsis-1").html();
                             $(".sv_member.ellipsis-1").html(profile_html.substr(0, profile_html.indexOf("/span>") + 6) + " 회원님");
-                        }
-                        //미리보기창 끄기
-                        if (ui_obj.img_preview != null && ui_obj.img_preview) {
-                            ui_custom_style += "div.popover.bs-popover-auto.fade.show {display: none !important;}\n";
                         }
 
                         //root style 글씨체 및 크기

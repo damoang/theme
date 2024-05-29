@@ -20,15 +20,22 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 		?>
 		<b><?php echo number_format((int)$total_count) ?></b> / <?php echo $page ?> 페이지
 	</div>
+
 	<div class="ms-auto order-1 pe-1">
+		<?php
+		// 공지사항 감추기
+		if ($notice_count) {
+		?>
 		<a href="#" id="hide_notice" class="text-body-tertiary">
 			<span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="공지사항">
 				<i id="hide_notice_icon" class="bi bi bi-megaphone-fill" style="font-size:18px;"></i>
 				<span class="visually-hidden">공지사항</span>
 			</span>
 		</a>
+		<?php } ?>
 	</div>
 
+	<?php if ($member['mb_level'] >= 2) { ?>
 	<div class="order-3 pe-1">
 		<a href="#boardSearch" data-bs-toggle="collapse" data-bs-target="#boardSearch" aria-expanded="false" aria-controls="boardSearch" class="text-body-tertiary">
 			<span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="검색">
@@ -37,6 +44,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 			</span>
 		</a>
 	</div>
+	<?php } ?>
 	
 	<?php if ($is_admin) {  ?>
 	<div class="order-4 pe-1">
