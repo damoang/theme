@@ -76,28 +76,13 @@ if (!defined('_GNUBOARD_')) {
     </div>
 </div>
 
-<div class="noti-toast toast fade hide align-items-center fixed-bottom m-3" aria-live="polite" aria-atomic="true" data-bs-delay="10000" role="alert">
-    <div class="d-flex align-items-center">
-        <div class="toast-body">
-            <div class="spinner-grow spinner-grow-sm text-primary" role="status">
-                <span class="visually-hidden">Check it!</span>
-            </div>
-            <a href="javascript:;" data-bs-toggle="offcanvas" data-bs-target="#notiOffcanvas" aria-controls="notiOffcanvas">
-                <strong class="noti-count"></strong>개의 알림이 도착했습니다.
-            </a>
-        </div>
-        <button type="button" class="btn-close me-2 m-auto nofocus" data-bs-dismiss="toast" aria-label="Close"></button>
-    </div>
-</div>
-
 <script>
 function noti_count() {
     $.get('<?php echo LAYOUT_URL ?>/component/noti.offcanvas.php?cnt=1', function(data) {
         if (data.count > 0) {
-            $('.noti-count').text(number_format(data.count));
-            $('.noti-toast').removeClass('hide').addClass('show');
+            $('.da-noti-indicator').removeClass('d-none');
         } else {
-            $('.noti-toast').removeClass('show').addClass('hide');
+            $('.da-noti-indicator').addClass('d-none');
         }
     }, "json");
     return false;
