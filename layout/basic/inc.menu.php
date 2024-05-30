@@ -32,13 +32,14 @@ return [
         'items' => [
             '앙상불' => [
                 'url' => '/event',
+                'icon' => 'bi-person-heart',
                 'shortcut' => 'Ａ',
                 // Ａ단축키는 알림 링크에 사용됨
             ],
             '앙지도' => [
                 'url' => '/angmap',
                 'shortcut' => 'Ｍ',
-                    'icon' => 'bi-star-fill',
+                'icon' => 'bi-star-fill',
 
                 // Ａ단축키는 알림 링크에 사용됨
             ],
@@ -51,7 +52,7 @@ return [
             ],
             '자유게시판' => [
                 'url' => '/free',
-                // 'icon' => 'bi-chat-dots',
+                'icon' => 'bi-chat',
                 'shortcut' => 'Ｆ',
             ],
 
@@ -185,7 +186,7 @@ return [
         'items' => [
             '공지사항' => [
                 'url' => '/notice',
-                // 'icon' => 'bi-bell',
+                'icon' => 'fa-bullhorn',
                 'shortcut' => 'Ｋ',
             ],
             '릴리즈 노트' => [
@@ -201,6 +202,7 @@ return [
             ],
             '광고앙' => [
                 'url' => get_pretty_url('content', 'advertiser'),
+                'icon' => 'bi-badge-ad',
                 'shortcut' => '·',
                 
             ],
