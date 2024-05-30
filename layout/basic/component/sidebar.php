@@ -13,30 +13,6 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
 <div class="na-menu">
     <div class="nav nav-pills nav-vertical">
-
-
-        <?php if ($member['mb_level'] == 5 || $member['mb_level'] == 10) { ?>
-            <div class="nav-item">
-                <a class="nav-link" href="/bbs/group.php?gr_id=nerv" data-placement="left">
-                    <i class="bi-youtube nav-icon"></i>
-                    <span class="nav-link-title">Nerv Group</span>
-                </a>
-            </div>
-            <div class="nav-item">
-                <a class="nav-link" href="/meet" data-placement="left">
-                    <i class="bi-youtube nav-icon"></i>
-                    <span class="nav-link-title">회의록</span>
-                </a>
-            </div>
-            <div class="nav-item">
-                <a class="nav-link" href="/nerv" data-placement="left">
-                    <i class="bi-youtube nav-icon"></i>
-                    <span class="nav-link-title">Document</span>
-                </a>
-            </div>
-
-        <?php } ?>
-
         <div id="sidebar-site-menu" class="mb-3">
             <?php
             if (!empty($config['cf_9'])) {
@@ -109,15 +85,15 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                         ?>
                         <div class="nav-item da-menu--<?= $menuItem['page_id'] ?>">
                             <a
-                                class="nav-link <?= ($menuItem['page_id'] === $page_id) ? 'active' : ''; ?><?= ($hasSub) ? 'dropdown-toggle collapsed collapsed' : '' ?>"
+                                class="nav-link <?= ($menuItem['page_id'] === $page_id) ? ' active ' : ''; ?><?= ($hasSub) ? 'dropdown-toggle collapsed collapsed' : '' ?>"
                                 href="<?= $menuItem['url'] ?>"
                                 data-placement="left"
                                 <?= ($hasSub) ? 'role="button" data-bs-toggle="collapse" data-bs-target="#' . $menuToggleId . '" aria-expanded="false" aria-controls="' . $menuToggleId . '"' : '' ?>
                             >
-                                <i class="<?= $menuItem['icon'] ?> nav-icon"></i>
-                                <span class="nav-link-title" <?= ($hasSub) ? ' onclick="na_href(\'' . $menuUrlOrigin . '\', \'_self\');"' : '' ?>>
+                                <span class="d-flex align-items-center gap-2 nav-link-title">
+                                    <i class="<?= $menuItem['icon'] ?> nav-icon"></i>
                                     <?php if ($menuItem['shortcut']) { ?>
-                                        <span class="badge text-bg-secondary"><?= $menuItem['shortcut'] ?></span>
+                                        <span class="badge p-1 text-bg-secondary"><?= $menuItem['shortcut'] ?></span>
                                     <?php } ?>
                                     <?= $menuTitle ?>
                                 </span>
