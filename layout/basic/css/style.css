@@ -636,19 +636,26 @@ div a mark:hover {
   --bs-pagination-font-size: 1rem;
 }
 
-/*
-  목록의 전체 영역을 링크가 동작하도록 함
-*/
-.list-group-item.da-link-block {
-  position: relative;
-}
-a.da-link-block:before {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
+@media (max-width: 992px) {
+  /*
+    목록의 전체 영역을 링크가 동작하도록 함
+   */
+  .list-group-item.da-link-block {
+    position: relative;
+  }
+  a.da-link-block:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+  .da-link-block .form-check-input,
+  .da-link-block .da-member-memo {
+    position: relative;
+    z-index: 1;
+  }
 }
 
 .list-group-item .subject-ellipsis {

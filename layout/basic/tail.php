@@ -32,47 +32,44 @@ if (!IS_INDEX) {
 <footer class="site-footer-wrap bg-body-tertiary py-4">
     <div class="container px-3 text-center">
 
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+            <li class="nav-item">
+                <a href="<?php echo get_pretty_url('content', 'company'); ?>" class="nav-link px-2 text-body-secondary">사이트 소개</a>
+            </li>
+            <li class="nav-item">
+                <a href="<?php echo get_pretty_url('content', 'provision'); ?>" class="nav-link px-2 text-body-secondary">이용약관</a>
+            </li>
+            <li class="nav-item">
+                <a href="<?php echo get_pretty_url('content', 'privacy'); ?>" class="nav-link px-2 text-body-secondary">개인정보처리방침</a>
+            </li>
+            <li class="nav-item">
+                <a href="<?php echo get_pretty_url('content', 'operation_policy'); ?>" class="nav-link px-2 text-body-secondary">운영정책</a>
+            </li>
+        </ul>
 
-        <div class="mb-4">
-            <a href="<?php echo get_pretty_url('content', 'company'); ?>">
-                사이트 소개
-                <i class="bar">&nbsp;</i>
-            </a>
-            <a href="<?php echo get_pretty_url('content', 'provision'); ?>">
-                이용약관
-                <i class="bar">&nbsp;</i>
-            </a>
-            <a href="<?php echo get_pretty_url('content', 'privacy'); ?>">
-                개인정보 처리방침
-                <i class="bar">&nbsp;</i>
-            </a>
-            <a href="<?php echo get_pretty_url('content', 'operation_policy'); ?>">
-                운영정책
-                <i class="bar">&nbsp;</i>
-            </a>
+        <ul class="nav justify-content-center">
+            <li class="nav-item px-2">
+                <small>회사명 : <?php echo $default['de_admin_company_name'] ?></small>
+            </li>
+            <li class="nav-item px-2">
+                <small>대표 : <?php echo $default['de_admin_company_owner'] ?></small>
+            </li>
+            <li class="nav-item px-2">
+                <small>사업자 등록번호 : <span class="user-select-all"><?php echo $default['de_admin_company_saupja_no'] ?></span></small>
+            </li>
+            <li class="nav-item px-2">
+                <small>주소 : <span class="user-select-all"><?php echo $default['de_admin_company_addr'] ?></span></small>
+            </li>
+        </ul>
 
-            <a href="<?php echo get_device_change_url(); ?>">
-                <?php echo (G5_IS_MOBILE) ? 'PC' : '모바일'; ?> 버전
-            </a>
-        </div>
+        <p class="text-center text-body-secondary">
+            <small>contact : <span class="user-select-all">contact@damoang.net</span></small>
+        </p>
 
-        <div class="lh-lg mb-3">
-            회사명 : <?php echo $default['de_admin_company_name'] ?>
-            <span class="bar-sm">&nbsp;</span>
-            대표 : <?php echo $default['de_admin_company_owner'] ?>
-            <span class="bar-sm">&nbsp;</span>
-            사업자 등록번호 : <?php echo $default['de_admin_company_saupja_no'] ?>
-
-        </div>
-        <div class="lh-lg mb-3">
-            주소 : <?php echo $default['de_admin_company_addr'] ?>
-        </div>
-        contact : contact@damoang.net
-
-        <div class="small">
-            Copyright &copy; <b><?php $host = @parse_url(G5_URL); echo $host['host'] ?></b>. All rights reserved.
-        </div>
-
+        <p class="text-center text-body-secondary">
+            <small>Copyright &copy; <b><?php $host = @parse_url(G5_URL);
+            echo $host['host'] ?></b>. All rights reserved.</small>
+        </p>
     </div>
 </footer>
 </div>
@@ -93,21 +90,51 @@ if (!IS_INDEX) {
             <i class="bi bi-house-door"></i>
             <span class="visually-hidden">홈으로</span>
         </a>
-    <a href="#menuOffcanvas" class="btn-menu btn btn-basic btn-sm" data-bs-toggle="offcanvas"
+        <a href="#menuOffcanvas" class="btn-menu btn btn-basic btn-sm" data-bs-toggle="offcanvas"
         data-bs-target="#menuOffcanvas" aria-controls="menuOffcanvas" title="전체메뉴">
             <i class="bi bi-list"></i>
             <span class="visually-hidden">전체메뉴</span>
         </a>
-    <a href="#loginOffcanvas" class="btn-member btn btn-basic btn-sm" data-bs-toggle="offcanvas"
+        <a href="#loginOffcanvas" class="btn-member btn btn-basic btn-sm" data-bs-toggle="offcanvas"
         data-bs-target="#memberOffcanvas" aria-controls="memberOffcanvas" title="마이메뉴">
             <i class="bi bi-person-circle"></i>
             <span class="visually-hidden">마이메뉴</span>
         </a>
-    <a href="#newOffcanvas" class="btn-new btn btn-basic btn-sm" data-bs-toggle="offcanvas"
+        <a href="#newOffcanvas" class="btn-new btn btn-basic btn-sm" data-bs-toggle="offcanvas"
         data-bs-target="#newOffcanvas" aria-controls="newOffcanvas" title="새글/새댓글">
             <i class="bi bi-lightning"></i>
             <span class="visually-hidden">새글/새댓글</span>
         </a>
+        <div class="dropdown" data-bs-toggle="dropdown" aria-expanded="false" class="site-icon">
+            <a href="#dark" class="btn btn-basic btn-sm " id="bd-theme">
+                <i class="bi bi-sun"></i>
+                <span class="visually-hidden">테마 변경</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end py-0 shadow-none border navbar-dropdown-caret theme-dropdown-menu" aria-labelledby="bd-theme" data-bs-popper="static">
+                <div class="card position-relative border-0">
+                    <div class="card-body p-1">
+                        <button type="button" class="dropdown-item rounded-1" data-bs-theme-value="light">
+                            <span class="me-2 theme-icon">
+                                <i class="bi bi-sun"></i>
+                            </span>
+                            Light
+                        </button>
+                        <button type="button" class="dropdown-item rounded-1 my-1" data-bs-theme-value="dark">
+                            <span class="me-2 theme-icon">
+                                <i class="bi bi-moon-stars"></i>
+                            </span>
+                            Dark
+                        </button>
+                        <button type="button" class="dropdown-item rounded-1" data-bs-theme-value="auto">
+                            <span class="me-2 theme-icon">
+                                <i class="bi bi-circle-half"></i>
+                            </span>
+                            Auto
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <?php if (IS_YC) { ?>
             <?php if (IS_SHOP) { ?>
                 <a href="<?php echo G5_URL ?>" class="btn btn-basic btn-sm">
