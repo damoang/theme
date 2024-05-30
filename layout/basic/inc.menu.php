@@ -186,7 +186,7 @@ return [
         'items' => [
             '공지사항' => [
                 'url' => '/notice',
-                'icon' => 'fa-bullhorn',
+                'icon' => 'bi-lightbulb-fill',
                 'shortcut' => 'Ｋ',
             ],
             '릴리즈 노트' => [
