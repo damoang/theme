@@ -50,7 +50,10 @@ if (!IS_INDEX) {
                 운영정책
                 <i class="bar">&nbsp;</i>
             </a>
-
+            <a href="/claim">
+                재검토요청
+                <i class="bar">&nbsp;</i>
+            </a>
             <a href="<?php echo get_device_change_url(); ?>">
                 <?php echo (G5_IS_MOBILE) ? 'PC' : '모바일'; ?> 버전
             </a>
