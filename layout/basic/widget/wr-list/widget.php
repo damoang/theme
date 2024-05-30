@@ -69,7 +69,7 @@ for ($i=0; $i < $list_cnt; $i++) {
         }
 
         if($ca_name) {
-            $row['subject'] = '['.$ca_name.'] '.$row['subject'];
+            $row['subject'] = '<small>['.$ca_name.']</small> '.$row['subject'];
         }
     }
 ?>

@@ -45,7 +45,6 @@ add_stylesheet('<link rel="stylesheet" href="' . G5_THEME_URL . '/css/nariya.css
 add_stylesheet('<link rel="stylesheet" href="' . LAYOUT_URL . '/css/style.css">', 0);
 add_stylesheet('<link rel="stylesheet" href="' . G5_THEME_URL . '/css/bootstrap-icons.min.css">', 0);
 add_stylesheet('<link rel="stylesheet" href="' . G5_JS_URL . '/font-awesome/css/font-awesome.min.css">', 0);
-add_stylesheet('<link rel="canonical" href="' . $pset['href'] . '">', 100);
 $agent = $_SERVER["HTTP_USER_AGENT"];
 if (!preg_match('/macintosh|mac os x/i', $agent)) {
     add_stylesheet('<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&family=Roboto:wght@300;400;500&display=swap">', 0);
@@ -64,6 +63,7 @@ if (!preg_match('/macintosh|mac os x/i', $agent)) {
     'use strict';
 
     const shortcuts = {
+        // abcdefghijklmnopqrstuvwxyz
     'KeyA': '/event',
     'KeyB': '/bug',
     'KeyC': '/bbs/group.php?gr_id=community',
@@ -76,6 +76,7 @@ if (!preg_match('/macintosh|mac os x/i', $agent)) {
     'KeyK': '/notice',
     'KeyL': '/lecture',
     'KeyN': '/new',
+    'KeyM': '/angmap',
     'KeyO': '/referral',
     'KeyP': '/pds',
     'KeyQ': '/qa',
@@ -85,6 +86,8 @@ if (!preg_match('/macintosh|mac os x/i', $agent)) {
     'KeyT': '/tutorial',
     'KeyV': '/governance',
     'KeyW': '/promotion',
+    'KeyX': '/angreport',
+    'KeyY': '/disciplinelog',
     'KeyZ': '/bbs/noti.php',
     // 추가 단축키와 페이지를 여기에 추가하세요.
     };

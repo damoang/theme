@@ -14,7 +14,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
         <h3 class="text-center">My Photo</h3>
 
         <p class="myphoto my-4 text-center">
-            <img src="<?php echo na_member_photo($member['mb_id']) ?>?nocache=<?php echo time() ?>" class="rounded-circle">
+            <img src="<?php echo na_member_photo($member['mb_id']) ?>?nocache=<?php echo time() ?>" class="rounded-circle" onerror="this.onerror=null; this.src='<?php echo G5_IMG_URL . '/no_profile.gif' ?>';">
         </p>
         <p class="my-3">
             회원사진은 이미지 중 GIF/JPG/PNG 파일만 가능하며, 등록시 <?php echo $photo_width ?>x<?php echo $photo_height ?> 사이즈로 자동으로 조절됩니다.

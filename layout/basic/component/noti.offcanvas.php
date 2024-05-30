@@ -42,7 +42,7 @@ if (!defined('_GNUBOARD_')) {
             <li class="list-group-item">
                 <div class="d-flex align-items-center">
                     <div class="pe-2">
-                        <img src="<?php echo na_member_photo($noti[$i]['mb_id']) ?>" class="rounded-circle" style="max-width:60px;">
+                        <img src="<?php echo na_member_photo($noti[$i]['mb_id']) ?>" class="rounded-circle" style="max-width:60px;" onerror="this.onerror=null; this.src='<?php echo G5_IMG_URL . '/no_profile.gif' ?>';">
                     </div>
                     <div class="flex-grow-1 text-truncate">
                         <a href="<?php echo $noti[$i]['href'] ?>">
@@ -76,28 +76,13 @@ if (!defined('_GNUBOARD_')) {
     </div>
 </div>
 
-<div class="noti-toast toast fade hide align-items-center fixed-bottom m-3" aria-live="polite" aria-atomic="true" data-bs-delay="10000" role="alert">
-    <div class="d-flex align-items-center">
-        <div class="toast-body">
-            <div class="spinner-grow spinner-grow-sm text-primary" role="status">
-                <span class="visually-hidden">Check it!</span>
-            </div>
-            <a href="javascript:;" data-bs-toggle="offcanvas" data-bs-target="#notiOffcanvas" aria-controls="notiOffcanvas">
-                <strong class="noti-count"></strong>개의 알림이 도착했습니다.
-            </a>
-        </div>
-        <button type="button" class="btn-close me-2 m-auto nofocus" data-bs-dismiss="toast" aria-label="Close"></button>
-    </div>
-</div>
-
 <script>
 function noti_count() {
     $.get('<?php echo LAYOUT_URL ?>/component/noti.offcanvas.php?cnt=1', function(data) {
         if (data.count > 0) {
-            $('.noti-count').text(number_format(data.count));
-            $('.noti-toast').removeClass('hide').addClass('show');
+            $('.da-noti-indicator').removeClass('d-none');
         } else {
-            $('.noti-toast').removeClass('show').addClass('hide');
+            $('.da-noti-indicator').addClass('d-none');
         }
     }, "json");
     return false;

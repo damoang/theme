@@ -32,7 +32,6 @@ if (!IS_INDEX) {
 <footer class="site-footer-wrap bg-body-tertiary py-4">
     <div class="container px-3 text-center">
 
-
         <div class="mb-4">
             <a href="<?php echo get_pretty_url('content', 'company'); ?>">
                 사이트 소개
@@ -96,21 +95,51 @@ if (!IS_INDEX) {
             <i class="bi bi-house-door"></i>
             <span class="visually-hidden">홈으로</span>
         </a>
-    <a href="#menuOffcanvas" class="btn-menu btn btn-basic btn-sm" data-bs-toggle="offcanvas"
+        <a href="#menuOffcanvas" class="btn-menu btn btn-basic btn-sm" data-bs-toggle="offcanvas"
         data-bs-target="#menuOffcanvas" aria-controls="menuOffcanvas" title="전체메뉴">
             <i class="bi bi-list"></i>
             <span class="visually-hidden">전체메뉴</span>
         </a>
-    <a href="#loginOffcanvas" class="btn-member btn btn-basic btn-sm" data-bs-toggle="offcanvas"
+        <a href="#loginOffcanvas" class="btn-member btn btn-basic btn-sm" data-bs-toggle="offcanvas"
         data-bs-target="#memberOffcanvas" aria-controls="memberOffcanvas" title="마이메뉴">
             <i class="bi bi-person-circle"></i>
             <span class="visually-hidden">마이메뉴</span>
         </a>
-    <a href="#newOffcanvas" class="btn-new btn btn-basic btn-sm" data-bs-toggle="offcanvas"
+        <a href="#newOffcanvas" class="btn-new btn btn-basic btn-sm" data-bs-toggle="offcanvas"
         data-bs-target="#newOffcanvas" aria-controls="newOffcanvas" title="새글/새댓글">
             <i class="bi bi-lightning"></i>
             <span class="visually-hidden">새글/새댓글</span>
         </a>
+        <div class="dropdown" data-bs-toggle="dropdown" aria-expanded="false" class="site-icon">
+            <a href="#dark" class="btn btn-basic btn-sm " id="bd-theme">
+                <i class="bi bi-sun"></i>
+                <span class="visually-hidden">테마 변경</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end py-0 shadow-none border navbar-dropdown-caret theme-dropdown-menu" aria-labelledby="bd-theme" data-bs-popper="static">
+                <div class="card position-relative border-0">
+                    <div class="card-body p-1">
+                        <button type="button" class="dropdown-item rounded-1" data-bs-theme-value="light">
+                            <span class="me-2 theme-icon">
+                                <i class="bi bi-sun"></i>
+                            </span>
+                            Light
+                        </button>
+                        <button type="button" class="dropdown-item rounded-1 my-1" data-bs-theme-value="dark">
+                            <span class="me-2 theme-icon">
+                                <i class="bi bi-moon-stars"></i>
+                            </span>
+                            Dark
+                        </button>
+                        <button type="button" class="dropdown-item rounded-1" data-bs-theme-value="auto">
+                            <span class="me-2 theme-icon">
+                                <i class="bi bi-circle-half"></i>
+                            </span>
+                            Auto
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <?php if (IS_YC) { ?>
             <?php if (IS_SHOP) { ?>
                 <a href="<?php echo G5_URL ?>" class="btn btn-basic btn-sm">
