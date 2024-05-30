@@ -151,10 +151,14 @@
       //ui_custom_style += "#sidebar-site-menu .nav-item a.nav-link:active i::before{animation-duration: 1s;animation-name: smallTwist;}\n";
 
       ui_custom_style += "#bo_list li.da-link-block:hover {animation-duration: 0.5s;animation-name: popUp;}\n";
+      ui_custom_style += "li.da-link-block.ui-custom-link-active {animation-duration: 1s;animation-name: linkPopSmall !important;animation-fill-mode: forwards}";
+      ui_custom_style += "div.nav-item.ui-custom-link-active {animation-duration: 1s;animation-name: linkPop !important;animation-fill-mode: forwards}";
       //ui_custom_style += "#bo_list li.da-link-block:active {animation-duration: 1s;animation-name: popUpEnd10;animation-fill-mode: forwards;}\n";
       //ui_custom_style += "#bo_list li.da-link-block:has(a:active) {animation-duration: 1s;animation-name: popUpEnd10;animation-fill-mode: forwards;}\n";
       
       ui_custom_style += "@keyframes popUp {0% {transform: translateX(0%) scale(1);}20% {transform: translateX(1%) scale(1.02);}100% {transform: translateX(0%) scale(1);}}\n";
+      ui_custom_style += "@keyframes linkPopSmall {0% {transform: translateY(0%) scale(1);}20% {transform: translateY(-3%) scale(1.03);}100% {transform: translateY(0%) scale(1);}}\n";
+      ui_custom_style += "@keyframes linkPop {0% {transform: translateY(0%) scale(1);}20% {transform: translateY(-5%) scale(1.05);}100% {transform: translateY(0%) scale(1);}}\n";
 
       ui_custom_style += "@keyframes popUp05 {0% {transform: scale(1);}20% {transform: scale(1.05);}100% {transform: scale(1);}}\n";
       ui_custom_style += "@keyframes popUp10 {0% {transform: scale(1);}20% {transform: scale(1.1);}100% {transform: scale(1);}}\n";
@@ -478,6 +482,7 @@
       reload = false;
     }
     if (ui_obj != null) {
+
       //본문 필터링
       if (ui_obj.content_blur ?? false) {
         check_content_blur(ui_obj?.content_blur_word);
@@ -490,6 +495,8 @@
       if (ui_obj.read_history ?? false) {
         check_read_history(ui_obj);
       }
+      //단축키
+      set_shortcut_custom(ui_obj);
 
       if (ui_obj.ui_custom != null && ui_obj.ui_custom) {
         if (!(ui_obj.thumbup_em_off ?? false)) {
@@ -527,13 +534,6 @@
           set_change_mymenu_img(ui_obj?.hide_nick ?? false);
         }
 
-        if (ui_obj.memo_ip_track ?? false) {
-          start_memo_tracking();
-        }
-
-        //단축키
-        set_shortcut_custom(ui_obj);
-
         //단축버튼 왼쪽으로
         set_left_quick_button((ui_obj.left_quick_button != null && ui_obj.left_quick_button));
         //단축버튼 확장
@@ -567,6 +567,13 @@
               toTop_as.classList.add("d-sm-inline-block");
             }
           }
+        }
+
+        if (ui_custom_animation) {
+          set_links_active_pop()
+        }
+        if (ui_obj.memo_ip_track ?? false) {
+          start_memo_tracking();
         }
       }
       set_body_op_end();
@@ -1550,6 +1557,32 @@
     }
 
     return link_obj;
+  }
+
+  function set_links_active_pop(){
+    var sidebar_site_menu_links = document.querySelectorAll('#sidebar-site-menu div.nav-item:has(a.nav-link)');
+    var list_menu_links = document.querySelectorAll("section#bo_list > ul > li.da-link-block:has(a.da-link-block)");
+    Array.from(sidebar_site_menu_links).forEach(set_item_active_pop);
+    Array.from(list_menu_links).forEach(set_item_active_pop);
+  }
+  function set_item_active_pop(item,index) {
+    item.classList.remove("ui-custom-link-active");
+    var a_tag = item.querySelector('a.da-link-block, a.nav-link')
+    if (a_tag!=null) {
+      a_tag.addEventListener("click",item_active_pop_event);
+    } else {
+      console.debug("a_tag is null");;
+    }
+  }
+  function item_active_pop_event(e){
+    console.debug(e.target);
+    console.debug(this);
+    var active_top = this.closest("div.nav-item , li.da-link-block");
+    if (active_top != null) {
+      active_top.classList.add("ui-custom-link-active");      
+    } else {
+
+    }
   }
 
   function set_shortcut_custom(ui_obj) {
