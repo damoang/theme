@@ -50,7 +50,7 @@ if (!IS_INDEX) {
                 <i class="bar">&nbsp;</i>
             </a>
             <a href="/claim">
-                재검토요청
+                소명 게시판
                 <i class="bar">&nbsp;</i>
             </a>
             <a href="<?php echo get_device_change_url(); ?>">
