@@ -88,7 +88,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
                 $li_css = ' bg-light-subtle';
                 $row['subject'] = '<strong class="fw-medium">'.$row['subject'].'</strong>';
                 $row['num'] = '<span class="orangered">공지</span>';
-                $row['wr_good'] = '공지';
+                $row['wr_good'] = '<span class="orangered">공지</span>';
             }
         ?>
             <li class="list-group-item da-link-block <?php echo $li_css; ?>">
@@ -98,8 +98,8 @@ add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
                         <!--  추천수에 따른 컬러세트 지정(게시판 목록) -->
                         <?php
                             $rcmd_step = "rcmd-box step1";
-                            if($row['wr_good'] == '공지') {
-                                $rcmd_step = "orangered"; //공지사항은 추천수 표시하지 않고 "공지" 텍스트 출력
+                            if(strpos($row['wr_good'],'공지') == true) {
+                                $rcmd_step = ""; //공지사항은 추천수 표시하지 않고 "공지" 텍스트 출력
                             }else if($row['wr_good'] <= 5) {
                                 $rcmd_step = "rcmd-box step1";
                             }else if($row['wr_good'] > 5 && $row['wr_good'] <=10) {
