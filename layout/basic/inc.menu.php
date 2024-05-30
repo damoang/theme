@@ -39,8 +39,8 @@ return [
             '앙지도' => [
                 'url' => '/angmap',
                 'shortcut' => 'Ｍ',
-                'icon' => 'bi-star-fill',
-
+                'icon' => 'bi-geo-alt-fill',
+                // bi-star-fill
                 // Ａ단축키는 알림 링크에 사용됨
             ],
             '삐앙삐앙' => [
