@@ -57,19 +57,19 @@ if(IS_INDEX)
                         </span>
                     </a>
                 </div>
-                <div>
-                    <a href="#notiOffcanvas" data-bs-toggle="offcanvas" data-bs-target="#notiOffcanvas" aria-controls="notiOffcanvas" class="site-icon">
-                        <?php
-                        ?>
-                        <span class="position-relative" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="알림">
-                            <i class="bi <?= ($is_member) ? 'bi-bell' : 'bi-person-circle' ?>"></i>
-                            <span class="position-absolute top-0 start-100 translate-middle spinner-grow spinner-grow bg-primary d-none da-noti-indicator" style="--bs-spinner-width: 5px; --bs-spinner-height: 5px;">
-                                <span class="visually-hidden">새 알림이 있습니다</span>
+                <?php if ($is_member) { ?>
+                    <div>
+                        <a href="#notiOffcanvas" data-bs-toggle="offcanvas" data-bs-target="#notiOffcanvas" aria-controls="notiOffcanvas" class="site-icon">
+                            <span class="position-relative" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="알림">
+                                <i class="bi bi-bell"></i>
+                                <span class="position-absolute top-0 start-100 translate-middle spinner-grow spinner-grow bg-primary d-none da-noti-indicator" style="--bs-spinner-width: 5px; --bs-spinner-height: 5px;">
+                                    <span class="visually-hidden">새 알림이 있습니다</span>
+                                </span>
+                                <span class="visually-hidden">알림 보기</span>
                             </span>
-                            <span class="visually-hidden">알림 보기</span>
-                        </span>
-                    </a>
-                </div>
+                        </a>
+                    </div>
+                <?php } ?>
                 <div>
                     <a href="#menuOffcanvas" data-bs-toggle="offcanvas" data-bs-target="#menuOffcanvas" aria-controls="menuOffcanvas">
                         <span data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="메뉴">
