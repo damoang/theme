@@ -83,11 +83,11 @@ $wr_notice = (isset($wset['is_notice']) && $wset['is_notice']) ? ' bg-body-terti
                 <!--  추천수에 따른 컬러세트 지정(메인) -->
                 <?php
                     $rcmd_step = "rcmd-box step1";
-                    if($row['wr_good'] <= 5) {
+                    if($row['wr_good'] <= 15) {
                         $rcmd_step = "rcmd-box step1";
-                    }else if($row['wr_good'] > 5 && $row['wr_good'] <=10) {
+                    }else if($row['wr_good'] > 15 && $row['wr_good'] <= 25) {
                         $rcmd_step = "rcmd-box step2";
-                    }else if($row['wr_good'] > 10 && $row['wr_good'] <=50) {
+                    }else if($row['wr_good'] > 25 && $row['wr_good'] <= 50) {
                         $rcmd_step = "rcmd-box step3";
                     }else if($row['wr_good'] > 50) {
                         $rcmd_step = "rcmd-box step4";
