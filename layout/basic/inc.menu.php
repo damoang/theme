@@ -46,7 +46,7 @@ return [
             '삐앙삐앙' => [
                 'url' => '/angreport',
                 'shortcut' => 'Ｘ',
-                    'icon' => 'bi-webcam-fill',
+                'icon' => 'bi-webcam-fill',
 
                 // Ａ단축키는 알림 링크에 사용됨
             ],
@@ -64,11 +64,12 @@ return [
             ],
             '새소식' => [
                 'url' => '/new',
-                // 'icon' => 'bi-postcard-heart',
+                'icon' => 'bi-newspaper',
                 'shortcut' => 'Ｎ',
             ],
             '사용기' => [
                 'url' => '/tutorial',
+                'icon' => 'bi-vector-pen',
                 'shortcut' => 'Ｔ',
             ],
             '강좌/팁' => [
@@ -86,12 +87,12 @@ return [
             ],
             '알뜰구매' => [
                 'url' => '/economy',
-                // 'icon' => 'bi-cart-plus-fill',
+                'icon' => 'bi-cash-coin',
                 'shortcut' => 'Ｅ',
             ],
             '갤러리' => [
                 'url' => '/gallery',
-                // 'icon' => 'bi-images',
+                'icon' => 'bi-images',
                 'shortcut' => 'Ｇ',
             ],
             '레퍼럴' => [
@@ -107,6 +108,7 @@ return [
             '소모임' => [
                 'url' => G5_BBS_URL . '/group.php?gr_id=group',
                 'page_id' => G5_BBS_DIR . '-group-group',
+                'icon' => 'bi-cart-plus-fill',
                 'shortcut' => 'Ｓ',
                 'items' => [
                     '모아보기' => G5_BBS_URL . '/group.php?gr_id=group',
@@ -191,13 +193,13 @@ return [
             ],
             '릴리즈 노트' => [
                 'url' => '/release',
-                // 'icon' => 'bi-bell',
+                'icon' => 'bi-journal-code',
                 'shortcut' => '·',
 
             ],
             '유지관리' => [
                 'url' => '/bug',
-                // 'icon' => 'bi-tools',
+                'icon' => 'bi-tools',
                 'shortcut' => 'Ｂ',
             ],
             '광고앙' => [
@@ -208,11 +210,18 @@ return [
             ],
             '거버넌스' => [
                 'url' => '/governance',
+                'icon' => 'bi-bank',
                 'shortcut' => 'Ｖ',
             ],
             '진실의 방' => [
                 'url' => '/truthroom',
                 'shortcut' => 'Ｊ',
+                'icon' => 'bi-door-open-fill',
+            ],
+            '광고앙돼용' => [
+                'url' => '/nope',
+                'icon' => 'bi-incognito',
+                'shortcut' => '·',
             ],
             '레벨강등 열람' => [
                 'url' => '/disciplinelog',
