@@ -12,7 +12,7 @@ ob_end_clean();
 
 ?>
 
-<form class="w-75 mx-auto py-md-5" name="fregister" id="fregister" action="<?php echo $register_action_url ?>" onsubmit="return fregister_submit(this);" method="POST" autocomplete="off">
+<form class="max-600 mx-auto py-md-5" name="fregister" id="fregister" action="<?php echo $register_action_url ?>" onsubmit="return fregister_submit(this);" method="POST" autocomplete="off">
 
     <h3 class="px-3 py-2 mb-0 fs-4">
         <i class="bi bi-check2-square"></i>
@@ -103,14 +103,14 @@ ob_end_clean();
                         <tr>
                             <td>회원 관리 (이용자 식별 및 본인여부 확인)</td>
                             <td>
-                                이름, 로그인 아이디(ID), 비밀번호, 이메일, 간편가입정보
-                                <?php echo ($config['cf_cert_use'])? ", 암호화된 개인식별부호(CI)" : ""; ?>
+                                아이디, 이름, 비밀번호 ※ [네이버, 구글, 카카] 계정 연동을 통해 간접 수집
+                                <?php echo ($config['cf_cert_use'])? ", 생년월일, 휴대폰 번호(본인인증 할 때만, 아이핀 제외), 암호화된 개인식별부호(CI)" : ""; ?>
                             </td>
-                            <td>이용 종료 시점(회원 탈퇴 시) 까지 ※ 부정이용 방지를 위한 기록은 탈퇴 후 3년간 보유</td>
+                            <td>회원 탈퇴 시까지</td>
                         </tr>
                         <tr>
                             <td>회원 관리 및 상담 (서비스 이용에 관한 통지, CS대응을 위한 이용자 식별)</td>
-                            <td>연락처 (이메일)</td>
+                            <td>연락처 (이메일, 휴대전화번호)</td>
                             <td>회원 탈퇴 시 까지 ※ 단, 관계 법령에 따라 보관이 필요한 기록은 탈퇴 후 법령이 정한 기한까지 보관합니다</td>
                         </tr>
                     </tbody>

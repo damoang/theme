@@ -17,7 +17,6 @@ $one_cols = array(
     G5_BBS_DIR . '-page-password', // 비밀번호 입력 페이지
     G5_BBS_DIR . '-page-member_cert_refresh', // 본인인증을 다시 해주세요.
     G5_BBS_DIR . '-page-member_confirm', // 회원 비밀번호 확인
-    G5_PLUGIN_DIR . '-social-page-register_member', // 소셜 회원가입
 );
 
 // 1단 체크
