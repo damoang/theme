@@ -636,19 +636,26 @@ div a mark:hover {
   --bs-pagination-font-size: 1rem;
 }
 
-/*
-  목록의 전체 영역을 링크가 동작하도록 함
-*/
-.list-group-item.da-link-block {
-  position: relative;
-}
-a.da-link-block:before {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
+@media (max-width: 992px) {
+  /*
+    목록의 전체 영역을 링크가 동작하도록 함
+   */
+  .list-group-item.da-link-block {
+    position: relative;
+  }
+  a.da-link-block:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+  .da-link-block .form-check-input,
+  .da-link-block .da-member-memo {
+    position: relative;
+    z-index: 1;
+  }
 }
 
 .list-group-item .subject-ellipsis {
@@ -681,4 +688,58 @@ a.da-link-block:before {
 .list-group-item .wr-name .sv_wrap .sv.sv_on{
   left: unset;
   top: unset;
+}
+
+
+/*추천수 메인*/
+.rcmd-sm {
+  width: 35px !important;
+  min-width: 35px !important;
+  margin: 0px !important;
+}
+
+/*추천수 박스*/
+.rcmd-box {
+  border-radius: 5px;
+  width: 40px;
+  color: #333333;
+  font-weight: 400;
+  text-align: center;
+  font-size: 12px;
+  margin: auto;
+}
+
+/* 추천수 스텝별 옵션 */
+.rcmd-box.step1 {
+  background-color: #dddddd !important;
+}
+
+.rcmd-box.step2 {
+  background-color: #b3ffa2 !important;
+}
+
+.rcmd-box.step3 {
+  background-color: #ffd57a !important;
+}
+
+.rcmd-box.step4 {
+  background-color: #e24a4a !important;
+  color: #ffffff;
+}
+
+/* 추천수 PC, Mobile 제어 */
+.rcmd-pc {
+  display: block !important;
+  min-width: 60px;
+}
+.rcmd-mb {
+  display: none !important;
+}
+@media (max-width: 767px) {
+  .rcmd-pc {
+    display: none !important;
+  }
+  .rcmd-mb {
+    display: block !important;
+  }
 }

@@ -9,9 +9,14 @@ add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
     <ul class="list-group list-group-flush border-bottom">
         <li class="list-group-item d-none d-md-block hd-wrap">
             <div class="d-flex flex-md-row align-items-md-center gap-1 fw-bold">
-                <div class="col-1 text-center">
+                <?php if($is_good) { ?>
+                    <div class="hd-num text-center">
+                        <?php echo subject_sort_link('wr_good', $qstr2, 1) ?>추천</a>
+                    </div>
+                <?php } ?>
+                <!-- <div class="col-1 text-center">
                     번호
-                </div>
+                </div> -->
                 <div class="text-center flex-grow-1">
                     제목
                 </div>
@@ -23,11 +28,6 @@ add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
                         <div class="hd-date text-center">
                             <?php echo subject_sort_link('wr_datetime', $qstr2, 1) ?>날짜</a>
                         </div>
-                        <?php if($is_good) { ?>
-                            <div class="hd-num text-center">
-                                <?php echo subject_sort_link('wr_good', $qstr2, 1) ?>추천</a>
-                            </div>
-                        <?php } ?>
                         <div class="hd-num text-center">
                             <?php echo subject_sort_link('wr_hit', $qstr2, 1) ?>조회</a>
                         </div>
@@ -88,14 +88,39 @@ add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
                 $li_css = ' bg-light-subtle';
                 $row['subject'] = '<strong class="fw-medium">'.$row['subject'].'</strong>';
                 $row['num'] = '<span class="orangered">공지</span>';
+                $row['wr_good'] = '<span class="orangered">공지</span>';
             }
         ?>
             <li class="list-group-item da-link-block <?php echo $li_css; ?>">
 
                 <div class="d-flex align-items-center gap-1">
-                    <div class="col-1 wr-no d-none d-md-block">
-                        <?php echo $row['num'] ?>
-                    </div>
+                    <?php if($is_good) { ?>
+                        <!--  추천수에 따른 컬러세트 지정(게시판 목록) -->
+                        <?php
+                            $rcmd_step = "rcmd-box step1";
+                            if(strpos($row['wr_good'],'공지') == true) {
+                                $rcmd_step = ""; //공지사항은 추천수 표시하지 않고 "공지" 텍스트 출력
+                            }else if($row['wr_good'] <= 5) {
+                                $rcmd_step = "rcmd-box step1";
+                            }else if($row['wr_good'] > 5 && $row['wr_good'] <=10) {
+                                $rcmd_step = "rcmd-box step2";
+                            }else if($row['wr_good'] > 10 && $row['wr_good'] <=50) {
+                                $rcmd_step = "rcmd-box step3";
+                            }else if($row['wr_good'] > 50) {
+                                $rcmd_step = "rcmd-box step4";
+                            }
+                        ?>
+                        <div class="wr-num text-nowrap rcmd-pc">
+                            <i class="bi bi-hand-thumbs-up d-inline-block d-md-none"></i>
+                            <div class="<?php echo $rcmd_step ?>">
+                            <?php echo $row['wr_good'] ?>
+                            </div>
+                            <span class="visually-hidden">추천</span>
+                        </div>
+                    <?php } ?>
+                    <!-- <div class="col-1 wr-no d-none d-md-block">
+                        <?//php echo $row['num'] ?>
+                    </div> -->
                     <?php if ($is_checkbox) { ?>
                         <div>
                             <input class="form-check-input me-1" type="checkbox" name="chk_wr_id[]" value="<?php echo $row['wr_id'] ?>" id="chk_wr_id_<?php echo $i ?>">
@@ -152,7 +177,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
                                         <span class="visually-hidden">등록</span>
                                     </div>
                                     <?php if($is_good) { ?>
-                                        <div class="wr-num text-nowrap order-3">
+                                        <div class="wr-num text-nowrap order-3 rcmd-mb">
                                             <i class="bi bi-hand-thumbs-up d-inline-block d-md-none"></i>
                                             <?php echo $row['wr_good'] ?>
                                             <span class="visually-hidden">추천</span>

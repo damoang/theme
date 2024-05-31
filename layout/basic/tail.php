@@ -30,7 +30,6 @@ if (!IS_INDEX) {
 <footer class="site-footer-wrap bg-body-tertiary py-4">
     <div class="container px-3 text-center">
 
-
         <div class="mb-4">
             <a href="<?php echo get_pretty_url('content', 'company'); ?>">
                 사이트 소개
@@ -48,7 +47,10 @@ if (!IS_INDEX) {
                 운영정책
                 <i class="bar">&nbsp;</i>
             </a>
-
+            <a href="/claim">
+                소명 게시판
+                <i class="bar">&nbsp;</i>
+            </a>
             <a href="<?php echo get_device_change_url(); ?>">
                 <?php echo (G5_IS_MOBILE) ? 'PC' : '모바일'; ?> 버전
             </a>
@@ -106,6 +108,36 @@ if (!IS_INDEX) {
             <i class="bi bi-lightning"></i>
             <span class="visually-hidden">새글/새댓글</span>
         </a>
+        <div class="dropdown" data-bs-toggle="dropdown" aria-expanded="false" class="site-icon">
+            <a href="#dark" class="btn btn-basic btn-sm " id="bd-theme">
+                <i class="bi bi-sun"></i>
+                <span class="visually-hidden">테마 변경</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end py-0 shadow-none border navbar-dropdown-caret theme-dropdown-menu" aria-labelledby="bd-theme" data-bs-popper="static">
+                <div class="card position-relative border-0">
+                    <div class="card-body p-1">
+                        <button type="button" class="dropdown-item rounded-1" data-bs-theme-value="light">
+                            <span class="me-2 theme-icon">
+                                <i class="bi bi-sun"></i>
+                            </span>
+                            Light
+                        </button>
+                        <button type="button" class="dropdown-item rounded-1 my-1" data-bs-theme-value="dark">
+                            <span class="me-2 theme-icon">
+                                <i class="bi bi-moon-stars"></i>
+                            </span>
+                            Dark
+                        </button>
+                        <button type="button" class="dropdown-item rounded-1" data-bs-theme-value="auto">
+                            <span class="me-2 theme-icon">
+                                <i class="bi bi-circle-half"></i>
+                            </span>
+                            Auto
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <?php
     $offcanvas_buttons = ob_get_contents();
