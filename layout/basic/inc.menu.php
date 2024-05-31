@@ -218,7 +218,7 @@ return [
                 'shortcut' => 'Ｊ',
                 'icon' => 'bi-door-open-fill',
             ],
-            '광고앙돼용' => [
+            '광고앙돼앙' => [
                 'url' => '/nope',
                 'icon' => 'bi-incognito',
                 'shortcut' => '·',
