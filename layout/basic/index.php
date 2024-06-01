@@ -42,6 +42,14 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                                     <?php if (is_mobile()) { ?>
                                         <!-- 모바일 -->
                                         <!-- main -->
+                                        <h3 class="fs-5 px-3 py-2 mb-0">
+                                            <a href="<?php echo get_pretty_url('notice') ?>">
+                                                <i class="bi bi-bell"></i>
+                                                공지사항
+                                                <i class="bi bi-plus small float-end mt-1 text-body-tertiary"></i>
+                                            </a>
+                                        </h3>
+                                        <?php echo na_widget('wr-list', 'idx-notice', 'bo_list=notice wr_notice=1 is_notice=1'); ?>
                                         <ins class="adsbygoogle"
                                             style="display:block"
                                             data-ad-client="ca-pub-6922133409882969"
@@ -53,6 +61,14 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                                         <!-- PC -->
                                         <!-- 메인 -->
                                         <!-- main -->
+                                        <h3 class="fs-5 px-3 py-2 mb-0">
+                                            <a href="<?php echo get_pretty_url('notice') ?>">
+                                                <i class="bi bi-bell"></i>
+                                                공지사항
+                                                <i class="bi bi-plus small float-end mt-1 text-body-tertiary"></i>
+                                            </a>
+                                        </h3>
+                                        <?php echo na_widget('wr-list', 'idx-notice', 'bo_list=notice wr_notice=1 is_notice=1'); ?>
                                         <ins class="adsbygoogle"
                                             style="display:block"
                                             data-ad-client="ca-pub-6922133409882969"
