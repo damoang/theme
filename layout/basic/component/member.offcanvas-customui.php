@@ -760,8 +760,8 @@ if (!defined('_GNUBOARD_')) {
                             <select class="form-select ui_custom_items" name="rcmd_color_set" id="reg_rcmd_color_set">
                                 <option value="">기본</option>
                                 <option value="gray">잿빛</option>
-                                <option value="green">숲속</option>
-                                <option value="green">노랑</option>
+                                <option value="forest">숲속</option>
+                                <option value="yellow">노랑</option>
                                 <option value="colorful">다앙</option>
                                 <option value="none">없음</option>
                                 <option value="self">설정</option>
