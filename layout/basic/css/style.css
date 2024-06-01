@@ -820,8 +820,8 @@ div a mark:hover {
 
 /* 추천수 0건일 때 적용 */
 .rcmd-box.step0 {
-  background-color: var(--bs-body-color-rgb) !important;
-  color: var(--bs-body-color) !important;
+  background-color: rgba(var(--bs-body-color-rgb), 0.04) !important;
+  color: rgba(var(--bs-emphasis-color-rgb), 0.20) !important;
 }
 
 /* 추천수 PC, Mobile 제어 */
