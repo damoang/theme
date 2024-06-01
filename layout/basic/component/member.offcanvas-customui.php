@@ -13,7 +13,7 @@ if (!defined('_GNUBOARD_')) {
         #user-ui-custom li.ui-custom-li-expand {color: var(--bs-card-cap-color);background-color: var(--bs-card-cap-bg);}
         #user-ui-custom #ui-custom-list-ul ul {border-top-right-radius: 0px;border-top-left-radius: 0px;border: 0px;}
         #user-ui-custom #ui-custom-list-ul ul li {border-left:0px;border-right:0px;}
-        #user-ui-custom #ui-custom-rcmd-ul ul li:first-child {border-top:0px;}
+        #user-ui-custom #ui-custom-list-ul ul li:first-child {border-top:0px;}
         #user-ui-custom #ui-custom-rcmd-ul ul {border-top-right-radius: 0px;border-top-left-radius: 0px;border: 0px;}
         #user-ui-custom #ui-custom-rcmd-ul ul li {border-left:0px;border-right:0px;}
         #user-ui-custom #ui-custom-rcmd-ul ul li:first-child {border-top:0px;}
