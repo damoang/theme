@@ -3,6 +3,8 @@
   var body_opacity_init = false;
   var ui_custom_animation = false;
 
+  var ip_mark_regex = /^([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.(♡|[0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.(♡|[0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){2}$/;
+
   function set_body_op_start() {
     body_opacity_init = true;
     if (document?.body != null) {
@@ -86,17 +88,15 @@
           //ui_custom_style += "#bo_list .list-group-item > div{position:relative;}\n";
           //ui_custom_style += "#bo_list .list-group-item div.wr-num.order-3 {margin-top: -0.4em;padding-top: 0.4em;padding-left:0.3em;padding-right:0.3em;border-radius: 5%;}\n";
           if (ui_custom_animation) {
-            ui_custom_style += "#bo_list li.list-group-item.da-link-block div.wr-num div.rcmd-box.cu_rv_1 {animation-delay: 1s;animation-duration: 1s;animation-name: popUp10;}\n";
-            ui_custom_style += "#bo_list li.list-group-item.da-link-block div.wr-num div.rcmd-box.cu_rv_2 {animation-delay: 1s;animation-duration: 1s;animation-name: popUp15;}\n";
-            ui_custom_style += "#bo_list li.list-group-item.da-link-block div.wr-num div.rcmd-box.cu_rv_3 {animation-delay: 1s;animation-duration: 1s;animation-name: popUp20;}\n";
-            ui_custom_style += "#bo_list li.list-group-item.da-link-block div.wr-num div.rcmd-box.cu_rv_4 {animation-delay: 1s;animation-duration: 1s;animation-name: popUp25;}\n";
-            ui_custom_style += "#bo_list li.list-group-item.da-link-block div.wr-num div.rcmd-box.cu_rv_5 {animation-delay: 1s;animation-duration: 1s;animation-name: popUp25;}\n";
+            ui_custom_style += "#bo_list li.list-group-item.da-link-block div.wr-num div.rcmd-box.step1 {animation-delay: 1s;animation-duration: 1s;animation-name: popUp10;}\n";
+            ui_custom_style += "#bo_list li.list-group-item.da-link-block div.wr-num div.rcmd-box.step2 {animation-delay: 1s;animation-duration: 1s;animation-name: popUp15;}\n";
+            ui_custom_style += "#bo_list li.list-group-item.da-link-block div.wr-num div.rcmd-box.step3 {animation-delay: 1s;animation-duration: 1s;animation-name: popUp20;}\n";
+            ui_custom_style += "#bo_list li.list-group-item.da-link-block div.wr-num div.rcmd-box.step4 {animation-delay: 1s;animation-duration: 1s;animation-name: popUp25;}\n";
 
-            ui_custom_style += "#bo_list li.list-group-item.da-link-block:hover div.wr-num div.rcmd-box.cu_rv_1 {animation-iteration-count: infinite;}\n";
-            ui_custom_style += "#bo_list li.list-group-item.da-link-block:hover div.wr-num div.rcmd-box.cu_rv_2 {animation-iteration-count: infinite;}\n";
-            ui_custom_style += "#bo_list li.list-group-item.da-link-block:hover div.wr-num div.rcmd-box.cu_rv_3 {animation-iteration-count: infinite;}\n";
-            ui_custom_style += "#bo_list li.list-group-item.da-link-block:hover div.wr-num div.rcmd-box.cu_rv_4 {animation-iteration-count: infinite;}\n";
-            ui_custom_style += "#bo_list li.list-group-item.da-link-block:hover div.wr-num div.rcmd-box.cu_rv_5 {animation-iteration-count: infinite;}\n";
+            ui_custom_style += "#bo_list li.list-group-item.da-link-block:hover div.wr-num div.rcmd-box.step1 {animation-iteration-count: infinite;}\n";
+            ui_custom_style += "#bo_list li.list-group-item.da-link-block:hover div.wr-num div.rcmd-box.step2 {animation-iteration-count: infinite;}\n";
+            ui_custom_style += "#bo_list li.list-group-item.da-link-block:hover div.wr-num div.rcmd-box.step3 {animation-iteration-count: infinite;}\n";
+            ui_custom_style += "#bo_list li.list-group-item.da-link-block:hover div.wr-num div.rcmd-box.step4 {animation-iteration-count: infinite;}\n";
           }
           //ui_media768_style += "#bo_list .list-group-item div.ms-md-auto > div > div:nth-child(3) {position:absolute;left:5px;width:2.3em;}\n";
           //ui_media768_style += "#bo_list .list-group-item div.wr-num.order-3 {position:absolute;left:5px;height: 2em;width: 2.3em;margin-top: -0.4em;padding-top: 0.4em;padding-left:0em;padding-right:0em;border-radius: 40%;}\n";
@@ -133,32 +133,95 @@
           ui_custom_style += "div#toTop a.ui-custom-expand-hidden.d-none-start {display: block !important;opacity: 0;transform: scale(0.5) rotate(0deg) translateY(200%);border-radius: 100%;}\n" +
             "div#toTop a#ui-custom-expand-button:has(i.opacity-25) {transform: rotateX(-180deg) scale(1.2);}\n";
 
-            if (ui_custom_animation) {
-              ui_custom_style += "div#toTop a.ui-custom-expand-hidden.d-block.cu-animation {transition: all 0.5s;height: 100%;}\n" +
+          if (ui_custom_animation) {
+            ui_custom_style += "div#toTop a.ui-custom-expand-hidden.d-block.cu-animation {transition: all 0.5s;height: 100%;}\n" +
               "div#toTop a.ui-custom-expand-hidden.d-none.cu-animation {display: block !important;transition: all 0.3s;opacity: 0;transform: scale(0.5) rotate(0deg) translateY(200%);border-radius: 100%;}\n" +
               "div#toTop a#ui-custom-expand-button.cu-animation {transition: all 0.7s;}\n" +
               "div#toTop a#ui-custom-expand-button.cu-animation:has(i.opacity-25) {transition: all 0.5s;}\n";
-            }
+          }
+        }
+        if ((ui_obj.rcmd_font_color ?? "") != "") {
+          var font_color = "";
+          var rcmd_color_set = (ui_obj.rcmd_color_set ?? "");
+          if (rcmd_color_set != "self") {
+            rcmd_color_set = "-" + rcmd_color_set
+          } else {
+            rcmd_color_set = ""
+          }
+          switch (ui_obj.rcmd_font_color ?? "") {
+            case "gray":
+              font_color = "#dddddd";
+              break;
+            case "black":
+              font_color = "#000000";
+              break;
+            case "white":
+              font_color = "#ffffff";
+              break;
+            case "self":
+              if ((ui_obj.rcmd_font_color_self ?? "") != "") font_color = ui_obj.rcmd_font_color_self;
+              break;
+            case "step":
+              if ((ui_obj.rcmd_font_color_1 ?? "") != "") ui_custom_style += "div.wr-num .rcmd-box" + rcmd_color_set + ".step1 {color : " + ui_obj.rcmd_font_color_1 + " !important}\n";
+              if ((ui_obj.rcmd_font_color_2 ?? "") != "") ui_custom_style += "div.wr-num .rcmd-box" + rcmd_color_set + ".step2 {color : " + ui_obj.rcmd_font_color_2 + " !important}\n";
+              if ((ui_obj.rcmd_font_color_3 ?? "") != "") ui_custom_style += "div.wr-num .rcmd-box" + rcmd_color_set + ".step3 {color : " + ui_obj.rcmd_font_color_3 + " !important}\n";
+              if ((ui_obj.rcmd_font_color_4 ?? "") != "") ui_custom_style += "div.wr-num .rcmd-box" + rcmd_color_set + ".step4 {color : " + ui_obj.rcmd_font_color_4 + " !important}\n";
+              break;
+          }
+          if (font_color != "") ui_custom_style += "div.wr-num .rcmd-box" + rcmd_color_set + " {color : " + font_color + " !important}\n";
+        }
+
+        if ((ui_obj.rcmd_color_set ?? "") == "self") {
+          var rcmd_color_step1 = ui_obj.rcmd_color_step1 ?? "";
+          var rcmd_color_step2 = ui_obj.rcmd_color_step2 ?? "";
+          var rcmd_color_step3 = ui_obj.rcmd_color_step3 ?? "";
+          var rcmd_color_step4 = ui_obj.rcmd_color_step4 ?? "";
+
+          /*
+          switch (ui_obj.rcmd_color_set ?? "") {
+            case "gray":
+              rcmd_color_step1 = "background-color : #f2f2f2";
+              rcmd_color_step2 = "background-color : #d9d9d9";
+              rcmd_color_step3 = "background-color : #bfbfbf";
+              rcmd_color_step4 = "background-color : #a6a6a6";
+              break;
+            case "blue":
+              rcmd_color_step1 = "--bs-bg-opacity:0.5; background-color : #dddddd";
+              rcmd_color_step2 = "--bs-bg-opacity:0.3; background-color : #3b82f6";
+              rcmd_color_step3 = "--bs-bg-opacity:0.5; background-color : #3b82f6";
+              rcmd_color_step4 = "--bs-bg-opacity:0.7; background-color : #3bb2f6";
+              break;
+            case "green":
+              rcmd_color_step1 = "--bs-bg-opacity:0.5; background-color : #dddddd";
+              rcmd_color_step2 = "--bs-bg-opacity:0.3; background-color : #facc15";
+              rcmd_color_step3 = "--bs-bg-opacity:0.5; background-color : #84cc16";
+              rcmd_color_step4 = "--bs-bg-opacity:0.7; background-color : #22c55e";
+              break;
+          }
+          */
+          if (rcmd_color_step1 != "") ui_custom_style += "div.wr-num .rcmd-box.step1 {" + rcmd_color_step1 + " !important;}\n";
+          if (rcmd_color_step2 != "") ui_custom_style += "div.wr-num .rcmd-box.step2 {" + rcmd_color_step2 + " !important;}\n";
+          if (rcmd_color_step3 != "") ui_custom_style += "div.wr-num .rcmd-box.step3 {" + rcmd_color_step3 + " !important;}\n";
+          if (rcmd_color_step4 != "") ui_custom_style += "div.wr-num .rcmd-box.step4 {" + rcmd_color_step4 + " !important;}\n";
         }
       }
       //hide_nick(ui_obj);
     }
     if (ui_custom_animation) {
-      //ui_custom_style += "#sidebar-site-menu .nav-item a.nav-link:hover i{animation-duration: 0.5s;animation-name: rightPop;}\n";
       ui_custom_style += "#sidebar-site-menu .nav-item a.nav-link:hover i::before{animation-duration: 0.5s;animation-name: smallTwistRight;}\n";
       ui_custom_style += "#sidebar-site-menu .nav-item a.nav-link:hover span.badge{animation-duration: 0.5s;animation-name: smallTwistLeftMargin;}\n";
-      //ui_custom_style += "#sidebar-site-menu .nav-item a.nav-link:active i{animation-duration: 1s;animation-name: rightPop;}\n";
-      //ui_custom_style += "#sidebar-site-menu .nav-item a.nav-link:active i::before{animation-duration: 1s;animation-name: smallTwist;}\n";
+      ui_custom_style += "#menuOffcanvas .nav-item a.nav-link:hover i::before{animation-duration: 0.5s;animation-name: smallTwistRight;}\n";
+      ui_custom_style += "#menuOffcanvas .nav-item a.nav-link:hover span.badge{animation-duration: 0.5s;animation-name: smallTwistLeftMargin;}\n";
 
       ui_custom_style += "#bo_list li.da-link-block:hover {animation-duration: 0.5s;animation-name: popUp;}\n";
       ui_custom_style += "li.da-link-block.ui-custom-link-active {animation-duration: 1s;animation-name: linkPopSmall !important;animation-fill-mode: forwards}";
       ui_custom_style += "div.nav-item.ui-custom-link-active {animation-duration: 1s;animation-name: linkPop !important;animation-fill-mode: forwards}";
       //ui_custom_style += "#bo_list li.da-link-block:active {animation-duration: 1s;animation-name: popUpEnd10;animation-fill-mode: forwards;}\n";
       //ui_custom_style += "#bo_list li.da-link-block:has(a:active) {animation-duration: 1s;animation-name: popUpEnd10;animation-fill-mode: forwards;}\n";
-      
-      ui_custom_style += "@keyframes popUp {0% {transform: translateX(0%) scale(1);}20% {transform: translateX(1%) scale(1.02);}100% {transform: translateX(0%) scale(1);}}\n";
-      ui_custom_style += "@keyframes linkPopSmall {0% {transform: translateY(0%) scale(1);}20% {transform: translateY(-3%) scale(1.03);}100% {transform: translateY(0%) scale(1);}}\n";
-      ui_custom_style += "@keyframes linkPop {0% {transform: translateY(0%) scale(1);}20% {transform: translateY(-5%) scale(1.05);}100% {transform: translateY(0%) scale(1);}}\n";
+
+      ui_custom_style += "@keyframes popUp {0% {transform: translateX(0%) scale(1);}20% {transform: translateX(0.5%) scale(1.01);}100% {transform: translateX(0%) scale(1);}}\n";
+      ui_custom_style += "@keyframes linkPopSmall {0% {transform: translateY(-0.5%%) scale(1.005);}20% {transform: translateY(-1.5%) scale(1.015);}100% {transform: translateY(0%) scale(1);}}\n";
+      ui_custom_style += "@keyframes linkPop {0% {transform: translateY(-3%) scale(1.03);}20% {transform: translateY(-5%) scale(1.05);}100% {transform: translateY(0%) scale(1);}}\n";
 
       ui_custom_style += "@keyframes popUp05 {0% {transform: scale(1);}20% {transform: scale(1.05);}100% {transform: scale(1);}}\n";
       ui_custom_style += "@keyframes popUp10 {0% {transform: scale(1);}20% {transform: scale(1.1);}100% {transform: scale(1);}}\n";
@@ -184,55 +247,58 @@
     if (ui_custom_style != "") {
       set_body_op_start();
       document.head.innerHTML += "<style id=\"user_ui_custom_styles\">\n" + ui_custom_style + "</style>";
+      setTimeout(function () {
+        set_body_op_end()
+      }, 1500);
     }
   }
-  function ui_custom_value_view(){
+  function ui_custom_value_view() {
     if (document.getElementById('ui_custom_json') != null) {
       document.getElementById('ui_custom_json').value = get_ui_custom_input_string();
     }
     set_ui_custom_value_btn(false);
   }
-  function ui_custom_value_cancle(){
+  function ui_custom_value_cancle() {
     set_ui_custom_value_btn(true);
   }
-  function ui_custom_value_clear(){
+  function ui_custom_value_clear() {
     if (document.getElementById('ui_custom_json') != null) {
       document.getElementById('ui_custom_json').value = "";
       set_ui_custom_values(true);
     }
   }
-  function ui_custom_value_reload(){
+  function ui_custom_value_reload() {
     set_ui_custom_input_clear();
     set_ui_custom_values(false);
   }
-  function ui_custom_value_save(){
+  function ui_custom_value_save() {
     if (set_ui_custom_values(true)) {
       set_ui_custom_value_btn(true);
-      setTimeout(function(){
+      setTimeout(function () {
         alert("값이 정상적으로 입력되었습니다.");
       });
     }
   }
-  function ui_custom_value_paste(){
-    if (document.getElementById('ui_custom_json') != null) {    
-      try{
+  function ui_custom_value_paste() {
+    if (document.getElementById('ui_custom_json') != null) {
+      try {
         navigator.clipboard.readText().then((clipText) => {
           document.getElementById('ui_custom_json').value = clipText;
           ui_custom_value_save();
-        });  
-      } catch(e1) {
-        try{
+        });
+      } catch (e1) {
+        try {
           document.getElementById('ui_custom_json').select();
           document.execCommand("paste");
           ui_custom_value_save();
-        } catch(e2) {
+        } catch (e2) {
           alert("클립보드의 내용을 가져올 수 없습니다.");
-        }  
+        }
       }
     }
   }
 
-  function ui_custom_value_copy(){
+  function ui_custom_value_copy() {
     if (document.getElementById('ui_custom_json') != null) {
       try {
         navigator.clipboard.writeText(document.getElementById('ui_custom_json').value);
@@ -240,33 +306,36 @@
       } catch (err) {
         try {
           document.getElementById('ui_custom_json').select();
-          document.execCommand("copy");  
-        } catch(e2) {
+          document.execCommand("copy");
+          alert("클립보드에 저장 되었습니다.");
+        } catch (e2) {
           alert("클립보드 권한을 확인해보세요.");
-        } 
+          return false;
+        }
       }
     }
+    return true;
   }
 
-  function set_ui_custom_value_btn(default_mode){
+  function set_ui_custom_value_btn(default_mode) {
     var default_el = Array.from(document.querySelectorAll("#user-ui-custom .ui-custom-btn-default"));
     var view_el = Array.from(document.querySelectorAll("#user-ui-custom .ui-custom-btn-view"));
     if (default_mode) {
-      default_el.forEach((item)=>{
+      default_el.forEach((item) => {
         item.classList.remove("d-none");
-        item.classList.add("d-block");
+        item.classList.add("d-inline-block");
       });
-      view_el.forEach((item)=>{
-        item.classList.remove("d-block");
+      view_el.forEach((item) => {
+        item.classList.remove("d-inline-block");
         item.classList.add("d-none");
       });
     } else {
-      default_el.forEach((item)=>{
+      default_el.forEach((item) => {
         item.classList.add("d-none");
-        item.classList.remove("d-block");
+        item.classList.remove("d-inline-block");
       });
-      view_el.forEach((item)=>{
-        item.classList.add("d-block");
+      view_el.forEach((item) => {
+        item.classList.add("d-inline-block");
         item.classList.remove("d-none");
       });
 
@@ -284,6 +353,17 @@
     , "back_button"
     , "animation_off"
     , "thumbup_em_off"
+    , "rcmd_font_color"
+    , "rcmd_font_color_self"
+    , "rcmd_color_set"
+    , "rcmd_color_step1"
+    , "rcmd_color_step2"
+    , "rcmd_color_step3"
+    , "rcmd_color_step4"
+    , "rcmd_color_step1_value"
+    , "rcmd_color_step2_value"
+    , "rcmd_color_step3_value"
+    , "rcmd_color_step4_value"
 
     , "left_menu"
     , "menu_off"
@@ -314,6 +394,7 @@
 
     , "hide_member_memo"
     , "hide_list_memo"
+    , "blur_contents_memo"
     , "memo_ip_track"
 
     , "mymenu_img"
@@ -345,7 +426,7 @@
   ];
   var ui_custom_default = { show_width: 1200, font_size: 1, line_height: 1.5, menu_width: 25, expand_quick_size: 2.5 };
 
-  function set_ui_custom_input_clear(){
+  function set_ui_custom_input_clear() {
     ui_custom_input.forEach(function (reg) {
       var temp_input = $("#reg_" + reg)[0]
       if (temp_input != null) {
@@ -357,7 +438,7 @@
       }
     });
   }
-  function get_ui_custom_input_string(){
+  function get_ui_custom_input_string() {
 
     var ui_custom_json = {};
     var changed = false;
@@ -393,9 +474,9 @@
     });
     var json_str = "";
     if (changed) {
-      try{
+      try {
         json_str = JSON.stringify(ui_custom_json);
-      } catch(e) {
+      } catch (e) {
       }
     }
     return json_str;
@@ -404,7 +485,7 @@
   function ui_custom_apply() {
     var item_key = "ui_custom";
     var json_str = get_ui_custom_input_string();
-    if (json_str!="") {
+    if (json_str != "") {
       localStorage.setItem(item_key, json_str);
     } else {
       localStorage.removeItem(item_key)
@@ -435,13 +516,13 @@
     }
     var ui_custom_obj = null;
     var success = true;
-    
+
     if (ui_custom_storage_str != null && ui_custom_storage_str != "") {
       ui_custom_storage_str = ui_custom_storage_str.trim();
     } else {
       ui_custom_storage_str = "{}"
     }
-    try{
+    try {
       ui_custom_obj = JSON.parse(ui_custom_storage_str);
       if (text_area) {
         set_ui_custom_input_clear();
@@ -464,7 +545,7 @@
       if (!text_area) {
         if (document.getElementById('ui_custom_json') != null) document.getElementById('ui_custom_json').value = ui_custom_storage_str;
       }
-    } catch(e){
+    } catch (e) {
       success = false;
     }
 
@@ -484,8 +565,8 @@
     if (ui_obj != null) {
 
       //본문 필터링
-      if (ui_obj.content_blur ?? false) {
-        check_content_blur(ui_obj?.content_blur_word);
+      if ((ui_obj.content_blur ?? false) || ((ui_obj?.ui_custom ?? false) && (ui_obj?.blur_contents_memo ?? "") != "")) {
+        check_content_blur(ui_obj?.content_blur_word, (ui_obj?.blur_contents_memo ?? ""));
       }
       //제목 필터링
       if (ui_obj.title_filtering ?? false) {
@@ -500,7 +581,7 @@
 
       if (ui_obj.ui_custom != null && ui_obj.ui_custom) {
         if (!(ui_obj.thumbup_em_off ?? false)) {
-          set_thumbup_em(reload);
+          set_thumbup_em(ui_obj, reload);
         }
         //목록 감추기
         if (ui_obj.list_toggle != null && ui_obj.list_toggle) {
@@ -545,7 +626,7 @@
                 set_expand_button_hide();
                 setTimeout(function () {
                   set_expand_quick(ui_obj, reload);
-                }, 550);  
+                }, 550);
               } else {
                 set_expand_quick(ui_obj, reload);
               }
@@ -576,60 +657,80 @@
           start_memo_tracking();
         }
       }
-      set_body_op_end();
     }
+    set_body_op_end();
   }
 
   //함수 모음 시작
-  function set_thumbup_em(reload){
-    var cv_1,cv_2,cv_3,cv_4,cv_5;
-    var rv_1,rv_2,rv_3;
-    var cv_1=5, cv_2=10, cv_3=15, cv_4=20,cv_5=30;
-    var rv_1=500, rv_2=1000,rv_3=5000;
+  function set_thumbup_em(ui_obj,reload) {
+    var cv_1 = Number(ui_obj.rcmd_color_step1_value ?? 0);
+    var cv_2 = Number(ui_obj.rcmd_color_step2_value ?? 6);
+    var cv_3 = Number(ui_obj.rcmd_color_step3_value ?? 11);
+    var cv_4 = Number(ui_obj.rcmd_color_step4_value ?? 51);
+    var change_step_value = (ui_obj.rcmd_color_step1_value ?? false )||(ui_obj.rcmd_color_step2_value ?? false )||(ui_obj.rcmd_color_step3_value ?? false )||(ui_obj.rcmd_color_step4_value ?? false );
+    if (change_step_value) {
+      if (cv_2 < cv_1) cv2 = cv_1;
+      if (cv_3 < cv_2) cv3 = cv_2;
+      if (cv_4 < cv_3) cv4 = cv_3;  
+    }
+    var rv_1 = 500, rv_2 = 1000, rv_3 = 5000;
     //var option_class = ["bg-danger","bg-success","bg-primary","bg-info","bg-secondary","bg-opacity-25","bg-opacity-10","bg-gradient","fw-bold","cu_rv_1","cu_rv_2","cu_rv_3"];
-    var option_class = ["cu_rv_1","cu_rv_2","cu_rv_3","cu_rv_4","cu_rv_5"];
-    Array.from(document.querySelectorAll("#bo_list .list-group-item.da-link-block:has(div.rcmd-box)")).forEach((item)=>{
+    var option_class = ["cu_rv_1", "cu_rv_2", "cu_rv_3", "cu_rv_4", "cu_rv_5"];
+    var step_class = ["step1","step2","step3","step4"];
+    var color_set = ui_obj.rcmd_color_set ?? "";
+    if (color_set != "" && color_set != "self") {
+      color_set = "rcmd-box-"+color_set;
+    }
+
+    Array.from(document.querySelectorAll("#bo_list .list-group-item.da-link-block:has(div.rcmd-box)")).forEach((item) => {
       var thumb_up = item.querySelector("div.rcmd-box");
-      if (thumb_up!=null) {
+      if (thumb_up != null) {
         if (reload) {
-          option_class.forEach((tc)=>{
+          option_class.forEach((tc) => {
             thumb_up.classList.remove(tc);
-          })  
+          });
+          step_class.forEach((tc) => {
+            thumb_up.classList.remove(tc);
+          })
+
         }
-      
+
         var temp_num = thumb_up;
-        if (temp_num==null) {
+        if (temp_num == null) {
           temp_num = 0;
         } else {
           temp_num = Number(temp_num.innerText.split("\n")[0]);
         }
         var add_class_list = "";
-        if (temp_num >= cv_5) {
-          add_class_list = "cu_rv_5";
-        } else if (temp_num > cv_4){
-          add_class_list = "cu_rv_4";
-        } else if (temp_num >= cv_3){
-          add_class_list = "cu_rv_3";
-        } else if (temp_num >= cv_2){
-          add_class_list = "cu_rv_2";
-        } else if (temp_num >= cv_1){
-          add_class_list = "cu_rv_1";
+        
+        if (change_step_value) {
+          step_class.forEach((tc) => {
+            thumb_up.classList.remove(tc);
+          });
+          if (temp_num >=cv_4) {
+            add_class_list = "step4 cu_rv_4";
+          } else if (temp_num >=cv_3) {
+            add_class_list = "step3 cu_rv_3";
+          } else if (temp_num >=cv_2) {
+            add_class_list = "step2 cu_rv_2";
+          } else if (temp_num >=cv_3) {
+            add_class_list = "step1 cu_rv_1";
+          } else  {
+            add_class_list = "step0";
+          }
         }
-        /*
-        var read_num = item.querySelector("div.wr-num.order-4");
-        if (read_num==null) {
-          read_num = 0;
-        } else {
-          read_num = Number(read_num.innerText.split("\n")[0]);
+        if (add_class_list != "") {
+          add_class_list.split(" ").forEach((cl)=>{
+            thumb_up.classList.add(cl);
+          });
         }
-        */
-        if (add_class_list!="") {
-          thumb_up.classList.add(add_class_list);
+        if (color_set!="") {
+          thumb_up.classList.add(color_set);
         }
       }
     });
   }
-  
+
   function set_list_toggle() {
     var parent_write = document.getElementById(body_parent_id);
     if (parent_write != null) {
@@ -959,41 +1060,41 @@
         blur_txt.remove();
         document.getElementById(body_parent_id).style.removeProperty("position");
 
-      }  else {
-        var remove_transition = function(e){
+      } else {
+        var remove_transition = function (e) {
           var blur_txt = document.getElementById(body_blur_id);
           if (blur_txt != null) {
             blur_txt.remove();
             document.getElementById(body_parent_id).style.removeProperty("position");
-            }
+          }
           body_con.style.removeProperty('transition');
           body_con.removeEventListener('transitionend', remove_transition);
         };
         body_con.style.filter = "blur(5em)";
         body_con.style.opacity = "0.7";
         body_con.style.setProperty('transition', 'all 0.2s');
-      
-        setTimeout(function(){
+
+        setTimeout(function () {
           body_con.style.setProperty('transition', 'all 0.7s');
           body_con.addEventListener('transitionend', remove_transition);
           body_con.style.removeProperty('filter');
           body_con.style.removeProperty('opacity');
           body_con.style.removeProperty('max-height');
           body_con.style.removeProperty('overflow');
-        },200);      
+        }, 200);
         body_con.removeEventListener("click", remove_blur);
-        
+
         if (blur_txt != null) {
           blur_txt.style.setProperty('opacity', '0.5');
-          var remove_blur_txt_transition = function(e){
+          var remove_blur_txt_transition = function (e) {
             blur_txt.remove();
             document.getElementById(body_parent_id).style.removeProperty("position");
           };
           blur_txt.addEventListener('transitionend', remove_blur_txt_transition);
-          setTimeout(function(){
+          setTimeout(function () {
             blur_txt.style.setProperty('transition', 'all 1s');
-            blur_txt.style.setProperty('opacity', '0');          
-          },100);
+            blur_txt.style.setProperty('opacity', '0');
+          }, 100);
         }
       }
     }
@@ -1008,49 +1109,66 @@
     blur_txt.style.paddingBottom = paddingTB + "px";
   }
 
-  function check_content_blur(word_list) {
+  function check_content_blur(word_list, blur_contents_memo) {
     if (document.getElementById(body_con_id) != null) {
-      word_list = (word_list ?? "").trim()
-      var check_regex = /^[ㄱ-ㅎ가-힣a-zA-Z0-9\[\]\(\)]+$/;
-      var word_regex = "";
-      if (word_list != "") {
-        var word_arr = word_list.split(",");
-        word_arr.forEach(function (word) {
-          word = word.trim();
-          if (word != "" && check_regex.test(word)) {
-            if (word_regex != "") {
-              word_regex += "|";
-            }
-            word_regex += word;
-          }
-        });
+      var content_blur = false;
 
-        if (word_regex != "") {
-          var re = new RegExp(word_regex, "i");
-          var title_text = document.getElementById("bo_v_title")?.innerText ?? "";
-          if (re.test(title_text)) {
-            set_content_blur();
-          } else {
-            if (ui_custom_animation) {
-              var body_con = document.getElementById(body_con_id);
-              body_con.style.filter = "blur(0.2em)";
-              body_con.style.opacity = "0.1";
-              var remove_transition = function(){
-                this.removeEventListener('transitionend', remove_transition);
-                body_con.style.removeProperty('transition');
-                body_con.style.removeProperty('filter');
-                body_con.style.removeProperty('opacity');
-              }
-              setTimeout(function(){
-                body_con.style.setProperty('transition', 'all 0.4s');
-                body_con.style.filter = "blur(0em)";      
-                body_con.style.opacity = "1";
-                body_con.addEventListener('transitionend', remove_transition);
-              },100);  
-            }
+      if (blur_contents_memo != "" && !content_blur) {
+        var em = document.querySelector("#bo_v_info em.da-member-memo__memo");
+        if (em != null) {
+          if (blur_contents_memo == "all" || em.classList.contains("da-memo-color--" + blur_contents_memo)) {
+            content_blur = true;
           }
         }
       }
+
+      word_list = (word_list ?? "").trim()
+      if (word_list != "" && !content_blur) {
+        var check_regex = /^[ㄱ-ㅎ가-힣a-zA-Z0-9\[\]\(\)]+$/;
+        var word_regex = "";
+        if (word_list != "") {
+          var word_arr = word_list.split(",");
+          word_arr.forEach(function (word) {
+            word = word.trim();
+            if (word != "" && check_regex.test(word)) {
+              if (word_regex != "") {
+                word_regex += "|";
+              }
+              word_regex += word;
+            }
+          });
+
+          if (word_regex != "") {
+            var re = new RegExp(word_regex, "i");
+            var title_text = document.getElementById("bo_v_title")?.innerText ?? "";
+            content_blur = re.test(title_text);
+          }
+        }
+      }
+
+      if (content_blur) {
+        set_content_blur();
+      } else {
+        if (ui_custom_animation) {
+          var body_con = document.getElementById(body_con_id);
+          body_con.style.filter = "blur(0.2em)";
+          body_con.style.opacity = "0.1";
+          var remove_transition = function () {
+            this.removeEventListener('transitionend', remove_transition);
+            body_con.style.removeProperty('transition');
+            body_con.style.removeProperty('filter');
+            body_con.style.removeProperty('opacity');
+          }
+          setTimeout(function () {
+            body_con.style.setProperty('transition', 'all 0.4s');
+            body_con.style.filter = "blur(0em)";
+            body_con.style.opacity = "1";
+            body_con.addEventListener('transitionend', remove_transition);
+          }, 100);
+        }
+      }
+
+
     }
   }
 
@@ -1062,16 +1180,16 @@
     body_con.style.overflow = "hidden";
 
     if (!ui_custom_animation) {
-      body_con.style.filter = "blur(9em)";      
+      body_con.style.filter = "blur(9em)";
       body_con.style.opacity = "0.3";
-  } else {
+    } else {
       body_con.style.filter = "blur(3em)";
       body_con.style.opacity = "0.7";
-      setTimeout(function(){
+      setTimeout(function () {
         body_con.style.setProperty('transition', 'all 1s');
-        body_con.style.filter = "blur(9em)";      
+        body_con.style.filter = "blur(9em)";
         body_con.style.opacity = "0.3";
-      },300);
+      }, 300);
 
     }
 
@@ -1116,7 +1234,7 @@
         var ex_titles = ["팝업메뉴", "글쓰기", "댓글쓰기", "목록 토글", "목록으로", "내 글 - 현재 게시판", "내 댓글 - 현재 게시판", "메모 상태", "앞으로", "뒤로"];
         var ex_icons = ["list", "pencil-square", "r-square-fill", "square-half", "filter-square-fill", "chat-square-text-fill", "chat-square-quote-fill", "chat-square-dots-fill", "arrow-right-square-fill", "arrow-left-square-fill"];
         var add_button = false;
-        for (var i = 0; i < ex_hrefs.length; i++) {  
+        for (var i = 0; i < ex_hrefs.length; i++) {
           // var check_add = add_button;
           var tag_a = null;
           var tag_a_href = null;
@@ -1231,7 +1349,7 @@
             }
             tag_a.className = tag_a_className;
             tag_a.id = tag_a_id_prev + ex_hrefs[i];
-            tag_a.title  = ex_titles[i];
+            tag_a.title = ex_titles[i];
             // if (check_add != add_button) {
             //     tag_a.classList.remove("mt-0");
             // }
@@ -1245,21 +1363,21 @@
 
         if (ui_obj.shortcut_use && ui_obj.expand_shortcut) {
           for (var i = 1; i < 11; i++) {
-            var check_i = (i<10 ? i:i - 10) + "";
-            if ((ui_obj["expand_shortcut_" + check_i] ?? false) && shortcut_map[check_i]?.href != null ){
+            var check_i = (i < 10 ? i : i - 10) + "";
+            if ((ui_obj["expand_shortcut_" + check_i] ?? false) && shortcut_map[check_i]?.href != null) {
               var tag_a = document.createElement("a");
               tag_a.href = shortcut_map[check_i].href;
               tag_a.className = tag_a_className;
               tag_a.id = tag_a_id_prev + shortcut_map[check_i].code;
-              tag_a.title  = shortcut_map[check_i].name;
+              tag_a.title = shortcut_map[check_i].name;
               var tag_i = document.createElement("i");
               tag_i.className = "bi bi-" + check_i + "-square-fill";
               tag_a.appendChild(tag_i);
               toTop.insertBefore(tag_a, toTop_as);
-              add_button = true;  
+              add_button = true;
             }
           }
-        }        
+        }
 
         if (add_button) {
           toTop.classList.add('d-block');
@@ -1338,13 +1456,13 @@
     var b_show = (expand_button_state == "show");
     var button = document.getElementById("ui-custom-expand-button-i");
     if (button != null) {
-      
+
       if (ui_custom_animation) {
         if (animation) {
           button.parentNode.classList.add("cu-animation");
         }
       } else {
-        button.parentNode.classList.remove("cu-animation");        
+        button.parentNode.classList.remove("cu-animation");
       }
 
       if (b_show) {
@@ -1371,8 +1489,8 @@
         var temp = temp_show;
         if (animation) {
           temp.classList.remove("d-none-start");
-          temp.classList.add("cu-animation");          
-          setTimeout(function(temp, is_final, b_show){
+          temp.classList.add("cu-animation");
+          setTimeout(function (temp, is_final, b_show) {
             if (b_show) {
               temp.classList.remove("d-none");
               temp.classList.add("d-block");
@@ -1382,11 +1500,11 @@
               temp.classList.add("d-none");
             }
             if (is_final) {
-              setTimeout(function(){
+              setTimeout(function () {
                 is_set_expand_button_ing = false;
-              },700);
+              }, 700);
             }
-          },(check_i) * 30 + 10, temp_show, is_final, b_show);
+          }, (check_i) * 30 + 10, temp_show, is_final, b_show);
         } else {
           temp.classList.remove("d-none-start");
           temp.classList.remove("cu-animation");
@@ -1401,15 +1519,15 @@
           }
 
           temp.classList.remove("page-start");
-        }      
+        }
 
       }
       if (!animation) {
         is_set_expand_button_ing = false;
-      }        
-    }      
+      }
+    }
   }
-  
+
   function toggle_expand_button() {
     if (is_set_expand_button_ing) {
       return;
@@ -1421,7 +1539,7 @@
       } else {
         localStorage.setItem(expand_state_key, "show");
       }
-      set_expand_button(ui_custom_animation);      
+      set_expand_button(ui_custom_animation);
     }
   }
 
@@ -1559,27 +1677,29 @@
     return link_obj;
   }
 
-  function set_links_active_pop(){
+  function set_links_active_pop() {
     var sidebar_site_menu_links = document.querySelectorAll('#sidebar-site-menu div.nav-item:has(a.nav-link)');
+    var off_menu_links = document.querySelectorAll('#menuOffcanvas div.nav-item:has(a.nav-link)');
     var list_menu_links = document.querySelectorAll("section#bo_list > ul > li.da-link-block:has(a.da-link-block)");
     Array.from(sidebar_site_menu_links).forEach(set_item_active_pop);
+    Array.from(off_menu_links).forEach(set_item_active_pop);
     Array.from(list_menu_links).forEach(set_item_active_pop);
   }
-  function set_item_active_pop(item,index) {
+  function set_item_active_pop(item, index) {
     item.classList.remove("ui-custom-link-active");
     var a_tag = item.querySelector('a.da-link-block, a.nav-link')
-    if (a_tag!=null) {
-      a_tag.addEventListener("click",item_active_pop_event);
+    if (a_tag != null) {
+      a_tag.addEventListener("click", item_active_pop_event);
     } else {
       console.debug("a_tag is null");;
     }
   }
-  function item_active_pop_event(e){
+  function item_active_pop_event(e) {
     console.debug(e.target);
     console.debug(this);
     var active_top = this.closest("div.nav-item , li.da-link-block");
     if (active_top != null) {
-      active_top.classList.add("ui-custom-link-active");      
+      active_top.classList.add("ui-custom-link-active");
     } else {
 
     }
@@ -1589,11 +1709,11 @@
     shortcut_map = {}
 
     if (ui_obj.hide_member_memo != null && ui_obj.hide_member_memo) {
-      shortcut_map["U"] = {href:"javascript:toggle_hide_member_memo();",name:"메모",code:"memo"};
+      shortcut_map["U"] = { href: "javascript:toggle_hide_member_memo();", name: "메모", code: "memo" };
     }
 
     if (ui_obj?.list_toggle ?? false) {
-      shortcut_map["D"] = {href:"javascript:list_toggle();",name:"목록토글",code:"list_toggle"};
+      shortcut_map["D"] = { href: "javascript:list_toggle();", name: "목록토글", code: "list_toggle" };
     }
 
     var removes = document.querySelectorAll('div.shortcut_custom');
@@ -1641,7 +1761,7 @@
           shortcut_div.appendChild(shortcut_link);
           sidebar_site_menu.insertBefore(shortcut_div, sidebar_site_menu_first);
           offcanvas_menu.insertBefore(shortcut_div.cloneNode(true), offcanvas_menu_first);
-          shortcut_map[shortcut_i + ""] = {href:shortcut_link.href,name:link_map[shortcut].name,code:link_map[shortcut].link};
+          shortcut_map[shortcut_i + ""] = { href: shortcut_link.href, name: link_map[shortcut].name, code: link_map[shortcut].link };
         }
       }
     }
@@ -1650,6 +1770,7 @@
       window.removeEventListener('keypress', handleShortCutKeyPress);
       window.addEventListener('keypress', handleShortCutKeyPress);
     }
+
     //console.debug(shortcut_map)
   }
 
@@ -1669,6 +1790,36 @@
       element = element.parentElement;
     }
     return false;
+  }
+
+  function handleClearSettingKeyPress(event) {
+    if (isShortCutInputElement(event.target) || isShortCutContentEditableElement(event.target)) {
+      return;
+    }
+    var key = (event?.code ?? "").replace(/Key|Digit|Numpad/, "");
+
+    if (event.shiftKey && event.altKey) {
+      switch (key) {
+        case "U":
+          if (confirm("개인화면 설정값을 모두 삭제 하시 겠습니까? 설정값은 클립보드에 복사 됩니다.")) {
+            if (document.getElementById('ui_custom_json') != null) {
+              document.getElementById('ui_custom_json').value = localStorage.getItem("ui_custom") ?? "";
+              ui_custom_value_copy();
+            }
+            localStorage.removeItem("ui_custom");
+            alert("개인화면 설정값이 삭제되었습니다.");
+            set_ui_custom();
+            draw_ui_custom();
+            ui_custom_value_clear();
+          }
+          break;
+        default:
+          break;
+      }
+      return;
+    } else {
+      return;
+    }
   }
 
   function handleShortCutKeyPress(event) {
@@ -1705,24 +1856,30 @@
         check_ui.classList.remove("d-none");
         if (memo_check != null) {
           memo_check.addEventListener("change", change_memo_tracking);
+          Array.from(document.querySelectorAll(".ui-custom-ip-memo-default")).forEach((item) => { item.classList.remove('d-none') });
         }
       } else {
         if (memo_check != null && memo_check.checked) {
           memo_check.checked = false;
         }
         check_ui.classList.add("d-none");
+        Array.from(document.querySelectorAll(".ui-custom-ip-memo-sub")).forEach((item) => { item.classList.add('d-none') });
       }
     }
   }
 
   //사용여부 변경에 따른 경고문구 표시
   function change_memo_tracking() {
+    document.getElementById("load_ip_memo_list").checked = false;
     var memo_check = document.getElementById('reg_memo_ip_track');
     if (memo_check.checked) {
       var temp_obj = get_board_mb_id();
       check_memo_user_id(temp_obj?.id, null, null, function () {
         alert("빨간색 메모의 IP만 기록합니다.\n메모의 IP기록은 단순 참고만 하시기 바랍니다.");
       });
+      Array.from(document.querySelectorAll(".ui-custom-ip-memo-default")).forEach((item) => { item.classList.remove('d-none') });
+    } else {
+      Array.from(document.querySelectorAll(".ui-custom-ip-memo-sub")).forEach((item) => { item.classList.add('d-none') });
     }
   }
 
@@ -2140,6 +2297,7 @@
         if (result != null) {
           var ip_p = info_map.list_ip_map[list_ip].p;
           var ids = Object.keys(result.id);
+          var desc = result.desc;
           ip_p.forEach((p) => {
             var temp_info = info_map.info_list[p];
             var same_ip_ids = [];
@@ -2152,11 +2310,12 @@
               });
             }
 
-            if (same_ip_ids.length > 0) {
+            if (same_ip_ids.length > 0 || desc != null) {
               var s = document.createElement('span');
               s.className = "ui-custom-check-multi-id da-member-memo";
               s.classList.add(checkMultiClass);
-              s.innerHTML = "<span class='badge rounded-pill align-middle da-member-memo__memo da-memo-color--yellow'> 유사 IP 계정 </span>&nbsp;<em class='badge rounded-pill align-middle da-member-memo__memo da-memo-color--red'> " + same_ip_ids.join(" </em>&nbsp;<em class='badge rounded-pill align-middle da-member-memo__memo da-memo-color--red'> ") + " </em>";
+              var change_string;
+              s.innerHTML = "<span class='badge rounded-pill align-middle da-member-memo__memo da-memo-color--yellow'> " + (desc ?? "유사 IP 계정") + " </span>" + (same_ip_ids.length == 0 ? "" : "&nbsp;<em class='badge rounded-pill align-middle da-member-memo__memo da-memo-color--red'> " + same_ip_ids.join(" </em>&nbsp;<em class='badge rounded-pill align-middle da-member-memo__memo da-memo-color--red'> ") + " </em>");
               temp_info.lastElementChild.after(s);
             }
           });
@@ -2460,15 +2619,15 @@
               display_important = true;
             }
           }
-          
+
           if (display_important) {
             var noti_item = board_info.noti_list[index].closest("li.bg-light-subtle");
             if (list_animation) {
-              noti_item.style = "display : block !important;opacity:0.3;/*transform: rotateX(-30deg) translateY(-" + ((diplay_cnt+1)*5) + "0%);*/ filter:blur(0.5em);";
-              setTimeout(function(noti_item, cnt){
-                noti_item.style = "display : block !important;opacity:1; transition:all " + ((cnt+1)*0.1) + "s ease-in " + ((cnt+1)*0.05) + "s";
+              noti_item.style = "display : block !important;opacity:0.3;/*transform: rotateX(-30deg) translateY(-" + ((diplay_cnt + 1) * 5) + "0%);*/ filter:blur(0.5em);";
+              setTimeout(function (noti_item, cnt) {
+                noti_item.style = "display : block !important;opacity:1; transition:all " + ((cnt + 1) * 0.1) + "s ease-in " + ((cnt + 1) * 0.05) + "s";
                 noti_item.addEventListener('transitionend', transitionEndRemove);
-              },100, noti_item, diplay_cnt);  
+              }, 100, noti_item, diplay_cnt);
             } else {
               noti_item.style = "display : block !important;"
             }
@@ -2533,16 +2692,16 @@
                   diff_span.className = "count-plus ui-custom-read-reply-cnt text-primary ml-0"
                   diff_span.innerHTML = diff;
                   parent_node.insertBefore(diff_span, float_end);
-                  
+
                   if (ui_custom_animation) {
-                    cnt_node.style= "opacity:0.5;transform: translateX(40%);";
-                    diff_span.style= "opacity:0;transform: translateX(-100%);";
+                    cnt_node.style = "opacity:0.5;transform: translateX(40%);";
+                    diff_span.style = "opacity:0;transform: translateX(-100%);";
                     cnt_node.addEventListener('transitionend', transitionEndClear);
                     diff_span.addEventListener('transitionend', transitionEndClear);
-                    setTimeout(function(){
-                      diff_span.style= "opacity:0.8;transition:all 1s;";
+                    setTimeout(function () {
+                      diff_span.style = "opacity:0.8;transition:all 1s;";
                       cnt_node.style = "opacity:1;transition:all 1s;";
-                    },500);  
+                    }, 500);
                   }
                   //diff_span.style.style
                 }
@@ -2553,11 +2712,11 @@
       });
     }
   }
-  function transitionEndClear(){
+  function transitionEndClear() {
     this.style = "";
     this.removeEventListener('transitionend', transitionEndClear);
   }
-  function transitionEndRemove(){
+  function transitionEndRemove() {
     this.style.removeProperty('transition');
     this.removeEventListener('transitionend', transitionEndRemove);
   }
@@ -2607,10 +2766,35 @@
         });
       });
       //탭 클릭 이벤트 설정 끝
-      
+
       //reg_expand_shortcut
       $("#reg_expand_shortcut").change(function () {
         set_ui_custom_expand();
+      });
+      
+      $("#reg_rcmd_font_color").change(function () {
+        switch(this.value) {
+          case "self":
+            $("#reg_rcmd_font_color_self").show();
+            $(".rcmd_font_steps").hide();
+            break;
+          case "step":
+            $("#reg_rcmd_font_color_self").hide();
+            $(".rcmd_font_steps").show();
+            break;
+          default:
+            $("#reg_rcmd_font_color_self").hide();
+            $(".rcmd_font_steps").hide();
+            break;
+          }
+      });
+
+      $("#reg_rcmd_color_set").change(function () {
+        if (this.value == "self") {
+          $(".rcmd_color_steps").show();
+        } else {
+          $(".rcmd_color_steps").hide();
+        }
       });
 
       $("#reg_expand_quick").change(function () {
@@ -2624,6 +2808,8 @@
       $("#reg_ui_custom").change(function () {
         if ($("#reg_ui_custom").is(":checked")) {
           $(".ui-custom-item").show();
+          $("#reg_rcmd_font_color").trigger('change');
+          $("#reg_rcmd_color_set").trigger('change');
           set_ui_custom_expand();
           set_ui_custom_read_history();
         } else {
@@ -2662,18 +2848,18 @@
   }
 
   function set_ui_custom_expand_shortcut() {
-    if ($("#reg_expand_quick").is(":checked") && $("#reg_shortcut_use").is(":checked") ) {
+    if ($("#reg_expand_quick").is(":checked") && $("#reg_shortcut_use").is(":checked")) {
       $("#reg_expand_shortcut_li").show();
       if ($("#reg_expand_shortcut").is(":checked")) {
         $(".ui-custom-expand-shortcut").show();
         var link_map = get_board_link_map();
-        Array.from(document.querySelectorAll(".ui-custom-expand-shortcut")).forEach((item)=>{
+        Array.from(document.querySelectorAll(".ui-custom-expand-shortcut")).forEach((item) => {
           var temp_input = item.querySelector("input");
-          var temp_id = temp_input.id.replace("expand_","");
+          var temp_id = temp_input.id.replace("expand_", "");
           var check_input = document.getElementById(temp_id);
           if ((check_input?.value ?? "") != "") {
             var temp_label = item.querySelector("label.col-form-label");
-            temp_label.innerHTML = temp_id.substring(temp_id.length-1) +  " : " + link_map[check_input.value].name;
+            temp_label.innerHTML = temp_id.substring(temp_id.length - 1) + " : " + link_map[check_input.value].name;
             $(item).show();
           } else {
             $(item).hide();
@@ -2718,6 +2904,7 @@
   }
 
   function set_ui_custom_onload() {
+
     draw_ui_custom();
 
     //개인설정 그리기
@@ -2725,57 +2912,361 @@
     check_indexDB();
     set_ui_custom_click_event();
 
-    var btn_ui_apply = document.getElementById("btn_ui_apply");
-    if (btn_ui_apply) {
-      btn_ui_apply.addEventListener("click", ui_custom_apply);
-    }
+    setBtnClickEvent("btn_ui_apply", ui_custom_apply);
+    setBtnClickEvent("btn_ui_value_view", ui_custom_value_view);
+    setBtnClickEvent("btn_ui_value_cancle", ui_custom_value_cancle);
+    setBtnClickEvent("btn_ui_value_save", ui_custom_value_save);
+    setBtnClickEvent("btn_ui_value_copy", ui_custom_value_copy);
+    setBtnClickEvent("btn_ui_value_paste", ui_custom_value_paste);
+    setBtnClickEvent("btn_ui_value_clear", ui_custom_value_clear);
+    setBtnClickEvent("btn_ui_value_reload", ui_custom_value_reload);
+    setBtnClickEvent("btn_memo_toggle", toggle_hide_member_memo);
+    setBtnClickEvent("btn_memo_ip_clear", delete_memo_database);
+    setBtnClickEvent("btn_read_history_clear", delete_read_database);
 
-    var btn_ui_value_view = document.getElementById("btn_ui_value_view");
-    if (btn_ui_value_view) {
-      btn_ui_value_view.addEventListener("click", ui_custom_value_view);
-    }
-    var btn_ui_value_cancle = document.getElementById("btn_ui_value_cancle");
-    if (btn_ui_value_cancle) {
-      btn_ui_value_cancle.addEventListener("click", ui_custom_value_cancle);
-    }
-    var btn_ui_value_save = document.getElementById("btn_ui_value_save");
-    if (btn_ui_value_save) {
-      btn_ui_value_save.addEventListener("click", ui_custom_value_save);
-    }
-    var btn_ui_value_copy = document.getElementById("btn_ui_value_copy");
-    if (btn_ui_value_copy) {
-      btn_ui_value_copy.addEventListener("click", ui_custom_value_copy);
-    }
-    var btn_ui_value_paste = document.getElementById("btn_ui_value_paste");
-    if (btn_ui_value_paste) {
-      btn_ui_value_paste.addEventListener("click", ui_custom_value_paste);
-    }
-    var btn_ui_value_clear = document.getElementById("btn_ui_value_clear");
-    if (btn_ui_value_clear) {
-      btn_ui_value_clear.addEventListener("click", ui_custom_value_clear);
-    }
-    var btn_ui_value_reload = document.getElementById("btn_ui_value_reload");
-    if (btn_ui_value_reload) {
-      btn_ui_value_reload.addEventListener("click", ui_custom_value_reload);
-    }
+    setBtnGroupClickEvent(document,".ip_memo_btns", set_ip_memo_edit_mode);
+    setBtnGroupClickEvent(document,".ip_memo_editor_btns", click_ip_memo_editor_btn);
 
-    var btn_memo_toggle = document.getElementById("btn_memo_toggle");
-    if (btn_memo_toggle) {
-      btn_memo_toggle.addEventListener("click", toggle_hide_member_memo);
-    }
-    var btn_memo_ip_clear = document.getElementById("btn_memo_ip_clear");
-    if (btn_memo_ip_clear) {
-      btn_memo_ip_clear.addEventListener("click", delete_memo_database);
-    }
-    var btn_read_history_clear = document.getElementById("btn_read_history_clear");
-    if (btn_read_history_clear) {
-      btn_read_history_clear.addEventListener("click", delete_read_database);
-    }
     set_ui_custom_values();
   }
 
+  function setBtnClickEvent(id, event) {
+    var btn = document.getElementById(id);
+    if (btn != null) btn.addEventListener("click", event);
+  }
+  function setBtnGroupClickEvent(el,cssQuery, event) {
+    if (el == null) el = document;
+    Array.from(el.querySelectorAll(cssQuery)).forEach((item) => { item.addEventListener("click", event) });
+  }
+
+  //IP메모 기능 시작
+  function set_ip_memo_edit_mode() {
+    var edit_mode = true;
+    //li 처리
+    Array.from(document.querySelectorAll(".ui-custom-ip-memo-sub-editor")).forEach((item) => { item.classList.remove("d-block"); item.classList.add("d-none") });
+    //버튼 처리
+    Array.from(document.querySelectorAll(".ip_memo_edit_btns")).forEach((item) => { item.classList.add("d-none") });
+    Array.from(document.querySelectorAll(".ip_memo_close_btns")).forEach((item) => { item.classList.remove("d-none") });
+
+    var add_mode = document.getElementById("ip_memo_add_mode");
+    var start_add_mode = add_mode.value;
+
+    console.debug("start edit - " + add_mode.value);
+    switch (this.id) {
+      case "btn_ip_memo_add":
+        var add_name = document.getElementById('ip_memo_add_name');
+        var add_check = document.getElementById('btn_ip_memo_add_check');
+        Array.from(document.querySelectorAll(".ui-custom-ip-memo-add")).forEach((item) => { item.classList.add("d-block"); item.classList.remove("d-none"); });
+        add_name.disable = false;
+        if (add_mode.value == "list") {
+          add_mode.value = "list_add";
+        } else if (add_mode.value == "list_add") {
+        } else if (add_mode.value == "list_edit") {
+          add_name.disable = true;
+          window.getComputedStyle(add_name).backgroundColor
+        } else {
+          add_mode.value = "add";
+        }
+        if (add_name.disable) {
+          add_check.style.backgroundColor = window.getComputedStyle(add_name).backgroundColor;
+        } else {
+          add_check.style.removeProperty('background-color');
+        }
+        break;
+      case "btn_ip_memo_list":
+        show_ip_memo_list();
+        break;
+      case "btn_ip_memo_edit":
+        Array.from(document.querySelectorAll(".ui-custom-ip-memo-edit")).forEach((item) => { item.classList.add("d-block"); item.classList.remove("d-none"); });
+        add_mode.value = "edit";
+        get_ip_memo_list(add_mode.value);
+        break;
+      case "btn_ip_memo_close":
+        //그냥 닫을때
+        clear_ip_memo_editor();
+        if (start_add_mode == "list_add" || start_add_mode == "list_edit") {
+          show_ip_memo_list();
+        } else {
+          if (!document.getElementById("load_ip_memo_list").checked) {
+            clear_ip_memo_list();
+          }
+          Array.from(document.querySelectorAll(".ip_memo_edit_btns")).forEach((item) => { item.classList.remove("d-none") });
+          Array.from(document.querySelectorAll(".ip_memo_close_btns")).forEach((item) => { item.classList.add("d-none") });
+        }
+        break;
+    }
+    //console.debug("end edit - " + add_mode.value);
+  }
+  function click_ip_memo_editor_btn() {
+    var success = false;
+    var add_mode = document.getElementById("ip_memo_add_mode");
+    console.debug("start editor - " + add_mode.value + "," + this.id);
+    switch (this.id) {
+      case "btn_ip_memo_add_save":
+        var ip_name = (document.getElementById("ip_memo_add_name")?.value ?? "").trim();
+        var ip_desc = (document.getElementById("ip_memo_add_desc")?.value ?? "").trim();
+        if (ip_desc == "") {
+          alert("메모 내용을 입력해 주세요.");
+        } else {
+          if (ip_mark_regex.test(ip_name)) {
+            var ip_map = {};
+            ip_map[ip_name] = {ip:ip_name,desc:ip_desc};
+            edit_ip_memo_list(ip_map,function(){
+              alert("저장되었습니다.");
+              create_ip_memo_list(ip_name, ip_desc, true);
+              document.getElementById("btn_ip_memo_close").click();
+            });
+            success = false;
+          } else {
+            alert("IP 주소를 확인해 주세요.");
+          }
+        }
+        break;
+      case "btn_ip_memo_list_edit":
+        var li = this.closest("li.list-group-item");
+        document.getElementById("ip_memo_add_mode").value = "list_edit";
+        document.getElementById("ip_memo_add_name").value = li.querySelector("#ip_memo_list_name")?.innerText ?? "";
+        document.getElementById("ip_memo_add_desc").value = li.querySelector("#ip_memo_list_desc")?.value ?? "";
+        document.getElementById("btn_ip_memo_add").click();
+        console.debug(document.getElementById("ip_memo_add_name").value);
+        success = false;
+        break;
+      case "btn_ip_memo_list_delete":
+        var li = this.closest("li.list-group-item");
+        var ip = li.querySelector("#ip_memo_list_name").innerText.trim();
+        if (ip_mark_regex.test(ip)) {
+          var ip_map = {};
+          ip_map[ip] = {ip:ip};
+          console.debug(ip_map);
+          edit_ip_memo_list(ip_map,function(){
+            li.remove();
+          });
+        } else {
+          alert(ip + " - 삭제할 수 없습니다.");
+        }
+        success = false;
+        break;
+      case "btn_ip_memo_edit_save":
+        var editor = document.getElementById("ui_custom_ip_memo_editor").value.trim();
+        if (editor != "") {
+          var line_list = editor.split("\n");
+          var ip_map = {};
+          line_list.forEach((line)=>{
+            line = line.trim();
+            var line_arr = line.split(",");
+            var ip = line_arr[0];
+            if (ip_mark_regex.test(ip)) {
+              ip_map[ip] = {ip:ip}
+              if (line_arr.length > 1) {
+                var desc = line_arr.splice(1).join(",").trim();
+                if (desc != "") {
+                  ip_map[ip].desc = desc;
+                }
+              }
+            }
+          });
+
+          edit_ip_memo_list(ip_map,function(){
+            document.getElementById("load_ip_memo_list").checked = false;
+            document.getElementById("btn_ip_memo_close").click();
+          });  
+        }
+        success = false;
+        break;
+    }
+    if (success) {
+      document.getElementById("btn_ip_memo_close").click();
+    }
+    //console.debug("end editor - " + add_mode.value);
+  }
+
+  function show_ip_memo_list(reload) {
+    var add_mode = document.getElementById("ip_memo_add_mode");
+    add_mode.value = "list";
+    if (document.getElementById("load_ip_memo_list").checked) {
+      var data_empty = true;
+      Array.from(document.querySelectorAll(".ui-custom-ip-memo-list-data")).forEach((item, index) => {
+        data_empty = false;
+        item.classList.add("d-block");
+        item.classList.remove("d-none");
+      });
+
+      Array.from(document.querySelectorAll(".ui-custom-ip-memo-list-zero")).forEach((item, index) => {
+        if (data_empty) {
+          item.classList.add("d-block");
+          item.classList.remove("d-none");
+        } else {
+          item.classList.remove("d-block");
+          item.classList.add("d-none");
+        }
+      });
+      document.getElementById("btn_ip_memo_add").classList.remove("d-none");
+    } else {
+      if (!(reload ?? false)) {
+        document.getElementById("load_ip_memo_list").checked = true;
+        get_ip_memo_list(add_mode.value, function () {
+          show_ip_memo_list(true);
+        })
+      }
+    }
+  }
+
+  function create_ip_memo_list(ip, desc, edit_mode) {
+    if ((ip ?? "").trim() == "") return;
+    var li_position = null
+    var li_add = true;
+    if (edit_mode) {
+      Array.from(document.querySelectorAll(".ui-custom-ip-memo-list")).some((item, index) => {
+        if (index != 0) {
+          var li_ip = item.querySelector("#ip_memo_list_name")?.innerText ?? "";
+          if (li_ip == ip) {
+            item.querySelector("#ip_memo_list_desc").value = desc;
+            li_add = false;
+            return true;
+          } else if (li_ip < ip) {
+            li_position = item;
+            return true;
+          } else {
+            return false;
+          }
+        }
+      });
+    }
+
+    if (li_add) {
+      var li_list = document.querySelectorAll(".ui-custom-ip-memo-list");
+      var li_first = document.querySelector(".ui-custom-ip-memo-list-default");
+      var li_last = li_list.length > 0 ? li_list[li_list.length - 1] : li_first;
+      var li_new = document.createElement('li');
+      li_new.className = li_first.className;
+      li_new.innerHTML = li_first.innerHTML;
+      li_new.classList.add("ui-custom-ip-memo-list-data");
+      li_new.querySelector("#ip_memo_list_name").innerText = ip;
+      li_new.querySelector("#ip_memo_list_desc").value = desc;
+      li_new.querySelector("#ip_memo_list_desc").title = desc;
+      setBtnGroupClickEvent(li_new,".ip_memo_editor_btns", click_ip_memo_editor_btn);
+      if (li_position != null) {
+        li_position.parentNode.insertBefore(li_new, li_position);
+      } else {
+        li_last.parentNode.insertBefore(li_new, li_last.nextSibling);
+      }
+    }
+  }
+
+  function clear_ip_memo_editor() {
+    document.getElementById("ip_memo_add_mode").value = "";
+    document.getElementById("ip_memo_add_name").value = ".♡..";
+    document.getElementById("ip_memo_add_desc").value = "";
+    document.getElementById("ui_custom_ip_memo_editor").value = ".♡..,\r\n.♡..,";
+  }
+  function clear_ip_memo_list() {
+    Array.from(document.querySelectorAll(".ui-custom-ip-memo-list-data")).forEach((item, index) => { item.remove() });
+  }
+
+  function get_ip_memo_list(list_mode, complete) {
+    if (window.indexedDB) {
+      var temp_obj = get_board_mb_id();
+      if (temp_obj != null && temp_obj.id != null) {
+        check_memo_user_id(temp_obj.id);
+
+        var memo_db_request = indexedDB.open(memoDBName + temp_obj.id, memo_db_version);
+        memo_db_request.onupgradeneeded = memo_db_upgrade;
+        memo_db_request.onsuccess = function (event) {
+          var db = event.target.result;
+
+          var checked_ip = 0;
+          var ipStore = getDBObjectStore(db, memoIP, "readonly", complete);
+          var ipIndex = ipStore.index("by_ip");
+          var access_req = ipIndex.openCursor();
+          var memo_list = [];
+          //memo ip 갱신
+          access_req.onsuccess = function (e) {
+            var cursor = e.target.result;
+            if (cursor) {
+              var temp_val = cursor.value;
+              if (temp_val.desc != null) {
+                var nick_list = [];
+                if (temp_val.ip != null) {
+                  Object.keys(temp_val.ip).forEach((ip) => {
+                    nick_list.push(temp_val.ip[ip].nick);
+                  });
+                }
+                memo_list.push({ ip: temp_val.ip, desc: temp_val.desc, nick_list: nick_list });
+              }
+              cursor.continue();
+            } else {
+              switch (list_mode) {
+                case "edit":
+                  var edit_string = "";
+                  memo_list.forEach((item, index) => {
+                    if (index != 0) {
+                      edit_string += "\n";
+                    }
+                    edit_string += item.ip + "," + item.desc + "";
+                  });
+                  document.getElementById("ui_custom_ip_memo_editor").value = edit_string;
+                  break;
+                default:
+                  memo_list.forEach((item) => {
+                    create_ip_memo_list(item.ip, item.desc, false);
+                  });
+                  break;
+              }
+            }
+          };
+        };
+      }
+    }
+  }
+
+  function edit_ip_memo_list(ip_map, complete) {
+    if (window.indexedDB) {
+      var temp_obj = get_board_mb_id();
+      if (temp_obj != null && temp_obj.id != null) {
+        check_memo_user_id(temp_obj.id);
+
+        var memo_db_request = indexedDB.open(memoDBName + temp_obj.id, memo_db_version);
+        memo_db_request.onupgradeneeded = memo_db_upgrade;
+        memo_db_request.onsuccess = function (event) {
+          var db = event.target.result;
+          var checked_ip = 0;
+          var ipStore = getDBObjectStore(db, memoIP, "readwrite", complete);
+          var now_stamp = Date.now();
+          var ips = Object.keys(ip_map);
+          ips.forEach((memo_ip) => {
+            var temp_req = ipStore.get(memo_ip);
+            temp_req.onsuccess = function (e) {
+              var result = e.target.result;
+              var memo_desc = ip_map[memo_ip].desc;
+              if (result != null) {
+                if (memo_desc == null) {
+                  delete result.desc;
+                  if (result.id_cnt == 0) {
+                    ipStore.delete(memo_ip);
+                  } else {
+                    delete result.desc;
+                    result.access = now_stamp;
+                    ipStore.put(result);
+                  }
+                } else {
+                  if (result.desc != memo_desc) {
+                    result.desc = memo_desc;
+                    result.access = now_stamp;
+                    ipStore.put(result);  
+                  }
+                }
+              } else {
+                ipStore.add({ ip: memo_ip, id: {}, access: now_stamp, id_cnt: 0, desc:memo_desc });
+              }
+            };
+          });
+        }
+      }
+    }
+  }
+  //IP메모 기능 끝
+
   function set_page_show(event) {
-    //console.debug(event.eventPhase);
     if (event.persisted || (window.performance && window.performance.navigation.type == 2)) {
       draw_ui_custom(true);
     }
@@ -2788,6 +3279,9 @@
   document.addEventListener("DOMContentLoaded", set_ui_custom_onload, { once: true });
   window.addEventListener("pageshow", set_page_show);
   window.addEventListener("pagehide", set_page_hide);
+  window.removeEventListener('keypress', handleClearSettingKeyPress);
+  window.addEventListener('keypress', handleClearSettingKeyPress);
+
   try {
     set_ui_custom();
   } catch (error) {

@@ -13,14 +13,20 @@ if (!defined('_GNUBOARD_')) {
         #user-ui-custom li.ui-custom-li-expand {color: var(--bs-card-cap-color);background-color: var(--bs-card-cap-bg);}
         #user-ui-custom #ui-custom-list-ul ul {border-top-right-radius: 0px;border-top-left-radius: 0px;border: 0px;}
         #user-ui-custom #ui-custom-list-ul ul li {border-left:0px;border-right:0px;}
-        #user-ui-custom #ui-custom-list-ul ul li:first-child {border-top:0px;}
+        #user-ui-custom #ui-custom-rcmd-ul ul li:first-child {border-top:0px;}
+        #user-ui-custom #ui-custom-rcmd-ul ul {border-top-right-radius: 0px;border-top-left-radius: 0px;border: 0px;}
+        #user-ui-custom #ui-custom-rcmd-ul ul li {border-left:0px;border-right:0px;}
+        #user-ui-custom #ui-custom-rcmd-ul ul li:first-child {border-top:0px;}
         #user-ui-custom .input-group .input-group-text {min-width: 3.3em;text-align: center;display: inline-block;}
+        #user-ui-custom div.ui-custom-container {transition:all 1s;}
         .vh-50 {height: 50vh;}
+        .vh-30 {height: 30vh;}
+        .w-33 {width: 32%;}
     </style>
     <div class="align-items-center mt-5">
         <label class="btn btn-basic w-100 py-2 mb-4" style="text-align:center;" title="※ 현재 브라우저에만 저장됩니다.">개인화면설정</label>
     </div>
-    <div class="ui-custom-btn-default">
+    <div class="ui-custom-btn-default ui-custom-container w-100">
         <ul class="nav nav-tabs ui-custom-tabs" style="border-bottom:0px;">
             <li class="nav-item ui-custom-tab">
                 <a class="nav-link active" aria-current="page" href="#ui-custom-short-cut-ul">
@@ -35,6 +41,11 @@ if (!defined('_GNUBOARD_')) {
             <li class="nav-item ui-custom-tab">
                 <a class="nav-link" aria-current="page" href="#ui-custom-list-ul">
                     목록
+                </a>
+            </li>
+            <li class="nav-item ui-custom-tab">
+                <a class="nav-link" aria-current="page" href="#ui-custom-rcmd-ul">
+                    추천
                 </a>
             </li>
         </ul>
@@ -188,7 +199,7 @@ if (!defined('_GNUBOARD_')) {
                             <div class="col-sm-7">
                             <div class="input-group col-sm-7">
                                 <input type="number" id="reg_show_width" name="show_width" placeholder="1200" class="form-control ui_custom_items" data-gtm-form-interact-field-id="1" min="1000">
-                                <span class="input-group-text" id="basic-addon2">px</span>
+                                <span class="input-group-text">px</span>
                             </div>
                             </div>
                         </div>
@@ -199,7 +210,7 @@ if (!defined('_GNUBOARD_')) {
                             <div class="col-sm-7">
                                 <div class="input-group">
                                     <input type="number" id="reg_menu_width" name="menu_width" class="form-control form-control-sm ui_custom_items " step="0.1" placeholder="25" value="25" data-gtm-form-interact-field-id="2" min="10" max="50">
-                                    <span class="input-group-text" id="basic-addon2">%</span>
+                                    <span class="input-group-text">%</span>
                                 </div>
                             </div>
                         </div>
@@ -210,7 +221,7 @@ if (!defined('_GNUBOARD_')) {
                             <div class="col-sm-7">
                                 <div class="input-group">
                                     <input type="number" id="reg_font_size" name="font_size" class="form-control form-control-sm ui_custom_items" step="0.1" data-gtm-form-interact-field-id="0" placeholder="1" min="0.3">
-                                    <span class="input-group-text" id="basic-addon2">em</span>
+                                    <span class="input-group-text"">em</span>
                                 </div>
                             </div>
                         </div>
@@ -230,23 +241,13 @@ if (!defined('_GNUBOARD_')) {
                                 <input type="text" id="reg_font_family" name="font_family" value="" class="form-control form-control-sm ui_custom_items ">
                             </div>
                         </div>
-                    </li>
+                    </li>                    
                     <li class="list-group-item ui-custom-item">
                         <div class="row align-items-center">
-                            <label for="reg_animation_off" class="col-sm-5 col-form-label" title="커스텀 UI의 에니메이션을 끕니다.">에니메이션 끄기</label>
+                            <label for="reg_animation_off" class="col-sm-5 col-form-label" title="커스텀 UI의 에니메이션을 끕니다.">애니메이션 끄기</label>
                             <div class="col-sm-7">
                                 <div class="form-check form-switch">
                                     <input class="form-check-input ui_custom_items float-end mt-2" type="checkbox" name="animation_off" value="1" role="switch" id="reg_animation_off">
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="list-group-item ui-custom-item">
-                        <div class="row align-items-center">
-                            <label for="reg_thumbup_em_off" class="col-sm-5 col-form-label" title="추천수 표시 위치 변경 및 색상 강조를 제거합니다.">추천수강조 끄기</label>
-                            <div class="col-sm-7">
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input ui_custom_items float-end mt-2" type="checkbox" name="thumbup_em_off" value="1" role="switch" id="reg_thumbup_em_off">
                                 </div>
                             </div>
                         </div>
@@ -346,26 +347,81 @@ if (!defined('_GNUBOARD_')) {
                     </li>
                 </ul>
                 <ul id="ui-custom-ul-memo" class="list-group p-0 ui-custom-ul-subs d-none">
-                    <li class="list-group-item ui-custom-item ui-custom-memo-ip-check d-none">
+                    <li class="list-group-item ui-custom-item">
                         <div class="row align-items-center">
-                            <label for="reg_memo_ip_track" class="col-sm-5 col-form-label" title="빨간색 메모 유저의 IP를 기록해서 동일한 IP 사용된 글에서 표시해줍니다.">메모유저 IP기록</label>
+                            <label for="reg_hide_member_memo" class="col-sm-5 col-form-label" title="회원 메모를 감춰줍니다. U을 누르면 흐려집니다.">메모 가리기(U)</label>
                             <div class="col-sm-7">
                                 <div class="form-check form-switch p-0">
-                                    <input class="form-check-input ui_custom_items float-end mt-2" type="checkbox" name="memo_ip_track" value="1" role="switch" id="reg_memo_ip_track">
-                                    <button type="button" id="btn_memo_ip_clear" class="btn btn-primary btn-sm"><i class="bi bi-trash align-middle"></i></button>
+                                    <input class="form-check-input ui_custom_items float-end mt-2" type="checkbox" name="hide_member_memo" value="1" role="switch" id="reg_hide_member_memo">
+                                    <button type="button" id="btn_memo_toggle" class="btn btn-basic btn-sm">토글</button>
                                 </div>
                             </div>
                         </div>
                     </li>
-                    <li class="list-group-item ui-custom-item">
+                    <li class="list-group-item ui-custom-item ui-custom-memo-ip-check d-none">
                         <div class="row align-items-center">
-                            <label for="reg_hide_member_memo" class="col-sm-5 col-form-label" title="회원 메모를 감춰줍니다. U을 누르면 흐려집니다.">회원메모 가리기(U)</label>
+                            <label for="reg_memo_ip_track" class="col-sm-5 col-form-label" title="빨간색 메모 유저의 IP를 기록해서 동일한 IP 사용된 글에서 표시해줍니다.">유저IP 기록</label>
                             <div class="col-sm-7">
                                 <div class="form-check form-switch p-0">
-                                    <input class="form-check-input ui_custom_items float-end mt-2" type="checkbox" name="hide_member_memo" value="1" role="switch" id="reg_hide_member_memo">
-                                    <button type="button" id="btn_memo_toggle" class="btn btn-primary btn-sm">토글</button>
+                                    <input class="form-check-input ui_custom_items float-end mt-2" type="checkbox" name="memo_ip_track" value="1" role="switch" id="reg_memo_ip_track">
+                                    <button type="button" id="btn_memo_ip_clear" class="btn btn-basic btn-sm"><i class="bi bi-trash align-middle"></i></button>
                                 </div>
                             </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item ui-custom-item ui-custom-memo-ip-check ui-custom-ip-memo-sub ui-custom-ip-memo-default d-none">
+                        <div class="row align-items-center">
+                            <label class="col-sm-5 col-form-label" title="특정 IP에 메모를 남깁니다.">메모IP 관리</label>
+                            <div class="col-sm-7">
+                                <div class="form-check form-switch p-0">
+                                    <input class="form-check-input ui_custom_items float-end mt-2 d-none" type="checkbox" name="load_ip_memo_list" value="1" role="switch" id="load_ip_memo_list">
+
+                                    <button type="button" id="btn_ip_memo_list" class="btn btn-basic ip_memo_btns ip_memo_edit_btns btn-sm"><i class="bi bi-list-stars align-middle"></i></button>
+                                    <button type="button" id="btn_ip_memo_edit" class="btn btn-basic ip_memo_btns ip_memo_edit_btns btn-sm"><i class="bi bi-textarea-resize align-middle"></i></button>
+                                    <button type="button" id="btn_ip_memo_add" class="btn btn-basic ip_memo_btns ip_memo_edit_btns btn-sm float-end"><i class="bi bi-file-earmark-plus align-middle"></i></button>
+                                    <button type="button" id="btn_ip_memo_close" class="btn btn-basic ip_memo_btns ip_memo_close_btns btn-sm float-end d-none"><i class="bi bi-x-lg align-middle"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item ui-custom-item ui-custom-memo-ip-check ui-custom-ip-memo-sub ui-custom-ip-memo-sub-editor ui-custom-ip-memo-add d-none">
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <div class="input-group">
+                                    <button type="button" id="btn_ip_memo_add_check" class="btn btn-basic btn-sm" style="max-width: 0.1em;border-right: 0;padding-left: 0;overflow: hidden;"><i class="bi bi-at align-middle" style="opacity:0;"></i></button>
+                                    <input type="text" id="ip_memo_add_mode" name="p_memo_add_mode" value="" class="form-control form-control-sm ui_custom_items d-none">
+                                    <input type="text" id="ip_memo_add_name" name="p_memo_add_name" placeholder="IP : 1.♡.1.1" value=".♡.." class="form-control form-control-sm ui_custom_items ">                                
+                                </div>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="input-group">
+                                    <input type="text" id="ip_memo_add_desc" name="ip_memo_add_desc" placeholder="내용 : 필수" value="" class="form-control form-control-sm ui_custom_items ">
+                                    <button type="button" id="btn_ip_memo_add_save" class="btn btn-basic btn-sm ip_memo_editor_btns"><i class="bi bi-floppy align-middle"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li id="ui-custom-ip-memo-list-zero" class="list-group-item ui-custom-item ui-custom-memo-ip-check ui-custom-ip-memo-sub ui-custom-ip-memo-sub-editor ui-custom-ip-memo-list ui-custom-ip-memo-list-zero d-none">
+                        <div class="row align-items-center text-center">
+                            <label class="col-sm-5 col-form-label w-100" title="IP메모가 없습니다.">IP메모가 없습니다.</label>
+                        </div>
+                    </li>
+                    <li id="ui-custom-ip-memo-list-default" class="list-group-item ui-custom-item ui-custom-memo-ip-check ui-custom-ip-memo-sub ui-custom-ip-memo-sub-editor ui-custom-ip-memo-list ui-custom-ip-memo-list-default d-none">
+                        <div class="row align-items-center">
+                            <label id="ip_memo_list_name" class="col-sm-5 col-form-label" title="특정 IP에 메모를 남깁니다.">IP</label>
+                            <div class="col-sm-7">
+                                <div class="input-group">
+                                    <input type="text" id="ip_memo_list_desc" name="ip_memo_list_desc" value="" class="form-control form-control-sm ui_custom_items" disabled>
+                                    <button type="button" id="btn_ip_memo_list_edit" class="btn btn-basic btn-sm ip_memo_editor_btns"><i class="bi bi-pen align-middle"></i></button>
+                                    <button type="button" id="btn_ip_memo_list_delete" class="btn btn-danger btn-sm ip_memo_editor_btns"><i class="bi bi-trash align-middle"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item ui-custom-item ui-custom-memo-ip-check ui-custom-ip-memo-sub ui-custom-ip-memo-sub-editor ui-custom-ip-memo-edit d-none">
+                        <div class="row align-items-center">
+                            <textarea id="ui_custom_ip_memo_editor" class="ui-custom-btn-view form-control lh-base vh-30" placeholder="1.♡.1.1,메모내용1&#13;&#10;.1♡.3.4,메모내용2"></textarea>
+                            <button type="button" id="btn_ip_memo_edit_save" class="btn btn-primary w-100 mt-3 ip_memo_editor_btns">저장</button>
                         </div>
                     </li>
                     <li class="list-group-item ui-custom-item">
@@ -373,6 +429,22 @@ if (!defined('_GNUBOARD_')) {
                             <label for="reg_hide_list_memo" class="col-sm-5 col-form-label" title="전체 또는 선택한 색 메모 회원의 글을 목록에서 감춰줍니다.">메모목록 가리기</label>
                             <div class="col-sm-7">
                                 <select class="form-select ui_custom_items" name="hide_list_memo" id="reg_hide_list_memo">
+                                    <option value="">사용안함</option>
+                                    <option value="all">전체</option>
+                                    <option value="yellow">노랑</option>
+                                    <option value="green">초록</option>
+                                    <option value="purple">보라</option>
+                                    <option value="red">빨강</option>
+                                    <option value="blue">파랑</option>
+                                </select>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item ui-custom-item">
+                        <div class="row align-items-center">
+                            <label for="reg_blur_contents_memo" class="col-sm-5 col-form-label" title="전체 또는 선택한 색 메모 회원의 글 내용을 흐리게 해줍니다..">메모내용 블러</label>
+                            <div class="col-sm-7">
+                                <select class="form-select ui_custom_items" name="blur_contents_memo" id="reg_blur_contents_memo">
                                     <option value="">사용안함</option>
                                     <option value="all">전체</option>
                                     <option value="yellow">노랑</option>
@@ -610,7 +682,7 @@ if (!defined('_GNUBOARD_')) {
                             <div class="form-check form-switch p-0">
                                 <input class="form-check-input ui_custom_items float-end mt-2" type="checkbox" name="read_history" value="1"
                                     role="switch" id="reg_read_history">
-                                    <button type="button" id="btn_read_history_clear" class="btn btn-primary btn-sm"><i class="bi bi-trash align-middle"></i></button>
+                                    <button type="button" id="btn_read_history_clear" class="btn btn-basic btn-sm"><i class="bi bi-trash align-middle"></i></button>
                             </div>
                         </div>
                     </div>
@@ -666,17 +738,153 @@ if (!defined('_GNUBOARD_')) {
                 </li>
             </ul>
         </div>
+        <div id="ui-custom-rcmd-ul" class="card ui-custom-uls d-none">
+            <div class="card-header d-flex justify-content-between align-items-center" style="padding:1.2em;">
+                추천 모양 설정
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item ui-custom-item">
+                    <div class="row align-items-center">
+                        <label for="reg_thumbup_em_off" class="col-sm-5 col-form-label" title="추천 애니메이션 효과를 제거합니다.">추천 동작 끄기</label>
+                        <div class="col-sm-7">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input ui_custom_items float-end mt-2" type="checkbox" name="thumbup_em_off" value="1" role="switch" id="reg_thumbup_em_off">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item ui-custom-item">
+                    <div class="row align-items-center">
+                        <label for="reg_rcmd_color_set" class="col-sm-5 col-form-label" title="목록의 추천 배경 색상을 설정합니다.">목록추천 배경색</label>
+                        <div class="col-sm-7">
+                            <select class="form-select ui_custom_items" name="rcmd_color_set" id="reg_rcmd_color_set">
+                                <option value="">기본</option>
+                                <option value="gray">잿빛</option>
+                                <option value="green">숲속</option>
+                                <option value="green">노랑</option>
+                                <option value="colorful">다앙</option>
+                                <option value="self">설정</option>
+                            </select>
+                        </div>
+                    </div>
+                </li>
+                <!-- <li class="list-group-item ui-custom-item rcmd_color_steps">
+                    <div class="row align-items-center">
+                        <label for="reg_rcmd_color_step1" class="col-sm-5 col-form-label" title="목록의 추천 1단계의 배경 색상을 설정합니다.">1단계색</label>
+                        <div class="col-sm-7">
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item ui-custom-item rcmd_color_steps">
+                    <div class="row align-items-center">
+                        <label for="reg_rcmd_color_step2" class="col-sm-5 col-form-label" title="목록의 추천 2단계의 배경 색상을 설정합니다.">2단계색</label>
+                        <div class="col-sm-7">
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item ui-custom-item rcmd_color_steps">
+                    <div class="row align-items-center">
+                        <label for="reg_rcmd_color_step3" class="col-sm-5 col-form-label" title="목록의 추천 3단계의 배경 색상을 설정합니다.">3단계색</label>
+                        <div class="col-sm-7">
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item ui-custom-item rcmd_color_steps">
+                    <div class="row align-items-center">
+                        <label for="rcmd_color_step4" class="col-sm-5 col-form-label" title="목록의 추천 4단계의 배경 색상을 설정합니다.">4단계색</label>
+                        <div class="col-sm-7">
+                        </div>
+                    </div>
+                </li> -->
+                <li class="list-group-item ui-custom-item">
+                    <div class="row align-items-center">
+                        <label for="reg_rcmd_font_color" class="col-sm-5 col-form-label" title="목록의 추천 글씨 색상을 설정합니다.">목록추천 글자색</label>
+                        <div class="col-sm-7">
+                            <select class="form-select ui_custom_items" name="rcmd_font_color" id="reg_rcmd_font_color">
+                                <option value="">기본</option>
+                                <option value="gray">잿빛</option>
+                                <option value="black">검정</option>
+                                <option value="white">흰색</option>
+                                <option value="self">설정</option>
+                                <option value="step">단계별</option>
+                            </select>
+                            <input type="color" id="reg_rcmd_font_color_self" name="rcmd_font_color_self" value="#ffffff" placeholder="" class="form-control form-control-sm ui_custom_items">
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item ui-custom-item">
+                    <div class="row align-items-center">
+                        <label for="" class="col-sm-5 col-form-label" title="목록의 추천 글씨 색상을 설정합니다.">구분</label>
+                        <div class="col-sm-7">
+                        <div class="input-group col-sm-7">
+                        <input type="text" id="rcmd_step_value" name="rcmd_step_value" value="" placeholder="시작" class="form-control form-control-sm ui_custom_items text-center rcmd_color_step_values" disabled>
+                        <input type="text" id="rcmd_color_step" name="rcmd_color_step" value="" placeholder="배경" class="form-control form-control-sm ui_custom_items text-center rcmd_color_steps" disabled>
+                        <input type="text" id="rcmd_font_color" name="rcmd_font_color" value="" placeholder="글자" class="form-control form-control-sm ui_custom_items text-center rcmd_font_steps" disabled>
+                        </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item ui-custom-item">
+                    <div class="row align-items-center">
+                        <label for="reg_rcmd_color_step1_value" class="col-sm-5 col-form-label" title="목록의 추천 1단계의 시작 값을 설정합니다.">추천1</label>
+                        <div class="col-sm-7">
+                        <div class="input-group col-sm-7">
+                            <input type="number" id="reg_rcmd_color_step1_value" name="rcmd_color_step1_value" value="" placeholder="0" class="form-control form-control-sm ui_custom_items rcmd_color_step_values" step="1" max="100 ">
+                            <input type="color" id="reg_rcmd_color_step1" name="rcmd_color_step1" value="#f2f2f2" defaultValue="#f2f2f2" placeholder="1단계 : #f2f2f2" class="form-control form-control-sm ui_custom_items rcmd_color_steps">
+                            <input type="color" id="reg_rcmd_font_color_1" name="rcmd_font_color_1" value="#ffffff" placeholder="" class="form-control form-control-sm ui_custom_items rcmd_font_steps">
+                        </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item ui-custom-item">
+                    <div class="row align-items-center">
+                        <label for="reg_rcmd_color_step2_value" class="col-sm-5 col-form-label" title="목록의 추천 2단계의 시작 값을 설정합니다.">추천2</label>
+                        <div class="col-sm-7">
+                        <div class="input-group col-sm-7">
+                            <input type="number" id="reg_rcmd_color_step2_value" name="rcmd_color_step2_value" value="" placeholder="6" class="form-control form-control-sm ui_custom_items rcmd_color_step_values" step="1" max="100">
+                            <input type="color" id="reg_rcmd_color_step2" name="rcmd_color_step2" value="#d9d9d9" defaultValue="#d9d9d9" placeholder="1단계 : #d9d9d9" class="form-control form-control-sm ui_custom_items rcmd_color_steps">
+                            <input type="color" id="reg_rcmd_font_color_2" name="rcmd_font_color_2" value="#ffffff" placeholder="" class="form-control form-control-sm ui_custom_items rcmd_font_steps">
+                        </div>
+                    </div>
+                </div>
+                </li>
+                <li class="list-group-item ui-custom-item">
+                    <div class="row align-items-center">
+                        <label for="reg_rcmd_color_step3_value" class="col-sm-5 col-form-label" title="목록의 추천 3단계의 시작 값을 설정합니다.">추천3</label>
+                        <div class="col-sm-7">
+                            <div class="input-group col-sm-7">
+                            <input type="number" id="reg_rcmd_color_step3_value" name="rcmd_color_step3_value" value="" placeholder="11" class="form-control form-control-sm ui_custom_items rcmd_color_step_values" step="1" max="100">
+                            <input type="color" id="reg_rcmd_color_step3" name="rcmd_color_step3" value="#bfbfbf" defaultValue="#bfbfbf" placeholder="3단계 : #bfbfbf" class="form-control form-control-sm ui_custom_items rcmd_color_steps">
+                            <input type="color" id="reg_rcmd_font_color_3" name="rcmd_font_color_3" value="#ffffff" placeholder="" class="form-control form-control-sm ui_custom_items rcmd_font_steps">
+                        </div>
+                    </div>
+                    </div>
+                </li>
+                <li class="list-group-item ui-custom-item">
+                    <div class="row align-items-center">
+                        <label for="reg_rcmd_color_step4_value" class="col-sm-5 col-form-label" title="목록의 추천 4단계의 시작 값을 설정합니다.">추천4</label>
+                        <div class="col-sm-7">
+                            <div class="input-group col-sm-7">
+                            <input type="number" id="reg_rcmd_color_step4_value" name="rcmd_color_step4_value" value="" placeholder="51" class="form-control form-control-sm ui_custom_items rcmd_color_step_values" step="1 max="100"">
+                            <input type="color" id="reg_rcmd_color_step4" name="rcmd_color_step4" value="#a6a6a6" defaultValue="#a6a6a6" placeholder="4단계 : #a6a6a6" class="form-control form-control-sm ui_custom_items rcmd_color_steps">
+                            <input type="color" id="reg_rcmd_font_color_4" name="rcmd_font_color_4" value="#ffffff" placeholder="" class="form-control form-control-sm ui_custom_items rcmd_font_steps">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
 
-    <div class="justify-content-center">
-        <button type="button" id="btn_ui_value_view" class="ui-custom-btn-default btn btn-secondary w-100 mt-3">설정값 보기</button>
-        <button type="button" id="btn_ui_value_clear" class="ui-custom-btn-default btn btn-danger w-100 mt-3">초기화</button>
-        <button type="button" id="btn_ui_value_reload" class="ui-custom-btn-default btn btn-success w-100 mt-3">다시 불러오기</button>
-        <button type="button" id="btn_ui_apply" class="ui-custom-btn-default btn btn-primary w-100 mt-3">적용</button>
+    <div class="justify-content-center text-center">
+        <button type="button" id="btn_ui_value_view" class="ui-custom-btn-default btn btn-secondary w-33 mt-3 d-inline-block">편집기</button>
+        <button type="button" id="btn_ui_value_clear" class="ui-custom-btn-default btn btn-danger w-33 mt-3 d-inline-block">기본값</button>
+        <button type="button" id="btn_ui_value_reload" class="ui-custom-btn-default btn btn-success w-33 mt-3 d-inline-block">저장값</button>
+        <button type="button" id="btn_ui_apply" class="ui-custom-btn-default btn btn-primary w-100 mt-3 d-inline-block">화면 적용</button>
         <textarea id="ui_custom_json" class="ui-custom-btn-view form-control lh-base d-none vh-50"></textarea>
-        <button type="button" id="btn_ui_value_cancle" class="ui-custom-btn-view btn btn-danger w-100 mt-3 d-none">닫기</button>
-        <button type="button" id="btn_ui_value_copy" class="ui-custom-btn-view btn btn-primary w-100 mt-3 d-none">복사</button>
-        <button type="button" id="btn_ui_value_paste" class="ui-custom-btn-view btn btn-warning w-100 mt-3 d-none">붙여넣기</button>
+        <button type="button" id="btn_ui_value_cancle" class="ui-custom-btn-view btn btn-danger w-33 mt-3 d-none">닫기</button>
+        <button type="button" id="btn_ui_value_copy" class="ui-custom-btn-view btn btn-primary w-33 mt-3 d-none">복사</button>
+        <button type="button" id="btn_ui_value_paste" class="ui-custom-btn-view btn btn-warning w-33 mt-3 d-none">붙임</button>
         <button type="button" id="btn_ui_value_save" class="ui-custom-btn-view btn btn-success w-100 mt-3 d-none">입력</button>
     </div>
 </section>
