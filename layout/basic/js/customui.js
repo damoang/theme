@@ -177,28 +177,6 @@
           var rcmd_color_step3 = ui_obj.rcmd_color_step3 ?? "";
           var rcmd_color_step4 = ui_obj.rcmd_color_step4 ?? "";
 
-          /*
-          switch (ui_obj.rcmd_color_set ?? "") {
-            case "gray":
-              rcmd_color_step1 = "background-color : #f2f2f2";
-              rcmd_color_step2 = "background-color : #d9d9d9";
-              rcmd_color_step3 = "background-color : #bfbfbf";
-              rcmd_color_step4 = "background-color : #a6a6a6";
-              break;
-            case "blue":
-              rcmd_color_step1 = "--bs-bg-opacity:0.5; background-color : #dddddd";
-              rcmd_color_step2 = "--bs-bg-opacity:0.3; background-color : #3b82f6";
-              rcmd_color_step3 = "--bs-bg-opacity:0.5; background-color : #3b82f6";
-              rcmd_color_step4 = "--bs-bg-opacity:0.7; background-color : #3bb2f6";
-              break;
-            case "green":
-              rcmd_color_step1 = "--bs-bg-opacity:0.5; background-color : #dddddd";
-              rcmd_color_step2 = "--bs-bg-opacity:0.3; background-color : #facc15";
-              rcmd_color_step3 = "--bs-bg-opacity:0.5; background-color : #84cc16";
-              rcmd_color_step4 = "--bs-bg-opacity:0.7; background-color : #22c55e";
-              break;
-          }
-          */
           if (rcmd_color_step1 != "") ui_custom_style += "div.wr-num .rcmd-box.step1 {" + rcmd_color_step1 + " !important;}\n";
           if (rcmd_color_step2 != "") ui_custom_style += "div.wr-num .rcmd-box.step2 {" + rcmd_color_step2 + " !important;}\n";
           if (rcmd_color_step3 != "") ui_custom_style += "div.wr-num .rcmd-box.step3 {" + rcmd_color_step3 + " !important;}\n";
@@ -216,8 +194,6 @@
       ui_custom_style += "#bo_list li.da-link-block:hover {animation-duration: 0.5s;animation-name: popUp;}\n";
       ui_custom_style += "li.da-link-block.ui-custom-link-active {animation-duration: 1s;animation-name: linkPopSmall !important;animation-fill-mode: forwards}";
       ui_custom_style += "div.nav-item.ui-custom-link-active {animation-duration: 1s;animation-name: linkPop !important;animation-fill-mode: forwards}";
-      //ui_custom_style += "#bo_list li.da-link-block:active {animation-duration: 1s;animation-name: popUpEnd10;animation-fill-mode: forwards;}\n";
-      //ui_custom_style += "#bo_list li.da-link-block:has(a:active) {animation-duration: 1s;animation-name: popUpEnd10;animation-fill-mode: forwards;}\n";
 
       ui_custom_style += "@keyframes popUp {0% {transform: translateX(0%) scale(1);}20% {transform: translateX(0.5%) scale(1.01);}100% {transform: translateX(0%) scale(1);}}\n";
       ui_custom_style += "@keyframes linkPopSmall {0% {transform: translateY(-0.5%%) scale(1.005);}20% {transform: translateY(-1.5%) scale(1.015);}100% {transform: translateY(0%) scale(1);}}\n";
@@ -353,6 +329,7 @@
     , "back_button"
     , "animation_off"
     , "thumbup_em_off"
+
     , "rcmd_color_set"
     , "rcmd_color_step1"
     , "rcmd_color_step2"
@@ -390,6 +367,7 @@
     , "expand_mywr"
     , "expand_navigator"
     , "expand_quick_size"
+    , "expand_gesture"
 
     , "menu_scroll"
     , "list_search"
@@ -566,8 +544,11 @@
     if (reload == null) {
       reload = false;
     }
-    if (ui_obj != null) {
 
+    //추천 컬러 변경
+    set_thumbup_em(ui_obj, reload);
+
+    if (ui_obj != null) {
       //본문 필터링
       if ((ui_obj.content_blur ?? false) || ((ui_obj?.ui_custom ?? false) && (ui_obj?.blur_contents_memo ?? "") != "")) {
         check_content_blur(ui_obj?.content_blur_word, (ui_obj?.blur_contents_memo ?? ""));
@@ -584,9 +565,7 @@
       set_shortcut_custom(ui_obj);
 
       if (ui_obj.ui_custom != null && ui_obj.ui_custom) {
-        if (!(ui_obj.thumbup_em_off ?? false)) {
-          set_thumbup_em(ui_obj, reload);
-        }
+
         //목록 감추기
         if (ui_obj.list_toggle != null && ui_obj.list_toggle) {
           set_list_toggle();
@@ -667,6 +646,8 @@
 
   //함수 모음 시작
   function set_thumbup_em(ui_obj,reload) {
+    if (ui_obj==null) ui_obj = {};
+
     var cv_1 = Number(ui_obj.rcmd_color_step1_value ?? 0);
     var cv_2 = Number(ui_obj.rcmd_color_step2_value ?? 6);
     var cv_3 = Number(ui_obj.rcmd_color_step3_value ?? 11);
@@ -680,23 +661,45 @@
     var rv_1 = 500, rv_2 = 1000, rv_3 = 5000;
     //var option_class = ["bg-danger","bg-success","bg-primary","bg-info","bg-secondary","bg-opacity-25","bg-opacity-10","bg-gradient","fw-bold","cu_rv_1","cu_rv_2","cu_rv_3"];
     var option_class = ["cu_rv_1", "cu_rv_2", "cu_rv_3", "cu_rv_4", "cu_rv_5"];
+    var custom_class = ["gray","forest","yellow","colorful","none","self"];
     var step_class = ["step1","step2","step3","step4"];
     var color_set = ui_obj.rcmd_color_set ?? "";
     if (color_set != "" && color_set != "self") {
       color_set = "rcmd-box-"+color_set;
     }
 
+    var custom_set = null;
+
     Array.from(document.querySelectorAll("#bo_list .list-group-item.da-link-block:has(div.rcmd-box)")).forEach((item) => {
       var thumb_up = item.querySelector("div.rcmd-box");
+      var thumb_up_m = item.querySelector("div.rcmd-mb");
       if (thumb_up != null) {
         if (reload) {
           option_class.forEach((tc) => {
             thumb_up.classList.remove(tc);
+            if (thumb_up_m!=null) thumb_up_m.classList.remove(tc);
           });
-          step_class.forEach((tc) => {
-            thumb_up.classList.remove(tc);
-          })
-
+          if (custom_set==null) {
+            custom_class.some((tc) => {
+              if (thumb_up.classList.contains(tc)) {
+                custom_set = tc;
+                return true;
+              } else {
+                return false;
+              }
+            });
+          } else {
+            if (thumb_up_m!=null) thumb_up_m.classList.add(custom_set);
+          }
+        } else {
+          step_class.some((tc) => {
+            if (thumb_up.classList.contains(tc)) {
+              if (thumb_up_m!=null) thumb_up_m.classList.add(tc);
+              return true;
+            } else {
+              return false;
+            }
+          });
         }
 
         var temp_num = thumb_up;
@@ -710,8 +713,10 @@
         if (change_step_value) {
           step_class.forEach((tc) => {
             thumb_up.classList.remove(tc);
+            if (thumb_up_m!=null) thumb_up_m.classList.remove(tc);
           });
-          if (temp_num >=cv_4) {
+          
+          if (temp_num >= cv_4) {
             add_class_list = "step4 cu_rv_4";
           } else if (temp_num >=cv_3) {
             add_class_list = "step3 cu_rv_3";
@@ -722,14 +727,19 @@
           } else  {
             add_class_list = "step0";
           }
+
         }
         if (add_class_list != "") {
           add_class_list.split(" ").forEach((cl)=>{
             thumb_up.classList.add(cl);
+            if (thumb_up_m!=null) thumb_up_m.classList.add(cl);
           });
         }
         if (color_set!="") {
           thumb_up.classList.add(color_set);
+          if (thumb_up_m!=null) thumb_up_m.classList.add(color_set);
+        } else {
+          if (thumb_up_m!=null) thumb_up_m.classList.add("rcmd-box");
         }
       }
     });
