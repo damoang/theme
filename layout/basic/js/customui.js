@@ -177,10 +177,10 @@
           var rcmd_color_step3 = ui_obj.rcmd_color_step3 ?? "";
           var rcmd_color_step4 = ui_obj.rcmd_color_step4 ?? "";
 
-          if (rcmd_color_step1 != "") ui_custom_style += "div.wr-num .rcmd-box.step1 {" + rcmd_color_step1 + " !important;}\n";
-          if (rcmd_color_step2 != "") ui_custom_style += "div.wr-num .rcmd-box.step2 {" + rcmd_color_step2 + " !important;}\n";
-          if (rcmd_color_step3 != "") ui_custom_style += "div.wr-num .rcmd-box.step3 {" + rcmd_color_step3 + " !important;}\n";
-          if (rcmd_color_step4 != "") ui_custom_style += "div.wr-num .rcmd-box.step4 {" + rcmd_color_step4 + " !important;}\n";
+          if (rcmd_color_step1 != "") ui_custom_style += "div.wr-num .rcmd-box.step1 {background-color: " + rcmd_color_step1 + " !important;}\n";
+          if (rcmd_color_step2 != "") ui_custom_style += "div.wr-num .rcmd-box.step2 {background-color: " + rcmd_color_step2 + " !important;}\n";
+          if (rcmd_color_step3 != "") ui_custom_style += "div.wr-num .rcmd-box.step3 {background-color: " + rcmd_color_step3 + " !important;}\n";
+          if (rcmd_color_step4 != "") ui_custom_style += "div.wr-num .rcmd-box.step4 {background-color: " + rcmd_color_step4 + " !important;}\n";
         }
       }
       //hide_nick(ui_obj);
@@ -656,7 +656,7 @@
     if (change_step_value) {
       if (cv_2 < cv_1) cv2 = cv_1;
       if (cv_3 < cv_2) cv3 = cv_2;
-      if (cv_4 < cv_3) cv4 = cv_3;  
+      if (cv_4 < cv_3) cv4 = cv_3;
     }
     var rv_1 = 500, rv_2 = 1000, rv_3 = 5000;
     //var option_class = ["bg-danger","bg-success","bg-primary","bg-info","bg-secondary","bg-opacity-25","bg-opacity-10","bg-gradient","fw-bold","cu_rv_1","cu_rv_2","cu_rv_3"];
@@ -709,13 +709,13 @@
           temp_num = Number(temp_num.innerText.split("\n")[0]);
         }
         var add_class_list = "";
-        
+
         if (change_step_value) {
           step_class.forEach((tc) => {
             thumb_up.classList.remove(tc);
             if (thumb_up_m!=null) thumb_up_m.classList.remove(tc);
           });
-          
+
           if (temp_num >= cv_4) {
             add_class_list = "step4 cu_rv_4";
           } else if (temp_num >=cv_3) {
@@ -2785,7 +2785,7 @@
       $("#reg_expand_shortcut").change(function () {
         set_ui_custom_expand();
       });
-      
+
       $("#reg_rcmd_font_color").change(function () {
         switch(this.value) {
           case "self":
@@ -3083,7 +3083,7 @@
           edit_ip_memo_list(ip_map,function(){
             document.getElementById("load_ip_memo_list").checked = false;
             document.getElementById("btn_ip_memo_close").click();
-          });  
+          });
         }
         success = false;
         break;
@@ -3266,7 +3266,7 @@
                   if (result.desc != memo_desc) {
                     result.desc = memo_desc;
                     result.access = now_stamp;
-                    ipStore.put(result);  
+                    ipStore.put(result);
                   }
                 }
               } else {
@@ -3287,7 +3287,7 @@
   }
   function set_page_hide(event) {
     //console.debug("hide_page");
-    //set_expand_button_hide();  
+    //set_expand_button_hide();
     is_set_expand_button = false;
   }
   document.addEventListener("DOMContentLoaded", set_ui_custom_onload, { once: true });

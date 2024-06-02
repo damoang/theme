@@ -4,37 +4,9 @@
 // ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ
 
 return [
-    // [
-    //     'title' => ($member['mb_level'] >= 5) ?'Nerv' : "",
-    //     'items' => 	($member['mb_level'] >= 5) ? [
-    //         'FAQ' => [
-    //             'url' => G5_BBS_URL . '/group.php?gr_id=nerv',
-    //             'icon' => 'bi-question-circle',
-    //         ],
-    //         '회의록' => [
-    //             'url' => '/meet',
-    //             'icon' => 'bi-pencil',
-    //         ],
-    //         'Document' => [
-    //             'url' =>  '/nerv',
-    //             'icon' => 'bi-search',
-    //         ],
-    //         'notion' => [
-    //             'url' => 'https://www.notion.so/jphan32/NERV-TF-b2155d6027fa47978f5657ea758900ec',
-    //             'icon' => 'bi-search',
-    //         ],
-    //     ] :  [
-
-    //     ],
-    // ],
     [
-        'title' => 'DAMOANG',
+        'title' => '다모앙',
         'items' => [
-            '알림사항' => [
-                'url' => '/notice',
-                'icon' => 'bi-chat-heart-fill',
-                'shortcut' => 'Ｋ',
-            ],
             '앙상불' => [
                 'url' => '/event',
                 'icon' => 'bi-person-heart',
@@ -48,7 +20,7 @@ return [
                 // bi-star-fill
                 // Ａ단축키는 알림 링크에 사용됨
             ],
-            '삐앙삐앙(신고)' => [
+            '신고게시판 (삐앙삐앙)' => [
                 'url' => '/angreport',
                 'shortcut' => 'Ｘ',
                 'icon' => 'bi-webcam-fill',
@@ -189,11 +161,11 @@ return [
         ],
     ],
     [
-        'title' => 'GOVERNANCE',
+        'title' => '운영게시판',
         'items' => [
-            '알림사항' => [
+            '💟 알림사앙 🆕' => [
                 'url' => '/notice',
-                'icon' => 'bi-lightbulb-fill',
+                'icon' => 'bi-chat-heart-fill',
                 'shortcut' => 'Ｋ',
             ],
             '릴리즈 노트' => [
@@ -211,7 +183,7 @@ return [
                 'url' => get_pretty_url('content', 'advertiser'),
                 'icon' => 'bi-badge-ad',
                 'shortcut' => '·',
-                
+
             ],
             '거버넌스' => [
                 'url' => '/governance',
@@ -236,7 +208,7 @@ return [
         ],
     ],
     [
-        'title' => 'Miscellaneous',
+        'title' => '기타',
         'items' => 	($member['mb_level'] >= 2) ? [
             'FAQ' => [
                 'url' => G5_BBS_URL . '/faq.php',
@@ -248,11 +220,11 @@ return [
                 'page_id' => G5_BBS_DIR . '-page-new',
                 'icon' => 'bi-pencil',
             ],
-            // '태그모음' => [
-            //     'url' => G5_BBS_URL . '/tag.php',
-            //     'page_id' => G5_BBS_DIR . '-page-tag',
-            //     'icon' => 'bi-tags',
-            // ],
+             '태그모음' => [
+                 'url' => G5_BBS_URL . '/tag.php',
+                 'page_id' => G5_BBS_DIR . '-page-tag',
+                 'icon' => 'bi-tags',
+             ],
             '게시물검색' => [
                 'url' => G5_BBS_URL . '/search.php',
                 'page_id' => G5_BBS_DIR . '-page-search',
