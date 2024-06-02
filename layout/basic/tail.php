@@ -32,44 +32,49 @@ if (!IS_INDEX) {
 <footer class="site-footer-wrap bg-body-tertiary py-4">
     <div class="container px-3 text-center">
 
-        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-            <li class="nav-item">
-                <a href="<?php echo get_pretty_url('content', 'company'); ?>" class="nav-link px-2 text-body-secondary">사이트 소개</a>
-            </li>
-            <li class="nav-item">
-                <a href="<?php echo get_pretty_url('content', 'provision'); ?>" class="nav-link px-2 text-body-secondary">이용약관</a>
-            </li>
-            <li class="nav-item">
-                <a href="<?php echo get_pretty_url('content', 'privacy'); ?>" class="nav-link px-2 text-body-secondary">개인정보처리방침</a>
-            </li>
-            <li class="nav-item">
-                <a href="<?php echo get_pretty_url('content', 'operation_policy'); ?>" class="nav-link px-2 text-body-secondary">운영정책</a>
-            </li>
-        </ul>
+        <div class="mb-4">
+            <a href="<?php echo get_pretty_url('content', 'company'); ?>">
+                사이트 소개
+                <i class="bar">&nbsp;</i>
+            </a>
+            <a href="<?php echo get_pretty_url('content', 'provision'); ?>">
+                이용약관
+                <i class="bar">&nbsp;</i>
+            </a>
+            <a href="<?php echo get_pretty_url('content', 'privacy'); ?>">
+                개인정보 처리방침
+                <i class="bar">&nbsp;</i>
+            </a>
+            <a href="<?php echo get_pretty_url('content', 'operation_policy'); ?>">
+                운영정책
+                <i class="bar">&nbsp;</i>
+            </a>
+            <a href="/claim">
+                소명 게시판
+                <i class="bar">&nbsp;</i>
+            </a>
+            <a href="<?php echo get_device_change_url(); ?>">
+                <?php echo (G5_IS_MOBILE) ? 'PC' : '모바일'; ?> 버전
+            </a>
+        </div>
 
-        <ul class="nav justify-content-center">
-            <li class="nav-item px-2">
-                <small>회사명 : <?php echo $default['de_admin_company_name'] ?></small>
-            </li>
-            <li class="nav-item px-2">
-                <small>대표 : <?php echo $default['de_admin_company_owner'] ?></small>
-            </li>
-            <li class="nav-item px-2">
-                <small>사업자 등록번호 : <span class="user-select-all"><?php echo $default['de_admin_company_saupja_no'] ?></span></small>
-            </li>
-            <li class="nav-item px-2">
-                <small>주소 : <span class="user-select-all"><?php echo $default['de_admin_company_addr'] ?></span></small>
-            </li>
-        </ul>
+        <div class="lh-lg mb-3">
+            회사명 : <?php echo $default['de_admin_company_name'] ?>
+            <span class="bar-sm">&nbsp;</span>
+            대표 : <?php echo $default['de_admin_company_owner'] ?>
+            <span class="bar-sm">&nbsp;</span>
+            사업자 등록번호 : <?php echo $default['de_admin_company_saupja_no'] ?>
 
-        <p class="text-center text-body-secondary">
-            <small>contact : <span class="user-select-all">contact@damoang.net</span></small>
-        </p>
+        </div>
+        <div class="lh-lg mb-3">
+            주소 : <?php echo $default['de_admin_company_addr'] ?>
+        </div>
+        contact : contact@damoang.net
 
-        <p class="text-center text-body-secondary">
-            <small>Copyright &copy; <b><?php $host = @parse_url(G5_URL);
-            echo $host['host'] ?></b>. All rights reserved.</small>
-        </p>
+        <div class="small">
+            Copyright &copy; <b><?php $host = @parse_url(G5_URL); echo $host['host'] ?></b>. All rights reserved.
+        </div>
+
     </div>
 </footer>
 </div>

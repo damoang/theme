@@ -4,54 +4,60 @@
 // ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ
 
 return [
-    [
-        'title' => ($member['mb_level'] >= 5) ?'Nerv' : "",
-        'items' => 	($member['mb_level'] >= 5) ? [
-            'FAQ' => [
-                'url' => G5_BBS_URL . '/group.php?gr_id=nerv',
-                'icon' => 'bi-question-circle',
-            ],
-            '회의록' => [
-                'url' => '/meet',
-                'icon' => 'bi-pencil',
-            ],
-            'Document' => [
-                'url' =>  '/nerv',
-                'icon' => 'bi-search',
-            ],
-            'notion' => [
-                'url' => 'https://www.notion.so/jphan32/NERV-TF-b2155d6027fa47978f5657ea758900ec',
-                'icon' => 'bi-search',
-            ],
-        ] :  [
+    // [
+    //     'title' => ($member['mb_level'] >= 5) ?'Nerv' : "",
+    //     'items' => 	($member['mb_level'] >= 5) ? [
+    //         'FAQ' => [
+    //             'url' => G5_BBS_URL . '/group.php?gr_id=nerv',
+    //             'icon' => 'bi-question-circle',
+    //         ],
+    //         '회의록' => [
+    //             'url' => '/meet',
+    //             'icon' => 'bi-pencil',
+    //         ],
+    //         'Document' => [
+    //             'url' =>  '/nerv',
+    //             'icon' => 'bi-search',
+    //         ],
+    //         'notion' => [
+    //             'url' => 'https://www.notion.so/jphan32/NERV-TF-b2155d6027fa47978f5657ea758900ec',
+    //             'icon' => 'bi-search',
+    //         ],
+    //     ] :  [
 
-        ],
-    ],
+    //     ],
+    // ],
     [
         'title' => 'DAMOANG',
         'items' => [
+            '알림사항' => [
+                'url' => '/notice',
+                'icon' => 'bi-chat-heart-fill',
+                'shortcut' => 'Ｋ',
+            ],
             '앙상불' => [
                 'url' => '/event',
+                'icon' => 'bi-person-heart',
                 'shortcut' => 'Ａ',
                 // Ａ단축키는 알림 링크에 사용됨
             ],
             '앙지도' => [
                 'url' => '/angmap',
                 'shortcut' => 'Ｍ',
-                    'icon' => 'bi-star-fill',
-
+                'icon' => 'bi-geo-alt-fill',
+                // bi-star-fill
                 // Ａ단축키는 알림 링크에 사용됨
             ],
-            '삐앙삐앙' => [
+            '삐앙삐앙(신고)' => [
                 'url' => '/angreport',
                 'shortcut' => 'Ｘ',
-                    'icon' => 'bi-webcam-fill',
+                'icon' => 'bi-webcam-fill',
 
                 // Ａ단축키는 알림 링크에 사용됨
             ],
             '자유게시판' => [
                 'url' => '/free',
-                // 'icon' => 'bi-chat-dots',
+                'icon' => 'bi-chat',
                 'shortcut' => 'Ｆ',
             ],
 
@@ -63,11 +69,12 @@ return [
             ],
             '새소식' => [
                 'url' => '/new',
-                // 'icon' => 'bi-postcard-heart',
+                'icon' => 'bi-newspaper',
                 'shortcut' => 'Ｎ',
             ],
             '사용기' => [
                 'url' => '/tutorial',
+                'icon' => 'bi-vector-pen',
                 'shortcut' => 'Ｔ',
             ],
             '강좌/팁' => [
@@ -85,12 +92,12 @@ return [
             ],
             '알뜰구매' => [
                 'url' => '/economy',
-                // 'icon' => 'bi-cart-plus-fill',
+                'icon' => 'bi-cash-coin',
                 'shortcut' => 'Ｅ',
             ],
             '갤러리' => [
                 'url' => '/gallery',
-                // 'icon' => 'bi-images',
+                'icon' => 'bi-images',
                 'shortcut' => 'Ｇ',
             ],
             '레퍼럴' => [
@@ -106,6 +113,7 @@ return [
             '소모임' => [
                 'url' => G5_BBS_URL . '/group.php?gr_id=group',
                 'page_id' => G5_BBS_DIR . '-group-group',
+                'icon' => 'bi-cart-plus-fill',
                 'shortcut' => 'Ｓ',
                 'items' => [
                     '모아보기' => G5_BBS_URL . '/group.php?gr_id=group',
@@ -183,34 +191,42 @@ return [
     [
         'title' => 'GOVERNANCE',
         'items' => [
-            '공지사항' => [
+            '알림사항' => [
                 'url' => '/notice',
-                // 'icon' => 'bi-bell',
+                'icon' => 'bi-lightbulb-fill',
                 'shortcut' => 'Ｋ',
             ],
             '릴리즈 노트' => [
                 'url' => '/release',
-                // 'icon' => 'bi-bell',
+                'icon' => 'bi-journal-code',
                 'shortcut' => '·',
 
             ],
             '유지관리' => [
                 'url' => '/bug',
-                // 'icon' => 'bi-tools',
+                'icon' => 'bi-tools',
                 'shortcut' => 'Ｂ',
             ],
             '광고앙' => [
                 'url' => get_pretty_url('content', 'advertiser'),
+                'icon' => 'bi-badge-ad',
                 'shortcut' => '·',
                 
             ],
             '거버넌스' => [
                 'url' => '/governance',
+                'icon' => 'bi-bank',
                 'shortcut' => 'Ｖ',
             ],
             '진실의 방' => [
                 'url' => '/truthroom',
                 'shortcut' => 'Ｊ',
+                'icon' => 'bi-door-open-fill',
+            ],
+            '광고앙돼앙' => [
+                'url' => '/nope',
+                'icon' => 'bi-incognito',
+                'shortcut' => '·',
             ],
             '레벨강등 열람' => [
                 'url' => '/disciplinelog',

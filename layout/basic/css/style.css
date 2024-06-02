@@ -702,7 +702,7 @@ div a mark:hover {
 .rcmd-box {
   border-radius: 5px;
   width: 40px;
-  color: #333333;
+  color: var(--bs-body-color);
   font-weight: 400;
   text-align: center;
   font-size: 12px;
@@ -710,21 +710,118 @@ div a mark:hover {
 }
 
 /* 추천수 스텝별 옵션 */
+/** 기본 **/
 .rcmd-box.step1 {
-  background-color: #dddddd !important;
+  background-color: rgba(172, 172, 172, 0.2) !important;
+  color: var(--bs-body-color) !important;
 }
-
 .rcmd-box.step2 {
-  background-color: #b3ffa2 !important;
+  background-color: rgba(59, 130, 246, 0.3) !important;
+  color: var(--bs-body-color) !important;
 }
-
 .rcmd-box.step3 {
-  background-color: #ffd57a !important;
+  background-color: rgba(59, 130, 246, 0.5) !important;
+  color: var(--bs-body-color) !important;
+}
+.rcmd-box.step4 {
+  background-color: rgba(59, 130, 246, 0.7) !important;
+  color: var(--bs-body-color) !important;
 }
 
-.rcmd-box.step4 {
-  background-color: #e24a4a !important;
-  color: #ffffff;
+/** 잿빛 **/
+.rcmd-box-gray.step1 {
+  background-color: rgba(94, 94, 94, 0.13) !important;
+  color: var(--bs-body-color) !important;
+}
+.rcmd-box-gray.step2 {
+  background-color: rgba(94, 94, 94, 0.25) !important;
+  color: var(--bs-body-color) !important;
+}
+.rcmd-box-gray.step3 {
+  background-color: rgba(94, 94, 94, 0.45) !important;
+  color: var(--bs-body-color) !important;
+}
+.rcmd-box-gray.step4 {
+  background-color: rgba(94, 94, 94, 0.60) !important;
+  color: var(--bs-body-color) !important;
+}
+
+/** 숲속 **/
+.rcmd-box-forest.step1 {
+  background-color: rgba(172, 172, 172, 0.2) !important;
+  color: var(--bs-body-color) !important;
+}
+.rcmd-box-forest.step2 {
+  background-color: rgba(250, 204, 21, 0.3) !important;
+  color: var(--bs-body-color) !important;
+}
+.rcmd-box-forest.step3 {
+  background-color: rgba(132, 204, 22, 0.5) !important;
+  color: var(--bs-body-color) !important;
+}
+.rcmd-box-forest.step4 {
+  background-color: rgba(34, 197, 94, 0.7) !important;
+  color: var(--bs-body-color) !important;
+}
+
+/** 노랑 **/
+.rcmd-box-yellow.step1 {
+  background-color: rgba(172, 172, 172, 0.2) !important;
+  color: var(--bs-body-color) !important;
+}
+.rcmd-box-yellow.step2 {
+  background-color: rgba(251, 188, 25, 0.3) !important;
+  color: var(--bs-body-color) !important;
+}
+.rcmd-box-yellow.step3 {
+  background-color: rgba(251, 188, 25, 0.5) !important;
+  color: var(--bs-body-color) !important;
+}
+.rcmd-box-yellow.step4 {
+  background-color: rgba(251, 188, 25, 0.7) !important;
+  color: var(--bs-body-color) !important;
+}
+
+/** 다양 **/
+.rcmd-box-colorful.step1 {
+  background-color: #DDDDDD !important;
+  color: #333333 !important;
+}
+.rcmd-box-colorful.step2 {
+  background-color: #B3FFA2 !important;
+  color: #333333 !important;
+}
+.rcmd-box-colorful.step3 {
+  background-color: #FFD57A !important;
+  color: #333333 !important;
+}
+.rcmd-box-colorful.step4 {
+  background-color: #E24A4A !important;
+  color: #ffffff !important;
+}
+
+/** 없음 **/
+.rcmd-box-none.step1 {
+  background-color: rgba(130, 130, 130, 0.15) !important;
+  color: var(--bs-body-color) !important;
+}
+.rcmd-box-none.step2 {
+  background-color: rgba(130, 130, 130, 0.15) !important;
+  color: var(--bs-body-color) !important;
+}
+.rcmd-box-none.step3 {
+  background-color: rgba(130, 130, 130, 0.15) !important;
+  color: var(--bs-body-color) !important;
+}
+.rcmd-box-none.step4 {
+  background-color: rgba(130, 130, 130, 0.15) !important;
+  color: var(--bs-body-color) !important;
+}
+
+/* 추천수 0건일 때 적용 */
+.rcmd-box.step0 {
+  background-color: rgba(var(--bs-body-color-rgb), 0.04) !important;
+  color: rgba(var(--bs-emphasis-color-rgb), 0.20) !important;
 }
 
 /* 추천수 PC, Mobile 제어 */

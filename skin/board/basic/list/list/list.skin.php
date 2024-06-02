@@ -100,6 +100,8 @@ add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
                             $rcmd_step = "rcmd-box step1";
                             if(strpos($row['wr_good'],'공지') == true) {
                                 $rcmd_step = ""; //공지사항은 추천수 표시하지 않고 "공지" 텍스트 출력
+                            }else if($row['wr_good'] == 0) {
+                                $rcmd_step = "rcmd-box step0";
                             }else if($row['wr_good'] <= 5) {
                                 $rcmd_step = "rcmd-box step1";
                             }else if($row['wr_good'] > 5 && $row['wr_good'] <=10) {
