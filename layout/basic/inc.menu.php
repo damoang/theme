@@ -30,6 +30,11 @@ return [
     [
         'title' => 'DAMOANG',
         'items' => [
+            '알앙알앙(알림사항)' => [
+                'url' => '/notice',
+                'icon' => 'bi-lightbulb-fill',
+                'shortcut' => 'Ｋ',
+            ],
             '앙상불' => [
                 'url' => '/event',
                 'icon' => 'bi-person-heart',
