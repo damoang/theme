@@ -30,9 +30,9 @@ return [
     [
         'title' => 'DAMOANG',
         'items' => [
-            '알앙알앙(알림사항)' => [
+            '알앙알앙' => [
                 'url' => '/notice',
-                'icon' => 'bi-lightbulb-fill',
+                'icon' => 'bi-chat-heart-fill',
                 'shortcut' => 'Ｋ',
             ],
             '앙상불' => [
