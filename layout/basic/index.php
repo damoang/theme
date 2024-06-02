@@ -259,10 +259,10 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                         </div>
 
                     </div>
-<!--                    --><?php //if ($is_member) { ?>
-<!---->
-<!--                    --><?php //} else { ?>
-<!---->
+                    <?php if ($is_member) { ?>
+
+                    <?php } else { ?>
+
 
                     <?php if (is_mobile()) { ?>
                         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6922133409882969"
