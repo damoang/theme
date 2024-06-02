@@ -7,11 +7,6 @@ return [
     [
         'title' => 'DAMOANG',
         'items' => [
-            '알림사앙 💟' => [
-                'url' => '/notice',
-                'icon' => 'bi-chat-heart-fill',
-                'shortcut' => 'Ｋ',
-            ],
             '앙상불' => [
                 'url' => '/event',
                 'icon' => 'bi-person-heart',
@@ -168,9 +163,9 @@ return [
     [
         'title' => 'GOVERNANCE',
         'items' => [
-            '알림사항' => [
+            '💟 알림사앙 🆕' => [
                 'url' => '/notice',
-                'icon' => 'bi-lightbulb-fill',
+                'icon' => 'bi-chat-heart-fill',
                 'shortcut' => 'Ｋ',
             ],
             '릴리즈 노트' => [
@@ -225,11 +220,11 @@ return [
                 'page_id' => G5_BBS_DIR . '-page-new',
                 'icon' => 'bi-pencil',
             ],
-            // '태그모음' => [
-            //     'url' => G5_BBS_URL . '/tag.php',
-            //     'page_id' => G5_BBS_DIR . '-page-tag',
-            //     'icon' => 'bi-tags',
-            // ],
+             '태그모음' => [
+                 'url' => G5_BBS_URL . '/tag.php',
+                 'page_id' => G5_BBS_DIR . '-page-tag',
+                 'icon' => 'bi-tags',
+             ],
             '게시물검색' => [
                 'url' => G5_BBS_URL . '/search.php',
                 'page_id' => G5_BBS_DIR . '-page-search',
