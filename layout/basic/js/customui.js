@@ -1714,7 +1714,6 @@
     if (a_tag != null) {
       a_tag.addEventListener("click", item_active_pop_event);
     } else {
-      console.debug("a_tag is null");;
     }
   }
   function item_active_pop_event(e) {
@@ -2970,7 +2969,6 @@
     var add_mode = document.getElementById("ip_memo_add_mode");
     var start_add_mode = add_mode.value;
 
-    console.debug("start edit - " + add_mode.value);
     switch (this.id) {
       case "btn_ip_memo_add":
         var add_name = document.getElementById('ip_memo_add_name');
@@ -3014,12 +3012,10 @@
         }
         break;
     }
-    //console.debug("end edit - " + add_mode.value);
   }
   function click_ip_memo_editor_btn() {
     var success = false;
     var add_mode = document.getElementById("ip_memo_add_mode");
-    console.debug("start editor - " + add_mode.value + "," + this.id);
     switch (this.id) {
       case "btn_ip_memo_add_save":
         var ip_name = (document.getElementById("ip_memo_add_name")?.value ?? "").trim();
@@ -3047,7 +3043,6 @@
         document.getElementById("ip_memo_add_name").value = li.querySelector("#ip_memo_list_name")?.innerText ?? "";
         document.getElementById("ip_memo_add_desc").value = li.querySelector("#ip_memo_list_desc")?.value ?? "";
         document.getElementById("btn_ip_memo_add").click();
-        console.debug(document.getElementById("ip_memo_add_name").value);
         success = false;
         break;
       case "btn_ip_memo_list_delete":
@@ -3056,7 +3051,6 @@
         if (ip_mark_regex.test(ip)) {
           var ip_map = {};
           ip_map[ip] = { ip: ip };
-          console.debug(ip_map);
           edit_ip_memo_list(ip_map, function () {
             li.remove();
           });
@@ -3400,7 +3394,6 @@
 
   var tsev = null;
   function check_touch_event() {
-    console.debug(tlog);
     var m = (tlog.summary.move > 0);
     var md = "";
     var ax = 0;
