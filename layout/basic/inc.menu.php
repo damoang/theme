@@ -4,33 +4,10 @@
 // ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ
 
 return [
-    // [
-    //     'title' => ($member['mb_level'] >= 5) ?'Nerv' : "",
-    //     'items' => 	($member['mb_level'] >= 5) ? [
-    //         'FAQ' => [
-    //             'url' => G5_BBS_URL . '/group.php?gr_id=nerv',
-    //             'icon' => 'bi-question-circle',
-    //         ],
-    //         '회의록' => [
-    //             'url' => '/meet',
-    //             'icon' => 'bi-pencil',
-    //         ],
-    //         'Document' => [
-    //             'url' =>  '/nerv',
-    //             'icon' => 'bi-search',
-    //         ],
-    //         'notion' => [
-    //             'url' => 'https://www.notion.so/jphan32/NERV-TF-b2155d6027fa47978f5657ea758900ec',
-    //             'icon' => 'bi-search',
-    //         ],
-    //     ] :  [
-
-    //     ],
-    // ],
     [
         'title' => 'DAMOANG',
         'items' => [
-            '알림사항' => [
+            '알림사앙 💟' => [
                 'url' => '/notice',
                 'icon' => 'bi-chat-heart-fill',
                 'shortcut' => 'Ｋ',
@@ -48,7 +25,7 @@ return [
                 // bi-star-fill
                 // Ａ단축키는 알림 링크에 사용됨
             ],
-            '삐앙삐앙(신고)' => [
+            '신고게시판 (삐앙삐앙)' => [
                 'url' => '/angreport',
                 'shortcut' => 'Ｘ',
                 'icon' => 'bi-webcam-fill',
@@ -211,7 +188,7 @@ return [
                 'url' => get_pretty_url('content', 'advertiser'),
                 'icon' => 'bi-badge-ad',
                 'shortcut' => '·',
-                
+
             ],
             '거버넌스' => [
                 'url' => '/governance',
