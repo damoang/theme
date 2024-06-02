@@ -5,7 +5,7 @@
 
 return [
     [
-        'title' => 'DAMOANG',
+        'title' => '다모앙',
         'items' => [
             '앙상불' => [
                 'url' => '/event',
@@ -161,7 +161,7 @@ return [
         ],
     ],
     [
-        'title' => 'GOVERNANCE',
+        'title' => '운영게시판',
         'items' => [
             '💟 알림사앙 🆕' => [
                 'url' => '/notice',
@@ -208,7 +208,7 @@ return [
         ],
     ],
     [
-        'title' => 'Miscellaneous',
+        'title' => '기타',
         'items' => 	($member['mb_level'] >= 2) ? [
             'FAQ' => [
                 'url' => G5_BBS_URL . '/faq.php',
