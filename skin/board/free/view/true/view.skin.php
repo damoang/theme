@@ -273,7 +273,7 @@ document.getElementById('moveToTureRoomBtn').addEventListener('click', function(
         <div class="col-sm-5 col-md-4 text-center">
 		      <div class="row row-cols-1 row-cols-md-2 align-items-center">
             <div class="col-sm-auto col-md-auto">
-              <img src="<?php echo na_member_photo($view['mb_id']) ?>" class="rounded-circle" onerror="this.onerror=null; this.src='<?php echo G5_IMG_URL . '/no_profile.gif' ?>';">
+              <img src="<?php echo na_member_photo($view['mb_id']) ?>" class="rounded-circle">
             </div>
 		        <div class="col-sm-auto col-md-auto sg-name">
 		  	      <?php echo $view['name'] ?>

@@ -9,7 +9,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
     <li class="list-group-item">
         <div class="d-flex justify-content-center align-items-center mb-2">
             <div class="pe-2">
-                <img src="<?php echo na_member_photo($mb['mb_id']); ?>" class="rounded-circle" style="max-width:60px;" onerror="this.onerror=null; this.src='<?php echo G5_IMG_URL . '/no_profile.gif' ?>';">
+                <img src="<?php echo na_member_photo($mb['mb_id']); ?>" class="rounded-circle" style="max-width:60px;">
             </div>
             <div>
                 <h3 class="mb-1 pb-0 fs-5">
