@@ -30,7 +30,7 @@ return [
     [
         'title' => 'DAMOANG',
         'items' => [
-            '알앙알앙' => [
+            '알림사항' => [
                 'url' => '/notice',
                 'icon' => 'bi-chat-heart-fill',
                 'shortcut' => 'Ｋ',
@@ -48,7 +48,7 @@ return [
                 // bi-star-fill
                 // Ａ단축키는 알림 링크에 사용됨
             ],
-            '삐앙삐앙' => [
+            '삐앙삐앙(신고)' => [
                 'url' => '/angreport',
                 'shortcut' => 'Ｘ',
                 'icon' => 'bi-webcam-fill',
@@ -191,22 +191,22 @@ return [
     [
         'title' => 'GOVERNANCE',
         'items' => [
-            // '공지사항' => [
-            //     'url' => '/notice',
-            //     'icon' => 'bi-lightbulb-fill',
-            //     'shortcut' => 'Ｋ',
-            // ],
-            // '릴리즈 노트' => [
-            //     'url' => '/release',
-            //     'icon' => 'bi-journal-code',
-            //     'shortcut' => '·',
+            '알림사항' => [
+                'url' => '/notice',
+                'icon' => 'bi-lightbulb-fill',
+                'shortcut' => 'Ｋ',
+            ],
+            '릴리즈 노트' => [
+                'url' => '/release',
+                'icon' => 'bi-journal-code',
+                'shortcut' => '·',
 
-            // ],
-            // '유지관리' => [
-            //     'url' => '/bug',
-            //     'icon' => 'bi-tools',
-            //     'shortcut' => 'Ｂ',
-            // ],
+            ],
+            '유지관리' => [
+                'url' => '/bug',
+                'icon' => 'bi-tools',
+                'shortcut' => 'Ｂ',
+            ],
             '광고앙' => [
                 'url' => get_pretty_url('content', 'advertiser'),
                 'icon' => 'bi-badge-ad',
@@ -223,11 +223,11 @@ return [
                 'shortcut' => 'Ｊ',
                 'icon' => 'bi-door-open-fill',
             ],
-            // '광고앙돼앙' => [
-            //     'url' => '/nope',
-            //     'icon' => 'bi-incognito',
-            //     'shortcut' => '·',
-            // ],
+            '광고앙돼앙' => [
+                'url' => '/nope',
+                'icon' => 'bi-incognito',
+                'shortcut' => '·',
+            ],
             '레벨강등 열람' => [
                 'url' => '/disciplinelog',
                 'shortcut' => 'Ｙ',
