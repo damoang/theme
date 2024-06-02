@@ -87,6 +87,8 @@
           //ui_custom_style += "#bo_list div.col-1 {visibility: hidden;width:4em}\n";
           //ui_custom_style += "#bo_list .list-group-item > div{position:relative;}\n";
           //ui_custom_style += "#bo_list .list-group-item div.wr-num.order-3 {margin-top: -0.4em;padding-top: 0.4em;padding-left:0.3em;padding-right:0.3em;border-radius: 5%;}\n";
+          ui_custom_style += "#bo_list li.list-group-item.da-link-block div.wr-num div.rcmd-box {margin-top: -0.5em;margin-bottom: -0.5em;height: 2em;width: 2.3em;vertical-align: middle;padding-top: 0.4em;border-radius: 45%;}\n";
+
           if (ui_custom_animation) {
             ui_custom_style += "#bo_list li.list-group-item.da-link-block div.wr-num div.rcmd-box.step1 {animation-delay: 1s;animation-duration: 1s;animation-name: popUp10;}\n";
             ui_custom_style += "#bo_list li.list-group-item.da-link-block div.wr-num div.rcmd-box.step2 {animation-delay: 1s;animation-duration: 1s;animation-name: popUp15;}\n";
@@ -99,7 +101,7 @@
             ui_custom_style += "#bo_list li.list-group-item.da-link-block:hover div.wr-num div.rcmd-box.step4 {animation-iteration-count: infinite;}\n";
           }
           //ui_media768_style += "#bo_list .list-group-item div.ms-md-auto > div > div:nth-child(3) {position:absolute;left:5px;width:2.3em;}\n";
-          //ui_media768_style += "#bo_list .list-group-item div.wr-num.order-3 {position:absolute;left:5px;height: 2em;width: 2.3em;margin-top: -0.4em;padding-top: 0.4em;padding-left:0em;padding-right:0em;border-radius: 40%;}\n";
+          //ui_media768_style += "#bo_list .list-group-item div.wr-num.order-3 {position:absolute;left:5px;height: 2em;width: 2.3em;margin-top: -0.4em;padding-top: 0.4em;padding-left:0em;padding-right:0em;border-radius: 40%;}\n";          
         }
 
 
@@ -177,10 +179,10 @@
           var rcmd_color_step3 = ui_obj.rcmd_color_step3 ?? "";
           var rcmd_color_step4 = ui_obj.rcmd_color_step4 ?? "";
 
-          if (rcmd_color_step1 != "") ui_custom_style += "div.wr-num .rcmd-box.step1 {background-color: " + rcmd_color_step1 + " !important;}\n";
-          if (rcmd_color_step2 != "") ui_custom_style += "div.wr-num .rcmd-box.step2 {background-color: " + rcmd_color_step2 + " !important;}\n";
-          if (rcmd_color_step3 != "") ui_custom_style += "div.wr-num .rcmd-box.step3 {background-color: " + rcmd_color_step3 + " !important;}\n";
-          if (rcmd_color_step4 != "") ui_custom_style += "div.wr-num .rcmd-box.step4 {background-color: " + rcmd_color_step4 + " !important;}\n";
+          if (rcmd_color_step1 != "") ui_custom_style += "div.wr-num .rcmd-box.step1 {" + rcmd_color_step1 + " !important;}\n";
+          if (rcmd_color_step2 != "") ui_custom_style += "div.wr-num .rcmd-box.step2 {" + rcmd_color_step2 + " !important;}\n";
+          if (rcmd_color_step3 != "") ui_custom_style += "div.wr-num .rcmd-box.step3 {" + rcmd_color_step3 + " !important;}\n";
+          if (rcmd_color_step4 != "") ui_custom_style += "div.wr-num .rcmd-box.step4 {" + rcmd_color_step4 + " !important;}\n";
         }
       }
       //hide_nick(ui_obj);
@@ -368,6 +370,11 @@
     , "expand_navigator"
     , "expand_quick_size"
     , "expand_gesture"
+    , "expand_gesture_tap2"
+    , "expand_gesture_tap3"
+    , "expand_gesture_swipe"
+    , "expand_gesture_swipe_minx"
+    , "expand_gesture_swipe_maxy"
 
     , "menu_scroll"
     , "list_search"
@@ -633,6 +640,8 @@
           }
         }
 
+        set_touch_gesture(ui_obj);
+
         if (ui_custom_animation) {
           set_links_active_pop()
         }
@@ -645,14 +654,14 @@
   }
 
   //함수 모음 시작
-  function set_thumbup_em(ui_obj,reload) {
-    if (ui_obj==null) ui_obj = {};
+  function set_thumbup_em(ui_obj, reload) {
+    if (ui_obj == null) ui_obj = {};
 
     var cv_1 = Number(ui_obj.rcmd_color_step1_value ?? 0);
     var cv_2 = Number(ui_obj.rcmd_color_step2_value ?? 6);
     var cv_3 = Number(ui_obj.rcmd_color_step3_value ?? 11);
     var cv_4 = Number(ui_obj.rcmd_color_step4_value ?? 51);
-    var change_step_value = (ui_obj.rcmd_color_step1_value ?? false )||(ui_obj.rcmd_color_step2_value ?? false )||(ui_obj.rcmd_color_step3_value ?? false )||(ui_obj.rcmd_color_step4_value ?? false );
+    var change_step_value = (ui_obj.rcmd_color_step1_value ?? false) || (ui_obj.rcmd_color_step2_value ?? false) || (ui_obj.rcmd_color_step3_value ?? false) || (ui_obj.rcmd_color_step4_value ?? false);
     if (change_step_value) {
       if (cv_2 < cv_1) cv2 = cv_1;
       if (cv_3 < cv_2) cv3 = cv_2;
@@ -661,11 +670,11 @@
     var rv_1 = 500, rv_2 = 1000, rv_3 = 5000;
     //var option_class = ["bg-danger","bg-success","bg-primary","bg-info","bg-secondary","bg-opacity-25","bg-opacity-10","bg-gradient","fw-bold","cu_rv_1","cu_rv_2","cu_rv_3"];
     var option_class = ["cu_rv_1", "cu_rv_2", "cu_rv_3", "cu_rv_4", "cu_rv_5"];
-    var custom_class = ["gray","forest","yellow","colorful","none","self"];
-    var step_class = ["step1","step2","step3","step4"];
+    var custom_class = ["gray", "forest", "yellow", "colorful", "none", "self"];
+    var step_class = ["step1", "step2", "step3", "step4"];
     var color_set = ui_obj.rcmd_color_set ?? "";
     if (color_set != "" && color_set != "self") {
-      color_set = "rcmd-box-"+color_set;
+      color_set = "rcmd-box-" + color_set;
     }
 
     var custom_set = null;
@@ -677,9 +686,9 @@
         if (reload) {
           option_class.forEach((tc) => {
             thumb_up.classList.remove(tc);
-            if (thumb_up_m!=null) thumb_up_m.classList.remove(tc);
+            if (thumb_up_m != null) thumb_up_m.classList.remove(tc);
           });
-          if (custom_set==null) {
+          if (custom_set == null) {
             custom_class.some((tc) => {
               if (thumb_up.classList.contains(tc)) {
                 custom_set = tc;
@@ -689,12 +698,12 @@
               }
             });
           } else {
-            if (thumb_up_m!=null) thumb_up_m.classList.add(custom_set);
+            if (thumb_up_m != null) thumb_up_m.classList.add(custom_set);
           }
         } else {
           step_class.some((tc) => {
             if (thumb_up.classList.contains(tc)) {
-              if (thumb_up_m!=null) thumb_up_m.classList.add(tc);
+              if (thumb_up_m != null) thumb_up_m.classList.add(tc);
               return true;
             } else {
               return false;
@@ -713,33 +722,33 @@
         if (change_step_value) {
           step_class.forEach((tc) => {
             thumb_up.classList.remove(tc);
-            if (thumb_up_m!=null) thumb_up_m.classList.remove(tc);
+            if (thumb_up_m != null) thumb_up_m.classList.remove(tc);
           });
 
           if (temp_num >= cv_4) {
             add_class_list = "step4 cu_rv_4";
-          } else if (temp_num >=cv_3) {
+          } else if (temp_num >= cv_3) {
             add_class_list = "step3 cu_rv_3";
-          } else if (temp_num >=cv_2) {
+          } else if (temp_num >= cv_2) {
             add_class_list = "step2 cu_rv_2";
-          } else if (temp_num >=cv_3) {
+          } else if (temp_num >= cv_3) {
             add_class_list = "step1 cu_rv_1";
-          } else  {
+          } else {
             add_class_list = "step0";
           }
 
         }
         if (add_class_list != "") {
-          add_class_list.split(" ").forEach((cl)=>{
+          add_class_list.split(" ").forEach((cl) => {
             thumb_up.classList.add(cl);
-            if (thumb_up_m!=null) thumb_up_m.classList.add(cl);
+            if (thumb_up_m != null) thumb_up_m.classList.add(cl);
           });
         }
-        if (color_set!="") {
+        if (color_set != "") {
           thumb_up.classList.add(color_set);
-          if (thumb_up_m!=null) thumb_up_m.classList.add(color_set);
+          if (thumb_up_m != null) thumb_up_m.classList.add(color_set);
         } else {
-          if (thumb_up_m!=null) thumb_up_m.classList.add("rcmd-box");
+          if (thumb_up_m != null) thumb_up_m.classList.add("rcmd-box");
         }
       }
     });
@@ -1705,17 +1714,12 @@
     if (a_tag != null) {
       a_tag.addEventListener("click", item_active_pop_event);
     } else {
-      console.debug("a_tag is null");;
     }
   }
   function item_active_pop_event(e) {
-    console.debug(e.target);
-    console.debug(this);
     var active_top = this.closest("div.nav-item , li.da-link-block");
     if (active_top != null) {
       active_top.classList.add("ui-custom-link-active");
-    } else {
-
     }
   }
 
@@ -2787,7 +2791,7 @@
       });
 
       $("#reg_rcmd_font_color").change(function () {
-        switch(this.value) {
+        switch (this.value) {
           case "self":
             $("#reg_rcmd_font_color_self").show();
             $(".rcmd_font_steps").hide();
@@ -2800,7 +2804,7 @@
             $("#reg_rcmd_font_color_self").hide();
             $(".rcmd_font_steps").hide();
             break;
-          }
+        }
       });
 
       $("#reg_rcmd_color_set").change(function () {
@@ -2938,8 +2942,8 @@
     setBtnClickEvent("btn_memo_ip_clear", delete_memo_database);
     setBtnClickEvent("btn_read_history_clear", delete_read_database);
 
-    setBtnGroupClickEvent(document,".ip_memo_btns", set_ip_memo_edit_mode);
-    setBtnGroupClickEvent(document,".ip_memo_editor_btns", click_ip_memo_editor_btn);
+    setBtnGroupClickEvent(document, ".ip_memo_btns", set_ip_memo_edit_mode);
+    setBtnGroupClickEvent(document, ".ip_memo_editor_btns", click_ip_memo_editor_btn);
 
     set_ui_custom_values();
   }
@@ -2948,7 +2952,7 @@
     var btn = document.getElementById(id);
     if (btn != null) btn.addEventListener("click", event);
   }
-  function setBtnGroupClickEvent(el,cssQuery, event) {
+  function setBtnGroupClickEvent(el, cssQuery, event) {
     if (el == null) el = document;
     Array.from(el.querySelectorAll(cssQuery)).forEach((item) => { item.addEventListener("click", event) });
   }
@@ -2965,7 +2969,6 @@
     var add_mode = document.getElementById("ip_memo_add_mode");
     var start_add_mode = add_mode.value;
 
-    console.debug("start edit - " + add_mode.value);
     switch (this.id) {
       case "btn_ip_memo_add":
         var add_name = document.getElementById('ip_memo_add_name');
@@ -3009,12 +3012,10 @@
         }
         break;
     }
-    //console.debug("end edit - " + add_mode.value);
   }
   function click_ip_memo_editor_btn() {
     var success = false;
     var add_mode = document.getElementById("ip_memo_add_mode");
-    console.debug("start editor - " + add_mode.value + "," + this.id);
     switch (this.id) {
       case "btn_ip_memo_add_save":
         var ip_name = (document.getElementById("ip_memo_add_name")?.value ?? "").trim();
@@ -3024,8 +3025,8 @@
         } else {
           if (ip_mark_regex.test(ip_name)) {
             var ip_map = {};
-            ip_map[ip_name] = {ip:ip_name,desc:ip_desc};
-            edit_ip_memo_list(ip_map,function(){
+            ip_map[ip_name] = { ip: ip_name, desc: ip_desc };
+            edit_ip_memo_list(ip_map, function () {
               alert("저장되었습니다.");
               create_ip_memo_list(ip_name, ip_desc, true);
               document.getElementById("btn_ip_memo_close").click();
@@ -3042,7 +3043,6 @@
         document.getElementById("ip_memo_add_name").value = li.querySelector("#ip_memo_list_name")?.innerText ?? "";
         document.getElementById("ip_memo_add_desc").value = li.querySelector("#ip_memo_list_desc")?.value ?? "";
         document.getElementById("btn_ip_memo_add").click();
-        console.debug(document.getElementById("ip_memo_add_name").value);
         success = false;
         break;
       case "btn_ip_memo_list_delete":
@@ -3050,9 +3050,8 @@
         var ip = li.querySelector("#ip_memo_list_name").innerText.trim();
         if (ip_mark_regex.test(ip)) {
           var ip_map = {};
-          ip_map[ip] = {ip:ip};
-          console.debug(ip_map);
-          edit_ip_memo_list(ip_map,function(){
+          ip_map[ip] = { ip: ip };
+          edit_ip_memo_list(ip_map, function () {
             li.remove();
           });
         } else {
@@ -3065,12 +3064,12 @@
         if (editor != "") {
           var line_list = editor.split("\n");
           var ip_map = {};
-          line_list.forEach((line)=>{
+          line_list.forEach((line) => {
             line = line.trim();
             var line_arr = line.split(",");
             var ip = line_arr[0];
             if (ip_mark_regex.test(ip)) {
-              ip_map[ip] = {ip:ip}
+              ip_map[ip] = { ip: ip }
               if (line_arr.length > 1) {
                 var desc = line_arr.splice(1).join(",").trim();
                 if (desc != "") {
@@ -3080,7 +3079,7 @@
             }
           });
 
-          edit_ip_memo_list(ip_map,function(){
+          edit_ip_memo_list(ip_map, function () {
             document.getElementById("load_ip_memo_list").checked = false;
             document.getElementById("btn_ip_memo_close").click();
           });
@@ -3158,7 +3157,7 @@
       li_new.querySelector("#ip_memo_list_name").innerText = ip;
       li_new.querySelector("#ip_memo_list_desc").value = desc;
       li_new.querySelector("#ip_memo_list_desc").title = desc;
-      setBtnGroupClickEvent(li_new,".ip_memo_editor_btns", click_ip_memo_editor_btn);
+      setBtnGroupClickEvent(li_new, ".ip_memo_editor_btns", click_ip_memo_editor_btn);
       if (li_position != null) {
         li_position.parentNode.insertBefore(li_new, li_position);
       } else {
@@ -3270,7 +3269,7 @@
                   }
                 }
               } else {
-                ipStore.add({ ip: memo_ip, id: {}, access: now_stamp, id_cnt: 0, desc:memo_desc });
+                ipStore.add({ ip: memo_ip, id: {}, access: now_stamp, id_cnt: 0, desc: memo_desc });
               }
             };
           });
@@ -3280,6 +3279,275 @@
   }
   //IP메모 기능 끝
 
+  //터치 이벤트 기록용 시작
+  var tlog = null;
+  var tges = {};
+  function set_touch_gesture(ui_obj) {
+    if (ui_obj != null && ui_obj.expand_gesture) {
+      tges = {};
+      tges.swipe = ui_obj.expand_gesture_swipe;
+      tges.swipe_minx = ui_obj.expand_gesture_swipe_minx;
+      tges.swipe_maxy = ui_obj.expand_gesture_swipe_maxy;
+      tges.tap2 = ui_obj.expand_gesture_tap2;
+      tges.tap3 = ui_obj.expand_gesture_tap3;
+      tges.left_menu = (ui_obj.left_menu ?? false);
+      set_touch_event();  
+    }
+  }
+  var stt = null
+  function set_touch_event(term) {
+    var touch_list = ["touchstart", "touchmove", "touchend", "touchcancle"];
+    touch_list.forEach((touch) => {
+      window.removeEventListener(touch, get_touch_event, false);
+    });
+    if (term != null) {
+      if (stt!=null) {
+        clearTimeout(stt);
+      }
+      stt = setTimeout(function(){
+        touch_list.forEach((touch) => {
+          window.addEventListener(touch, get_touch_event, false);
+        });
+      },term);
+    } else {
+      touch_list.forEach((touch) => {
+        window.addEventListener(touch, get_touch_event, false);
+      });
+  
+    }
+}
+  function get_touch_event(e, parent_name) {
+    var now = Date.now();
+    var term = null;
+    if (tlog?.summary?.last_event != null) {
+      term = now - tlog.summary.last_event;
+    } else {
+      term = 0;
+    }
+    if (tlog == null || (term != null && term > 1000)) {
+      tlog = { summary: { start: 0, end: 0, move: 0, start_time: now }, list: [] };
+    } else {
+      tlog.summary.start_term = now - tlog.summary.start_time;
+    }
+    if (tsev != null) {
+      clearTimeout(tsev);
+    }
+    var pageX, pageY;
+    if ((e.touches?.length ?? 0) > 0) {
+      pageX = e.touches[0].pageX;
+      pageY = e.touches[0].pageY;
+      if (pageX) {
+        if (tlog.summary.pageX != null) {
+          tlog.summary.moveX = pageX - tlog.summary.pageX;
+        } else {
+          delete tlog.summary.moveX;
+        }
+        if (tlog.summary.startX != null) tlog.summary.totalX = pageX - tlog.summary.startX;
+        tlog.summary.pageX = pageX;
+      }
+      if (pageY) {
+        if (tlog.summary.pageY != null) {
+          tlog.summary.moveY = pageY - tlog.summary.pageY;
+        } else {
+          delete tlog.summary.moveY;
+        }
+        if (tlog.summary.startY != null) tlog.summary.totalY = pageY - tlog.summary.startY;
+        tlog.summary.pageY = pageY;
+      }
+    }
+
+    tlog.summary.last_event = now;
+    tlog.summary.term = term;
+    tlog.summary.target = e.target;
+
+    switch (e?.type) {
+      case "touchstart":
+        if (pageX != null) tlog.summary.startX = pageX;
+        if (pageY != null) tlog.summary.startY = pageY;
+        tlog.summary.start++;
+        tlog.list.push(e);
+        break;
+
+      case "touchmove":
+        tlog.summary.move++;
+        tlog.list.push(e);
+        if (tlog.summary.start_term < 300) {
+          //e.preventDefault();
+        }
+        break;
+
+      case "touchend":
+      case "touchcancle":
+        tlog.summary.end++;
+        tlog.list.push(e);
+        if (((tges?.tap2 ?? false) || (tges?.tap3 ?? false)) && tlog.summary.move < 3 && tlog.summary.end < 4 && (tlog.summary.start_term < tlog.summary.end * 200)) {
+          e.preventDefault();
+          tsev = setTimeout(check_touch_event, 250);
+        } else {
+          if (tlog.summary.start_term < 300) {
+            check_touch_event();
+          }
+        }
+        break;
+    }
+  }
+
+  var tsev = null;
+  function check_touch_event() {
+    var m = (tlog.summary.move > 0);
+    var md = "";
+    var ax = 0;
+    var ay = 0;
+
+    var t_type;
+    var t_value;
+
+    if (tges != null) {
+      if (m) {
+        ax = Math.abs(tlog.summary.totalX)
+        ay = Math.abs(tlog.summary.totalY);
+        if (((tges.swipe ?? "") != "") && ax > (tges.swipe_minx ?? 50) && ay < (tges.swipe_minx ?? 30)) {
+          t_type = tges?.swipe;
+          if (tlog.summary.totalX > 0) {
+            t_value = "r";
+          } else {
+            t_value = "l";
+          }
+        }
+      } else {
+        var tc = tlog.summary.end;
+        switch (tc) {
+          case 3:
+            t_type = tges.tap3;
+            break;
+          case 2:
+            t_type = tges.tap2;
+            break;
+          case 1:
+            //set_touch_event(500)
+            tlog.summary.target.dispatchEvent(tlog.list[tlog.list.length-1]);
+            tlog.summary.target.click();
+            break;
+        }
+      }
+      run_touch_gesture(t_type, t_value);
+    }
+    clearTimeout(tsev);
+    tlog = null;
+  }
+  function run_touch_gesture(t_type, t_value) {
+    var sidemenu_o = document.getElementById("menuOffcanvas").classList.contains("show");
+    var mymenu_o = document.getElementById("memberOffcanvas").classList.contains("show");
+    if (t_value != null) {
+      switch (t_type) {
+        case "history":
+          if (t_value == "r") {
+            t_type = "goBack";
+          } else {
+            t_type = "goForward";
+          }
+          break;
+        case "menuOpen":
+          if (tges.left_menu) {
+            if (sidemenu_o) {
+              if (t_value == "r") {
+                t_type = "goBack"; //작동안함
+              } else {
+                t_type = "sideMenuOff";
+              }
+            } else if (mymenu_o) {
+              if (t_value == "r") {
+                t_type = "myMenuOff";
+              } else {
+                t_type = "goForward"; //작동안함
+              }
+            } else {
+              if (t_value == "r") {
+                t_type = "sideMenu";
+              } else {
+                t_type = "myMenu";
+              }
+            }
+          } else {
+            if (sidemenu_o) {
+              if (t_value == "r") {
+                t_type = "sideMenuOff"; //작동안함
+              } else {
+                t_type = "myMenu";
+              }
+            } else if (mymenu_o) {
+              if (t_value == "r") {
+                t_type = "myMenuOff";
+              } else {
+                t_type = "sideMenu"; //작동안함
+              }
+            } else {
+              if (t_value == "r") {
+                t_type = "goBack"; //작동안함
+              } else {
+                t_type = "sideMenu";
+              }
+            }
+          }
+          break;
+      }
+    }
+    if (t_type != null) {
+      switch (t_type) {
+        case "refresh": //새로고침
+          window.location.reload();
+          break;
+        case "toList": //목록으로이동
+          var bl = document.getElementById('bo_list_wrap');
+          var bc = document.getElementById('bo_v');
+          var sy = window.scrollY || document.documentElement.scrollTop;
+          var sh = screen.height;
+          var hn = document.getElementById('header-navbar');
+          if (bc == null) {
+            if ( sy <= (bl.offsetTop + 100)) {
+              window.scrollTo(0,bl.offsetTop + bl.offsetHeight - sh + hn.offsetHeight + 60);
+            } else {
+              window.location.replace("#bo_list_wrap");
+            }
+          } else {
+            if ( sy <= (bc.offsetTop + 100)) {
+              window.location.replace("#bo_list_wrap");
+            } else if ( sy <= (bl.offsetTop + 100)) {
+              window.scrollTo(0,bl.offsetTop + bl.offsetHeight - sh + hn.offsetHeight + 60);
+            } else {
+              window.location.replace("#bo_v");
+            }
+          }
+          break;
+        case "sideMenu": //게시판메뉴
+        case "sideMenuOff": //게시판메뉴
+          document.querySelector("a[data-bs-target='#menuOffcanvas']").click();
+          break;
+        case "myMenu": //마이메뉴
+        case "myMenuOff": //마이메뉴
+          document.querySelector("a[data-bs-target='#memberOffcanvas']").click();
+          break;
+          break;
+        case "toTop": //위아래로이동
+          var sy = window.scrollY || document.documentElement.scrollTop;
+          var bh = document.body.scrollHeight;
+          var sh = screen.height;
+          if (sy < sh * 1.5) {
+            window.scrollTo(0, bh - sh);
+          } else {
+            window.location.replace("#top");
+          }
+          break;
+        case "goBack": //뒤로이동
+          history.back();
+          break;
+        case "goForward": //앞으로이동  
+          history.forward();
+      }
+    }
+  }
+  //터치 이벤트 기록용 끝
+
   function set_page_show(event) {
     if (event.persisted || (window.performance && window.performance.navigation.type == 2)) {
       draw_ui_custom(true);
@@ -3287,7 +3555,7 @@
   }
   function set_page_hide(event) {
     //console.debug("hide_page");
-    //set_expand_button_hide();
+    //set_expand_button_hide();  
     is_set_expand_button = false;
   }
   document.addEventListener("DOMContentLoaded", set_ui_custom_onload, { once: true });

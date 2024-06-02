@@ -478,6 +478,47 @@ if (!defined('_GNUBOARD_')) {
                             </div>
                         </div>
                     </li>
+                    <li class="list-group-item ui-custom-item ui-custom-expand-item">
+                        <div class="row">
+                            <label for="reg_expand_quick_size" class="col-sm-5 col-form-label" title="단축 버튼 크기를 설정합니다. 1em에서 3em까지 가능합니다.">단축 버튼 크기</label>
+                            <div class="col-sm-7">
+                                <div class="input-group">
+                                    <input type="number" id="reg_expand_quick_size" name="expand_quick_size" class="form-control form-control-sm ui_custom_items" step="0.1" data-gtm-form-interact-field-id="0" placeholder="2.5" placeholder="1" min="1" max="3">
+                                    <span class="input-group-text">em</span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item ui-custom-item ui-custom-expand-item">
+                        <div class="row align-items-center">
+                            <label for="reg_expand_write" class="col-sm-5 col-form-label" title="글 작성, 댓글 작성(게시물에서) 단축 버튼을 추가합니다.">글, 댓글 작성</label>
+                            <div class="col-sm-7">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input ui_custom_items float-end mt-2" type="checkbox" name="expand_write" value="1" role="switch" id="reg_expand_write">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item ui-custom-item ui-custom-expand-item">
+                        <div class="row align-items-center">
+                            <label for="reg_expand_mywr" class="col-sm-5 col-form-label" title="게시판에서 내 글, 내 댓글 검색 단축 버튼을 추가합니다.">내 글, 내 댓글 검색</label>
+                            <div class="col-sm-7">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input ui_custom_items float-end mt-2" type="checkbox" name="expand_mywr" value="1" role="switch" id="reg_expand_mywr">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item ui-custom-item ui-custom-expand-item">
+                        <div class="row align-items-center">
+                            <label for="expand_navigator" class="col-sm-5 col-form-label" title="앞, 뒤 단축 버튼을 추가합니다.">앞으로, 뒤로</label>
+                            <div class="col-sm-7">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input ui_custom_items float-end mt-2" type="checkbox" name="expand_navigator" value="1" role="switch" id="reg_expand_navigator">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
                     <li id="reg_expand_shortcut_li" class="list-group-item ui-custom-item ui-custom-expand-item ui-custom-li-expand">
                         <div class="row align-items-center">
                             <label for="reg_expand_shortcut" class="col-sm-5 col-form-label" title="숫자 단축 버튼을 추가합니다.">숫자 단축키</label>
@@ -588,49 +629,91 @@ if (!defined('_GNUBOARD_')) {
                             </div>
                         </div>
                     </li>
-                    <li class="list-group-item ui-custom-item ui-custom-expand-item">
+                    <li class="list-group-item ui-custom-item ui-custom-expand-item ui-custom-li-expand">
                         <div class="row align-items-center">
-                            <label for="reg_expand_write" class="col-sm-5 col-form-label" title="글 작성, 댓글 작성(게시물에서) 단축 버튼을 추가합니다.">글, 댓글 작성</label>
+                            <label for="reg_expand_gesture" class="col-sm-5 col-form-label" title="터치 제스처를 사용합니다.">제스처</label>
                             <div class="col-sm-7">
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input ui_custom_items float-end mt-2" type="checkbox" name="expand_write" value="1" role="switch" id="reg_expand_write">
+                                    <input class="form-check-input ui_custom_items float-end mt-2" type="checkbox" name="expand_gesture" value="1" role="switch" id="reg_expand_gesture">
                                 </div>
                             </div>
                         </div>
                     </li>
                     <li class="list-group-item ui-custom-item ui-custom-expand-item">
                         <div class="row align-items-center">
-                            <label for="reg_expand_mywr" class="col-sm-5 col-form-label" title="게시판에서 내 글, 내 댓글 검색 단축 버튼을 추가합니다.">내 글, 내 댓글 검색</label>
+                            <label for="reg_expand_gesture_swipe" class="col-sm-5 col-form-label" title="터치 제스처를 사용합니다.">양옆으로</label>
                             <div class="col-sm-7">
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input ui_custom_items float-end mt-2" type="checkbox" name="expand_mywr" value="1" role="switch" id="reg_expand_mywr">
-                                </div>
+                                <select class="form-select ui_custom_items" name="read_expand_gesture_swipe" id="reg_expand_gesture_swipe">
+                                    <option value="">사용안함</option>
+                                    <option value="history">앞뒤이동</option>
+                                    <option value="menuOpen">메뉴호출</option>
+                                </select>
                             </div>
                         </div>
                     </li>
                     <li class="list-group-item ui-custom-item ui-custom-expand-item">
-                        <div class="row align-items-center">
-                            <label for="expand_navigator" class="col-sm-5 col-form-label" title="앞, 뒤 단축 버튼을 추가합니다.">앞으로, 뒤로</label>
+                        <div class="row">
+                            <label for="reg_expand_gesture_swipe_minx" class="col-sm-5 col-form-label" title="양옆으로 제스처 인식시 최소 범위를 설정합니다.">가로 이동 범위</label>
                             <div class="col-sm-7">
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input ui_custom_items float-end mt-2" type="checkbox" name="expand_navigator" value="1" role="switch" id="reg_expand_navigator">
+                                <div class="input-group">
+                                    <input type="number" id="reg_expand_gesture_swipe_minx" name="expand_gesture_swipe_minx" class="form-control form-control-sm ui_custom_items" step="10" placeholder="50" min="30">
+                                    <span class="input-group-text">최소</span>
                                 </div>
                             </div>
                         </div>
                     </li>
                     <li class="list-group-item ui-custom-item ui-custom-expand-item">
                         <div class="row">
-                            <label for="reg_expand_quick_size" class="col-sm-5 col-form-label" title="단축 버튼 크기를 설정합니다. 1em에서 3em까지 가능합니다.">단축 버튼 크기</label>
+                            <label for="reg_expand_gesture_swipe_maxy" class="col-sm-5 col-form-label" title="양옆으로 제스처 인식시 최소 범위를 설정합니다.">세로 이동 범위</label>
                             <div class="col-sm-7">
                                 <div class="input-group">
-                                    <input type="number" id="reg_expand_quick_size" name="expand_quick_size" class="form-control form-control-sm ui_custom_items" step="0.1" data-gtm-form-interact-field-id="0" placeholder="2.5" placeholder="1" min="1" max="3">
-                                    <span class="input-group-text" id="basic-addon2">em</span>
+                                    <input type="number" id="reg_expand_gesture_swipe_maxy" name="expand_gesture_swipe_maxy" class="form-control form-control-sm ui_custom_items" step="10" placeholder="30" max="60">
+                                    <span class="input-group-text">최대</span>
                                 </div>
                             </div>
                         </div>
                     </li>
+                    <li class="list-group-item ui-custom-item ui-custom-expand-item">
+                        <div class="row align-items-center">
+                            <label for="reg_expand_gesture_tap2" class="col-sm-5 col-form-label" title="한손가락으로 두번 누릅니다..">두번 두드림</label>
+                            <div class="col-sm-7">
+                                <select class="form-select ui_custom_items" name="expand_gesture_tap2" id="reg_expand_gesture_tap2">
+                                    <option value="">사용안함</option>
+                                    <option value="refresh">새로고침</option>
+                                    <option value="toList">목록으로이동</option>
+                                    <option value="sideMenu">게시판메뉴</option>
+                                    <option value="myMenu">마이메뉴</option>
+                                    <option value="toTop">위아래로이동</option>
+                                    <option value="goBack">뒤로이동</option>
+                                    <option value="goForward">앞으로이동</option>
+                                </select>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item ui-custom-item ui-custom-expand-item">
+                        <div class="row align-items-center">
+                            <label for="reg_expand_gesture_tap3" class="col-sm-5 col-form-label" title="한손가락으로 세번 누릅니다..">세번 두드림</label>
+                            <div class="col-sm-7">
+                                <select class="form-select ui_custom_items" name="read_expand_gesture_tap3" id="reg_expand_gesture_tap3">
+                                    <option value="">사용안함</option>
+                                    <option value="refresh">새로고침</option>
+                                    <option value="toList">목록으로이동</option>
+                                    <option value="sideMenu">게시판메뉴</option>
+                                    <option value="myMenu">마이메뉴</option>
+                                    <option value="toTop">위아래로이동</option>
+                                    <option value="goBack">뒤로이동</option>
+                                    <option value="goForward">앞으로이동</option>
+                                </select>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item ui-custom-li-expand">
+                        <div class="d-flex justify-content-between align-items-center">
+                            * 두드림 제스처 사용시 터치가 문제가 있을수 있습니다.
+                        </div>
+                    </li>
                 </ul>
-                </div>
+            </div>
         </div>
         <div id="ui-custom-list-ul" class="card ui-custom-uls d-none">
             <div class="card-header d-flex justify-content-between align-items-center" style="padding:1.2em;">
