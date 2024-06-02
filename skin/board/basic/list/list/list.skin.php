@@ -133,7 +133,15 @@ add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
                     <?php } ?>
                     <div class="flex-grow-1 overflow-hidden">
                         <div class="d-flex flex-column flex-md-row align-items-md-center gap-2">
-                            <div class="d-inline-flex flex-fill overflow-hidden">
+                            <div class="d-inline-flex flex-fill align-items-center overflow-hidden">
+                                <?php if($is_good && $row['wr_good'] > 0) { ?>
+                                    <div class="wr-num text-nowrap me-2 d-md-none">
+                                        <div class="<?php echo $rcmd_step ?>">
+                                        <?php echo $row['wr_good'] ?>
+                                        </div>
+                                        <span class="visually-hidden">추천</span>
+                                    </div>
+                                <?php } ?>
                                 <?php
                                 // 회원만 보기
                                 echo $row['da_member_only'] ?? '';
@@ -178,13 +186,6 @@ add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
                                         <?php echo na_date($row['wr_datetime'], 'orangered', 'H:i', 'm.d', 'Y.m.d') ?>
                                         <span class="visually-hidden">등록</span>
                                     </div>
-                                    <?php if($is_good) { ?>
-                                        <div class="wr-num text-nowrap order-3 rcmd-mb">
-                                            <i class="bi bi-hand-thumbs-up d-inline-block d-md-none"></i>
-                                            <?php echo $row['wr_good'] ?>
-                                            <span class="visually-hidden">추천</span>
-                                        </div>
-                                    <?php } ?>
                                     <div class="wr-num text-nowrap order-4">
                                         <i class="bi bi-eye d-inline-block d-md-none"></i>
                                         <?php echo $row['wr_hit'] ?>
