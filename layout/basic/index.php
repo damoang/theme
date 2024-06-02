@@ -56,6 +56,12 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                                          data-ad-slot="9138253649"
                                          data-ad-format="auto"
                                          data-full-width-responsive="true"></ins>
+                                    <ins class="adsbygoogle"
+                                         style="display:block"
+                                         data-ad-client="ca-pub-6922133409882969"
+                                         data-ad-slot="9138253649"
+                                         data-ad-format="auto"
+                                         data-full-width-responsive="true"></ins>
 
                                 <?php } else { ?>
                                     <!-- PC -->
