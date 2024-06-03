@@ -248,22 +248,20 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
                         </div>
 
-                        <?php /*<div class="col d-none">
                             <!-- 위젯 시작 { -->
                             <h3 class="fs-5 px-3 py-2 mb-0">
-                                <a href="<?php echo get_pretty_url('notice') ?>">
-                                    <i class="bi bi-bell"></i>
-                                    공지사항3
+                                <a href="<?php echo get_pretty_url('angmap') ?>">
+                                    <i class="bi-geo-alt-fill"></i>
+                                    앙지도
                                     <i class="bi bi-plus small float-end mt-1 text-body-tertiary"></i>
                                 </a>
                             </h3>
                             <div class="line-top mb-4">
-                                <?php echo na_widget('wr-list', 'idx-notice', 'bo_list=notice wr_notice=1 is_notice=1'); ?>
+                                <?php echo na_widget('wr-list', 'idx-map', 'bo_list=angmap wr_notice=1 is_notice=1'); ?>
 
                             </div>
                             <!-- } 위젯 끝 -->
                         </div>
-                        */?>
 
                     </div>
                     <?php if ($is_member) { ?>
