@@ -87,7 +87,7 @@
           //ui_custom_style += "#bo_list div.col-1 {visibility: hidden;width:4em}\n";
           //ui_custom_style += "#bo_list .list-group-item > div{position:relative;}\n";
           //ui_custom_style += "#bo_list .list-group-item div.wr-num.order-3 {margin-top: -0.4em;padding-top: 0.4em;padding-left:0.3em;padding-right:0.3em;border-radius: 5%;}\n";
-          ui_custom_style += "#bo_list li.list-group-item.da-link-block div.wr-num div.rcmd-box {margin-top: -0.5em;margin-bottom: -0.5em;height: 2em;width: 2.3em;vertical-align: middle;padding-top: 0.4em;border-radius: 45%;}\n";
+          //ui_custom_style += "#bo_list li.list-group-item.da-link-block div.wr-num div.rcmd-box {margin-top: -0.5em;margin-bottom: -0.5em;height: 2em;width: 2.3em;vertical-align: middle;padding-top: 0.4em;border-radius: 45%;}\n";
 
           if (ui_custom_animation) {
             ui_custom_style += "#bo_list li.list-group-item.da-link-block div.wr-num div.rcmd-box.step1 {animation-delay: 1s;animation-duration: 1s;animation-name: popUp10;}\n";
