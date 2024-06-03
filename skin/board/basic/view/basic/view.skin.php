@@ -16,7 +16,7 @@ add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css">
 <!--          </div>-->
 <?php echo na_widget('damoang-image-banner', 'board-head'); ?>
 
-<?php echo $config['cf_10'];?>
+<?php echo $config['cf_10']; ?>
 
 <article id="bo_v" class="mb-4">
     <header>
@@ -31,7 +31,8 @@ add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css">
 
     <section id="bo_v_info">
         <h3 class="visually-hidden">페이지 정보</h3>
-        <div class="d-flex justify-content-end align-items-center line-top border-bottom bg-body-tertiary py-2 px-3 small">
+        <div
+            class="d-flex justify-content-end align-items-center line-top border-bottom bg-body-tertiary py-2 px-3 small">
             <div class="me-auto">
                 <span class="visually-hidden">작성자</span>
                 <?php
@@ -86,7 +87,14 @@ add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css">
 
             <?php ob_start(); ?>
             <div class="d-flex align-items-center ms-auto">
-                <?php if ($update_href || $delete_href || $copy_href || $move_href) { ?>
+                <?php
+                $is_category_move_allowed = $boset['check_category_move'] && in_array($boset['category_move_permit'], ["admin_only", "admin_and_member"]);
+                $is_admin_super = $is_admin == "super";
+                $is_member_category_move_allowed = $boset['check_category_move'] && $boset['category_move_permit'] == "admin_and_member" && $member['mb_id'] == $view['mb_id'];
+                $show_category_move_option = ($is_category_move_allowed && $is_admin_super) || $is_member_category_move_allowed;
+
+                if ($update_href || $delete_href || $copy_href || $move_href || $show_category_move_option) {
+                    ?>
                     <div class="dropstart">
                         <button type="button" class="btn btn-basic btn-sm" data-bs-toggle="dropdown" aria-expanded="false"
                                 title="글버튼" style="white-space: nowrap;">
@@ -123,80 +131,79 @@ add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css">
                                         이동하기
                                     </a></li>
                             <?php } ?>
+                            <?php if ($show_category_move_option): ?>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a href="#" class="dropdown-item" data-bs-toggle="modal"
+                                       data-bs-target="#categoryModal">
+                                        <i class="bi bi-folder2"></i>
+                                        카테고리 이동
+                                    </a></li>
+                            <?php endif; ?>
                         </ul>
                     </div>
                 <?php } ?>
 
-                <!-- 설정에 따라 어드민 또는 작성자만 노출 -->
-                <?php if (($boset['check_category_move'] && in_array($boset['category_move_permit'], ["admin_only", "admin_and_member"]) && $is_admin == "super") ||
-                    ($boset['check_category_move'] && $boset['category_move_permit'] == "admin_and_member" && $member['mb_id'] == $view['mb_id'])): ?>
-                    <select id="categorySelect" class="form-select form-select-sm ms-2">
-                        <option value="">카테고리 선택</option>
-                        <?php
-                        $categories = explode('|', $board['bo_category_list']);
-                        foreach ($categories as $category) {
-                            if ($category !== $category_name) {
-                                echo '<option value="'.htmlspecialchars($category).'">'.htmlspecialchars($category).'</option>';
-                            }
-                        }
-                        ?>
-                    </select>
+                <!-- 카테고리 선택 모달 -->
+                <div class="modal fade" id="categoryModal" tabindex="-1" aria-labelledby="categoryModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="categoryModalLabel">카테고리 선택</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <select id="categorySelect" class="form-select">
+                                    <option value="">카테고리 선택</option>
+                                    <?php
+                                    $categories = explode('|', $board['bo_category_list']);
+                                    foreach ($categories as $category) {
+                                        if ($category !== $category_name) {
+                                            echo '<option value="' . htmlspecialchars($category) . '">' . htmlspecialchars($category) . '</option>';
+                                        }
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" id="categoryMoveBtn">이동</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                    <script>
-                        document.getElementById('categorySelect').addEventListener('change', function() {
-                            var selectedCategory = this.value;
-                            if (selectedCategory) {
-                                var message = '[' + selectedCategory + '] 카테고리로 이동하시겠습니까?';
-                                na_confirm(message, function() {
-                                    var form = document.createElement('form');
-                                    form.method = 'POST';
-                                    form.action = window.location.href;
+                <script>
+                    // 카테고리 이동 버튼 클릭 시
+                    document.getElementById('categoryMoveBtn').addEventListener('click', function () {
+                        var selectedCategory = document.getElementById('categorySelect').value;
+                        if (selectedCategory) {
+                            var message = '[' + selectedCategory + '] 카테고리로 이동하시겠습니까?';
+                            na_confirm(message, function () {
+                                var form = document.createElement('form');
+                                form.method = 'POST';
+                                form.action = window.location.href;
 
-                                    var categoryField = document.createElement('input');
-                                    categoryField.type = 'hidden';
-                                    categoryField.name = 'targetCategory';
-                                    categoryField.value = selectedCategory;
-                                    form.appendChild(categoryField);
+                                var categoryField = document.createElement('input');
+                                categoryField.type = 'hidden';
+                                categoryField.name = 'targetCategory';
+                                categoryField.value = selectedCategory;
+                                form.appendChild(categoryField);
 
-                                    var idField = document.createElement('input');
-                                    idField.type = 'hidden';
-                                    idField.name = 'targetWrId';
-                                    idField.value = <?php echo $view['wr_id']; ?>;
-                                    form.appendChild(idField);
+                                var idField = document.createElement('input');
+                                idField.type = 'hidden';
+                                idField.name = 'targetWrId';
+                                idField.value = <?php echo $view['wr_id']; ?>;
+                                form.appendChild(idField);
 
-                                    document.body.appendChild(form);
-                                    form.submit();
-                                });
-                            }
-                        });
-                    </script>
-
-<!--                    <button id="moveToTureRoomBtn" class="btn btn-basic btn-sm ms-2" style="white-space: nowrap;">-->
-<!--                        <i class="bi-universal-access"></i> 진실의 방으로-->
-<!--                    </button>-->
-
-                    <script>
-                        document.getElementById('moveToTureRoomBtn').addEventListener('click', function () {
-                            $.ajax({
-                                type: "POST",
-                                url: "./move_to_tureroom.php", // 서버 측 스크립트 파일 경로
-                                data: {
-                                    // 이동할 데이터나 조건 등을 설정
-                                    bo_table: "tureroom",
-                                    // 추가 데이터
-                                },
-                                success: function (response) {
-                                    // 성공적으로 처리된 후의 동작 (예: 알림 표시)
-                                    alert("이동 완료: " + response);
-                                },
-                                error: function (xhr, status, error) {
-                                    // 오류 처리
-                                    alert("오류 발생");
-                                }
+                                document.body.appendChild(form);
+                                form.submit();
                             });
-                        });
-                    </script>
-                <?php endif; ?>
+                        }
+                    });
+                </script>
 
                 <?php if ($update_href) { ?>
                     <a href="<?php echo $update_href ?>" class="btn btn-basic btn-sm ms-2" style="white-space: nowrap;">
@@ -205,7 +212,8 @@ add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css">
                     </a>
                 <?php } ?>
                 <?php if ($delete_href) { ?>
-                    <a href="<?php echo $delete_href ?>" onclick="del(this.href); return false;" class="btn btn-basic btn-sm ms-2" style="white-space: nowrap;">
+                    <a href="<?php echo $delete_href ?>" onclick="del(this.href); return false;"
+                       class="btn btn-basic btn-sm ms-2" style="white-space: nowrap;">
                         <i class="bi bi-trash"></i>
                     </a>
                 <?php } ?>
@@ -498,7 +506,7 @@ add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css">
                                     </div>
                                     <div class="text-truncate">
                                         <a href="<?php echo $view['file'][$i]['href'] ?>" class="view_file_download"
-                                            title="<?php echo $view['file'][$i]['content'] ?>">
+                                           title="<?php echo $view['file'][$i]['content'] ?>">
                                             <?php echo $view['file'][$i]['source'] ?>
                                             <span class="visually-hidden">파일크기</span>
                                             <span class="small">(<?php echo $view['file'][$i]['size'] ?>)</span>
@@ -534,8 +542,8 @@ add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css">
         <?php if ($prev_href) { ?>
             <div>
                 <a href="<?php echo $prev_href ?>" class="btn btn-basic btn-sm"
-                title="<?php echo $prev_wr_subject; ?> <?php echo date("Y.m.d", strtotime($prev_wr_date)) ?>"
-                title="이전글">
+                   title="<?php echo $prev_wr_subject; ?> <?php echo date("Y.m.d", strtotime($prev_wr_date)) ?>"
+                   title="이전글">
                     <i class="bi bi-chevron-left"></i>
                     <span class="d-none d-sm-inline-block">이전글</span>
                 </a>
@@ -544,8 +552,8 @@ add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css">
         <?php if ($next_href) { ?>
             <div>
                 <a href="<?php echo $next_href ?>" class="btn btn-basic btn-sm"
-                title="<?php echo $next_wr_subject; ?> <?php echo date("Y.m.d", strtotime($next_wr_date)) ?>"
-                title="다음글">
+                   title="<?php echo $next_wr_subject; ?> <?php echo date("Y.m.d", strtotime($next_wr_date)) ?>"
+                   title="다음글">
                     <span class="d-none d-sm-inline-block">다음글</span>
                     <i class="bi bi-chevron-right"></i>
                 </a>
@@ -562,31 +570,33 @@ add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css">
 </article>
 
 <div class="mb-3">
-<?php if (is_mobile()) { ?>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6922133409882969"
-        crossorigin="anonymous"></script>
-    <!-- 수평형 -->
-    <ins class="adsbygoogle"
-        style="display:block"
-        data-ad-client="ca-pub-6922133409882969"
-        data-ad-slot="5448923097"
-        data-ad-format="auto"
-        data-full-width-responsive="true"></ins>
-    <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-<?php } else { ?>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6922133409882969"
-        crossorigin="anonymous"></script>
-    <!-- 게시풀 하단 -->
-    <ins class="adsbygoogle"
-        style="display:inline-block;width:860px;height:100px"
-        data-ad-client="ca-pub-6922133409882969"
-        data-ad-slot="3013497299"></ins>
-    <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-<?php } ?>
+    <?php if (is_mobile()) { ?>
+        <script async
+                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6922133409882969"
+                crossorigin="anonymous"></script>
+        <!-- 수평형 -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-6922133409882969"
+             data-ad-slot="5448923097"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    <?php } else { ?>
+        <script async
+                src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6922133409882969"
+                crossorigin="anonymous"></script>
+        <!-- 게시풀 하단 -->
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:860px;height:100px"
+             data-ad-client="ca-pub-6922133409882969"
+             data-ad-slot="3013497299"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    <?php } ?>
 </div>
 
 
