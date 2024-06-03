@@ -3290,7 +3290,7 @@
       tges.swipe_maxy = ui_obj.expand_gesture_swipe_maxy;
       tges.tap2 = ui_obj.expand_gesture_tap2;
       tges.tap3 = ui_obj.expand_gesture_tap3;
-      tges.left_menu = (ui_obj.left_menu ?? false);
+      tges.left_menu_over = (ui_obj.left_menu_over ?? false);
       set_touch_event();  
     }
   }
@@ -3448,7 +3448,7 @@
           }
           break;
         case "menuOpen":
-          if (tges.left_menu) {
+          if (tges.left_menu_over) {
             if (sidemenu_o) {
               if (t_value == "r") {
                 t_type = "goBack"; //작동안함
