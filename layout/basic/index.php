@@ -295,8 +295,8 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                         </script>
                     <?php } ?>
 
-
-                        <div class="row row-cols-1 row-cols-lg-2">
+                    <?php /*<div class="col d-none">
+                            <div class="row row-cols-1 row-cols-lg-2">
                             <div class="col">
                                 <!-- 위젯 시작 { -->
                                 <h3 class="fs-5 px-3 py-2 mb-0">
@@ -329,6 +329,8 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
                             </div>
                         </div>
+                        */?>
+
 
                     <?php } ?>
 
