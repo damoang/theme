@@ -3380,7 +3380,7 @@
       case "touchcancle":
         tlog.summary.end++;
         tlog.list.push(e);
-        if (((tges?.tap2 ?? false) || (tges?.tap3 ?? false)) && tlog.summary.move < 3 && tlog.summary.end < 4 && (tlog.summary.start_term < tlog.summary.end * 200)) {
+        if (((tges?.tap2 ?? false) || (tges?.tap3 ?? false)) && tlog.summary.move < 3 && tlog.summary.end < 4 && (tlog.summary.start_term < tlog.summary.end * 300)) {
           e.preventDefault();
           tsev = setTimeout(check_touch_event, 250);
         } else {
