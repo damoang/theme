@@ -28,14 +28,14 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                         <div class="col">
                             <!-- 광고 시작 { -->
 
-                            <div class="line-top mb-4">
+                            <div>
                                 <script async
                                         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6922133409882969"
                                         crossorigin="anonymous"></script>
                                 <?php if (is_mobile()) { ?>
                                     <!-- 모바일 -->
                                     <!-- main -->
-                                    <h3 class="fs-5 px-3 py-2 mb-0">
+                                    <h3 class="fs-5 px-3 py-2 mb-0 line-bottom">
                                         <a href="<?php echo get_pretty_url('notice') ?>">
                                             <i class="bi bi-bell"></i>
                                             공지사항
@@ -43,7 +43,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                                         </a>
                                     </h3>
                                     <?php echo na_widget('wr-list', 'idx-notice', 'bo_list=notice wr_notice=1 is_notice=1'); ?>
-                                    <h3 class="fs-5 px-3 py-2 mb-0">
+                                    <h3 class="fs-5 px-3 py-2 mb-0 line-bottom">
                                         <a href="">
                                             <i class="bi bi-bell"></i>
                                             광고
@@ -67,7 +67,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                                     <!-- PC -->
                                     <!-- 메인 -->
                                     <!-- main -->
-                                    <h3 class="fs-5 px-3 py-2 mb-0">
+                                    <h3 class="fs-5 px-3 py-2 mb-0 line-bottom">
                                         <a href="<?php echo get_pretty_url('notice') ?>">
                                             <i class="bi bi-bell"></i>
                                             공지사항
@@ -75,7 +75,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                                         </a>
                                     </h3>
                                     <?php echo na_widget('wr-list', 'idx-notice', 'bo_list=notice wr_notice=1 is_notice=1'); ?>
-                                    <h3 class="fs-5 px-3 py-2 mb-0">
+                                    <h3 class="fs-5 px-3 py-2 mb-0 line-bottom">
                                         <a href="">
                                             <i class="bi bi-bell"></i>
                                             광고
@@ -248,12 +248,12 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
                         </div>
 
-                        <div class="col">
+                        <?php /*<div class="col d-none">
                             <!-- 위젯 시작 { -->
                             <h3 class="fs-5 px-3 py-2 mb-0">
                                 <a href="<?php echo get_pretty_url('notice') ?>">
                                     <i class="bi bi-bell"></i>
-                                    공지사항
+                                    공지사항3
                                     <i class="bi bi-plus small float-end mt-1 text-body-tertiary"></i>
                                 </a>
                             </h3>
@@ -263,6 +263,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                             </div>
                             <!-- } 위젯 끝 -->
                         </div>
+                        */?>
 
                     </div>
                     <?php if ($is_member) { ?>
