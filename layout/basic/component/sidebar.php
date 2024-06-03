@@ -19,7 +19,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                 ?>
                 <div class="nav-item">
                     <a class="nav-link" href="<?php echo $config['cf_9'];?>" data-placement="left" target="_blank">
-                        <i class="bi-youtube nav-icon"></i>
+<!--                        <i class="bi-youtube nav-icon"></i>-->
                         <span class="nav-link-title">▶️ 다모앙 방송국</span>
                     </a>
                 </div>
@@ -85,15 +85,15 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                         ?>
                         <div class="nav-item da-menu--<?= $menuItem['page_id'] ?>">
                             <a
-                                class="nav-link <?= ($menuItem['page_id'] === $page_id) ? 'active' : ''; ?><?= ($hasSub) ? 'dropdown-toggle collapsed collapsed' : '' ?>"
+                                class="nav-link <?= ($menuItem['page_id'] === $page_id) ? ' active ' : ''; ?><?= ($hasSub) ? 'dropdown-toggle collapsed collapsed' : '' ?>"
                                 href="<?= $menuItem['url'] ?>"
                                 data-placement="left"
                                 <?= ($hasSub) ? 'role="button" data-bs-toggle="collapse" data-bs-target="#' . $menuToggleId . '" aria-expanded="false" aria-controls="' . $menuToggleId . '"' : '' ?>
                             >
-                                <i class="<?= $menuItem['icon'] ?> nav-icon"></i>
-                                <span class="nav-link-title" <?= ($hasSub) ? ' onclick="na_href(\'' . $menuUrlOrigin . '\', \'_self\');"' : '' ?>>
+                                <span class="d-flex align-items-center gap-2 nav-link-title">
+<!--                                    <i class="--><?php //= $menuItem['icon'] ?><!-- nav-icon"></i>-->
                                     <?php if ($menuItem['shortcut']) { ?>
-                                        <span class="badge text-bg-secondary"><?= $menuItem['shortcut'] ?></span>
+                                        <span class="badge p-1 text-bg-secondary"><?= $menuItem['shortcut'] ?></span>
                                     <?php } ?>
                                     <?= $menuTitle ?>
                                 </span>
@@ -115,7 +115,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
                 <div class="nav-item da-menu--device-mode">
                     <a class="nav-link" href="<?php echo get_device_change_url() ?>" data-placement="left">
-                        <i class="<?php echo (G5_IS_MOBILE) ? 'bi-pc-display' : 'bi-tablet'; ?> nav-icon"></i>
+<!--                        <i class="--><?php //echo (G5_IS_MOBILE) ? 'bi-pc-display' : 'bi-tablet'; ?><!-- nav-icon"></i>-->
                         <span class="nav-link-title"><?php echo (G5_IS_MOBILE) ? 'PC' : '모바일'; ?> 버전</span>
                     </a>
                 </div>

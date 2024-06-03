@@ -86,7 +86,7 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
             $comment_depth = strlen($list[$i]['wr_comment_reply']) * 1;
             $comment = $list[$i]['content'];
 
-            $wr_names[$list[$i]['wr_comment_reply']] = $list[$i]['wr_name'];
+            $wr_names[$list[$i]['wr_comment'] . ':' . $list[$i]['wr_comment_reply']] = $list[$i]['wr_name'];
 
             // 이미지
             $comment = preg_replace("/\[\<a\s*href\=\"(http|https|ftp)\:\/\/([^[:space:]]+)\.(gif|png|jpg|jpeg|bmp|webp)\"\s*[^\>]*\>[^\s]*\<\/a\>\]/i", "<img src=\"$1://$2.$3\" alt=\"\">", $comment);
@@ -107,7 +107,7 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
 
             $comment_name = get_text($list[$i]['wr_name']);
             $by_writer = ($view['mb_id'] && $view['mb_id'] == $list[$i]['mb_id']) ? 'bg-secondary-subtle' : 'bg-body-tertiary';
-            $parent_wr_name = $wr_names[substr($list[$i]['wr_comment_reply'], 0, -1)];
+            $parent_wr_name = $wr_names[$list[$i]['wr_comment'] . ':' . substr($list[$i]['wr_comment_reply'], 0, -1)] ?? '';
 
         ?>
         <article id="c_<?php echo $comment_id ?>" <?php if ($comment_depth) { ?>style="margin-left:<?php echo $comment_depth ?>rem;"<?php } ?>>
@@ -143,7 +143,11 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
                 <div class="comment-content p-3">
                     <div class="<?php echo $is_convert ?>">
                         <?php if ($comment_depth) { ?>
-                            <em class="da-commented-to"><strong>@<?= $parent_wr_name ?></strong>님에게 답글</em>
+                            <?php if ($parent_wr_name) { ?>
+                                <em class="da-commented-to"><strong>@<?= $parent_wr_name ?></strong>님에게 답글</em>
+                            <?php } else { ?>
+                                <em class="da-commented-to">다른 누군가에게 답글</em>
+                            <?php } ?>
                         <?php } ?>
                         <?php
                         $is_lock = false;
@@ -192,10 +196,12 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
                                 </a>
                             <?php } ?>
                         <?php } ?>
+                            <?php if(!empty($is_member)) { // 로그인한 회원만 복사 가능 ?>
                             <button type="button" onclick="copy_comment_link('<?php echo $comment_id ?>');" class="btn btn-basic" title="복사">
                                 <i class="bi bi-copy"></i>
                                 <span class="d-none d-sm-inline-block">복사</span>
                             </button>
+                            <?php } ?>
                             <button type="button" onclick="na_singo('<?php echo $bo_table ?>', '<?php echo $list[$i]['wr_id'] ?>', '0', 'c_<?php echo $comment_id ?>');" class="btn btn-basic" title="신고">
                                 <i class="bi bi-eye-slash"></i>
                                 <span class="d-none d-sm-inline-block">신고</span>

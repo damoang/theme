@@ -1,27 +1,53 @@
 (() => {
   'use strict'
+  var body_opacity_init = false;
+  var ui_custom_animation = false;
+
+  var ip_mark_regex = /^([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.(♡|[0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.(♡|[0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){2}$/;
+
+  function set_body_op_start() {
+    body_opacity_init = true;
+    if (document?.body != null) {
+      document.body.classList.add('opacity-0');
+      document.body.classList.remove('cu_init');
+    }
+  }
+
+  function set_body_op_end() {
+    if (body_opacity_init) {
+      document.body.classList.remove('opacity-0');
+      document.body.classList.add('cu_init');
+    }
+  }
+
+  function remove_ui_custom_styles() {
+    if (document.getElementById('user_ui_custom_styles') != null) {
+      document.getElementById('user_ui_custom_styles').remove();
+    }
+  }
 
   function set_ui_custom() {
-    try {
-      document.getElementById('user_ui_custom_styles').remove();
-    } catch {
-    }
     var ui_custom_storage_str = localStorage.getItem("ui_custom");
+    var ui_custom_style = "";
+    ui_custom_animation = false;
     if (ui_custom_storage_str != null && ui_custom_storage_str != "") {
       var ui_obj = JSON.parse(ui_custom_storage_str);
       var ui_keys = Object.keys(ui_obj);
-      var ui_custom_style = "";
       var ui_root_style = "";
       var ui_media992_style = "";
+      var ui_media768_style = "";
+
       if (ui_obj.ui_custom != null && ui_obj.ui_custom) {
+        ui_custom_animation = !(ui_obj?.animation_off ?? false);
         //화면 너비 설정
         if (ui_obj.show_width != null) {
           ui_custom_style += ".container {max-width: " + ui_obj.show_width + "px !important;}\n";
+          ui_custom_style += "#main-wrap div.order-1 a[data-dd-action-name='Boards Ads Banner'] > img {width:100%;}\n";
         }
         //메뉴 스크롤 적용
         if (ui_obj.menu_scroll != null && ui_obj.menu_scroll) {
-          ui_custom_style += "#header-copy.header-copy {display: none;}\n";
-          ui_custom_style += "#header-navbar.site-navbar {position: relative !important;display: block !important; height: 64px !important;}\n";
+          ui_custom_style += "#header-copy.header-copy {display: block;}\n";
+          ui_custom_style += "#header-navbar.site-navbar {position: fixed !important;display: block !important; height: 64px !important;}\n";
           ui_custom_style += "#main-wrap .sticky-top {position: relative;}\n";
         }
 
@@ -38,19 +64,46 @@
 
         //media 992px 이상
         //왼쪽 메뉴 적용
-        if (ui_obj.left_menu != null && ui_obj.left_menu) {
-          ui_media992_style += ".order-2 {order: 0 !important;}\n";
-        }
-        //메뉴바 크기 설정
-        if (ui_obj.menu_width != null) {
-          var content_width = 100 - ui_obj.menu_width;
-          ui_media992_style += ".col-lg-9 {width: " + content_width + "% !important;}\n";
-          ui_media992_style += ".col-lg-3 {width: " + ui_obj.menu_width + "% !important;}\n";
+        if ((ui_obj.menu_off ?? false) && 1 == 0) {
+          ui_custom_style += "#main-wrap .container div.order-2 {display:none;}\n";
+          ui_media992_style += ".col-lg-9 {width: 100% !important;}\n";
+        } else {
+          if (ui_obj.left_menu != null && ui_obj.left_menu) {
+            ui_media992_style += ".order-2 {order: 0 !important;}\n";
+          }
+          //메뉴바 크기 설정
+          if (ui_obj.menu_width != null) {
+            var content_width = 100 - ui_obj.menu_width;
+            ui_media992_style += ".col-lg-9 {width: " + content_width + "% !important;}\n";
+            ui_media992_style += ".col-lg-3 {width: " + ui_obj.menu_width + "% !important;}\n";
+          }
         }
         //검색메뉴 항상 보임
         if (ui_obj.list_search != null && ui_obj.list_search) {
           ui_media992_style += "#boardSearch {display: block !important;}\n";
         }
+        //추천수 강조
+        if (!(ui_obj.thumbup_em_off ?? false)) {
+          //ui_custom_style += "#bo_list div.col-1 {visibility: hidden;width:4em}\n";
+          //ui_custom_style += "#bo_list .list-group-item > div{position:relative;}\n";
+          //ui_custom_style += "#bo_list .list-group-item div.wr-num.order-3 {margin-top: -0.4em;padding-top: 0.4em;padding-left:0.3em;padding-right:0.3em;border-radius: 5%;}\n";
+          ui_custom_style += "#bo_list li.list-group-item.da-link-block div.wr-num div.rcmd-box {margin-top: -0.5em;margin-bottom: -0.5em;height: 2em;width: 2.3em;vertical-align: middle;padding-top: 0.4em;border-radius: 45%;}\n";
+
+          if (ui_custom_animation) {
+            ui_custom_style += "#bo_list li.list-group-item.da-link-block div.wr-num div.rcmd-box.step1 {animation-delay: 1s;animation-duration: 1s;animation-name: popUp10;}\n";
+            ui_custom_style += "#bo_list li.list-group-item.da-link-block div.wr-num div.rcmd-box.step2 {animation-delay: 1s;animation-duration: 1s;animation-name: popUp15;}\n";
+            ui_custom_style += "#bo_list li.list-group-item.da-link-block div.wr-num div.rcmd-box.step3 {animation-delay: 1s;animation-duration: 1s;animation-name: popUp20;}\n";
+            ui_custom_style += "#bo_list li.list-group-item.da-link-block div.wr-num div.rcmd-box.step4 {animation-delay: 1s;animation-duration: 1s;animation-name: popUp25;}\n";
+
+            ui_custom_style += "#bo_list li.list-group-item.da-link-block:hover div.wr-num div.rcmd-box.step1 {animation-iteration-count: infinite;}\n";
+            ui_custom_style += "#bo_list li.list-group-item.da-link-block:hover div.wr-num div.rcmd-box.step2 {animation-iteration-count: infinite;}\n";
+            ui_custom_style += "#bo_list li.list-group-item.da-link-block:hover div.wr-num div.rcmd-box.step3 {animation-iteration-count: infinite;}\n";
+            ui_custom_style += "#bo_list li.list-group-item.da-link-block:hover div.wr-num div.rcmd-box.step4 {animation-iteration-count: infinite;}\n";
+          }
+          //ui_media768_style += "#bo_list .list-group-item div.ms-md-auto > div > div:nth-child(3) {position:absolute;left:5px;width:2.3em;}\n";
+          //ui_media768_style += "#bo_list .list-group-item div.wr-num.order-3 {position:absolute;left:5px;height: 2em;width: 2.3em;margin-top: -0.4em;padding-top: 0.4em;padding-left:0em;padding-right:0em;border-radius: 40%;}\n";          
+        }
+
 
         if (ui_root_style != "") {
           ui_custom_style += ":root {\n" + ui_root_style + "}\n";
@@ -58,74 +111,324 @@
         if (ui_media992_style != "") {
           ui_custom_style += "@media (min-width: 992px) {\n" + ui_media992_style + "}\n";
         }
-        if (ui_custom_style != "") {
-          document.head.innerHTML += "<style id=\"user_ui_custom_styles\">\n" + ui_custom_style + "</style>";
+        if (ui_media768_style != "") {
+          ui_custom_style += "@media (min-width: 768px) {\n" + ui_media768_style + "}\n";
+        }
+        if (body_opacity_init != null) {
+          ui_custom_style += "body {opacity:0;}\n";
+          ui_custom_style += "body.cu_init {\n" +
+            "opacity:1;" +
+            "animation-name: cu_body_op;" +
+            "animation-duration: 0.1s;" +
+            "animation-delay: 0s;" +
+            "animation-iteration-count: 1;" +
+            "animation-timing-function: linear;" +
+            "animation-direction: alternate;\n}\n";
+          ui_custom_style += "@keyframes cu_body_op {\n 0% {opacity: 0;} \n 50% {opacity: 70;} \n 100% {opacity: 1;}\n}\n";
+        }
+        if (ui_obj.expand_quick != null && ui_obj.expand_quick) {
+          if (ui_obj.expand_quick_size != null) {
+            ui_custom_style += "div#toTop a {font-size: " + ui_obj.expand_quick_size + "em !important;}\n";
+          }
+          //"div#toTop a.ui-custom-expand-hidden.d-block {transition: all 0.5s;height: 100%;}\n" +
+          //"div#toTop a.ui-custom-expand-hidden.d-none {display: block !important;transition: all 0.3s;opacity: 0;transform: scale(0.5) rotate(0deg) translateY(200%);border-radius: 100%;}\n" +
+          ui_custom_style += "div#toTop a.ui-custom-expand-hidden.d-none-start {display: block !important;opacity: 0;transform: scale(0.5) rotate(0deg) translateY(200%);border-radius: 100%;}\n" +
+            "div#toTop a#ui-custom-expand-button:has(i.opacity-25) {transform: rotateX(-180deg) scale(1.2);}\n";
+
+          if (ui_custom_animation) {
+            ui_custom_style += "div#toTop a.ui-custom-expand-hidden.d-block.cu-animation {transition: all 0.5s;height: 100%;}\n" +
+              "div#toTop a.ui-custom-expand-hidden.d-none.cu-animation {display: block !important;transition: all 0.3s;opacity: 0;transform: scale(0.5) rotate(0deg) translateY(200%);border-radius: 100%;}\n" +
+              "div#toTop a#ui-custom-expand-button.cu-animation {transition: all 0.7s;}\n" +
+              "div#toTop a#ui-custom-expand-button.cu-animation:has(i.opacity-25) {transition: all 0.5s;}\n";
+          }
+        }
+        if ((ui_obj.rcmd_font_color ?? "") != "") {
+          var font_color = "";
+          var rcmd_color_set = (ui_obj.rcmd_color_set ?? "");
+          if (rcmd_color_set != "self" && rcmd_color_set != "") {
+            rcmd_color_set = "-" + rcmd_color_set
+          } else {
+            rcmd_color_set = ""
+          }
+          switch (ui_obj.rcmd_font_color ?? "") {
+            case "gray":
+              font_color = "#dddddd";
+              break;
+            case "black":
+              font_color = "#000000";
+              break;
+            case "white":
+              font_color = "#ffffff";
+              break;
+            case "self":
+              if ((ui_obj.rcmd_font_color_self ?? "") != "") font_color = ui_obj.rcmd_font_color_self;
+              break;
+            case "step":
+              if ((ui_obj.rcmd_font_color_1 ?? "") != "") ui_custom_style += "#bo_list li.list-group-item.da-link-block div.rcmd-box" + rcmd_color_set + ".step1 {color : " + ui_obj.rcmd_font_color_1 + " !important}\n";
+              if ((ui_obj.rcmd_font_color_2 ?? "") != "") ui_custom_style += "#bo_list li.list-group-item.da-link-block div.rcmd-box" + rcmd_color_set + ".step2 {color : " + ui_obj.rcmd_font_color_2 + " !important}\n";
+              if ((ui_obj.rcmd_font_color_3 ?? "") != "") ui_custom_style += "#bo_list li.list-group-item.da-link-block div.rcmd-box" + rcmd_color_set + ".step3 {color : " + ui_obj.rcmd_font_color_3 + " !important}\n";
+              if ((ui_obj.rcmd_font_color_4 ?? "") != "") ui_custom_style += "#bo_list li.list-group-item.da-link-block div.rcmd-box" + rcmd_color_set + ".step4 {color : " + ui_obj.rcmd_font_color_4 + " !important}\n";
+              break;
+          }
+          if (font_color != "") ui_custom_style += "#bo_list li.list-group-item.da-link-block div.rcmd-box" + rcmd_color_set + " {color : " + font_color + " !important}\n";
         }
 
+        if ((ui_obj.rcmd_color_set ?? "") == "self") {
+          var rcmd_color_step1 = ui_obj.rcmd_color_step1 ?? "";
+          var rcmd_color_step2 = ui_obj.rcmd_color_step2 ?? "";
+          var rcmd_color_step3 = ui_obj.rcmd_color_step3 ?? "";
+          var rcmd_color_step4 = ui_obj.rcmd_color_step4 ?? "";
+
+          if (rcmd_color_step1 != "") ui_custom_style += "#bo_list li.list-group-item.da-link-block div.rcmd-box.step1 {background-color : " + rcmd_color_step1 + " !important;}\n";
+          if (rcmd_color_step2 != "") ui_custom_style += "#bo_list li.list-group-item.da-link-block div.rcmd-box.step2 {background-color : " + rcmd_color_step2 + " !important;}\n";
+          if (rcmd_color_step3 != "") ui_custom_style += "#bo_list li.list-group-item.da-link-block div.rcmd-box.step3 {background-color : " + rcmd_color_step3 + " !important;}\n";
+          if (rcmd_color_step4 != "") ui_custom_style += "#bo_list li.list-group-item.da-link-block div.rcmd-box.step4 {background-color : " + rcmd_color_step4 + " !important;}\n";
+        }
       }
-
       //hide_nick(ui_obj);
+    }
+    if (ui_custom_animation) {
+      ui_custom_style += "#sidebar-site-menu .nav-item a.nav-link:hover i::before{animation-duration: 0.5s;animation-name: smallTwistRight;}\n";
+      ui_custom_style += "#sidebar-site-menu .nav-item a.nav-link:hover span.badge{animation-duration: 0.5s;animation-name: smallTwistLeftMargin;}\n";
+      ui_custom_style += "#menuOffcanvas .nav-item a.nav-link:hover i::before{animation-duration: 0.5s;animation-name: smallTwistRight;}\n";
+      ui_custom_style += "#menuOffcanvas .nav-item a.nav-link:hover span.badge{animation-duration: 0.5s;animation-name: smallTwistLeftMargin;}\n";
 
+      ui_custom_style += "#bo_list li.da-link-block:hover {animation-duration: 0.5s;animation-name: popUp;}\n";
+      ui_custom_style += "li.da-link-block.ui-custom-link-active {animation-duration: 1s;animation-name: linkPopSmall !important;animation-fill-mode: forwards}";
+      ui_custom_style += "div.nav-item.ui-custom-link-active {animation-duration: 1s;animation-name: linkPop !important;animation-fill-mode: forwards}";
+
+      ui_custom_style += "@keyframes popUp {0% {transform: translateX(0%) scale(1);}20% {transform: translateX(0.5%) scale(1.01);}100% {transform: translateX(0%) scale(1);}}\n";
+      ui_custom_style += "@keyframes linkPopSmall {0% {transform: translateY(-0.5%%) scale(1.005);}20% {transform: translateY(-1.5%) scale(1.015);}100% {transform: translateY(0%) scale(1);}}\n";
+      ui_custom_style += "@keyframes linkPop {0% {transform: translateY(-3%) scale(1.03);}20% {transform: translateY(-5%) scale(1.05);}100% {transform: translateY(0%) scale(1);}}\n";
+
+      ui_custom_style += "@keyframes popUp05 {0% {transform: scale(1);}20% {transform: scale(1.05);}100% {transform: scale(1);}}\n";
+      ui_custom_style += "@keyframes popUp10 {0% {transform: scale(1);}20% {transform: scale(1.1);}100% {transform: scale(1);}}\n";
+      ui_custom_style += "@keyframes popUp15 {0% {transform: scale(1);}20% {transform: scale(1.15);}100% {transform: scale(1);}}\n";
+      ui_custom_style += "@keyframes popUp20 {0% {transform: scale(1);}20% {transform: scale(1.2);}100% {transform: scale(1);}}\n";
+      ui_custom_style += "@keyframes popUp25 {0% {transform: scale(1);}20% {transform: scale(1.25);}100% {transform: scale(1);}}\n";
+      ui_custom_style += "@keyframes popUp30 {0% {transform: scale(1);}20% {transform: scale(1.3);}100% {transform: scale(1);}}\n";
+
+      ui_custom_style += "@keyframes popUpEnd05 {0% {transform: scale(1);}20% {transform: scale(1.05);}100% {transform: scale(1.05);}}\n";
+      ui_custom_style += "@keyframes popUpEnd10 {0% {transform: scale(1);}20% {transform: scale(1.1);}100% {transform: scale(1.1);}}\n";
+      ui_custom_style += "@keyframes popUpEnd15 {0% {transform: scale(1);}20% {transform: scale(1.15);}100% {transform: scale(1.15);}}\n";
+      ui_custom_style += "@keyframes popUpEnd20 {0% {transform: scale(1);}20% {transform: scale(1.2);}100% {transform: scale(1.2);}}\n";
+      ui_custom_style += "@keyframes popUpEnd25 {0% {transform: scale(1);}20% {transform: scale(1.25);}100% {transform: scale(1.25);}}\n";
+      ui_custom_style += "@keyframes popUpEnd30 {0% {transform: scale(1);}20% {transform: scale(1.3);}100% {transform: scale(1.3);}}\n";
+
+      ui_custom_style += "@keyframes rightPop {0% {margin-right: 0em;}20% {margin-right: 0.4em;}100% {margin-right: 0em;}}\n";
+      ui_custom_style += "@keyframes smallTwistLeft {0% {transform: rotateZ(0deg);}20% {transform: rotateZ(-30deg);} 55% {transform: rotateZ(15deg);}100% {transform: rotateZ(0deg);}}\n";
+      ui_custom_style += "@keyframes smallTwistLeftMargin {0% {margin-right: 0em;transform: rotateZ(0deg);}20% {margin-right: 0.4em;transform: rotateZ(-30deg);} 55% {transform: rotateZ(15deg);}100% {margin-right: 0em;transform: rotateZ(0deg);}}\n";
+      ui_custom_style += "@keyframes smallTwistRight {0% {transform: rotateZ(0deg);}20% {transform: rotateZ(30deg);} 55% {transform: rotateZ(-15deg);}100% {transform: rotateZ(0deg);}}\n";
+    }
+
+    remove_ui_custom_styles();
+    if (ui_custom_style != "") {
+      set_body_op_start();
+      document.head.innerHTML += "<style id=\"user_ui_custom_styles\">\n" + ui_custom_style + "</style>";
+      setTimeout(function () {
+        set_body_op_end()
+      }, 1500);
+    }
+  }
+  function ui_custom_value_view() {
+    if (document.getElementById('ui_custom_json') != null) {
+      document.getElementById('ui_custom_json').value = get_ui_custom_input_string();
+    }
+    set_ui_custom_value_btn(false);
+  }
+  function ui_custom_value_cancle() {
+    set_ui_custom_value_btn(true);
+  }
+  function ui_custom_value_clear() {
+    if (document.getElementById('ui_custom_json') != null) {
+      document.getElementById('ui_custom_json').value = "";
+      set_ui_custom_values(true);
+    }
+  }
+  function ui_custom_value_reload() {
+    set_ui_custom_input_clear();
+    set_ui_custom_values(false);
+  }
+  function ui_custom_value_save() {
+    if (set_ui_custom_values(true)) {
+      set_ui_custom_value_btn(true);
+      setTimeout(function () {
+        alert("값이 정상적으로 입력되었습니다.");
+      });
+    }
+  }
+  function ui_custom_value_paste() {
+    if (document.getElementById('ui_custom_json') != null) {
+      try {
+        navigator.clipboard.readText().then((clipText) => {
+          document.getElementById('ui_custom_json').value = clipText;
+          ui_custom_value_save();
+        });
+      } catch (e1) {
+        try {
+          document.getElementById('ui_custom_json').select();
+          document.execCommand("paste");
+          ui_custom_value_save();
+        } catch (e2) {
+          alert("클립보드의 내용을 가져올 수 없습니다.");
+        }
+      }
     }
   }
 
-  function ui_custom_apply() {
-    var ui_custom_input = [
-      "ui_custom"
-      , "show_width"
-      , "font_family"
-      , "font_size"
-      , "line_height"
-      , "menu_width"
-      , "back_button"
+  function ui_custom_value_copy() {
+    if (document.getElementById('ui_custom_json') != null) {
+      try {
+        navigator.clipboard.writeText(document.getElementById('ui_custom_json').value);
+        alert("클립보드에 저장 되었습니다.");
+      } catch (err) {
+        try {
+          document.getElementById('ui_custom_json').select();
+          document.execCommand("copy");
+          alert("클립보드에 저장 되었습니다.");
+        } catch (e2) {
+          alert("클립보드 권한을 확인해보세요.");
+          return false;
+        }
+      }
+    }
+    return true;
+  }
 
-      , "left_menu"
-      , "left_menu_over"
-      , "left_quick_button"
+  function set_ui_custom_value_btn(default_mode) {
+    var default_el = Array.from(document.querySelectorAll("#user-ui-custom .ui-custom-btn-default"));
+    var view_el = Array.from(document.querySelectorAll("#user-ui-custom .ui-custom-btn-view"));
+    if (default_mode) {
+      default_el.forEach((item) => {
+        item.classList.remove("d-none");
+        item.classList.add("d-inline-block");
+      });
+      view_el.forEach((item) => {
+        item.classList.remove("d-inline-block");
+        item.classList.add("d-none");
+      });
+    } else {
+      default_el.forEach((item) => {
+        item.classList.add("d-none");
+        item.classList.remove("d-inline-block");
+      });
+      view_el.forEach((item) => {
+        item.classList.add("d-inline-block");
+        item.classList.remove("d-none");
+      });
 
-      , "expand_quick"
-      , "expand_write"
-      , "expand_mywr"
-      , "expand_navigator"
+    }
 
-      , "menu_scroll"
-      , "list_search"
-      , "list_toggle"
-      , "hide_nick"
+  }
 
-      , "hide_member_memo"
-      , "hide_list_memo"
-      , "memo_ip_track"
+  var ui_custom_input = [
+    "ui_custom"
+    , "show_width"
+    , "font_family"
+    , "font_size"
+    , "line_height"
+    , "menu_width"
+    , "back_button"
+    , "animation_off"
+    , "thumbup_em_off"
 
-      , "mymenu_img"
+    , "rcmd_color_set"
+    , "rcmd_color_step1"
+    , "rcmd_color_step2"
+    , "rcmd_color_step3"
+    , "rcmd_color_step4"
+    , "rcmd_color_step1_value"
+    , "rcmd_color_step2_value"
+    , "rcmd_color_step3_value"
+    , "rcmd_color_step4_value"
+    , "rcmd_font_color"
+    , "rcmd_font_color_self"
+    , "rcmd_font_color_1"
+    , "rcmd_font_color_2"
+    , "rcmd_font_color_3"
+    , "rcmd_font_color_4"
 
-      , "read_history"
-      , "read_history_em"
-      , "read_history_reply_cnt"
-      , "read_history_noti"
-      , "read_history_noti_reply"
+    , "left_menu"
+    , "menu_off"
+    , "left_menu_over"
+    , "left_quick_button"
+
+    , "expand_quick"
+    , "expand_shortcut"
+    , "expand_shortcut_1"
+    , "expand_shortcut_2"
+    , "expand_shortcut_3"
+    , "expand_shortcut_4"
+    , "expand_shortcut_5"
+    , "expand_shortcut_6"
+    , "expand_shortcut_7"
+    , "expand_shortcut_8"
+    , "expand_shortcut_9"
+    , "expand_shortcut_0"
+    , "expand_write"
+    , "expand_mywr"
+    , "expand_navigator"
+    , "expand_quick_size"
+    , "expand_gesture"
+    , "expand_gesture_tap2"
+    , "expand_gesture_tap3"
+    , "expand_gesture_swipe"
+    , "expand_gesture_swipe_minx"
+    , "expand_gesture_swipe_maxy"
+
+    , "menu_scroll"
+    , "list_search"
+    , "list_toggle"
+    , "hide_nick"
+
+    , "hide_member_memo"
+    , "hide_list_memo"
+    , "blur_contents_memo"
+    , "memo_ip_track"
+
+    , "mymenu_img"
+
+    , "read_history"
+    , "read_history_em"
+    , "read_history_reply_cnt"
+    , "read_history_noti"
+    , "read_history_noti_reply"
 
 
-      , "title_filtering"
-      , "filtering_word"
+    , "title_filtering"
+    , "filtering_word"
 
-      , "content_blur"
-      , "content_blur_word"
+    , "content_blur"
+    , "content_blur_word"
 
-      , "shortcut_use"
-      , "shortcut_1"
-      , "shortcut_2"
-      , "shortcut_3"
-      , "shortcut_4"
-      , "shortcut_5"
-      , "shortcut_6"
-      , "shortcut_7"
-      , "shortcut_8"
-      , "shortcut_9"
-      , "shortcut_0"
-    ];
+    , "shortcut_use"
+    , "shortcut_1"
+    , "shortcut_2"
+    , "shortcut_3"
+    , "shortcut_4"
+    , "shortcut_5"
+    , "shortcut_6"
+    , "shortcut_7"
+    , "shortcut_8"
+    , "shortcut_9"
+    , "shortcut_0"
+  ];
+  var ui_custom_default = { show_width: 1200, font_size: 1, line_height: 1.5, menu_width: 25, expand_quick_size: 2.5 };
 
-    var ui_custom_default = { show_width: 1200, font_size: 1, line_height: 1.5, menu_width: 25 };
+  function set_ui_custom_input_clear() {
+    ui_custom_input.forEach(function (reg) {
+      var temp_input = $("#reg_" + reg)[0]
+      if (temp_input != null) {
+        if (temp_input.type == "checkbox") {
+          temp_input.checked = (ui_custom_default[reg] ?? false);
+        } else {
+          temp_input.value = "";
+        }
+      }
+    });
+  }
+  function get_ui_custom_input_string() {
+
     var ui_custom_json = {};
     var changed = false;
 
@@ -158,11 +461,20 @@
         }
       }
     });
-
     var json_str = "";
-    var item_key = "ui_custom";
     if (changed) {
-      json_str = JSON.stringify(ui_custom_json);
+      try {
+        json_str = JSON.stringify(ui_custom_json);
+      } catch (e) {
+      }
+    }
+    return json_str;
+  }
+
+  function ui_custom_apply() {
+    var item_key = "ui_custom";
+    var json_str = get_ui_custom_input_string();
+    if (json_str != "") {
       localStorage.setItem(item_key, json_str);
     } else {
       localStorage.removeItem(item_key)
@@ -171,19 +483,39 @@
     if (document.getElementById('ui_custom_json') != null) document.getElementById('ui_custom_json').value = json_str;
 
     alert("변경사항이 적용되었습니다.");
-
     try {
       set_ui_custom();
-    } catch {
-      //console.error('Failed to initialize custom UI settings:', error);
+      is_set_expand_button = false;
+      setTimeout(function () {
+        draw_ui_custom(true);
+      }, 100);
+    } catch (e) {
+      console.error('Failed to initialize custom UI settings:', error);
     }
   }
 
-  function get_ui_custom_values() {
-    var ui_custom_storage_str = localStorage.getItem("ui_custom");
+  function set_ui_custom_values(text_area) {
+    var ui_custom_storage_str;
+    if (text_area ?? false) {
+      if (document.getElementById('ui_custom_json') != null) {
+        ui_custom_storage_str = document.getElementById('ui_custom_json').value;
+      }
+    } else {
+      ui_custom_storage_str = localStorage.getItem("ui_custom");
+    }
     var ui_custom_obj = null;
+    var success = true;
+
     if (ui_custom_storage_str != null && ui_custom_storage_str != "") {
+      ui_custom_storage_str = ui_custom_storage_str.trim();
+    } else {
+      ui_custom_storage_str = "{}"
+    }
+    try {
       ui_custom_obj = JSON.parse(ui_custom_storage_str);
+      if (text_area) {
+        set_ui_custom_input_clear();
+      }
       var ui_custom_keys = Object.keys(ui_custom_obj);
       ui_custom_keys.forEach(function (reg) {
         var temp_input = document.getElementById("reg_" + reg);
@@ -199,18 +531,48 @@
           }
         }
       });
-
-      if (document.getElementById('ui_custom_json') != null) document.getElementById('ui_custom_json').value = ui_custom_storage_str;
+      if (!text_area) {
+        if (document.getElementById('ui_custom_json') != null) document.getElementById('ui_custom_json').value = ui_custom_storage_str;
+      }
+    } catch (e) {
+      success = false;
     }
 
-    set_ui_custom_trigger();
-    return ui_custom_obj;
-
+    if (success) {
+      set_ui_custom_trigger();
+    } else {
+      alert("입력값이 잘못 되었습니다.");
+    }
+    return success;
   }
 
-  function hide_nick(ui_obj) {
+  function hide_nick(ui_obj, reload) {
+    //console.debug("hide_nick start");
+    if (reload == null) {
+      reload = false;
+    }
+
+    //추천 컬러 변경
+    set_thumbup_em(ui_obj, reload);
+
     if (ui_obj != null) {
+      //본문 필터링
+      if ((ui_obj.content_blur ?? false) || ((ui_obj?.ui_custom ?? false) && (ui_obj?.blur_contents_memo ?? "") != "")) {
+        check_content_blur(ui_obj?.content_blur_word, (ui_obj?.blur_contents_memo ?? ""));
+      }
+      //제목 필터링
+      if (ui_obj.title_filtering ?? false) {
+        set_title_filtering(ui_obj?.filtering_word);
+      }
+      //읽은 글 체크
+      if (ui_obj.read_history ?? false) {
+        check_read_history(ui_obj);
+      }
+      //단축키
+      set_shortcut_custom(ui_obj);
+
       if (ui_obj.ui_custom != null && ui_obj.ui_custom) {
+
         //목록 감추기
         if (ui_obj.list_toggle != null && ui_obj.list_toggle) {
           set_list_toggle();
@@ -220,6 +582,13 @@
         if (ui_obj.hide_nick != null && ui_obj.hide_nick) {
           set_hide_nick();
         }
+
+
+        //팝업메뉴 왼쪽으로
+        set_left_menu_over((ui_obj.left_menu_over != null && ui_obj.left_menu_over));
+
+        //백버튼 활성화
+        set_back_button((ui_obj.back_button != null && ui_obj.back_button));
 
         // 회원메모 감추기
         if (ui_obj.hide_member_memo != null && ui_obj.hide_member_memo) {
@@ -236,43 +605,155 @@
           set_change_mymenu_img(ui_obj?.hide_nick ?? false);
         }
 
-        //팝업메뉴 왼쪽으로
-        set_left_menu_over((ui_obj.left_menu_over != null && ui_obj.left_menu_over));
-
-        //퀵버튼 왼쪽으로
+        //단축버튼 왼쪽으로
         set_left_quick_button((ui_obj.left_quick_button != null && ui_obj.left_quick_button));
-        //백버튼 활성화
-        set_back_button((ui_obj.back_button != null && ui_obj.back_button));
-
-        //확장버튼
-        if (ui_obj.expand_quick != null && ui_obj.expand_quick) {
-          set_expand_quick(ui_obj);
+        //단축버튼 확장
+        if ((ui_obj.expand_quick != null && ui_obj.expand_quick)) {
+          if (!is_set_expand_button) {
+            is_set_expand_button = true;
+            if (reload) {
+              if (ui_custom_animation) {
+                set_expand_button_hide();
+                setTimeout(function () {
+                  set_expand_quick(ui_obj, reload);
+                }, 550);
+              } else {
+                set_expand_quick(ui_obj, reload);
+              }
+            } else {
+              set_expand_quick(ui_obj, reload);
+            }
+          }
+        } else if (reload ?? false) {
+          var expand_button = document.getElementById("ui-custom-expand-button");
+          if (expand_button != null) {
+            expand_button.remove();
+            var toTop = document.getElementById('toTop');
+            if (toTop != null) {
+              toTop.classList.remove("d-block");
+            }
+            var toTop_as = toTop.querySelector("#toTop a:has(i.bi-arrow-up-square-fill)");
+            if (toTop_as != null) {
+              toTop_as.classList.add("d-none");
+              toTop_as.classList.add("d-sm-inline-block");
+            }
+          }
         }
 
-        if (ui_obj.read_history ?? false) {
-          check_read_history(ui_obj);
-        }
+        set_touch_gesture(ui_obj);
 
+        if (ui_custom_animation) {
+          set_links_active_pop()
+        }
         if (ui_obj.memo_ip_track ?? false) {
           start_memo_tracking();
         }
       }
-      //단축키
-      set_shortcut_custom(ui_obj);
-
-      //제목 필터링
-      if (ui_obj.title_filtering ?? false) {
-        set_title_filtering(ui_obj?.filtering_word);
-      }
-
-      //본문 필터링
-      if (ui_obj.content_blur ?? false) {
-        check_content_blur(ui_obj?.content_blur_word);
-      }
     }
+    set_body_op_end();
   }
 
   //함수 모음 시작
+  function set_thumbup_em(ui_obj, reload) {
+    if (ui_obj == null) ui_obj = {};
+
+    var cv_1 = Number(ui_obj.rcmd_color_step1_value ?? 0);
+    var cv_2 = Number(ui_obj.rcmd_color_step2_value ?? 6);
+    var cv_3 = Number(ui_obj.rcmd_color_step3_value ?? 11);
+    var cv_4 = Number(ui_obj.rcmd_color_step4_value ?? 51);
+    var change_step_value = (ui_obj.rcmd_color_step1_value ?? false) || (ui_obj.rcmd_color_step2_value ?? false) || (ui_obj.rcmd_color_step3_value ?? false) || (ui_obj.rcmd_color_step4_value ?? false);
+    if (change_step_value) {
+      if (cv_2 < cv_1) cv2 = cv_1;
+      if (cv_3 < cv_2) cv3 = cv_2;
+      if (cv_4 < cv_3) cv4 = cv_3;
+    }
+    var rv_1 = 500, rv_2 = 1000, rv_3 = 5000;
+    //var option_class = ["bg-danger","bg-success","bg-primary","bg-info","bg-secondary","bg-opacity-25","bg-opacity-10","bg-gradient","fw-bold","cu_rv_1","cu_rv_2","cu_rv_3"];
+    var option_class = ["cu_rv_1", "cu_rv_2", "cu_rv_3", "cu_rv_4", "cu_rv_5"];
+    var custom_class = ["gray", "forest", "yellow", "colorful", "none", "self"];
+    var step_class = ["step1", "step2", "step3", "step4"];
+    var color_set = ui_obj.rcmd_color_set ?? "";
+    if (color_set != "" && color_set != "self") {
+      color_set = "rcmd-box-" + color_set;
+    }
+
+    var custom_set = null;
+
+    Array.from(document.querySelectorAll("#bo_list .list-group-item.da-link-block:has(div.rcmd-box)")).forEach((item) => {
+      var thumb_up = item.querySelector("div.rcmd-box");
+      var thumb_up_m = item.querySelector("div.rcmd-mb");
+      if (thumb_up != null) {
+        if (reload) {
+          option_class.forEach((tc) => {
+            thumb_up.classList.remove(tc);
+            if (thumb_up_m != null) thumb_up_m.classList.remove(tc);
+          });
+          if (custom_set == null) {
+            custom_class.some((tc) => {
+              if (thumb_up.classList.contains(tc)) {
+                custom_set = tc;
+                return true;
+              } else {
+                return false;
+              }
+            });
+          } else {
+            if (thumb_up_m != null) thumb_up_m.classList.add(custom_set);
+          }
+        } else {
+          step_class.some((tc) => {
+            if (thumb_up.classList.contains(tc)) {
+              if (thumb_up_m != null) thumb_up_m.classList.add(tc);
+              return true;
+            } else {
+              return false;
+            }
+          });
+        }
+
+        var temp_num = thumb_up;
+        if (temp_num == null) {
+          temp_num = 0;
+        } else {
+          temp_num = Number(temp_num.innerText.split("\n")[0]);
+        }
+        var add_class_list = "";
+
+        if (change_step_value) {
+          step_class.forEach((tc) => {
+            thumb_up.classList.remove(tc);
+            if (thumb_up_m != null) thumb_up_m.classList.remove(tc);
+          });
+
+          if (temp_num >= cv_4) {
+            add_class_list = "step4 cu_rv_4";
+          } else if (temp_num >= cv_3) {
+            add_class_list = "step3 cu_rv_3";
+          } else if (temp_num >= cv_2) {
+            add_class_list = "step2 cu_rv_2";
+          } else if (temp_num >= cv_3) {
+            add_class_list = "step1 cu_rv_1";
+          } else {
+            add_class_list = "step0";
+          }
+
+        }
+        if (add_class_list != "") {
+          add_class_list.split(" ").forEach((cl) => {
+            thumb_up.classList.add(cl);
+            if (thumb_up_m != null) thumb_up_m.classList.add(cl);
+          });
+        }
+        if (color_set != "") {
+          thumb_up.classList.add(color_set);
+          if (thumb_up_m != null) thumb_up_m.classList.add(color_set);
+        } else {
+          if (thumb_up_m != null) thumb_up_m.classList.add("rcmd-box");
+        }
+      }
+    });
+  }
+
   function set_list_toggle() {
     var parent_write = document.getElementById(body_parent_id);
     if (parent_write != null) {
@@ -306,20 +787,20 @@
 
         if (force_list_mode ?? view_mode) {
           //list mode로 변경
-          parent_write.classList.add("d-none");
-          info_write.classList.add("d-none");
-          view_comment.classList.add("d-none");
-          write_comment.classList.add("d-none");
-          board_list.classList.remove("d-none");
+          if (parent_write) parent_write.classList.add("d-none");
+          if (info_write) info_write.classList.add("d-none");
+          if (view_comment) view_comment.classList.add("d-none");
+          if (write_comment) write_comment.classList.add("d-none");
+          if (board_list) board_list.classList.remove("d-none");
 
         } else {
           //view mode로 변경
-          parent_write.classList.remove("d-none");
-          info_write.classList.remove("d-none");
-          view_comment.classList.remove("d-none");
-          write_comment.classList.remove("d-none");
+          if (parent_write) parent_write.classList.remove("d-none");
+          if (info_write) info_write.classList.remove("d-none");
+          if (view_comment) view_comment.classList.remove("d-none");
+          if (write_comment) write_comment.classList.remove("d-none");
 
-          board_list.classList.add("d-none");
+          if (board_list) board_list.classList.add("d-none");
 
         }
       }
@@ -589,58 +1070,152 @@
   function remove_blur(e) {
     e.preventDefault();
     var body_con = document.getElementById(body_con_id)
+    var blur_txt = document.getElementById(body_blur_id);
     if (body_con.style.filter != "") {
-      var blur_txt = document.getElementById(body_blur_id);
-      if (blur_txt != null) {
+      body_con.style.removeProperty('transition');
+
+      if (!ui_custom_animation) {
+
+        body_con.style.removeProperty('filter');
+        body_con.style.removeProperty('opacity');
+        body_con.style.removeProperty('max-height');
+        body_con.style.removeProperty('overflow');
         blur_txt.remove();
+        document.getElementById(body_parent_id).style.removeProperty("position");
+
+      } else {
+        var remove_transition = function (e) {
+          var blur_txt = document.getElementById(body_blur_id);
+          if (blur_txt != null) {
+            blur_txt.remove();
+            document.getElementById(body_parent_id).style.removeProperty("position");
+          }
+          body_con.style.removeProperty('transition');
+          body_con.removeEventListener('transitionend', remove_transition);
+        };
+        body_con.style.filter = "blur(5em)";
+        body_con.style.opacity = "0.7";
+        body_con.style.setProperty('transition', 'all 0.2s');
+
+        setTimeout(function () {
+          body_con.style.setProperty('transition', 'all 0.7s');
+          body_con.addEventListener('transitionend', remove_transition);
+          body_con.style.removeProperty('filter');
+          body_con.style.removeProperty('opacity');
+          body_con.style.removeProperty('max-height');
+          body_con.style.removeProperty('overflow');
+        }, 200);
+        body_con.removeEventListener("click", remove_blur);
+
+        if (blur_txt != null) {
+          blur_txt.style.setProperty('opacity', '0.5');
+          var remove_blur_txt_transition = function (e) {
+            blur_txt.remove();
+            document.getElementById(body_parent_id).style.removeProperty("position");
+          };
+          blur_txt.addEventListener('transitionend', remove_blur_txt_transition);
+          setTimeout(function () {
+            blur_txt.style.setProperty('transition', 'all 1s');
+            blur_txt.style.setProperty('opacity', '0');
+          }, 100);
+        }
       }
-      document.getElementById(body_parent_id).style.removeProperty("position");
-      body_con.style.filter = "";
-      body_con.removeEventListener("click", remove_blur);
     }
   }
   function set_blur_padding() {
     var body_con = document.getElementById(body_con_id);
     var blur_txt = document.getElementById(body_blur_id);
-    var paddingTB = ((body_con.offsetHeight - blur_txt.offsetHeight - 30));
-    console.debug(body_con.offsetHeight);
-    console.debug(blur_txt.offsetHeight);
+    blur_txt.style.removeProperty("height");
+    var paddingTB = ((body_con.offsetHeight - blur_txt.offsetHeight)) / 2;
     blur_txt.style.top = body_con.offsetTop + "px";
-    blur_txt.style.paddingTop = "30px";
+    blur_txt.style.paddingTop = paddingTB + "px";
     blur_txt.style.paddingBottom = paddingTB + "px";
   }
 
-  function check_content_blur(word_list) {
+  function check_content_blur(word_list, blur_contents_memo) {
     if (document.getElementById(body_con_id) != null) {
-      word_list = (word_list ?? "").trim()
-      var check_regex = /^[ㄱ-ㅎ가-힣a-zA-Z0-9\[\]\(\)]+$/;
-      var word_regex = "";
-      if (word_list != "") {
-        var word_arr = word_list.split(",");
-        word_arr.forEach(function (word) {
-          word = word.trim();
-          if (word != "" && check_regex.test(word)) {
-            if (word_regex != "") {
-              word_regex += "|";
-            }
-            word_regex += word;
-          }
-        });
+      var content_blur = false;
 
-        if (word_regex != "") {
-          var re = new RegExp(word_regex, "i");
-          var title_text = document.getElementById("bo_v_title")?.innerText ?? "";
-          if (re.test(title_text)) {
-            set_content_blur();
+      if (blur_contents_memo != "" && !content_blur) {
+        var em = document.querySelector("#bo_v_info em.da-member-memo__memo");
+        if (em != null) {
+          if (blur_contents_memo == "all" || em.classList.contains("da-memo-color--" + blur_contents_memo)) {
+            content_blur = true;
           }
         }
       }
+
+      word_list = (word_list ?? "").trim()
+      if (word_list != "" && !content_blur) {
+        var check_regex = /^[ㄱ-ㅎ가-힣a-zA-Z0-9\[\]\(\)]+$/;
+        var word_regex = "";
+        if (word_list != "") {
+          var word_arr = word_list.split(",");
+          word_arr.forEach(function (word) {
+            word = word.trim();
+            if (word != "" && check_regex.test(word)) {
+              if (word_regex != "") {
+                word_regex += "|";
+              }
+              word_regex += word;
+            }
+          });
+
+          if (word_regex != "") {
+            var re = new RegExp(word_regex, "i");
+            var title_text = document.getElementById("bo_v_title")?.innerText ?? "";
+            content_blur = re.test(title_text);
+          }
+        }
+      }
+
+      if (content_blur) {
+        set_content_blur();
+      } else {
+        if (ui_custom_animation) {
+          var body_con = document.getElementById(body_con_id);
+          body_con.style.filter = "blur(0.2em)";
+          body_con.style.opacity = "0.1";
+          var remove_transition = function () {
+            this.removeEventListener('transitionend', remove_transition);
+            body_con.style.removeProperty('transition');
+            body_con.style.removeProperty('filter');
+            body_con.style.removeProperty('opacity');
+          }
+          setTimeout(function () {
+            body_con.style.setProperty('transition', 'all 0.4s');
+            body_con.style.filter = "blur(0em)";
+            body_con.style.opacity = "1";
+            body_con.addEventListener('transitionend', remove_transition);
+          }, 100);
+        }
+      }
+
+
     }
   }
 
   function set_content_blur() {
     var body_con = document.getElementById(body_con_id);
-    body_con.style.filter = "blur(10em)";
+    body_con.style.filter = "blur(3em)";
+    body_con.style.opacity = "0.7";
+    body_con.style.maxHeight = "700px";
+    body_con.style.overflow = "hidden";
+
+    if (!ui_custom_animation) {
+      body_con.style.filter = "blur(9em)";
+      body_con.style.opacity = "0.3";
+    } else {
+      body_con.style.filter = "blur(3em)";
+      body_con.style.opacity = "0.7";
+      setTimeout(function () {
+        body_con.style.setProperty('transition', 'all 1s');
+        body_con.style.filter = "blur(9em)";
+        body_con.style.opacity = "0.3";
+      }, 300);
+
+    }
+
     body_con.addEventListener("click", remove_blur);
     document.getElementById(body_parent_id).style.position = "relative";
     var blur_txt = document.createElement("div");
@@ -651,7 +1226,7 @@
     blur_txt.style.fontSize = "2em";
     blur_txt.style.fontWeight = "800";
     blur_txt.style.cursor = "pointer";
-    //blur_txt.style.height = body_con.offsetHeight + "px";
+    blur_txt.style.height = body_con.offsetHeight + "px";
     blur_txt.addEventListener("click", remove_blur);
     body_con.after(blur_txt);
     var blur_img = document.createElement("img");
@@ -661,11 +1236,10 @@
     blur_txt.append(blur_img);
   }
 
-  function set_expand_quick(ui_obj) {
+  function set_expand_quick(ui_obj, reload) {
     var toTop = document.getElementById('toTop');
     if (toTop != null) {
       toTop.classList.remove('d-block');
-
       var removes = toTop.getElementsByClassName("ui-custom-expand-icon");
       if (removes != null && removes.length > 0) {
         while (removes.length > 0) {
@@ -676,6 +1250,8 @@
       var board_obj = get_board_mb_id();
       var toTop_as = toTop.querySelector("a i.bi-arrow-up-square-fill");
       if (toTop_as != null) {
+        var tag_a_className = "ui-custom-expand-icon ui-custom-expand-hidden d-none-start fs-1 m-3 mb-1 mt-1 bg-secondary bg-opacity-25";
+        var tag_a_id_prev = "ui-custom-expand-";
         toTop_as = toTop_as.parentElement;
         var ex_hrefs = ["menu", "go_write", "go_reply", "list_toggle", "list", "my_write", "my_reply", "memo_toggle", "forward", "back"];
         var ex_titles = ["팝업메뉴", "글쓰기", "댓글쓰기", "목록 토글", "목록으로", "내 글 - 현재 게시판", "내 댓글 - 현재 게시판", "메모 상태", "앞으로", "뒤로"];
@@ -794,8 +1370,8 @@
             } else {
               tag_a.href = tag_a_href;
             }
-            tag_a.className = "ui-custom-expand-icon ui-custom-expand-hidden d-block fs-1 m-3 mb-1 mt-1 bg-secondary bg-opacity-25";
-            tag_a.id = "ui-custom-expand-" + ex_hrefs[i];
+            tag_a.className = tag_a_className;
+            tag_a.id = tag_a_id_prev + ex_hrefs[i];
             tag_a.title = ex_titles[i];
             // if (check_add != add_button) {
             //     tag_a.classList.remove("mt-0");
@@ -808,17 +1384,36 @@
           }
         }
 
+        if (ui_obj.shortcut_use && ui_obj.expand_shortcut) {
+          for (var i = 1; i < 11; i++) {
+            var check_i = (i < 10 ? i : i - 10) + "";
+            if ((ui_obj["expand_shortcut_" + check_i] ?? false) && shortcut_map[check_i]?.href != null) {
+              var tag_a = document.createElement("a");
+              tag_a.href = shortcut_map[check_i].href;
+              tag_a.className = tag_a_className;
+              tag_a.id = tag_a_id_prev + shortcut_map[check_i].code;
+              tag_a.title = shortcut_map[check_i].name;
+              var tag_i = document.createElement("i");
+              tag_i.className = "bi bi-" + check_i + "-square-fill";
+              tag_a.appendChild(tag_i);
+              toTop.insertBefore(tag_a, toTop_as);
+              add_button = true;
+            }
+          }
+        }
+
         if (add_button) {
           toTop.classList.add('d-block');
 
           toTop_as.classList.remove("d-sm-inline-block");
-          toTop_as.classList.remove("d-none");
+          toTop_as.classList.remove("d-block");
 
           toTop_as.classList.add("ui-custom-expand-hidden");
           toTop_as.classList.add("bg-secondary");
           toTop_as.classList.add("bg-opacity-25");
 
-          toTop_as.classList.add("d-block");
+          toTop_as.classList.add("d-none-start");
+          //toTop_as.style.setProperty('display', 'none', 'important');
           toTop_as.classList.add("mt-1");
           toTop_as.classList.add("mb-1");
           toTop_as.title = "맨 위로";
@@ -829,14 +1424,19 @@
           tag_a.id = "ui-custom-expand-button";
           var tag_i = document.createElement("i");
           tag_i.id = "ui-custom-expand-button-i"
-          tag_i.className = "bi bi-caret-down-square-fill";
+          tag_i.className = "bi bi-caret-down-square-fill opacity-25";
           tag_i.title = "확장버튼 감추기";
           tag_a.appendChild(tag_i);
           tag_a.addEventListener("click", toggle_expand_button);
           toTop.appendChild(tag_a);
 
+          if (reload) {
+            set_expand_button(false);
+            //setTimeout(set_expand_button);
+          } else {
+            setTimeout(set_expand_button, 300);
+          }
 
-          set_expand_button();
           //toTop_as.classList.add("d-sm-block");
         } else {
           toTop_as.classList.remove("ui-custom-expand-hidden");
@@ -854,41 +1454,116 @@
 
   var expand_state_key = "ui_custom_expand_button";
 
-  function set_expand_button() {
-    var expand_button_state = localStorage.getItem(expand_state_key);
-    var b_show = (expand_button_state == "show");
+  function set_expand_button_hide(start) {
+    var show_list = toTop.getElementsByClassName("ui-custom-expand-hidden");
+    var start_str = "";
+    if (start ?? false) {
+      start_str = "start";
+    }
+    for (var i = 0; i < show_list.length; i++) {
+      show_list[i].classList.add("d-none" + start_str);
+    }
     var button = document.getElementById("ui-custom-expand-button-i");
-    if (b_show) {
-      button.classList.remove("bi-caret-up-square-fill");
-      button.classList.remove("opacity-25");
-      button.classList.add("bi-caret-down-square-fill");
-      button.title = "확장버튼 감추기";
-      b_show = true;
-    } else {
-      button.classList.remove("bi-caret-down-square-fill");
-      button.classList.add("bi-caret-up-square-fill");
+    if (button != null) {
       button.classList.add("opacity-25");
       button.title = "확장버튼 보이기";
     }
-    var show_list = toTop.getElementsByClassName("ui-custom-expand-hidden");
-    for (var i = 0; i < show_list.length; i++) {
-      if (b_show) {
-        show_list[i].classList.add("d-block");
-        show_list[i].classList.remove("d-none");
+  }
+
+  var is_set_expand_button = false;
+  var is_set_expand_button_ing = false;
+  function set_expand_button(animation) {
+    if (animation == null) animation = false;
+
+    var expand_button_state = localStorage.getItem(expand_state_key);
+    var b_show = (expand_button_state == "show");
+    var button = document.getElementById("ui-custom-expand-button-i");
+    if (button != null) {
+
+      if (ui_custom_animation) {
+        if (animation) {
+          button.parentNode.classList.add("cu-animation");
+        }
       } else {
-        show_list[i].classList.remove("d-block");
-        show_list[i].classList.add("d-none");
+        button.parentNode.classList.remove("cu-animation");
+      }
+
+      if (b_show) {
+        button.classList.remove("opacity-25");
+        button.title = "확장버튼 감추기";
+      } else {
+        button.classList.add("opacity-25");
+        button.title = "확장버튼 보이기";
+      }
+    }
+    var show_list = toTop.getElementsByClassName("ui-custom-expand-hidden");
+    var show_length = show_list.length;
+    if (show_length == 0) {
+      is_set_expand_button_ing = false;
+    } else {
+      for (var i = 0; i < show_length; i++) {
+        var temp_show = show_list[i];
+        var check_i = i;
+        var is_final = (i + 1 == show_length);
+        if (b_show) {
+          check_i = show_length - i - 1;
+        }
+
+        var temp = temp_show;
+        if (animation) {
+          temp.classList.remove("d-none-start");
+          temp.classList.add("cu-animation");
+          setTimeout(function (temp, is_final, b_show) {
+            if (b_show) {
+              temp.classList.remove("d-none");
+              temp.classList.add("d-block");
+            } else {
+              temp.classList.remove("d-block");
+              //show_list[i].classList.remove("d-none-start");
+              temp.classList.add("d-none");
+            }
+            if (is_final) {
+              setTimeout(function () {
+                is_set_expand_button_ing = false;
+              }, 700);
+            }
+          }, (check_i) * 30 + 10, temp_show, is_final, b_show);
+        } else {
+          temp.classList.remove("d-none-start");
+          temp.classList.remove("cu-animation");
+
+          if (b_show) {
+            temp.classList.remove("d-none");
+            temp.classList.add("d-block");
+          } else {
+            temp.classList.remove("d-block");
+            //show_list[i].classList.remove("d-none-start");
+            temp.classList.add("d-none");
+          }
+
+          temp.classList.remove("page-start");
+        }
+
+      }
+      if (!animation) {
+        is_set_expand_button_ing = false;
       }
     }
   }
+
   function toggle_expand_button() {
-    var expand_button_state = localStorage.getItem(expand_state_key);
-    if (expand_button_state == "show") {
-      localStorage.removeItem(expand_state_key)
+    if (is_set_expand_button_ing) {
+      return;
     } else {
-      localStorage.setItem(expand_state_key, "show");
+      is_set_expand_button_ing = true;
+      var expand_button_state = localStorage.getItem(expand_state_key);
+      if (expand_button_state == "show") {
+        localStorage.removeItem(expand_state_key)
+      } else {
+        localStorage.setItem(expand_state_key, "show");
+      }
+      set_expand_button(ui_custom_animation);
     }
-    set_expand_button();
   }
 
   function get_board_link_map() {
@@ -1025,15 +1700,38 @@
     return link_obj;
   }
 
+  function set_links_active_pop() {
+    var sidebar_site_menu_links = document.querySelectorAll('#sidebar-site-menu div.nav-item:has(a.nav-link)');
+    var off_menu_links = document.querySelectorAll('#menuOffcanvas div.nav-item:has(a.nav-link)');
+    var list_menu_links = document.querySelectorAll("section#bo_list > ul > li.da-link-block:has(a.da-link-block)");
+    Array.from(sidebar_site_menu_links).forEach(set_item_active_pop);
+    Array.from(off_menu_links).forEach(set_item_active_pop);
+    Array.from(list_menu_links).forEach(set_item_active_pop);
+  }
+  function set_item_active_pop(item, index) {
+    item.classList.remove("ui-custom-link-active");
+    var a_tag = item.querySelector('a.da-link-block, a.nav-link')
+    if (a_tag != null) {
+      a_tag.addEventListener("click", item_active_pop_event);
+    } else {
+    }
+  }
+  function item_active_pop_event(e) {
+    var active_top = this.closest("div.nav-item , li.da-link-block");
+    if (active_top != null) {
+      active_top.classList.add("ui-custom-link-active");
+    }
+  }
+
   function set_shortcut_custom(ui_obj) {
     shortcut_map = {}
 
     if (ui_obj.hide_member_memo != null && ui_obj.hide_member_memo) {
-      shortcut_map["M"] = "javascript:toggle_hide_member_memo();"
+      shortcut_map["U"] = { href: "javascript:toggle_hide_member_memo();", name: "메모", code: "memo" };
     }
 
     if (ui_obj?.list_toggle ?? false) {
-      shortcut_map["D"] = "javascript:list_toggle();"
+      shortcut_map["D"] = { href: "javascript:list_toggle();", name: "목록토글", code: "list_toggle" };
     }
 
     var removes = document.querySelectorAll('div.shortcut_custom');
@@ -1060,7 +1758,7 @@
           var shortcut_link = document.createElement("a");
           shortcut_link.className = "nav-link shortcut_custom";
           shortcut_link.href = "/" + board_obj.board + "?sfl=mb_id%2C" + i + "&stx=" + board_obj.id;
-          shortcut_link.innerHTML = '<i class="' + temp_icon[i] + ' nav-icon"></i>&nbsp;' + temp_text[i];
+          shortcut_link.innerHTML = '<span class="d-flex align-items-center gap-2 nav-link-title"><span class="badge p-1 text-bg-secondary">·</span>' + temp_text[i] + "</span>";//<i class="' + temp_icon[i] + ' nav-icon"></i>
           shortcut_div.appendChild(shortcut_link);
           sidebar_site_menu.insertBefore(shortcut_div, sidebar_site_menu_first);
           offcanvas_menu.insertBefore(shortcut_div.cloneNode(true), offcanvas_menu_first);
@@ -1077,11 +1775,11 @@
           var shortcut_link = document.createElement("a");
           shortcut_link.className = "nav-link shortcut_custom";
           shortcut_link.href = link_map[shortcut].org;
-          shortcut_link.innerHTML = '<i class="bi-list-stars nav-icon"></i> <span class="badge text-bg-secondary">' + shortcut_i + '</span>&nbsp;' + link_map[shortcut].name;
+          shortcut_link.innerHTML = '<span class="d-flex align-items-center gap-2 nav-link-title"></i> <span class="badge p-1 text-bg-secondary">' + shortcut_i + '</span>' + link_map[shortcut].name + "</span>";//<i class="bi-list-stars nav-icon">
           shortcut_div.appendChild(shortcut_link);
           sidebar_site_menu.insertBefore(shortcut_div, sidebar_site_menu_first);
           offcanvas_menu.insertBefore(shortcut_div.cloneNode(true), offcanvas_menu_first);
-          shortcut_map[shortcut_i + ""] = shortcut_link.href;
+          shortcut_map[shortcut_i + ""] = { href: shortcut_link.href, name: link_map[shortcut].name, code: link_map[shortcut].link };
         }
       }
     }
@@ -1090,6 +1788,7 @@
       window.removeEventListener('keypress', handleShortCutKeyPress);
       window.addEventListener('keypress', handleShortCutKeyPress);
     }
+
     //console.debug(shortcut_map)
   }
 
@@ -1111,21 +1810,51 @@
     return false;
   }
 
+  function handleClearSettingKeyPress(event) {
+    if (isShortCutInputElement(event.target) || isShortCutContentEditableElement(event.target)) {
+      return;
+    }
+    var key = (event?.code ?? "").replace(/Key|Digit|Numpad/, "");
+
+    if (event.shiftKey && event.altKey) {
+      switch (key) {
+        case "U":
+          if (confirm("개인화면 설정값을 모두 삭제 하시 겠습니까? 설정값은 클립보드에 복사 됩니다.")) {
+            if (document.getElementById('ui_custom_json') != null) {
+              document.getElementById('ui_custom_json').value = localStorage.getItem("ui_custom") ?? "";
+              ui_custom_value_copy();
+            }
+            localStorage.removeItem("ui_custom");
+            alert("개인화면 설정값이 삭제되었습니다.");
+            set_ui_custom();
+            draw_ui_custom();
+            ui_custom_value_clear();
+          }
+          break;
+        default:
+          break;
+      }
+      return;
+    } else {
+      return;
+    }
+  }
+
   function handleShortCutKeyPress(event) {
     if (isShortCutInputElement(event.target) || isShortCutKeyCombination(event) || isShortCutContentEditableElement(event.target)) {
       return;
     }
-    var key = (event?.code ?? "").replace(/Key|Digit/, "");
+    var key = (event?.code ?? "").replace(/Key|Digit|Numpad/, "");
     if (shortcut_map[key] != null) {
       switch (key) {
-        case "M":
+        case "U":
           toggle_hide_member_memo();
           break;
         case "D":
           list_toggle();
           break;
         default:
-          window.location.href = shortcut_map[key];
+          window.location.href = shortcut_map[key].href;
           break;
       }
       return;
@@ -1134,79 +1863,6 @@
     }
   }
   //함수 모음 끝
-
-  function set_ui_custom_click_event() {
-    try {
-      $("#reg_expand_quick").change(function () {
-        set_ui_custom_expand();
-      });
-
-      $("#reg_read_history").change(function () {
-        set_ui_custom_read_history();
-      });
-
-      $("#reg_ui_custom").change(function () {
-        if ($("#reg_ui_custom").is(":checked")) {
-          $(".ui-custom-item").show();
-          set_ui_custom_expand();
-          set_ui_custom_read_history();
-        } else {
-          $(".ui-custom-item").hide();
-        }
-      });
-      $("#reg_title_filtering").change(function () {
-        if ($("#reg_title_filtering").is(":checked")) {
-          $(".ui-custom-filtering").show();
-        } else {
-          $(".ui-custom-filtering").hide();
-        }
-      });
-      $("#reg_content_blur").change(function () {
-        if ($("#reg_content_blur").is(":checked")) {
-          $(".ui-custom-content-blur").show();
-        } else {
-          $(".ui-custom-content-blur").hide();
-        }
-      });
-      $("#reg_shortcut_use").change(function () {
-        if ($("#reg_shortcut_use").is(":checked")) {
-          $(".ui-custom-shortcut").show();
-        } else {
-          $(".ui-custom-shortcut").hide();
-        }
-      });
-
-    } catch (error) {
-      //console.error('Failed to initialize custom UI settings:', error);
-    }
-  }
-  function set_ui_custom_expand() {
-    if ($("#reg_shortcut_use").is(":checked")) {
-      $(".ui-custom-expand-item").show();
-    } else {
-      $(".ui-custom-expand-item").hide();
-    }
-  }
-  function set_ui_custom_read_history() {
-    if ($("#reg_read_history").is(":checked")) {
-      $(".ui-custom-read-history").show();
-    } else {
-      $(".ui-custom-read-history").hide();
-    }
-  }
-  function set_ui_custom_trigger() {
-    try {
-      //$("#reg_expand_quick").trigger('change');
-      $("#reg_ui_custom").trigger('change');
-
-      $("#reg_title_filtering").trigger('change');
-      $("#reg_content_blur").trigger('change');
-      $("#reg_shortcut_use").trigger('change');
-
-    } catch (error) {
-      //console.error('Failed to initialize custom UI settings:', error);
-    }
-  }
 
   //memo 추적 관련 기능 시작
   //indexedDB지원에 따라 UI표시 변경
@@ -1218,24 +1874,30 @@
         check_ui.classList.remove("d-none");
         if (memo_check != null) {
           memo_check.addEventListener("change", change_memo_tracking);
+          Array.from(document.querySelectorAll(".ui-custom-ip-memo-default")).forEach((item) => { item.classList.remove('d-none') });
         }
       } else {
         if (memo_check != null && memo_check.checked) {
           memo_check.checked = false;
         }
         check_ui.classList.add("d-none");
+        Array.from(document.querySelectorAll(".ui-custom-ip-memo-sub")).forEach((item) => { item.classList.add('d-none') });
       }
     }
   }
 
   //사용여부 변경에 따른 경고문구 표시
   function change_memo_tracking() {
+    document.getElementById("load_ip_memo_list").checked = false;
     var memo_check = document.getElementById('reg_memo_ip_track');
     if (memo_check.checked) {
       var temp_obj = get_board_mb_id();
       check_memo_user_id(temp_obj?.id, null, null, function () {
         alert("빨간색 메모의 IP만 기록합니다.\n메모의 IP기록은 단순 참고만 하시기 바랍니다.");
       });
+      Array.from(document.querySelectorAll(".ui-custom-ip-memo-default")).forEach((item) => { item.classList.remove('d-none') });
+    } else {
+      Array.from(document.querySelectorAll(".ui-custom-ip-memo-sub")).forEach((item) => { item.classList.add('d-none') });
     }
   }
 
@@ -1325,7 +1987,7 @@
         if (write_user_link != null) {
           write_info.id = write_user_link.href.substring(write_user_link.href.indexOf("mb_id=") + 6);
           if (!check_admin.test(write_info.id) && board_obj?.id == null || board_obj.id != write_info.id) {
-            var img_src = write_user_link.querySelector("img.mb-photo").src;
+            var img_src = write_user_link.querySelector("span.profile_img img, img.mb-photo")?.src ?? "";
             var img_position = img_src.indexOf('/data/member_image');
             if (img_position > 0) {
               write_info.img = img_src.substring(img_position + 18);
@@ -1365,7 +2027,7 @@
         if (write_user_link != null) {
           write_info.id = write_user_link.href.substring(write_user_link.href.indexOf("mb_id=") + 6);
           if (!check_admin.test(write_info.id) && board_obj?.id == null || board_obj.id != write_info.id) {
-            var img_src = write_user_link.querySelector("img.mb-photo").src;
+            var img_src = write_user_link.querySelector("span.profile_img img, img.mb-photo")?.src ?? "";
             var img_position = img_src.indexOf('/data/member_image');
             if (img_position > 0) {
               write_info.img = img_src.substring(img_position + 18);
@@ -1653,6 +2315,7 @@
         if (result != null) {
           var ip_p = info_map.list_ip_map[list_ip].p;
           var ids = Object.keys(result.id);
+          var desc = result.desc;
           ip_p.forEach((p) => {
             var temp_info = info_map.info_list[p];
             var same_ip_ids = [];
@@ -1665,11 +2328,12 @@
               });
             }
 
-            if (same_ip_ids.length > 0) {
+            if (same_ip_ids.length > 0 || desc != null) {
               var s = document.createElement('span');
               s.className = "ui-custom-check-multi-id da-member-memo";
               s.classList.add(checkMultiClass);
-              s.innerHTML = "<span class='badge rounded-pill align-middle da-member-memo__memo da-memo-color--yellow'> 유사 IP 계정 </span>&nbsp;<em class='badge rounded-pill align-middle da-member-memo__memo da-memo-color--red'> " + same_ip_ids.join(" </em>&nbsp;<em class='badge rounded-pill align-middle da-member-memo__memo da-memo-color--red'> ") + " </em>";
+              var change_string;
+              s.innerHTML = "<span class='badge rounded-pill align-middle da-member-memo__memo da-memo-color--yellow'> " + (desc ?? "유사 IP 계정") + " </span>" + (same_ip_ids.length == 0 ? "" : "&nbsp;<em class='badge rounded-pill align-middle da-member-memo__memo da-memo-color--red'> " + same_ip_ids.join(" </em>&nbsp;<em class='badge rounded-pill align-middle da-member-memo__memo da-memo-color--red'> ") + " </em>");
               temp_info.lastElementChild.after(s);
             }
           });
@@ -1878,24 +2542,6 @@
                 update_read_history_noti(db, board_info, ui_obj);
                 set_read_history(db, board_info, ui_obj);
               });
-
-              //list 표시
-              //삭제
-
-              // var update_complete = function(){
-              //     if (info_map.updated_id && info_map.updated_ip) {
-              //         remove_timeover_memo(db,function(){
-              //             show_check_ip_id(db,temp_obj,info_map);
-              //         });
-              //     }
-              // }
-
-              // //memo id 갱신
-              // update_memo_id(db, info_map, () => {info_map.updated_id = true; update_complete()});
-
-              // //memo ip 갱신
-              // update_memo_ip(db, info_map, () => {info_map.updated_ip = true; update_complete()});
-
             };
           }
         }
@@ -1942,6 +2588,7 @@
 
   function update_read_history_noti(db, board_info, ui_obj, complete) {
     var run_complete = false;
+    var list_animation = false;
     if (board_info.noti_ids.length > 0) {
       var writeStore = getDBObjectStore(db, readWrite, "readwrite", complete);
       var notiIndex = writeStore.index("by_noti");
@@ -1960,7 +2607,7 @@
           cursor.continue();
         }
       };
-
+      var diplay_cnt = 0;
       board_info.noti_ids.forEach((url, index) => {
         var noti_update_req = writeStore.get(url);
         noti_update_req.onsuccess = function (e) {
@@ -1990,8 +2637,19 @@
               display_important = true;
             }
           }
+
           if (display_important) {
-            board_info.noti_list[index].closest("li.bg-light-subtle").style = "display : block !important";
+            var noti_item = board_info.noti_list[index].closest("li.bg-light-subtle");
+            if (list_animation) {
+              noti_item.style = "display : block !important;opacity:0.3;/*transform: rotateX(-30deg) translateY(-" + ((diplay_cnt + 1) * 5) + "0%);*/ filter:blur(0.5em);";
+              setTimeout(function (noti_item, cnt) {
+                noti_item.style = "display : block !important;opacity:1; transition:all " + ((cnt + 1) * 0.1) + "s ease-in " + ((cnt + 1) * 0.05) + "s";
+                noti_item.addEventListener('transitionend', transitionEndRemove);
+              }, 100, noti_item, diplay_cnt);
+            } else {
+              noti_item.style = "display : block !important;"
+            }
+            diplay_cnt++;
           }
         }
       });
@@ -2016,13 +2674,16 @@
               if (ui_obj.read_history_em != null) {
                 switch (ui_obj.read_history_em) {
                   case "background":
-                    a_link.classList.add("bg-primary");
+                    var li_parent = parent_node.closest(".da-link-block");
+                    li_parent.classList.add("bg-primary");
+                    li_parent.classList.add("bg-opacity-10");
+                    li_parent.classList.add("rounded-pill");
                     break;
                   case "bold":
-                    a_link.classList.add("font-weight-bold");
+                    a_link.classList.add("fw-bold");
                     break;
                   case "italic":
-                    a_link.classList.add("font-italic");
+                    a_link.classList.add("fst-italic");
                     break;
                   case "underline":
                     a_link.classList.add("text-decoration-underline");
@@ -2037,19 +2698,30 @@
                 }
               }
               if (ui_obj.read_history_reply_cnt ?? false) {
-                var cnt = parent_node.querySelector("span.count-plus");
-                if (cnt != null) {
-                  cnt = Number(cnt.innerText.trim());
-                } else {
-                  cnt = 0;
+                var cnt_node = parent_node.querySelector("span.count-plus");
+                var cnt = 0;
+                if (cnt_node != null) {
+                  cnt = Number(cnt_node.innerText.trim());
                 }
                 var diff = cnt - result.reply;
                 if (diff > 0) {
                   var float_end = parent_node.querySelector("span.float-end");
                   var diff_span = document.createElement("span");
-                  diff_span.className = "count-plus ui-custom-read-reply-cnt text-primary"
+                  diff_span.className = "count-plus ui-custom-read-reply-cnt text-primary ml-0"
                   diff_span.innerHTML = diff;
                   parent_node.insertBefore(diff_span, float_end);
+
+                  if (ui_custom_animation) {
+                    cnt_node.style = "opacity:0.5;transform: translateX(40%);";
+                    diff_span.style = "opacity:0;transform: translateX(-100%);";
+                    cnt_node.addEventListener('transitionend', transitionEndClear);
+                    diff_span.addEventListener('transitionend', transitionEndClear);
+                    setTimeout(function () {
+                      diff_span.style = "opacity:0.8;transition:all 1s;";
+                      cnt_node.style = "opacity:1;transition:all 1s;";
+                    }, 500);
+                  }
+                  //diff_span.style.style
                 }
               }
             }
@@ -2058,38 +2730,843 @@
       });
     }
   }
+  function transitionEndClear() {
+    this.style = "";
+    this.removeEventListener('transitionend', transitionEndClear);
+  }
+  function transitionEndRemove() {
+    this.style.removeProperty('transition');
+    this.removeEventListener('transitionend', transitionEndRemove);
+  }
 
   //글 방문 기록 기능 끝
 
+  //화면 그리기
+  function draw_ui_custom(reload) {
+    var ui_custom_storage_str = localStorage.getItem("ui_custom");
+    if (ui_custom_storage_str != null && ui_custom_storage_str != "") {
+      var ui_obj = JSON.parse(ui_custom_storage_str);
+      if (ui_obj) {
+        hide_nick(ui_obj, reload);
+      }
+    }
+  }
+
+
+  function set_ui_custom_click_event() {
+    try {
+      //탭 클릭 이벤트 설정 시작
+      Array.from(document.querySelectorAll("#user-ui-custom .ui-custom-tabs .ui-custom-tab a.nav-link")).forEach((click_item) => {
+        click_item.addEventListener("click", function (e) {
+          e.preventDefault();
+          Array.from(document.querySelectorAll("#user-ui-custom .ui-custom-tabs .ui-custom-tab a.nav-link.active")).forEach((item) => {
+            if (click_item != item) {
+              document.querySelector(item.getAttribute('href')).classList.add("d-none");
+              item.classList.remove("active");
+            }
+          });
+          click_item.classList.add("active");
+          document.querySelector(click_item.getAttribute('href')).classList.remove("d-none");
+        });
+      });
+
+      Array.from(document.querySelectorAll("#user-ui-custom .ui-custom-ul-tabs .ui-custom-ul-tab a.nav-link")).forEach((click_item) => {
+        click_item.addEventListener("click", function (e) {
+          e.preventDefault();
+          Array.from(document.querySelectorAll("#user-ui-custom .ui-custom-ul-tabs .ui-custom-ul-tab a.nav-link.active")).forEach((item) => {
+            if (click_item != item) {
+              document.querySelector(item.getAttribute('href')).classList.add("d-none");
+              item.classList.remove("active");
+            }
+          });
+          click_item.classList.add("active");
+          document.querySelector(click_item.getAttribute('href')).classList.remove("d-none");
+        });
+      });
+      //탭 클릭 이벤트 설정 끝
+
+      //reg_expand_shortcut
+      $("#reg_expand_shortcut").change(function () {
+        set_ui_custom_expand();
+      });
+
+      $("#reg_rcmd_font_color").change(function () {
+        switch (this.value) {
+          case "self":
+            $("#reg_rcmd_font_color_self").show();
+            $(".rcmd_font_steps").hide();
+            break;
+          case "step":
+            $("#reg_rcmd_font_color_self").hide();
+            $(".rcmd_font_steps").show();
+            break;
+          default:
+            $("#reg_rcmd_font_color_self").hide();
+            $(".rcmd_font_steps").hide();
+            break;
+        }
+      });
+
+      $("#reg_rcmd_color_set").change(function () {
+        if (this.value == "self") {
+          $(".rcmd_color_steps").show();
+        } else {
+          $(".rcmd_color_steps").hide();
+        }
+      });
+
+      $("#reg_expand_quick").change(function () {
+        set_ui_custom_expand();
+      });
+
+      $("#reg_read_history").change(function () {
+        set_ui_custom_read_history();
+      });
+
+      $("#reg_ui_custom").change(function () {
+        if ($("#reg_ui_custom").is(":checked")) {
+          $(".ui-custom-item").show();
+          $("#reg_rcmd_font_color").trigger('change');
+          $("#reg_rcmd_color_set").trigger('change');
+          set_ui_custom_expand();
+          set_ui_custom_read_history();
+        } else {
+          $(".ui-custom-item").hide();
+        }
+      });
+      $("#reg_title_filtering").change(function () {
+        if ($("#reg_title_filtering").is(":checked")) {
+          $(".ui-custom-filtering").show();
+        } else {
+          $(".ui-custom-filtering").hide();
+        }
+      });
+      $("#reg_content_blur").change(function () {
+        if ($("#reg_content_blur").is(":checked")) {
+          $(".ui-custom-content-blur").show();
+        } else {
+          $(".ui-custom-content-blur").hide();
+        }
+      });
+      $("#reg_shortcut_use").change(function () {
+        if ($("#reg_shortcut_use").is(":checked")) {
+          $(".ui-custom-shortcut").show();
+        } else {
+          $(".ui-custom-shortcut").hide();
+        }
+        set_ui_custom_expand_shortcut();
+      });
+      $(".ui_custom_shortcut_items").change(function () {
+        //console.debug(this)
+        set_ui_custom_expand_shortcut();
+      });
+    } catch (error) {
+      //console.error('Failed to initialize custom UI settings:', error);
+    }
+  }
+
+  function set_ui_custom_expand_shortcut() {
+    if ($("#reg_expand_quick").is(":checked") && $("#reg_shortcut_use").is(":checked")) {
+      $("#reg_expand_shortcut_li").show();
+      if ($("#reg_expand_shortcut").is(":checked")) {
+        $(".ui-custom-expand-shortcut").show();
+        var link_map = get_board_link_map();
+        Array.from(document.querySelectorAll(".ui-custom-expand-shortcut")).forEach((item) => {
+          var temp_input = item.querySelector("input");
+          var temp_id = temp_input.id.replace("expand_", "");
+          var check_input = document.getElementById(temp_id);
+          if ((check_input?.value ?? "") != "") {
+            var temp_label = item.querySelector("label.col-form-label");
+            temp_label.innerHTML = temp_id.substring(temp_id.length - 1) + " : " + link_map[check_input.value].name;
+            $(item).show();
+          } else {
+            $(item).hide();
+          }
+        });
+      } else {
+        $(".ui-custom-expand-shortcut").hide();
+      }
+    } else {
+      $("#reg_expand_shortcut_li").hide();
+      $(".ui-custom-expand-shortcut").hide();
+    }
+  }
+
+  function set_ui_custom_expand() {
+    if ($("#reg_expand_quick").is(":checked")) {
+      $(".ui-custom-expand-item").show();
+    } else {
+      $(".ui-custom-expand-item").hide();
+    }
+    set_ui_custom_expand_shortcut();
+  }
+  function set_ui_custom_read_history() {
+    if ($("#reg_read_history").is(":checked")) {
+      $(".ui-custom-read-history").show();
+    } else {
+      $(".ui-custom-read-history").hide();
+    }
+  }
+  function set_ui_custom_trigger() {
+    try {
+      //$("#reg_expand_quick").trigger('change');
+      $("#reg_ui_custom").trigger('change');
+
+      $("#reg_title_filtering").trigger('change');
+      $("#reg_content_blur").trigger('change');
+      $("#reg_shortcut_use").trigger('change');
+
+    } catch (error) {
+      //console.error('Failed to initialize custom UI settings:', error);
+    }
+  }
+
   function set_ui_custom_onload() {
+
+    draw_ui_custom();
+
+    //개인설정 그리기
     set_board_link_option_html();
     check_indexDB();
     set_ui_custom_click_event();
-    var btn_ui_apply = document.getElementById("btn_ui_apply");
-    if (btn_ui_apply) {
-      btn_ui_apply.addEventListener("click", ui_custom_apply);
-    }
 
-    var btn_memo_toggle = document.getElementById("btn_memo_toggle");
-    if (btn_memo_toggle) {
-      btn_memo_toggle.addEventListener("click", toggle_hide_member_memo);
-    }
-    var btn_memo_ip_clear = document.getElementById("btn_memo_ip_clear");
-    if (btn_memo_ip_clear) {
-      btn_memo_ip_clear.addEventListener("click", delete_memo_database);
-    }
-    var ui_obj = get_ui_custom_values();
-    if (ui_obj) {
-      hide_nick(ui_obj);
+    setBtnClickEvent("btn_ui_apply", ui_custom_apply);
+    setBtnClickEvent("btn_ui_value_view", ui_custom_value_view);
+    setBtnClickEvent("btn_ui_value_cancle", ui_custom_value_cancle);
+    setBtnClickEvent("btn_ui_value_save", ui_custom_value_save);
+    setBtnClickEvent("btn_ui_value_copy", ui_custom_value_copy);
+    setBtnClickEvent("btn_ui_value_paste", ui_custom_value_paste);
+    setBtnClickEvent("btn_ui_value_clear", ui_custom_value_clear);
+    setBtnClickEvent("btn_ui_value_reload", ui_custom_value_reload);
+    setBtnClickEvent("btn_memo_toggle", toggle_hide_member_memo);
+    setBtnClickEvent("btn_memo_ip_clear", delete_memo_database);
+    setBtnClickEvent("btn_read_history_clear", delete_read_database);
+
+    setBtnGroupClickEvent(document, ".ip_memo_btns", set_ip_memo_edit_mode);
+    setBtnGroupClickEvent(document, ".ip_memo_editor_btns", click_ip_memo_editor_btn);
+
+    set_ui_custom_values();
+  }
+
+  function setBtnClickEvent(id, event) {
+    var btn = document.getElementById(id);
+    if (btn != null) btn.addEventListener("click", event);
+  }
+  function setBtnGroupClickEvent(el, cssQuery, event) {
+    if (el == null) el = document;
+    Array.from(el.querySelectorAll(cssQuery)).forEach((item) => { item.addEventListener("click", event) });
+  }
+
+  //IP메모 기능 시작
+  function set_ip_memo_edit_mode() {
+    var edit_mode = true;
+    //li 처리
+    Array.from(document.querySelectorAll(".ui-custom-ip-memo-sub-editor")).forEach((item) => { item.classList.remove("d-block"); item.classList.add("d-none") });
+    //버튼 처리
+    Array.from(document.querySelectorAll(".ip_memo_edit_btns")).forEach((item) => { item.classList.add("d-none") });
+    Array.from(document.querySelectorAll(".ip_memo_close_btns")).forEach((item) => { item.classList.remove("d-none") });
+
+    var add_mode = document.getElementById("ip_memo_add_mode");
+    var start_add_mode = add_mode.value;
+
+    switch (this.id) {
+      case "btn_ip_memo_add":
+        var add_name = document.getElementById('ip_memo_add_name');
+        var add_check = document.getElementById('btn_ip_memo_add_check');
+        Array.from(document.querySelectorAll(".ui-custom-ip-memo-add")).forEach((item) => { item.classList.add("d-block"); item.classList.remove("d-none"); });
+        add_name.disable = false;
+        if (add_mode.value == "list") {
+          add_mode.value = "list_add";
+        } else if (add_mode.value == "list_add") {
+        } else if (add_mode.value == "list_edit") {
+          add_name.disable = true;
+          window.getComputedStyle(add_name).backgroundColor
+        } else {
+          add_mode.value = "add";
+        }
+        if (add_name.disable) {
+          add_check.style.backgroundColor = window.getComputedStyle(add_name).backgroundColor;
+        } else {
+          add_check.style.removeProperty('background-color');
+        }
+        break;
+      case "btn_ip_memo_list":
+        show_ip_memo_list();
+        break;
+      case "btn_ip_memo_edit":
+        Array.from(document.querySelectorAll(".ui-custom-ip-memo-edit")).forEach((item) => { item.classList.add("d-block"); item.classList.remove("d-none"); });
+        add_mode.value = "edit";
+        get_ip_memo_list(add_mode.value);
+        break;
+      case "btn_ip_memo_close":
+        //그냥 닫을때
+        clear_ip_memo_editor();
+        if (start_add_mode == "list_add" || start_add_mode == "list_edit") {
+          show_ip_memo_list();
+        } else {
+          if (!document.getElementById("load_ip_memo_list").checked) {
+            clear_ip_memo_list();
+          }
+          Array.from(document.querySelectorAll(".ip_memo_edit_btns")).forEach((item) => { item.classList.remove("d-none") });
+          Array.from(document.querySelectorAll(".ip_memo_close_btns")).forEach((item) => { item.classList.add("d-none") });
+        }
+        break;
     }
   }
-  //set_ui_custom_onload();
+  function click_ip_memo_editor_btn() {
+    var success = false;
+    var add_mode = document.getElementById("ip_memo_add_mode");
+    switch (this.id) {
+      case "btn_ip_memo_add_save":
+        var ip_name = (document.getElementById("ip_memo_add_name")?.value ?? "").trim();
+        var ip_desc = (document.getElementById("ip_memo_add_desc")?.value ?? "").trim();
+        if (ip_desc == "") {
+          alert("메모 내용을 입력해 주세요.");
+        } else {
+          if (ip_mark_regex.test(ip_name)) {
+            var ip_map = {};
+            ip_map[ip_name] = { ip: ip_name, desc: ip_desc };
+            edit_ip_memo_list(ip_map, function () {
+              alert("저장되었습니다.");
+              create_ip_memo_list(ip_name, ip_desc, true);
+              document.getElementById("btn_ip_memo_close").click();
+            });
+            success = false;
+          } else {
+            alert("IP 주소를 확인해 주세요.");
+          }
+        }
+        break;
+      case "btn_ip_memo_list_edit":
+        var li = this.closest("li.list-group-item");
+        document.getElementById("ip_memo_add_mode").value = "list_edit";
+        document.getElementById("ip_memo_add_name").value = li.querySelector("#ip_memo_list_name")?.innerText ?? "";
+        document.getElementById("ip_memo_add_desc").value = li.querySelector("#ip_memo_list_desc")?.value ?? "";
+        document.getElementById("btn_ip_memo_add").click();
+        success = false;
+        break;
+      case "btn_ip_memo_list_delete":
+        var li = this.closest("li.list-group-item");
+        var ip = li.querySelector("#ip_memo_list_name").innerText.trim();
+        if (ip_mark_regex.test(ip)) {
+          var ip_map = {};
+          ip_map[ip] = { ip: ip };
+          edit_ip_memo_list(ip_map, function () {
+            li.remove();
+          });
+        } else {
+          alert(ip + " - 삭제할 수 없습니다.");
+        }
+        success = false;
+        break;
+      case "btn_ip_memo_edit_save":
+        var editor = document.getElementById("ui_custom_ip_memo_editor").value.trim();
+        if (editor != "") {
+          var line_list = editor.split("\n");
+          var ip_map = {};
+          line_list.forEach((line) => {
+            line = line.trim();
+            var line_arr = line.split(",");
+            var ip = line_arr[0];
+            if (ip_mark_regex.test(ip)) {
+              ip_map[ip] = { ip: ip }
+              if (line_arr.length > 1) {
+                var desc = line_arr.splice(1).join(",").trim();
+                if (desc != "") {
+                  ip_map[ip].desc = desc;
+                }
+              }
+            }
+          });
+
+          edit_ip_memo_list(ip_map, function () {
+            document.getElementById("load_ip_memo_list").checked = false;
+            document.getElementById("btn_ip_memo_close").click();
+          });
+        }
+        success = false;
+        break;
+    }
+    if (success) {
+      document.getElementById("btn_ip_memo_close").click();
+    }
+    //console.debug("end editor - " + add_mode.value);
+  }
+
+  function show_ip_memo_list(reload) {
+    var add_mode = document.getElementById("ip_memo_add_mode");
+    add_mode.value = "list";
+    if (document.getElementById("load_ip_memo_list").checked) {
+      var data_empty = true;
+      Array.from(document.querySelectorAll(".ui-custom-ip-memo-list-data")).forEach((item, index) => {
+        data_empty = false;
+        item.classList.add("d-block");
+        item.classList.remove("d-none");
+      });
+
+      Array.from(document.querySelectorAll(".ui-custom-ip-memo-list-zero")).forEach((item, index) => {
+        if (data_empty) {
+          item.classList.add("d-block");
+          item.classList.remove("d-none");
+        } else {
+          item.classList.remove("d-block");
+          item.classList.add("d-none");
+        }
+      });
+      document.getElementById("btn_ip_memo_add").classList.remove("d-none");
+    } else {
+      if (!(reload ?? false)) {
+        document.getElementById("load_ip_memo_list").checked = true;
+        get_ip_memo_list(add_mode.value, function () {
+          show_ip_memo_list(true);
+        })
+      }
+    }
+  }
+
+  function create_ip_memo_list(ip, desc, edit_mode) {
+    if ((ip ?? "").trim() == "") return;
+    var li_position = null
+    var li_add = true;
+    if (edit_mode) {
+      Array.from(document.querySelectorAll(".ui-custom-ip-memo-list")).some((item, index) => {
+        if (index != 0) {
+          var li_ip = item.querySelector("#ip_memo_list_name")?.innerText ?? "";
+          if (li_ip == ip) {
+            item.querySelector("#ip_memo_list_desc").value = desc;
+            li_add = false;
+            return true;
+          } else if (li_ip < ip) {
+            li_position = item;
+            return true;
+          } else {
+            return false;
+          }
+        }
+      });
+    }
+
+    if (li_add) {
+      var li_list = document.querySelectorAll(".ui-custom-ip-memo-list");
+      var li_first = document.querySelector(".ui-custom-ip-memo-list-default");
+      var li_last = li_list.length > 0 ? li_list[li_list.length - 1] : li_first;
+      var li_new = document.createElement('li');
+      li_new.className = li_first.className;
+      li_new.innerHTML = li_first.innerHTML;
+      li_new.classList.add("ui-custom-ip-memo-list-data");
+      li_new.querySelector("#ip_memo_list_name").innerText = ip;
+      li_new.querySelector("#ip_memo_list_desc").value = desc;
+      li_new.querySelector("#ip_memo_list_desc").title = desc;
+      setBtnGroupClickEvent(li_new, ".ip_memo_editor_btns", click_ip_memo_editor_btn);
+      if (li_position != null) {
+        li_position.parentNode.insertBefore(li_new, li_position);
+      } else {
+        li_last.parentNode.insertBefore(li_new, li_last.nextSibling);
+      }
+    }
+  }
+
+  function clear_ip_memo_editor() {
+    document.getElementById("ip_memo_add_mode").value = "";
+    document.getElementById("ip_memo_add_name").value = ".♡..";
+    document.getElementById("ip_memo_add_desc").value = "";
+    document.getElementById("ui_custom_ip_memo_editor").value = ".♡..,\r\n.♡..,";
+  }
+  function clear_ip_memo_list() {
+    Array.from(document.querySelectorAll(".ui-custom-ip-memo-list-data")).forEach((item, index) => { item.remove() });
+  }
+
+  function get_ip_memo_list(list_mode, complete) {
+    if (window.indexedDB) {
+      var temp_obj = get_board_mb_id();
+      if (temp_obj != null && temp_obj.id != null) {
+        check_memo_user_id(temp_obj.id);
+
+        var memo_db_request = indexedDB.open(memoDBName + temp_obj.id, memo_db_version);
+        memo_db_request.onupgradeneeded = memo_db_upgrade;
+        memo_db_request.onsuccess = function (event) {
+          var db = event.target.result;
+
+          var checked_ip = 0;
+          var ipStore = getDBObjectStore(db, memoIP, "readonly", complete);
+          var ipIndex = ipStore.index("by_ip");
+          var access_req = ipIndex.openCursor();
+          var memo_list = [];
+          //memo ip 갱신
+          access_req.onsuccess = function (e) {
+            var cursor = e.target.result;
+            if (cursor) {
+              var temp_val = cursor.value;
+              if (temp_val.desc != null) {
+                var nick_list = [];
+                if (temp_val.ip != null) {
+                  Object.keys(temp_val.ip).forEach((ip) => {
+                    nick_list.push(temp_val.ip[ip].nick);
+                  });
+                }
+                memo_list.push({ ip: temp_val.ip, desc: temp_val.desc, nick_list: nick_list });
+              }
+              cursor.continue();
+            } else {
+              switch (list_mode) {
+                case "edit":
+                  var edit_string = "";
+                  memo_list.forEach((item, index) => {
+                    if (index != 0) {
+                      edit_string += "\n";
+                    }
+                    edit_string += item.ip + "," + item.desc + "";
+                  });
+                  document.getElementById("ui_custom_ip_memo_editor").value = edit_string;
+                  break;
+                default:
+                  memo_list.forEach((item) => {
+                    create_ip_memo_list(item.ip, item.desc, false);
+                  });
+                  break;
+              }
+            }
+          };
+        };
+      }
+    }
+  }
+
+  function edit_ip_memo_list(ip_map, complete) {
+    if (window.indexedDB) {
+      var temp_obj = get_board_mb_id();
+      if (temp_obj != null && temp_obj.id != null) {
+        check_memo_user_id(temp_obj.id);
+
+        var memo_db_request = indexedDB.open(memoDBName + temp_obj.id, memo_db_version);
+        memo_db_request.onupgradeneeded = memo_db_upgrade;
+        memo_db_request.onsuccess = function (event) {
+          var db = event.target.result;
+          var checked_ip = 0;
+          var ipStore = getDBObjectStore(db, memoIP, "readwrite", complete);
+          var now_stamp = Date.now();
+          var ips = Object.keys(ip_map);
+          ips.forEach((memo_ip) => {
+            var temp_req = ipStore.get(memo_ip);
+            temp_req.onsuccess = function (e) {
+              var result = e.target.result;
+              var memo_desc = ip_map[memo_ip].desc;
+              if (result != null) {
+                if (memo_desc == null) {
+                  delete result.desc;
+                  if (result.id_cnt == 0) {
+                    ipStore.delete(memo_ip);
+                  } else {
+                    delete result.desc;
+                    result.access = now_stamp;
+                    ipStore.put(result);
+                  }
+                } else {
+                  if (result.desc != memo_desc) {
+                    result.desc = memo_desc;
+                    result.access = now_stamp;
+                    ipStore.put(result);
+                  }
+                }
+              } else {
+                ipStore.add({ ip: memo_ip, id: {}, access: now_stamp, id_cnt: 0, desc: memo_desc });
+              }
+            };
+          });
+        }
+      }
+    }
+  }
+  //IP메모 기능 끝
+
+  //터치 이벤트 기록용 시작
+  var tlog = null;
+  var tges = {};
+  function set_touch_gesture(ui_obj) {
+    if (ui_obj != null && ui_obj.expand_gesture) {
+      tges = {};
+      tges.swipe = ui_obj.expand_gesture_swipe;
+      tges.swipe_minx = ui_obj.expand_gesture_swipe_minx;
+      tges.swipe_maxy = ui_obj.expand_gesture_swipe_maxy;
+      tges.tap2 = ui_obj.expand_gesture_tap2;
+      tges.tap3 = ui_obj.expand_gesture_tap3;
+      tges.left_menu = (ui_obj.left_menu ?? false);
+      set_touch_event();  
+    }
+  }
+  var stt = null
+  function set_touch_event(term) {
+    var touch_list = ["touchstart", "touchmove", "touchend", "touchcancle"];
+    touch_list.forEach((touch) => {
+      window.removeEventListener(touch, get_touch_event, false);
+    });
+    if (term != null) {
+      if (stt!=null) {
+        clearTimeout(stt);
+      }
+      stt = setTimeout(function(){
+        touch_list.forEach((touch) => {
+          window.addEventListener(touch, get_touch_event, false);
+        });
+      },term);
+    } else {
+      touch_list.forEach((touch) => {
+        window.addEventListener(touch, get_touch_event, false);
+      });
+  
+    }
+}
+  function get_touch_event(e, parent_name) {
+    var now = Date.now();
+    var term = null;
+    if (tlog?.summary?.last_event != null) {
+      term = now - tlog.summary.last_event;
+    } else {
+      term = 0;
+    }
+    if (tlog == null || (term != null && term > 1000)) {
+      tlog = { summary: { start: 0, end: 0, move: 0, start_time: now }, list: [] };
+    } else {
+      tlog.summary.start_term = now - tlog.summary.start_time;
+    }
+    if (tsev != null) {
+      clearTimeout(tsev);
+    }
+    var pageX, pageY;
+    if ((e.touches?.length ?? 0) > 0) {
+      pageX = e.touches[0].pageX;
+      pageY = e.touches[0].pageY;
+      if (pageX) {
+        if (tlog.summary.pageX != null) {
+          tlog.summary.moveX = pageX - tlog.summary.pageX;
+        } else {
+          delete tlog.summary.moveX;
+        }
+        if (tlog.summary.startX != null) tlog.summary.totalX = pageX - tlog.summary.startX;
+        tlog.summary.pageX = pageX;
+      }
+      if (pageY) {
+        if (tlog.summary.pageY != null) {
+          tlog.summary.moveY = pageY - tlog.summary.pageY;
+        } else {
+          delete tlog.summary.moveY;
+        }
+        if (tlog.summary.startY != null) tlog.summary.totalY = pageY - tlog.summary.startY;
+        tlog.summary.pageY = pageY;
+      }
+    }
+
+    tlog.summary.last_event = now;
+    tlog.summary.term = term;
+    tlog.summary.target = e.target;
+
+    switch (e?.type) {
+      case "touchstart":
+        if (pageX != null) tlog.summary.startX = pageX;
+        if (pageY != null) tlog.summary.startY = pageY;
+        tlog.summary.start++;
+        tlog.list.push(e);
+        break;
+
+      case "touchmove":
+        tlog.summary.move++;
+        tlog.list.push(e);
+        if (tlog.summary.start_term < 300) {
+          //e.preventDefault();
+        }
+        break;
+
+      case "touchend":
+      case "touchcancle":
+        tlog.summary.end++;
+        tlog.list.push(e);
+        if (((tges?.tap2 ?? false) || (tges?.tap3 ?? false)) && tlog.summary.move < 3 && tlog.summary.end < 4 && (tlog.summary.start_term < tlog.summary.end * 200)) {
+          e.preventDefault();
+          tsev = setTimeout(check_touch_event, 250);
+        } else {
+          if (tlog.summary.start_term < 300) {
+            check_touch_event();
+          }
+        }
+        break;
+    }
+  }
+
+  var tsev = null;
+  function check_touch_event() {
+    var m = (tlog.summary.move > 0);
+    var md = "";
+    var ax = 0;
+    var ay = 0;
+
+    var t_type;
+    var t_value;
+
+    if (tges != null) {
+      if (m) {
+        ax = Math.abs(tlog.summary.totalX)
+        ay = Math.abs(tlog.summary.totalY);
+        if (((tges.swipe ?? "") != "") && ax > (tges.swipe_minx ?? 50) && ay < (tges.swipe_minx ?? 30)) {
+          t_type = tges?.swipe;
+          if (tlog.summary.totalX > 0) {
+            t_value = "r";
+          } else {
+            t_value = "l";
+          }
+        }
+      } else {
+        var tc = tlog.summary.end;
+        switch (tc) {
+          case 3:
+            t_type = tges.tap3;
+            break;
+          case 2:
+            t_type = tges.tap2;
+            break;
+          case 1:
+            //set_touch_event(500)
+            tlog.summary.target.dispatchEvent(tlog.list[tlog.list.length-1]);
+            tlog.summary.target.click();
+            break;
+        }
+      }
+      run_touch_gesture(t_type, t_value);
+    }
+    clearTimeout(tsev);
+    tlog = null;
+  }
+  function run_touch_gesture(t_type, t_value) {
+    var sidemenu_o = document.getElementById("menuOffcanvas").classList.contains("show");
+    var mymenu_o = document.getElementById("memberOffcanvas").classList.contains("show");
+    if (t_value != null) {
+      switch (t_type) {
+        case "history":
+          if (t_value == "r") {
+            t_type = "goBack";
+          } else {
+            t_type = "goForward";
+          }
+          break;
+        case "menuOpen":
+          if (tges.left_menu) {
+            if (sidemenu_o) {
+              if (t_value == "r") {
+                t_type = "goBack"; //작동안함
+              } else {
+                t_type = "sideMenuOff";
+              }
+            } else if (mymenu_o) {
+              if (t_value == "r") {
+                t_type = "myMenuOff";
+              } else {
+                t_type = "goForward"; //작동안함
+              }
+            } else {
+              if (t_value == "r") {
+                t_type = "sideMenu";
+              } else {
+                t_type = "myMenu";
+              }
+            }
+          } else {
+            if (sidemenu_o) {
+              if (t_value == "r") {
+                t_type = "sideMenuOff"; //작동안함
+              } else {
+                t_type = "myMenu";
+              }
+            } else if (mymenu_o) {
+              if (t_value == "r") {
+                t_type = "myMenuOff";
+              } else {
+                t_type = "sideMenu"; //작동안함
+              }
+            } else {
+              if (t_value == "r") {
+                t_type = "goBack"; //작동안함
+              } else {
+                t_type = "sideMenu";
+              }
+            }
+          }
+          break;
+      }
+    }
+    if (t_type != null) {
+      switch (t_type) {
+        case "refresh": //새로고침
+          window.location.reload();
+          break;
+        case "toList": //목록으로이동
+          var bl = document.getElementById('bo_list_wrap');
+          var bc = document.getElementById('bo_v');
+          var sy = window.scrollY || document.documentElement.scrollTop;
+          var sh = screen.height;
+          var hn = document.getElementById('header-navbar');
+          if (bc == null) {
+            if ( sy <= (bl.offsetTop + 100)) {
+              window.scrollTo(0,bl.offsetTop + bl.offsetHeight - sh + hn.offsetHeight + 60);
+            } else {
+              window.location.replace("#bo_list_wrap");
+            }
+          } else {
+            if ( sy <= (bc.offsetTop + 100)) {
+              window.location.replace("#bo_list_wrap");
+            } else if ( sy <= (bl.offsetTop + 100)) {
+              window.scrollTo(0,bl.offsetTop + bl.offsetHeight - sh + hn.offsetHeight + 60);
+            } else {
+              window.location.replace("#bo_v");
+            }
+          }
+          break;
+        case "sideMenu": //게시판메뉴
+        case "sideMenuOff": //게시판메뉴
+          document.querySelector("a[data-bs-target='#menuOffcanvas']").click();
+          break;
+        case "myMenu": //마이메뉴
+        case "myMenuOff": //마이메뉴
+          document.querySelector("a[data-bs-target='#memberOffcanvas']").click();
+          break;
+          break;
+        case "toTop": //위아래로이동
+          var sy = window.scrollY || document.documentElement.scrollTop;
+          var bh = document.body.scrollHeight;
+          var sh = screen.height;
+          if (sy < sh * 1.5) {
+            window.scrollTo(0, bh - sh);
+          } else {
+            window.location.replace("#top");
+          }
+          break;
+        case "goBack": //뒤로이동
+          history.back();
+          break;
+        case "goForward": //앞으로이동  
+          history.forward();
+      }
+    }
+  }
+  //터치 이벤트 기록용 끝
+
+  function set_page_show(event) {
+    if (event.persisted || (window.performance && window.performance.navigation.type == 2)) {
+      draw_ui_custom(true);
+    }
+  }
+  function set_page_hide(event) {
+    //console.debug("hide_page");
+    //set_expand_button_hide();  
+    is_set_expand_button = false;
+  }
   document.addEventListener("DOMContentLoaded", set_ui_custom_onload, { once: true });
+  window.addEventListener("pageshow", set_page_show);
+  window.addEventListener("pagehide", set_page_hide);
+  window.removeEventListener('keypress', handleClearSettingKeyPress);
+  window.addEventListener('keypress', handleClearSettingKeyPress);
 
   try {
     set_ui_custom();
   } catch (error) {
     //console.error('Failed to initialize custom UI settings:', error);
   }
-
-}) ();
+})();

@@ -72,7 +72,7 @@ $wr_notice = (isset($wset['is_notice']) && $wset['is_notice']) ? ' bg-body-terti
             }
 
             if ($ca_name) {
-                $row['subject'] = '[' . $ca_name . '] ' . $row['subject'];
+                $row['subject'] = '<small>[' . $ca_name . ']</small> ' . $row['subject'];
             }
         }
         ?>
@@ -80,7 +80,20 @@ $wr_notice = (isset($wset['is_notice']) && $wset['is_notice']) ? ' bg-body-terti
             <div class="d-flex align-items-center gap-1">
                 <?php if (!$row['is_notice']) { ?>
                 <!-- 추천 수 -->
-                <span class="badge text-bg-secondary"><?= intval($row['wr_good'] ?? 0) ?></span>
+                <!--  추천수에 따른 컬러세트 지정(메인) -->
+                <?php
+                    $rcmd_step = "rcmd-box step1";
+                    if($row['wr_good'] <= 15) {
+                        $rcmd_step = "rcmd-box step1";
+                    }else if($row['wr_good'] > 15 && $row['wr_good'] <= 25) {
+                        $rcmd_step = "rcmd-box step2";
+                    }else if($row['wr_good'] > 25 && $row['wr_good'] <= 50) {
+                        $rcmd_step = "rcmd-box step3";
+                    }else if($row['wr_good'] > 50) {
+                        $rcmd_step = "rcmd-box step4";
+                    }
+                ?>
+                <span class="<?php echo $rcmd_step ?> rcmd-sm"><?= intval($row['wr_good'] ?? 0) ?></span>
                 <?php } ?>
                 <!-- 제목 -->
                 <div class="text-truncate">
