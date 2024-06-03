@@ -145,7 +145,7 @@
         if ((ui_obj.rcmd_font_color ?? "") != "") {
           var font_color = "";
           var rcmd_color_set = (ui_obj.rcmd_color_set ?? "");
-          if (rcmd_color_set != "self") {
+          if (rcmd_color_set != "self" && rcmd_color_set != "") {
             rcmd_color_set = "-" + rcmd_color_set
           } else {
             rcmd_color_set = ""
@@ -164,13 +164,13 @@
               if ((ui_obj.rcmd_font_color_self ?? "") != "") font_color = ui_obj.rcmd_font_color_self;
               break;
             case "step":
-              if ((ui_obj.rcmd_font_color_1 ?? "") != "") ui_custom_style += "div.wr-num .rcmd-box" + rcmd_color_set + ".step1 {color : " + ui_obj.rcmd_font_color_1 + " !important}\n";
-              if ((ui_obj.rcmd_font_color_2 ?? "") != "") ui_custom_style += "div.wr-num .rcmd-box" + rcmd_color_set + ".step2 {color : " + ui_obj.rcmd_font_color_2 + " !important}\n";
-              if ((ui_obj.rcmd_font_color_3 ?? "") != "") ui_custom_style += "div.wr-num .rcmd-box" + rcmd_color_set + ".step3 {color : " + ui_obj.rcmd_font_color_3 + " !important}\n";
-              if ((ui_obj.rcmd_font_color_4 ?? "") != "") ui_custom_style += "div.wr-num .rcmd-box" + rcmd_color_set + ".step4 {color : " + ui_obj.rcmd_font_color_4 + " !important}\n";
+              if ((ui_obj.rcmd_font_color_1 ?? "") != "") ui_custom_style += "#bo_list li.list-group-item.da-link-block div.rcmd-box" + rcmd_color_set + ".step1 {color : " + ui_obj.rcmd_font_color_1 + " !important}\n";
+              if ((ui_obj.rcmd_font_color_2 ?? "") != "") ui_custom_style += "#bo_list li.list-group-item.da-link-block div.rcmd-box" + rcmd_color_set + ".step2 {color : " + ui_obj.rcmd_font_color_2 + " !important}\n";
+              if ((ui_obj.rcmd_font_color_3 ?? "") != "") ui_custom_style += "#bo_list li.list-group-item.da-link-block div.rcmd-box" + rcmd_color_set + ".step3 {color : " + ui_obj.rcmd_font_color_3 + " !important}\n";
+              if ((ui_obj.rcmd_font_color_4 ?? "") != "") ui_custom_style += "#bo_list li.list-group-item.da-link-block div.rcmd-box" + rcmd_color_set + ".step4 {color : " + ui_obj.rcmd_font_color_4 + " !important}\n";
               break;
           }
-          if (font_color != "") ui_custom_style += "div.wr-num .rcmd-box" + rcmd_color_set + " {color : " + font_color + " !important}\n";
+          if (font_color != "") ui_custom_style += "#bo_list li.list-group-item.da-link-block div.rcmd-box" + rcmd_color_set + " {color : " + font_color + " !important}\n";
         }
 
         if ((ui_obj.rcmd_color_set ?? "") == "self") {
@@ -179,10 +179,10 @@
           var rcmd_color_step3 = ui_obj.rcmd_color_step3 ?? "";
           var rcmd_color_step4 = ui_obj.rcmd_color_step4 ?? "";
 
-          if (rcmd_color_step1 != "") ui_custom_style += "div.wr-num .rcmd-box.step1 {" + rcmd_color_step1 + " !important;}\n";
-          if (rcmd_color_step2 != "") ui_custom_style += "div.wr-num .rcmd-box.step2 {" + rcmd_color_step2 + " !important;}\n";
-          if (rcmd_color_step3 != "") ui_custom_style += "div.wr-num .rcmd-box.step3 {" + rcmd_color_step3 + " !important;}\n";
-          if (rcmd_color_step4 != "") ui_custom_style += "div.wr-num .rcmd-box.step4 {" + rcmd_color_step4 + " !important;}\n";
+          if (rcmd_color_step1 != "") ui_custom_style += "#bo_list li.list-group-item.da-link-block div.rcmd-box.step1 {background-color : " + rcmd_color_step1 + " !important;}\n";
+          if (rcmd_color_step2 != "") ui_custom_style += "#bo_list li.list-group-item.da-link-block div.rcmd-box.step2 {background-color : " + rcmd_color_step2 + " !important;}\n";
+          if (rcmd_color_step3 != "") ui_custom_style += "#bo_list li.list-group-item.da-link-block div.rcmd-box.step3 {background-color : " + rcmd_color_step3 + " !important;}\n";
+          if (rcmd_color_step4 != "") ui_custom_style += "#bo_list li.list-group-item.da-link-block div.rcmd-box.step4 {background-color : " + rcmd_color_step4 + " !important;}\n";
         }
       }
       //hide_nick(ui_obj);
@@ -1758,7 +1758,7 @@
           var shortcut_link = document.createElement("a");
           shortcut_link.className = "nav-link shortcut_custom";
           shortcut_link.href = "/" + board_obj.board + "?sfl=mb_id%2C" + i + "&stx=" + board_obj.id;
-          shortcut_link.innerHTML = '<span class="d-flex align-items-center gap-2 nav-link-title"><i class="' + temp_icon[i] + ' nav-icon"></i><span class="badge p-1 text-bg-secondary">·</span>' + temp_text[i] + "</span>";
+          shortcut_link.innerHTML = '<span class="d-flex align-items-center gap-2 nav-link-title"><span class="badge p-1 text-bg-secondary">·</span>' + temp_text[i] + "</span>";//<i class="' + temp_icon[i] + ' nav-icon"></i>
           shortcut_div.appendChild(shortcut_link);
           sidebar_site_menu.insertBefore(shortcut_div, sidebar_site_menu_first);
           offcanvas_menu.insertBefore(shortcut_div.cloneNode(true), offcanvas_menu_first);
@@ -1775,7 +1775,7 @@
           var shortcut_link = document.createElement("a");
           shortcut_link.className = "nav-link shortcut_custom";
           shortcut_link.href = link_map[shortcut].org;
-          shortcut_link.innerHTML = '<span class="d-flex align-items-center gap-2 nav-link-title"><i class="bi-list-stars nav-icon"></i> <span class="badge p-1 text-bg-secondary">' + shortcut_i + '</span>' + link_map[shortcut].name + "</span>";
+          shortcut_link.innerHTML = '<span class="d-flex align-items-center gap-2 nav-link-title"></i> <span class="badge p-1 text-bg-secondary">' + shortcut_i + '</span>' + link_map[shortcut].name + "</span>";//<i class="bi-list-stars nav-icon">
           shortcut_div.appendChild(shortcut_link);
           sidebar_site_menu.insertBefore(shortcut_div, sidebar_site_menu_first);
           offcanvas_menu.insertBefore(shortcut_div.cloneNode(true), offcanvas_menu_first);
