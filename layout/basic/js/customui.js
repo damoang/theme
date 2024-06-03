@@ -3505,6 +3505,7 @@
       }
     }
     if (t_type != null) {
+      var term = 10;
       switch (t_type) {
         case "refresh": //새로고침
           window.location.reload();
@@ -3551,23 +3552,31 @@
           }
           break;
         case "goBack": //뒤로이동
-          close_offcanvas();
-          history.back();
+          term = close_offcanvas();
+          setTimeout(function(){
+            history.back();
+          },term);
           break;
         case "goForward": //앞으로이동  
-          close_offcanvas();
-          history.forward();
+          term = close_offcanvas();
+          setTimeout(function(){
+            history.forward();
+          },term);
           break;
     }
     }
   }
   function close_offcanvas(){
+    var term = 10;
     if (document.getElementById("menuOffcanvas") != null && document.getElementById("menuOffcanvas").classList.contains("show")) {
       document.querySelector("a[data-bs-target='#menuOffcanvas']").click();
+      term += 250;
     }
     if (document.getElementById("memberOffcanvas") != null && document.getElementById("memberOffcanvas").classList.contains("show")) {
       document.querySelector("a[data-bs-target='#memberOffcanvas']").click();
+      term += 250;
     }
+    return term;
   }
   //터치 이벤트 기록용 끝
 
