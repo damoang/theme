@@ -59,3 +59,16 @@
 .list-group-item:active {
   background-color: brightness(var(--bs-list-group-action-active-bg), 0.8) !important;
 }
+
+/* 내가 작성한 글 강조하기 */
+[data-bs-theme=light] {
+  .writter-bg {
+    background-color: #eeeeee !important;
+  }
+}
+
+[data-bs-theme=dark] {
+  .writter-bg {
+    background-color: #131313 !important;
+  }
+}
