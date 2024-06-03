@@ -127,9 +127,8 @@
           ui_custom_style += "@keyframes cu_body_op {\n 0% {opacity: 0;} \n 50% {opacity: 70;} \n 100% {opacity: 1;}\n}\n";
         }
         if (ui_obj.expand_quick != null && ui_obj.expand_quick) {
-          if (ui_obj.expand_quick_size != null) {
-            ui_custom_style += "div#toTop a {font-size: " + ui_obj.expand_quick_size + "em !important;}\n";
-          }
+          ui_custom_style += "div#toTop a {font-size: " + (ui_obj.expand_quick_size ?? 2.5) + "em !important;}\n";
+          
           //"div#toTop a.ui-custom-expand-hidden.d-block {transition: all 0.5s;height: 100%;}\n" +
           //"div#toTop a.ui-custom-expand-hidden.d-none {display: block !important;transition: all 0.3s;opacity: 0;transform: scale(0.5) rotate(0deg) translateY(200%);border-radius: 100%;}\n" +
           ui_custom_style += "div#toTop a.ui-custom-expand-hidden.d-none-start {display: block !important;opacity: 0;transform: scale(0.5) rotate(0deg) translateY(200%);border-radius: 100%;}\n" +
@@ -375,6 +374,8 @@
     , "expand_gesture_swipe"
     , "expand_gesture_swipe_minx"
     , "expand_gesture_swipe_maxy"
+    , "expand_gesture_start_term"
+    , "expand_gesture_click_term"
 
     , "menu_scroll"
     , "list_search"
@@ -413,7 +414,7 @@
     , "shortcut_9"
     , "shortcut_0"
   ];
-  var ui_custom_default = { show_width: 1200, font_size: 1, line_height: 1.5, menu_width: 25, expand_quick_size: 2.5 };
+  var ui_custom_default = { show_width: 1200, font_size: 1, line_height: 1.5, menu_width: 25, expand_quick_size: 2.5 , expand_gesture_swipe_minx : 50, expand_gesture_swipe_maxy : 30, expand_gesture_start_term : 400, expand_gesture_click_term : 250};
 
   function set_ui_custom_input_clear() {
     ui_custom_input.forEach(function (reg) {
@@ -3286,11 +3287,21 @@
     if (ui_obj != null && ui_obj.expand_gesture) {
       tges = {};
       tges.swipe = ui_obj.expand_gesture_swipe;
-      tges.swipe_minx = ui_obj.expand_gesture_swipe_minx;
-      tges.swipe_maxy = ui_obj.expand_gesture_swipe_maxy;
+      tges.swipe_minx = ui_obj.expand_gesture_swipe_minx ?? 50;
+      tges.swipe_maxy = ui_obj.expand_gesture_swipe_maxy ?? 30;
       tges.tap2 = ui_obj.expand_gesture_tap2;
       tges.tap3 = ui_obj.expand_gesture_tap3;
       tges.left_menu_over = (ui_obj.left_menu_over ?? false);
+      tges.start_term = ui_obj.expand_gesture_start_term ?? 400;
+      tges.click_term = ui_obj.expand_gesture_click_term ?? 250;
+
+      if (tges.tap3 != null) {
+        tges.maxTap = 4;
+      } else if (tges.tag2 != null) {
+        tges.maxTap = 3;
+      } else {
+        tges.maxTap = 0;
+      }
       set_touch_event();  
     }
   }
@@ -3371,19 +3382,19 @@
       case "touchmove":
         tlog.summary.move++;
         tlog.list.push(e);
-        if (tlog.summary.start_term < 300) {
+        //if (tlog.summary.start_term < 300) {
           //e.preventDefault();
-        }
+        //}
         break;
 
       case "touchend":
       case "touchcancle":
         tlog.summary.end++;
         tlog.list.push(e);
-        if ( !(isShortCutInputElement(e.target)) && ((tges?.tap2 ?? false) || (tges?.tap3 ?? false)) && tlog.summary.move < 3 && tlog.summary.end < 4 && (tlog.summary.start_term < tlog.summary.end * 250)) {
+        if ( !(isShortCutInputElement(e.target)) && tlog.summary.move < 3 && tlog.summary.end < tges.maxTap && (tlog.summary.start_term < (tlog.summary.end + 1) * tges.click_term)) {
           e.preventDefault();
-          tsev = setTimeout(check_touch_event, 250);
-        } else if (tlog.summary.start_term < 500) {
+          tsev = setTimeout(check_touch_event, tges.click_term);
+        } else if (tlog.summary.start_term < tges.start_term || tlog.summary.move > 5) {
             check_touch_event();
         } else {
           clearTimeout(tsev);
@@ -3407,7 +3418,7 @@
       if (m) {
         ax = Math.abs(tlog.summary.totalX)
         ay = Math.abs(tlog.summary.totalY);
-        if (((tges.swipe ?? "") != "") && ax > (tges.swipe_minx ?? 50) && ay < (tges.swipe_minx ?? 30)) {
+        if (((tges.swipe ?? "") != "") && ax > (tges.swipe_minx ?? 50) && ay < (tges.swipe_maxy ?? 30)) {
           t_type = tges?.swipe;
           if (tlog.summary.totalX > 0) {
             t_value = "r";
@@ -3551,9 +3562,12 @@
     }
   }
   function close_offcanvas(){
-    if (document.getElementById("menuOffcanvas") != null) document.getElementById("menuOffcanvas").classList.remove("show");
-    if (document.getElementById("memberOffcanvas") != null) document.getElementById("memberOffcanvas").classList.remove("show");
-
+    if (document.getElementById("menuOffcanvas") != null && document.getElementById("menuOffcanvas").classList.contains("show")) {
+      document.querySelector("a[data-bs-target='#menuOffcanvas']").click();
+    }
+    if (document.getElementById("memberOffcanvas") != null && document.getElementById("memberOffcanvas").classList.contains("show")) {
+      document.querySelector("a[data-bs-target='#memberOffcanvas']").click();
+    }
   }
   //터치 이벤트 기록용 끝
 
