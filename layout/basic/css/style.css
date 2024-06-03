@@ -842,35 +842,16 @@ div a mark:hover {
   }
 }
 
-@media (max-width: 560px) {
-  footer .bar-sm,footer i.bar{
-    margin: 0px 2px !important;
-    display: inline-block;
-  }
-
-  footer .container {
-      gap: 0.1rem;
-      font-size: clamp(12px, 1.5vw, 14px);
-  }
-
-  footer .container a {
-    white-space: nowrap;
-  }
+footer .bar-sm,footer i.bar{
+  margin: 0px 2px !important;
+  display: inline-block;
 }
 
+footer .container {
+    gap: 0.1rem;
+    font-size: clamp(9px, 2.5vw, 14px);
+}
 
-@media (max-width: 450px) {
-  footer .bar-sm,footer i.bar{
-    margin: 0px 2px !important;
-    display: inline-block;
-  }
-
-  footer .container {
-      gap: 0.1rem;
-      font-size: clamp(9px, 1.5vw, 14px);
-  }
-
-  footer .container a {
-       white-space: nowrap;
-  }
+footer .container a {
+  white-space: nowrap;
 }
