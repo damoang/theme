@@ -137,6 +137,18 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
     </div>
     <?php if ($write_href && !$wr_id) { ?>
         <div class="order-last">
+            <a href="/<?php echo $bo_table;?>?sfl=mb_id%2C0&stx=<?php echo $member['mb_id'];?>" class="btn btn-basic btn-sm">
+                <i class="bi bi-chat-square-text"></i>
+                <span class="d-none d-sm-inline-block">내 글</span>
+            </a>
+        </div>
+        <div class="order-last">
+            <a href="/<?php echo $bo_table;?>?sfl=mb_id%2C1&stx=<?php echo $member['mb_id'];?>" class="btn btn-basic btn-sm">
+                <i class="bi bi-chat"></i>
+                <span class="d-none d-sm-inline-block">내 댓글</span>
+            </a>
+        </div>
+        <div class="order-last">
             <a href="<?php echo $write_href ?>" class="btn btn-primary btn-sm">
                 <i class="bi bi-pencil"></i>
                 쓰기
