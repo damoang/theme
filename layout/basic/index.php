@@ -248,6 +248,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
                         </div>
                         <div class="col">
+                            <?php /*<div class="col d-none">
                             <!-- 위젯 시작 { -->
                             <h3 class="fs-5 px-3 py-2 mb-0">
                                 <a href="<?php echo get_pretty_url('angmap') ?>">
@@ -261,7 +262,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
                             </div>
                             <!-- } 위젯 끝 -->
-
+   */?>
                         </div>
 
 
