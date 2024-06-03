@@ -831,6 +831,7 @@ div a mark:hover {
 }
 .rcmd-mb {
   display: none !important;
+  margin: inherit;
 }
 @media (max-width: 767px) {
   .rcmd-pc {
