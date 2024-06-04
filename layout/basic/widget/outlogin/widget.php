@@ -8,7 +8,7 @@ global $is_member, $member, $is_admin;
     <div class="d-flex align-items-center my-2">
         <div class="pe-2">
             <a href="<?php echo G5_BBS_URL ?>/myphoto.php" target="_blank" class="win_memo" title="내 사진 관리">
-            <img src="<?php echo na_member_photo($member['mb_id']); ?>" class="rounded-circle" style="max-width:60px;" onerror="this.onerror=null; this.src='<?php echo G5_IMG_URL . '/no_profile.gif' ?>';">
+            <img src="<?php echo na_member_photo($member['mb_id']); ?>" class="rounded-circle" style="max-width:60px;">
             </a>
         </div>
         <div class="flex-grow-1 ps-1">

@@ -2,8 +2,14 @@
 if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
 // 설정 기본 값
+const DEFAULT_CATEGORY_MOVE_MESSAGE = '{{auth_member}}가 {{src_cat}}에서 {{dest_cat}}으로 이동시켰습니다.';
+
 $boset['check_only_permit'] = $boset['check_only_permit'] ?? '0';
 $boset['member_only_permit'] = $boset['member_only_permit'] ?? 'admin_only';
+$boset['category_move_permit'] = $boset['category_move_permit'] ?? 'admin_only';
+$boset['category_move_message'] = trim($boset['category_move_message'] ?? "");
+// 기본값과 같으면 PLACEHOLDER 표시하기 위해
+$boset['category_move_message'] = $boset['category_move_message'] == DEFAULT_CATEGORY_MOVE_MESSAGE ? "" : $boset['category_move_message'];
 ?>
 <style>
     html, body {
@@ -190,6 +196,16 @@ if(is_file($board_skin_path.'/setup.skin.php'))
                         글을 회원만 볼 수 있도록 제한하는 옵션 제공
                     </div>
                 </div>
+
+                <!-- 카테고리 이동 -->
+                <div class="form-check form-switch">
+                    <?php $boset['check_category_move'] = isset($boset['check_category_move']) ? $boset['check_category_move'] : ''; ?>
+                    <input type="checkbox" name="boset[check_category_move]" id="idCheckCategoryMove<?php echo $idn ?>" value="1"<?php echo get_checked('1', $boset['check_category_move'])?> class="form-check-input" role="switch">
+                    <label class="form-check-label" for="idCheckCategoryMove<?php echo $idn; $idn++; ?>">카테고리 이동</label>
+                    <div class="form-text">
+                        권한이 있는 사용자만 카테고리를 이동할 수 있도록 제한하는 옵션 제공
+                    </div>
+                </div>
             </div>
         </div>
     </li>
@@ -241,8 +257,58 @@ if(is_file($board_skin_path.'/setup.skin.php'))
         </div>
     </li>
 
+    <li class="list-group-item bg-body-tertiary category_move">
+        <b>카테고리 이동 추가 설정</b>
+    </li>
+    <li class="list-group-item category_move">
+        <div class="row gx-2">
+            <label class="col-md-2 col-form-label" for="idCheck<?php echo $idn; ?>">허용 대상</label>
+            <div class="col-md-10">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="boset[category_move_permit]" id="inlineRadio1" value="admin_only" <?php echo get_checked('admin_only', $boset['category_move_permit'])?>>
+                    <label class="form-check-label" for="inlineRadio1">관리자만 허용</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="boset[category_move_permit]" id="inlineRadio2" value="admin_and_member" <?php echo get_checked('admin_and_member', $boset['category_move_permit'])?>>
+                    <label class="form-check-label" for="inlineRadio2">글쓴이에게 허용</label>
+                </div>
+            </div>
+        </div>
+    </li>
+    <li class="list-group-item category_move">
+        <div class="row gx-2">
+            <label class="col-md-2 col-form-label" for="message_format">메세지 형식</label>
+            <div class="col-md-10">
+                <input type="text" class="form-control" id="message_format" name="boset[category_move_message]"
+                       value="<?php echo $boset['category_move_message'] ?? ""; ?>"
+                       placeholder="<?php echo DEFAULT_CATEGORY_MOVE_MESSAGE; ?>">
+            </div>
+        </div>
+    </li>
+
     <li class="list-group-item bg-body-tertiary ">
         <b>댓글 설정</b>
+    </li>
+    <li class="list-group-item">
+        <div class="row gx-2 align-items-center">
+            <label class="col-md-2 col-form-label">댓글 이미지 용량 제한</label>
+            <div class="col-md-10">
+                <div class="form-check form-switch mb-2">
+                    <?php $boset['comment_image_limit'] = isset($boset['comment_image_limit']) ? $boset['comment_image_limit'] : ''; ?>
+                    <input type="checkbox" name="boset[comment_image_limit]" id="idCommentImageLimit" value="1"<?php echo get_checked('1', $boset['comment_image_limit'])?> class="form-check-input" role="switch">
+                    <label class="form-check-label" for="idCommentImageLimit">댓글 이미지 용량 제한 사용</label>
+                </div>
+                <div id="commentImageLimitSize" class="row" style="display: none;">
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <?php $boset['comment_image_size'] = isset($boset['comment_image_size']) ? $boset['comment_image_size'] : ''; ?>
+                            <input type="number" name="boset[comment_image_size]" value="<?php echo $boset['comment_image_size'] ?>" class="form-control">
+                            <span class="input-group-text">bytes</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </li>
     <li class="list-group-item">
         <div class="row gx-2 align-items-center">
@@ -397,11 +463,65 @@ if(is_file($board_skin_path.'/setup.skin.php'))
             }
         });
         $("input[name='boset[check_member_only]'").triggerHandler('change');
+
+        // 카테고리 이동 설정
+        $("input[name='boset[check_category_move]'").change(function() {
+            if($(this).is(":checked")) {
+                $("li.category_move").slideDown();
+            } else {
+                $("li.category_move").slideUp();
+            }
+        });
+        $("input[name='boset[check_category_move]'").triggerHandler('change');
+        // 댓글 용량 제한 설정
+        $("#idCommentImageLimit").change(function() {
+            if($(this).is(":checked")) {
+                $("#commentImageLimitSize").slideDown();
+            } else {
+                $("#commentImageLimitSize").slideUp();
+            }
+        });
+        $("#idCommentImageLimit").trigger('change');
     });
 
     function fsetup_submit(f) {
-        if(document.pressed == "save") {
+        if (document.pressed == "save") {
+            var messageFormat = f.elements['boset[category_move_message]'].value;
+            var allowedVariables = ['auth_member', 'src_cat', 'dest_cat'];
+            var doubleBracePattern = /{{(.*?)}}/g;
+            var invalidVariables = [];
+            var hasBraceErrors = false;
+
+            messageFormat = messageFormat.replace(doubleBracePattern, function(match, variable) {
+                if (allowedVariables.includes(variable)) {
+                    return '';
+                } else {
+                    invalidVariables.push(match);
+                    return '';
+                }
+            });
+
+            if (invalidVariables.length > 0) {
+                var errorMessage = '메세지 형식에 올바르지 않은 변수가 사용되었습니다.\n\n';
+                errorMessage += '허용된 변수: ' + allowedVariables.join(', ') + '\n\n';
+                errorMessage += '잘못된 변수: ' + invalidVariables.join(', ') + '\n\n';
+                na_alert(errorMessage, function() {
+                    f.elements['boset[category_move_message]'].focus();
+                });
+                return false;
+            }
+
+            if (/[{}]/.test(messageFormat)) {
+                na_alert('올바른 메세지 형식이 아닙니다.', function() {
+                    f.elements['boset[category_move_message]'].focus();
+                });
+                return false;
+            }
+
+            // 설정 저장 확인
             na_confirm('PC/모바일 동일 설정값을 적용하시겠습니까?\n\n취소시 현재 모드의 설정값만 저장됩니다.', function() {
+                var catMoveMSG = f.elements['boset[category_move_message]'];
+                catMoveMSG.value = catMoveMSG.value === "" ? "<?php echo DEFAULT_CATEGORY_MOVE_MESSAGE; ?>" : catMoveMSG.value;
                 f.both.value = 1;
                 f.submit();
             }, function() {

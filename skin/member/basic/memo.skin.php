@@ -28,7 +28,7 @@ include_once ($member_skin_path.'/memo_tab.skin.php');
         <li class="list-group-item">
             <div class="d-flex align-items-center">
                 <div class="pe-2 memo-photo">
-                    <img src="<?php echo na_member_photo($list[$i]['mb_id']); ?>" class="rounded-circle" onerror="this.onerror=null; this.src='<?php echo G5_IMG_URL . '/no_profile.gif' ?>';">
+                    <img src="<?php echo na_member_photo($list[$i]['mb_id']); ?>" class="rounded-circle">
                 </div>
                 <div class="flex-grow-1">
                     <div class="text-truncate mb-1">
