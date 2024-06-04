@@ -90,8 +90,14 @@ add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
                 $row['num'] = '<span class="orangered">공지</span>';
                 $row['wr_good'] = '<span class="orangered">공지</span>';
             }
+
+            // 내가 작성한 글 강조하기
+            $writter_bg = "";
+            if(trim($list[$i]['mb_id']) == trim($member['mb_id'])){
+                $writter_bg = "writter-bg";
+            }
         ?>
-            <li class="list-group-item da-link-block <?php echo $li_css; ?>">
+            <li class="list-group-item da-link-block <?php echo $li_css; ?> <?php echo $writter_bg; ?>">
 
                 <div class="d-flex align-items-center gap-1">
                     <?php if($is_good) { ?>

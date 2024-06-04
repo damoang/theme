@@ -653,6 +653,17 @@ if (!defined('_GNUBOARD_')) {
                     </li>
                     <li class="list-group-item ui-custom-item ui-custom-expand-item">
                         <div class="row">
+                            <label for="reg_expand_gesture_start_term" class="col-sm-5 col-form-label" title="양옆으로 제스처시 인식 시간을 설정합니다. 길수록 길게움직여도 됩니다.">최대 인식 시간</label>
+                            <div class="col-sm-7">
+                                <div class="input-group">
+                                    <input type="number" id="reg_expand_gesture_start_term" name="expand_gesture_start_term" class="form-control form-control-sm ui_custom_items" step="10" placeholder="400" min="250" min="600"">
+                                    <span class="input-group-text">ms</span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item ui-custom-item ui-custom-expand-item">
+                        <div class="row">
                             <label for="reg_expand_gesture_swipe_minx" class="col-sm-5 col-form-label" title="양옆으로 제스처 인식시 최소 범위를 설정합니다.">가로 이동 범위</label>
                             <div class="col-sm-7">
                                 <div class="input-group">
@@ -704,6 +715,17 @@ if (!defined('_GNUBOARD_')) {
                                     <option value="goBack">뒤로이동</option>
                                     <option value="goForward">앞으로이동</option>
                                 </select>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item ui-custom-item ui-custom-expand-item">
+                        <div class="row">
+                            <label for="reg_expand_gesture_click_term" class="col-sm-5 col-form-label" title="두드림 제스처시 두드림 회수에 따른 인식 시간을 설정합니다. 길수록 천천히 눌러도 됩니다.">두드림 간격</label>
+                            <div class="col-sm-7">
+                                <div class="input-group">
+                                    <input type="number" id="reg_expand_gesture_click_term" name="expand_gesture_click_term" class="form-control form-control-sm ui_custom_items" step="25" placeholder="250" min="200" min="400">
+                                    <span class="input-group-text">ms</span>
+                                </div>
                             </div>
                         </div>
                     </li>
