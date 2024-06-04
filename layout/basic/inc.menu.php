@@ -52,7 +52,6 @@ return [
                 'shortcut' => 'Ｌ',
             ],
             '자료실' => [
-                'url' => 의)' => [
                 'url' => '/event',
                 'icon' => 'bi-person-heart',
                 'shortcut' => 'Ａ',
@@ -150,21 +149,21 @@ return [
                 'icon' => 'bi-cart-plus-fill',
                 'shortcut' => 'Ｓ',
                 'items' => [
-                   '알림사앙 🆕' => '/notice',
-                   '릴리즈 노트' => '/release',
-                   '유지관리' =>  '/bug',
+                    '알림사앙 🆕' => '/notice',
+                    '릴리즈 노트' => '/release',
+                    '유지관리' => '/bug',
                     '광고앙' => get_pretty_url('content', 'advertiser'),
-                   '거버넌스' =>  '/governance',
-                   '진실의 방' => '/truthroom',
-                    '광고앙돼앙' =>'/nope',
-                    '레벨강등 열람' =>'/disciplinelog',
-                    ],
+                    '거버넌스' => '/governance',
+                    '진실의 방' => '/truthroom',
+                    '광고앙돼앙' => '/nope',
+                    '레벨강등 열람' => '/disciplinelog',
                 ],
             ],
         ],
+    ],
     [
         'title' => '기타',
-        'items' => 	($member['mb_level'] >= 2) ? [
+        'items' => ($member['mb_level'] >= 2) ? [
             'FAQ' => [
                 'url' => G5_BBS_URL . '/faq.php',
                 'page_id' => G5_BBS_DIR . '-page-faq',
@@ -175,17 +174,17 @@ return [
                 'page_id' => G5_BBS_DIR . '-page-new',
                 'icon' => 'bi-pencil',
             ],
-             '태그모음' => [
-                 'url' => G5_BBS_URL . '/tag.php',
-                 'page_id' => G5_BBS_DIR . '-page-tag',
-                 'icon' => 'bi-tags',
-             ],
+            '태그모음' => [
+                'url' => G5_BBS_URL . '/tag.php',
+                'page_id' => G5_BBS_DIR . '-page-tag',
+                'icon' => 'bi-tags',
+            ],
             '게시물검색' => [
                 'url' => G5_BBS_URL . '/search.php',
                 'page_id' => G5_BBS_DIR . '-page-search',
                 'icon' => 'bi-search',
             ],
-        ] :  [
+        ] : [
             'FAQ' => [
                 'url' => G5_BBS_URL . '/faq.php',
                 'page_id' => G5_BBS_DIR . '-page-faq',
@@ -219,5 +218,4 @@ return [
         ],
     ],
 ];
-
 
