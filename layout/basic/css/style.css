@@ -831,6 +831,8 @@ div a mark:hover {
 }
 .rcmd-mb {
   display: none !important;
+  padding-left: .3rem !important;
+  padding-right: .3rem !important;
 }
 @media (max-width: 767px) {
   .rcmd-pc {
@@ -838,5 +840,12 @@ div a mark:hover {
   }
   .rcmd-mb {
     display: block !important;
+  }
+  /* 모바일 색상 */
+  .da-list-meta, .da-list-meta .sv_member {
+    color: rgba(var(--bs-body-color-rgb), .6);
+  }
+  .da-list-date {
+    color: inherit !important;
   }
 }
