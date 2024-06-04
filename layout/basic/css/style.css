@@ -830,17 +830,15 @@ div a mark:hover {
   min-width: 60px;
 }
 .rcmd-mb {
-  display: none !important;
+  margin: inherit;
+}
+.rcmd-mb .rcmd-box {
   padding-left: .3rem !important;
   padding-right: .3rem !important;
-  margin: inherit;
 }
 @media (max-width: 767px) {
   .rcmd-pc {
     display: none !important;
-  }
-  .rcmd-mb {
-    display: block !important;
   }
   /* 모바일 색상 */
   .da-list-meta, .da-list-meta .sv_member {

@@ -142,8 +142,8 @@ add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
                             <div class="d-inline-flex flex-fill overflow-hidden align-items-center">
                                 <!-- 추천 수 (모바일) -->
                                 <?php if($is_good && $row['wr_good'] > 0) { ?>
-                                    <div class="wr-num da-rcmd text-nowrap d-md-none me-2 d-none">
-                                        <div class="<?php echo $rcmd_step ?> rcmd-mb w-auto">
+                                    <div class="wr-num da-rcmd rcmd-mb text-nowrap d-md-none me-2 d-none">
+                                        <div class="<?php echo $rcmd_step ?> w-auto">
                                         <?php if(!strpos($row['wr_good'], '공지')) { ?>
                                             <i class="bi bi-hand-thumbs-up" style="font-size:.7rem"></i>
                                         <?php } ?>
@@ -199,8 +199,8 @@ add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
                                     </div>
                                     <!-- 추천 수 (모바일) -->
                                     <?php if($is_good && $row['wr_good'] > 0) { ?>
-                                        <div class="wr-num da-rcmd text-nowrap d-md-none">
-                                            <div class="<?php echo $rcmd_step ?> rcmd-mb w-auto">
+                                        <div class="wr-num da-rcmd rcmd-mb text-nowrap d-md-none">
+                                            <div class="<?php echo $rcmd_step ?> w-auto">
                                             <?php if(!strpos($row['wr_good'], '공지')) { ?>
                                                 <i class="bi bi-hand-thumbs-up" style="font-size:.7rem"></i>
                                             <?php } ?>
