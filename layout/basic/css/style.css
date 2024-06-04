@@ -831,6 +831,7 @@ div a mark:hover {
 }
 .rcmd-mb {
   display: none !important;
+  margin: inherit;
 }
 @media (max-width: 767px) {
   .rcmd-pc {
@@ -839,4 +840,18 @@ div a mark:hover {
   .rcmd-mb {
     display: block !important;
   }
+}
+
+footer .bar-sm,footer i.bar{
+  margin: 0px 2px !important;
+  display: inline-block;
+}
+
+footer .container {
+    gap: 0.1rem;
+    font-size: clamp(9px, 2.5vw, 14px);
+}
+
+footer .container a {
+  white-space: nowrap;
 }

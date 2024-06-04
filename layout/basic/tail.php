@@ -31,8 +31,7 @@ if (!IS_INDEX) {
 
 <footer class="site-footer-wrap bg-body-tertiary py-4">
     <div class="container px-3 text-center">
-
-        <div class="mb-4">
+        <div class="mb-2">
             <a href="<?php echo get_pretty_url('content', 'company'); ?>">
                 사이트 소개
                 <i class="bar">&nbsp;</i>
@@ -58,7 +57,7 @@ if (!IS_INDEX) {
             </a>
         </div>
 
-        <div class="lh-lg mb-3">
+        <div class="lh-lg mb-1">
             회사명 : <?php echo $default['de_admin_company_name'] ?>
             <span class="bar-sm">&nbsp;</span>
             대표 : <?php echo $default['de_admin_company_owner'] ?>
@@ -66,10 +65,11 @@ if (!IS_INDEX) {
             사업자 등록번호 : <?php echo $default['de_admin_company_saupja_no'] ?>
 
         </div>
-        <div class="lh-lg mb-3">
+        <div class="mb-2">
             주소 : <?php echo $default['de_admin_company_addr'] ?>
         </div>
-        contact : contact@damoang.net
+
+            <div>contact : contact@damoang.net</div>
 
         <div class="small">
             Copyright &copy; <b><?php $host = @parse_url(G5_URL); echo $host['host'] ?></b>. All rights reserved.
