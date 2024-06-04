@@ -150,52 +150,18 @@ return [
                 'icon' => 'bi-cart-plus-fill',
                 'shortcut' => 'Ｓ',
                 'items' => [
-                    '알림사앙 🆕' => [
-                        'url' => '/notice',
-                        'icon' => 'bi-chat-heart-fill',
-                        'shortcut' => 'Ｋ',
-                    ],
-                    '릴리즈 노트' => [
-                        'url' => '/release',
-                        'icon' => 'bi-journal-code',
-                        'shortcut' => '·',
-        
-                    ],
-                    '유지관리' => [
-                        'url' => '/bug',
-                        'icon' => 'bi-tools',
-                        'shortcut' => 'Ｂ',
-                    ],
-                    '광고앙' => [
-                        'url' => get_pretty_url('content', 'advertiser'),
-                        'icon' => 'bi-badge-ad',
-                        'shortcut' => '·',
-        
-                    ],
-                    '거버넌스' => [
-                        'url' => '/governance',
-                        'icon' => 'bi-bank',
-                        'shortcut' => 'Ｖ',
-                    ],
-                    '진실의 방' => [
-                        'url' => '/truthroom',
-                        'shortcut' => 'Ｊ',
-                        'icon' => 'bi-door-open-fill',
-                    ],
-                    '광고앙돼앙' => [
-                        'url' => '/nope',
-                        'icon' => 'bi-incognito',
-                        'shortcut' => '·',
-                    ],
-                    '레벨강등 열람' => [
-                        'url' => '/disciplinelog',
-                        'shortcut' => 'Ｙ',
-                        'icon' => 'bi-person-fill-dash',
+                   '알림사앙 🆕' => '/notice',
+                   '릴리즈 노트' => '/release',
+                   '유지관리' =>  '/bug',
+                    '광고앙' => get_pretty_url('content', 'advertiser'),
+                   '거버넌스' =>  '/governance',
+                   '진실의 방' => '/truthroom',
+                    '광고앙돼앙' =>'/nope',
+                    '레벨강등 열람' =>'/disciplinelog',
                     ],
                 ],
             ],
         ],
-    ],
     [
         'title' => '기타',
         'items' => 	($member['mb_level'] >= 2) ? [
