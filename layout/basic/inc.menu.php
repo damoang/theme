@@ -147,7 +147,7 @@ return [
                     '축구당' => '/soccer',
                     '캠핑간당' => '/camping',
                     '콘솔한당' => '/console',
-                    '클다방' => '/coffee',
+                    '다바앙' => '/coffee',
                     '키보드당' => '/keyboard',
                     '탁구당' => '/tabletennis',
                     '패스오브엑자일당' => '/pathofexile',
