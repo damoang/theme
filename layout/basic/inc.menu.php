@@ -7,7 +7,7 @@ return [
     [
         'title' => '다모앙',
         'items' => [
-            '앙지도' => [
+            '앙지도 (장소 평점, 추천 게시판)' => [
                 'url' => '/angmap',
                 'shortcut' => 'Ｍ',
                 'icon' => 'bi-geo-alt-fill',
@@ -52,25 +52,7 @@ return [
                 'shortcut' => 'Ｌ',
             ],
             '자료실' => [
-                'url' => '/pds',
-                'shortcut' => 'Ｐ',
-            ],
-            '알뜰구매' => [
-                'url' => '/economy',
-                'icon' => 'bi-cash-coin',
-                'shortcut' => 'Ｅ',
-            ],
-            '갤러리' => [
-                'url' => '/gallery',
-                'icon' => 'bi-images',
-                'shortcut' => 'Ｇ',
-            ],
-            '추천 구매 게시판' => [
-                'url' => '/referral',
-                // 'icon' => 'bi-cart-plus-fill',
-                'shortcut' => 'Ｏ',
-            ],
-            '앙상불 (앙님들의 상상)' => [
+                'url' => 의)' => [
                 'url' => '/event',
                 'icon' => 'bi-person-heart',
                 'shortcut' => 'Ａ',
@@ -160,49 +142,57 @@ return [
         ],
     ],
     [
-        'title' => '운영게시판',
+        'title' => '운영게시판 (통폐합중)',
         'items' => [
-            '알림사앙 🆕' => [
-                'url' => '/notice',
-                'icon' => 'bi-chat-heart-fill',
-                'shortcut' => 'Ｋ',
-            ],
-            '릴리즈 노트' => [
-                'url' => '/release',
-                'icon' => 'bi-journal-code',
-                'shortcut' => '·',
-
-            ],
-            '유지관리' => [
-                'url' => '/bug',
-                'icon' => 'bi-tools',
-                'shortcut' => 'Ｂ',
-            ],
-            '광고앙' => [
-                'url' => get_pretty_url('content', 'advertiser'),
-                'icon' => 'bi-badge-ad',
-                'shortcut' => '·',
-
-            ],
-            '거버넌스' => [
-                'url' => '/governance',
-                'icon' => 'bi-bank',
-                'shortcut' => 'Ｖ',
-            ],
-            '진실의 방' => [
-                'url' => '/truthroom',
-                'shortcut' => 'Ｊ',
-                'icon' => 'bi-door-open-fill',
-            ],
-            '광고앙돼앙' => [
-                'url' => '/nope',
-                'icon' => 'bi-incognito',
-                'shortcut' => '·',
-            ],
-            '레벨강등 열람' => [
-                'url' => '/disciplinelog',
-                'shortcut' => 'Ｙ',
-                'icon' => 'bi-person-fill-dash',
+            '운영게시판' => [
+                'url' => G5_BBS_URL . '/group.php?gr_id=admin',
+                'page_id' => G5_BBS_DIR . '-group-group',
+                'icon' => 'bi-cart-plus-fill',
+                'shortcut' => 'Ｓ',
+                'items' => [
+                    '알림사앙 🆕' => [
+                        'url' => '/notice',
+                        'icon' => 'bi-chat-heart-fill',
+                        'shortcut' => 'Ｋ',
+                    ],
+                    '릴리즈 노트' => [
+                        'url' => '/release',
+                        'icon' => 'bi-journal-code',
+                        'shortcut' => '·',
+        
+                    ],
+                    '유지관리' => [
+                        'url' => '/bug',
+                        'icon' => 'bi-tools',
+                        'shortcut' => 'Ｂ',
+                    ],
+                    '광고앙' => [
+                        'url' => get_pretty_url('content', 'advertiser'),
+                        'icon' => 'bi-badge-ad',
+                        'shortcut' => '·',
+        
+                    ],
+                    '거버넌스' => [
+                        'url' => '/governance',
+                        'icon' => 'bi-bank',
+                        'shortcut' => 'Ｖ',
+                    ],
+                    '진실의 방' => [
+                        'url' => '/truthroom',
+                        'shortcut' => 'Ｊ',
+                        'icon' => 'bi-door-open-fill',
+                    ],
+                    '광고앙돼앙' => [
+                        'url' => '/nope',
+                        'icon' => 'bi-incognito',
+                        'shortcut' => '·',
+                    ],
+                    '레벨강등 열람' => [
+                        'url' => '/disciplinelog',
+                        'shortcut' => 'Ｙ',
+                        'icon' => 'bi-person-fill-dash',
+                    ],
+                ],
             ],
         ],
     ],
