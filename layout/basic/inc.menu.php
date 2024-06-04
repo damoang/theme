@@ -147,7 +147,7 @@ return [
                 'url' => G5_BBS_URL . '/group.php?gr_id=admin',
                 'page_id' => G5_BBS_DIR . '-group-group',
                 'icon' => 'bi-cart-plus-fill',
-                'shortcut' => 'Ｓ',
+                'shortcut' => '·',
                 'items' => [
                     '알림사앙 🆕' => '/notice',
                     '릴리즈 노트' => '/release',
