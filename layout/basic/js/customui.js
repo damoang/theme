@@ -3381,6 +3381,16 @@
     if (!(ui_obj?.bbs_shortcut_recommend_off ?? false)) {
       board_obj = get_board_mb_id();
     }
+    var user_regs = [];
+    for(var i=0;i<10;i++) {
+      var temp_short = (ui_obj["shortcut_" + i] ?? "");
+
+      if (temp_short != "") {
+        user_regs.push(temp_short);        
+      }
+    }
+    console.debug(user_regs);
+
 
     var bbs_group = document.querySelectorAll("div.nav-item div.nav-item:has(a.nav-link.dropdown-toggle)");
     var link_list = [];
@@ -3397,7 +3407,11 @@
           if (board_obj != null && board_obj.board == temp_link) {
             board_obj.board_name = temp_name;
           }
-          link_list.push({ link: temp_link, org: temp_link_org, name: temp_name });
+          if (user_regs.length > 0 && user_regs.includes(temp_link)) {
+
+          } else {
+            link_list.push({ link: temp_link, org: temp_link_org, name: temp_name });
+          }
         }
       }
     });
