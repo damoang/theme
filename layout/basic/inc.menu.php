@@ -7,12 +7,6 @@ return [
     [
         'title' => '다모앙',
         'items' => [
-            '앙상불' => [
-                'url' => '/event',
-                'icon' => 'bi-person-heart',
-                'shortcut' => 'Ａ',
-                // Ａ단축키는 알림 링크에 사용됨
-            ],
             '앙지도' => [
                 'url' => '/angmap',
                 'shortcut' => 'Ｍ',
@@ -32,12 +26,16 @@ return [
                 'icon' => 'bi-chat',
                 'shortcut' => 'Ｆ',
             ],
-
             '질문과 답변' => [
                 'url' => '/qa',
                 // 'icon' => 'bi-question-circle',
                 'shortcut' => 'Ｑ',
                 'icon' => 'bi-question-circle',
+            ],
+            '직접홍보 🌻' => [
+                'url' => '/promotion',
+                // 'icon' => 'bi-cart-plus-fill',
+                'shortcut' => 'Ｗ',
             ],
             '새소식' => [
                 'url' => '/new',
@@ -53,11 +51,6 @@ return [
                 'url' => '/lecture',
                 'shortcut' => 'Ｌ',
             ],
-            '직접홍보' => [
-                'url' => '/promotion',
-                // 'icon' => 'bi-cart-plus-fill',
-                'shortcut' => 'Ｗ',
-            ],
             '자료실' => [
                 'url' => '/pds',
                 'shortcut' => 'Ｐ',
@@ -72,10 +65,16 @@ return [
                 'icon' => 'bi-images',
                 'shortcut' => 'Ｇ',
             ],
-            '레퍼럴' => [
+            '추천 구매 게시판' => [
                 'url' => '/referral',
                 // 'icon' => 'bi-cart-plus-fill',
                 'shortcut' => 'Ｏ',
+            ],
+            '앙상불 (앙님들의 상상)' => [
+                'url' => '/event',
+                'icon' => 'bi-person-heart',
+                'shortcut' => 'Ａ',
+                // Ａ단축키는 알림 링크에 사용됨
             ],
         ]
     ],
@@ -163,7 +162,7 @@ return [
     [
         'title' => '운영게시판',
         'items' => [
-            '💟 알림사앙 🆕' => [
+            '알림사앙 🆕' => [
                 'url' => '/notice',
                 'icon' => 'bi-chat-heart-fill',
                 'shortcut' => 'Ｋ',
