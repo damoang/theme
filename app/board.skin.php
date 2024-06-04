@@ -291,6 +291,27 @@ if(is_file($board_skin_path.'/setup.skin.php'))
     </li>
     <li class="list-group-item">
         <div class="row gx-2 align-items-center">
+            <label class="col-md-2 col-form-label">댓글 이미지 용량 제한</label>
+            <div class="col-md-10">
+                <div class="form-check form-switch mb-2">
+                    <?php $boset['comment_image_limit'] = isset($boset['comment_image_limit']) ? $boset['comment_image_limit'] : ''; ?>
+                    <input type="checkbox" name="boset[comment_image_limit]" id="idCommentImageLimit" value="1"<?php echo get_checked('1', $boset['comment_image_limit'])?> class="form-check-input" role="switch">
+                    <label class="form-check-label" for="idCommentImageLimit">댓글 이미지 용량 제한 사용</label>
+                </div>
+                <div id="commentImageLimitSize" class="row" style="display: none;">
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <?php $boset['comment_image_size'] = isset($boset['comment_image_size']) ? $boset['comment_image_size'] : ''; ?>
+                            <input type="number" name="boset[comment_image_size]" value="<?php echo $boset['comment_image_size'] ?>" class="form-control">
+                            <span class="input-group-text">bytes</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </li>
+    <li class="list-group-item">
+        <div class="row gx-2 align-items-center">
             <label class="col-md-2 col-form-label" for="idCheck<?php echo $idn; ?>">댓글 변환</label>
             <div class="col-md-10">
                 <div class="form-check form-switch">
@@ -452,6 +473,15 @@ if(is_file($board_skin_path.'/setup.skin.php'))
             }
         });
         $("input[name='boset[check_category_move]'").triggerHandler('change');
+        // 댓글 용량 제한 설정
+        $("#idCommentImageLimit").change(function() {
+            if($(this).is(":checked")) {
+                $("#commentImageLimitSize").slideDown();
+            } else {
+                $("#commentImageLimitSize").slideUp();
+            }
+        });
+        $("#idCommentImageLimit").trigger('change');
     });
 
     function fsetup_submit(f) {
