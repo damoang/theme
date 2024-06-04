@@ -552,7 +552,6 @@
   }
 
   function hide_nick(ui_obj, reload) {
-    //console.debug("hide_nick start");
     if (reload == null) {
       reload = false;
     }
@@ -3389,8 +3388,6 @@
         user_regs.push(temp_short);        
       }
     }
-    console.debug(user_regs);
-
 
     var bbs_group = document.querySelectorAll("div.nav-item div.nav-item:has(a.nav-link.dropdown-toggle)");
     var link_list = [];
@@ -3422,19 +3419,21 @@
     if (ui_obj?.bbs_group_recommend_off ?? false) {
       return;
     }
-
+   
     var recommend_count = 3;
-    var recommend_int = [];
     var recommend_group = [];
-    while(recommend_int.length<recommend_count) {
-      var temp = Math.floor(Math.random() * link_list.length);
-      if (!recommend_int.includes(temp)) {
-        recommend_int.push(temp);
+    console.trace();
+    for(var i=0;i<recommend_count;i++) {
+      if (link_list.length>0) {
+        var temp = Math.floor(Math.random() * link_list.length);
         recommend_group.push(link_list[temp]);
+        link_list.splice(temp,1);
+      } else {
+        break;
       }
     }
     recommend_group.push({ link: "recommend_off", org: "#recommend_off", name: "소모임추천 끄기"});
-
+    
     bbs_group.forEach((group)=>{
       var parent = group.parentNode;
       var nextSibling = group.nextSibling;
@@ -3453,8 +3452,8 @@
       });
     });
   }
-//get_board_mb_id
-  function set_bbs_group_recommend_off(e){
+
+  function set_bbs_group_recommend_off(){
     if (confirm("소모임 추천을 하지 않겠습니까?")){
       remove_bbs_group_recommend();
       var ui_obj = get_ui_obj(true);
@@ -3464,13 +3463,14 @@
       set_ui_custom_values();
     }
   }
+
   function remove_bbs_group_recommend(){
     var removes = document.querySelectorAll('div.nav-item.bbs_group_recommend');
     removes.forEach((item)=>{
       item.remove();
-    });  
-  
+    });    
   }
+
   function set_bbs_shortcut_recommend(ui_obj, board_obj, reload){
     if (reload) {
       remove_bbs_shortcut_reg();
@@ -3506,6 +3506,7 @@
     button.addEventListener('click',set_bbs_shortcut_reg);
     title_a.parentNode.insertBefore(button,title_a.nextSibling);
   }
+
   function set_bbs_shortcut_reg(){
     var board_obj = get_board_mb_id();
     if ((board_obj?.board ?? "") == "" ) {
@@ -3806,7 +3807,6 @@
   }
 
   function set_ui_custom_onload() {
-
     draw_ui_custom();
 
     //개인설정 그리기
