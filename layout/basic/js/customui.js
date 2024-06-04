@@ -552,7 +552,6 @@
   }
 
   function hide_nick(ui_obj, reload) {
-    //console.debug("hide_nick start");
     if (reload == null) {
       reload = false;
     }
@@ -3423,7 +3422,7 @@
    
     var recommend_count = 3;
     var recommend_group = [];
-    var cnt = 0;
+    console.trace();
     for(var i=0;i<recommend_count;i++) {
       if (link_list.length>0) {
         var temp = Math.floor(Math.random() * link_list.length);
@@ -3808,7 +3807,6 @@
   }
 
   function set_ui_custom_onload() {
-
     draw_ui_custom();
 
     //개인설정 그리기
