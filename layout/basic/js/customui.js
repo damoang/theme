@@ -5,6 +5,106 @@
 
   var ip_mark_regex = /^([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.(♡|[0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\.(♡|[0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])){2}$/;
 
+  var ui_custom_input = [
+    "ui_custom"
+    , "show_detail"
+    , "show_width"
+    , "font_family"
+    , "font_size"
+    , "line_height"
+    , "menu_width"
+    , "back_button"
+    , "animation_off"
+    , "thumbup_em_off"
+    , "bbs_group_recommend_off"
+    , "bbs_shortcut_recommend_off"
+
+    , "rcmd_color_set"
+    , "rcmd_color_step1"
+    , "rcmd_color_step2"
+    , "rcmd_color_step3"
+    , "rcmd_color_step4"
+    , "rcmd_color_step1_value"
+    , "rcmd_color_step2_value"
+    , "rcmd_color_step3_value"
+    , "rcmd_color_step4_value"
+    , "rcmd_font_color"
+    , "rcmd_font_color_self"
+    , "rcmd_font_color_1"
+    , "rcmd_font_color_2"
+    , "rcmd_font_color_3"
+    , "rcmd_font_color_4"
+
+    , "left_menu"
+    , "menu_off"
+    , "left_menu_over"
+    , "left_quick_button"
+
+    , "expand_quick"
+    , "expand_shortcut"
+    , "expand_shortcut_1"
+    , "expand_shortcut_2"
+    , "expand_shortcut_3"
+    , "expand_shortcut_4"
+    , "expand_shortcut_5"
+    , "expand_shortcut_6"
+    , "expand_shortcut_7"
+    , "expand_shortcut_8"
+    , "expand_shortcut_9"
+    , "expand_shortcut_0"
+    , "expand_write"
+    , "expand_mywr"
+    , "expand_navigator"
+    , "expand_quick_size"
+    , "expand_gesture"
+    , "expand_gesture_tap2"
+    , "expand_gesture_tap3"
+    , "expand_gesture_swipe"
+    , "expand_gesture_swipe_minx"
+    , "expand_gesture_swipe_maxy"
+    , "expand_gesture_start_term"
+    , "expand_gesture_click_term"
+
+    , "menu_scroll"
+    , "list_search"
+    , "list_toggle"
+    , "hide_nick"
+
+    , "hide_member_memo"
+    , "hide_list_memo"
+    , "blur_contents_memo"
+    , "memo_ip_track"
+
+    , "mymenu_img"
+
+    , "read_history"
+    , "read_history_em"
+    , "read_history_reply_cnt"
+    , "read_history_noti"
+    , "read_history_noti_reply"
+
+
+    , "title_filtering"
+    , "filtering_word"
+
+    , "content_blur"
+    , "content_blur_word"
+
+    , "shortcut_use"
+    , "shortcut_1"
+    , "shortcut_2"
+    , "shortcut_3"
+    , "shortcut_4"
+    , "shortcut_5"
+    , "shortcut_6"
+    , "shortcut_7"
+    , "shortcut_8"
+    , "shortcut_9"
+    , "shortcut_0"
+  ];
+  var ui_custom_default = { show_width: 1200, font_size: 1, line_height: 1.5, menu_width: 25, expand_quick_size: 2.5 , expand_gesture_swipe_minx : 50, expand_gesture_swipe_maxy : 30, expand_gesture_start_term : 400, expand_gesture_click_term : 250};
+
+
   function set_body_op_start() {
     body_opacity_init = true;
     if (document?.body != null) {
@@ -47,7 +147,7 @@
         //메뉴 스크롤 적용
         if (ui_obj.menu_scroll != null && ui_obj.menu_scroll) {
           ui_custom_style += "#header-copy.header-copy {display: block;}\n";
-          ui_custom_style += "#header-navbar.site-navbar {position: fixed !important;display: block !important; height: 64px !important;}\n";
+          ui_custom_style += "#header-navbar.site-navbar {position: fixed !important;display: block !important;}\n";
           ui_custom_style += "#main-wrap .sticky-top {position: relative;}\n";
         }
 
@@ -193,8 +293,8 @@
       ui_custom_style += "#menuOffcanvas .nav-item a.nav-link:hover span.badge{animation-duration: 0.5s;animation-name: smallTwistLeftMargin;}\n";
 
       ui_custom_style += "div.order-1 ul.list-group li.da-link-block:hover {animation-duration: 0.5s;animation-name: popUp;}\n";
-      ui_custom_style += "div.order-1 ul.list-group li.li.da-link-block.ui-custom-link-active {animation-duration: 1s;animation-name: linkPopSmall !important;animation-fill-mode: forwards}";
-      ui_custom_style += "div.nav-item.ui-custom-link-active {animation-duration: 1s;animation-name: linkPop !important;animation-fill-mode: forwards}";
+      ui_custom_style += "div.order-1 ul.list-group li.li.da-link-block.ui-custom-link-active {animation-duration: 1s;animation-name: linkPopSmall !important;animation-fill-mode: forwards}\n";
+      ui_custom_style += "div.nav-item.ui-custom-link-active {animation-duration: 1s;animation-name: linkPop !important;animation-fill-mode: forwards}\n";
 
       ui_custom_style += "@keyframes popUp {0% {transform: translateX(0%) scale(1);}20% {transform: translateX(0.5%) scale(1.01);}100% {transform: translateX(0%) scale(1);}}\n";
       ui_custom_style += "@keyframes linkPopSmall {0% {transform: translateY(-0.5%%) scale(1.005);}20% {transform: translateY(-1.5%) scale(1.015);}100% {transform: translateY(0%) scale(1);}}\n";
@@ -206,6 +306,8 @@
       ui_custom_style += "@keyframes popUp20 {0% {transform: scale(1);}20% {transform: scale(1.2);}100% {transform: scale(1);}}\n";
       ui_custom_style += "@keyframes popUp25 {0% {transform: scale(1);}20% {transform: scale(1.25);}100% {transform: scale(1);}}\n";
       ui_custom_style += "@keyframes popUp30 {0% {transform: scale(1);}20% {transform: scale(1.3);}100% {transform: scale(1);}}\n";
+      ui_custom_style += "button.bbs_shortcut_recommend:hover {animation-iteration-count: infinite;animation-duration: 2s;animation-name: popUpPin15;}\n";
+      ui_custom_style += "@keyframes popUpPin15 {0% {transform: scale(1);}10% {transform: scale(1.15);}12% {transform: scale(1.145);}30% {transform: scale(1);}100% {transform: scale(1);}}\n";
 
       ui_custom_style += "@keyframes popUpEnd05 {0% {transform: scale(1);}20% {transform: scale(1.05);}100% {transform: scale(1.05);}}\n";
       ui_custom_style += "@keyframes popUpEnd10 {0% {transform: scale(1);}20% {transform: scale(1.1);}100% {transform: scale(1.1);}}\n";
@@ -315,107 +417,9 @@
         item.classList.add("d-inline-block");
         item.classList.remove("d-none");
       });
-
     }
-
   }
-
-  var ui_custom_input = [
-    "ui_custom"
-    , "show_width"
-    , "font_family"
-    , "font_size"
-    , "line_height"
-    , "menu_width"
-    , "back_button"
-    , "animation_off"
-    , "thumbup_em_off"
-
-    , "rcmd_color_set"
-    , "rcmd_color_step1"
-    , "rcmd_color_step2"
-    , "rcmd_color_step3"
-    , "rcmd_color_step4"
-    , "rcmd_color_step1_value"
-    , "rcmd_color_step2_value"
-    , "rcmd_color_step3_value"
-    , "rcmd_color_step4_value"
-    , "rcmd_font_color"
-    , "rcmd_font_color_self"
-    , "rcmd_font_color_1"
-    , "rcmd_font_color_2"
-    , "rcmd_font_color_3"
-    , "rcmd_font_color_4"
-
-    , "left_menu"
-    , "menu_off"
-    , "left_menu_over"
-    , "left_quick_button"
-
-    , "expand_quick"
-    , "expand_shortcut"
-    , "expand_shortcut_1"
-    , "expand_shortcut_2"
-    , "expand_shortcut_3"
-    , "expand_shortcut_4"
-    , "expand_shortcut_5"
-    , "expand_shortcut_6"
-    , "expand_shortcut_7"
-    , "expand_shortcut_8"
-    , "expand_shortcut_9"
-    , "expand_shortcut_0"
-    , "expand_write"
-    , "expand_mywr"
-    , "expand_navigator"
-    , "expand_quick_size"
-    , "expand_gesture"
-    , "expand_gesture_tap2"
-    , "expand_gesture_tap3"
-    , "expand_gesture_swipe"
-    , "expand_gesture_swipe_minx"
-    , "expand_gesture_swipe_maxy"
-    , "expand_gesture_start_term"
-    , "expand_gesture_click_term"
-
-    , "menu_scroll"
-    , "list_search"
-    , "list_toggle"
-    , "hide_nick"
-
-    , "hide_member_memo"
-    , "hide_list_memo"
-    , "blur_contents_memo"
-    , "memo_ip_track"
-
-    , "mymenu_img"
-
-    , "read_history"
-    , "read_history_em"
-    , "read_history_reply_cnt"
-    , "read_history_noti"
-    , "read_history_noti_reply"
-
-
-    , "title_filtering"
-    , "filtering_word"
-
-    , "content_blur"
-    , "content_blur_word"
-
-    , "shortcut_use"
-    , "shortcut_1"
-    , "shortcut_2"
-    , "shortcut_3"
-    , "shortcut_4"
-    , "shortcut_5"
-    , "shortcut_6"
-    , "shortcut_7"
-    , "shortcut_8"
-    , "shortcut_9"
-    , "shortcut_0"
-  ];
-  var ui_custom_default = { show_width: 1200, font_size: 1, line_height: 1.5, menu_width: 25, expand_quick_size: 2.5 , expand_gesture_swipe_minx : 50, expand_gesture_swipe_maxy : 30, expand_gesture_start_term : 400, expand_gesture_click_term : 250};
-
+  
   function set_ui_custom_input_clear() {
     ui_custom_input.forEach(function (reg) {
       var temp_input = $("#reg_" + reg)[0]
@@ -555,6 +559,7 @@
 
     //추천 컬러 변경
     set_thumbup_em(ui_obj, reload);
+    set_bbs_group_recommend(ui_obj, reload);
 
     if (ui_obj != null) {
       //본문 필터링
@@ -1577,7 +1582,7 @@
   }
 
   function get_board_link_list() {
-    var links = $("#sidebar-site-menu div.nav-item > a").not("a.shortcut_custom");
+    var links = $("#sidebar-site-menu div.nav-item > a").not("a.shortcut_custom").not("a.bbs_group_recommend");
     var link_exp = /^[^0-9][a-z0-9_.=]+$/i;
     var link_list = [];
     for (var i = 0; i < links.length; i++) {
@@ -2742,222 +2747,6 @@
 
   //글 방문 기록 기능 끝
 
-  //화면 그리기
-  function draw_ui_custom(reload) {
-    var ui_custom_storage_str = localStorage.getItem("ui_custom");
-    if (ui_custom_storage_str != null && ui_custom_storage_str != "") {
-      var ui_obj = JSON.parse(ui_custom_storage_str);
-      if (ui_obj) {
-        hide_nick(ui_obj, reload);
-      }
-    }
-  }
-
-
-  function set_ui_custom_click_event() {
-    try {
-      //탭 클릭 이벤트 설정 시작
-      Array.from(document.querySelectorAll("#user-ui-custom .ui-custom-tabs .ui-custom-tab a.nav-link")).forEach((click_item) => {
-        click_item.addEventListener("click", function (e) {
-          e.preventDefault();
-          Array.from(document.querySelectorAll("#user-ui-custom .ui-custom-tabs .ui-custom-tab a.nav-link.active")).forEach((item) => {
-            if (click_item != item) {
-              document.querySelector(item.getAttribute('href')).classList.add("d-none");
-              item.classList.remove("active");
-            }
-          });
-          click_item.classList.add("active");
-          document.querySelector(click_item.getAttribute('href')).classList.remove("d-none");
-        });
-      });
-
-      Array.from(document.querySelectorAll("#user-ui-custom .ui-custom-ul-tabs .ui-custom-ul-tab a.nav-link")).forEach((click_item) => {
-        click_item.addEventListener("click", function (e) {
-          e.preventDefault();
-          Array.from(document.querySelectorAll("#user-ui-custom .ui-custom-ul-tabs .ui-custom-ul-tab a.nav-link.active")).forEach((item) => {
-            if (click_item != item) {
-              document.querySelector(item.getAttribute('href')).classList.add("d-none");
-              item.classList.remove("active");
-            }
-          });
-          click_item.classList.add("active");
-          document.querySelector(click_item.getAttribute('href')).classList.remove("d-none");
-        });
-      });
-      //탭 클릭 이벤트 설정 끝
-
-      //reg_expand_shortcut
-      $("#reg_expand_shortcut").change(function () {
-        set_ui_custom_expand();
-      });
-
-      $("#reg_rcmd_font_color").change(function () {
-        switch (this.value) {
-          case "self":
-            $("#reg_rcmd_font_color_self").show();
-            $(".rcmd_font_steps").hide();
-            break;
-          case "step":
-            $("#reg_rcmd_font_color_self").hide();
-            $(".rcmd_font_steps").show();
-            break;
-          default:
-            $("#reg_rcmd_font_color_self").hide();
-            $(".rcmd_font_steps").hide();
-            break;
-        }
-      });
-
-      $("#reg_rcmd_color_set").change(function () {
-        if (this.value == "self") {
-          $(".rcmd_color_steps").show();
-        } else {
-          $(".rcmd_color_steps").hide();
-        }
-      });
-
-      $("#reg_expand_quick").change(function () {
-        set_ui_custom_expand();
-      });
-
-      $("#reg_read_history").change(function () {
-        set_ui_custom_read_history();
-      });
-
-      $("#reg_ui_custom").change(function () {
-        if ($("#reg_ui_custom").is(":checked")) {
-          $(".ui-custom-item").show();
-          $("#reg_rcmd_font_color").trigger('change');
-          $("#reg_rcmd_color_set").trigger('change');
-          set_ui_custom_expand();
-          set_ui_custom_read_history();
-        } else {
-          $(".ui-custom-item").hide();
-        }
-      });
-      $("#reg_title_filtering").change(function () {
-        if ($("#reg_title_filtering").is(":checked")) {
-          $(".ui-custom-filtering").show();
-        } else {
-          $(".ui-custom-filtering").hide();
-        }
-      });
-      $("#reg_content_blur").change(function () {
-        if ($("#reg_content_blur").is(":checked")) {
-          $(".ui-custom-content-blur").show();
-        } else {
-          $(".ui-custom-content-blur").hide();
-        }
-      });
-      $("#reg_shortcut_use").change(function () {
-        if ($("#reg_shortcut_use").is(":checked")) {
-          $(".ui-custom-shortcut").show();
-        } else {
-          $(".ui-custom-shortcut").hide();
-        }
-        set_ui_custom_expand_shortcut();
-      });
-      $(".ui_custom_shortcut_items").change(function () {
-        //console.debug(this)
-        set_ui_custom_expand_shortcut();
-      });
-    } catch (error) {
-      //console.error('Failed to initialize custom UI settings:', error);
-    }
-  }
-
-  function set_ui_custom_expand_shortcut() {
-    if ($("#reg_expand_quick").is(":checked") && $("#reg_shortcut_use").is(":checked")) {
-      $("#reg_expand_shortcut_li").show();
-      if ($("#reg_expand_shortcut").is(":checked")) {
-        $(".ui-custom-expand-shortcut").show();
-        var link_map = get_board_link_map();
-        Array.from(document.querySelectorAll(".ui-custom-expand-shortcut")).forEach((item) => {
-          var temp_input = item.querySelector("input");
-          var temp_id = temp_input.id.replace("expand_", "");
-          var check_input = document.getElementById(temp_id);
-          if ((check_input?.value ?? "") != "") {
-            var temp_label = item.querySelector("label.col-form-label");
-            temp_label.innerHTML = temp_id.substring(temp_id.length - 1) + " : " + link_map[check_input.value].name;
-            $(item).show();
-          } else {
-            $(item).hide();
-          }
-        });
-      } else {
-        $(".ui-custom-expand-shortcut").hide();
-      }
-    } else {
-      $("#reg_expand_shortcut_li").hide();
-      $(".ui-custom-expand-shortcut").hide();
-    }
-  }
-
-  function set_ui_custom_expand() {
-    if ($("#reg_expand_quick").is(":checked")) {
-      $(".ui-custom-expand-item").show();
-    } else {
-      $(".ui-custom-expand-item").hide();
-    }
-    set_ui_custom_expand_shortcut();
-  }
-  function set_ui_custom_read_history() {
-    if ($("#reg_read_history").is(":checked")) {
-      $(".ui-custom-read-history").show();
-    } else {
-      $(".ui-custom-read-history").hide();
-    }
-  }
-  function set_ui_custom_trigger() {
-    try {
-      //$("#reg_expand_quick").trigger('change');
-      $("#reg_ui_custom").trigger('change');
-
-      $("#reg_title_filtering").trigger('change');
-      $("#reg_content_blur").trigger('change');
-      $("#reg_shortcut_use").trigger('change');
-
-    } catch (error) {
-      //console.error('Failed to initialize custom UI settings:', error);
-    }
-  }
-
-  function set_ui_custom_onload() {
-
-    draw_ui_custom();
-
-    //개인설정 그리기
-    set_board_link_option_html();
-    check_indexDB();
-    set_ui_custom_click_event();
-
-    setBtnClickEvent("btn_ui_apply", ui_custom_apply);
-    setBtnClickEvent("btn_ui_value_view", ui_custom_value_view);
-    setBtnClickEvent("btn_ui_value_cancle", ui_custom_value_cancle);
-    setBtnClickEvent("btn_ui_value_save", ui_custom_value_save);
-    setBtnClickEvent("btn_ui_value_copy", ui_custom_value_copy);
-    setBtnClickEvent("btn_ui_value_paste", ui_custom_value_paste);
-    setBtnClickEvent("btn_ui_value_clear", ui_custom_value_clear);
-    setBtnClickEvent("btn_ui_value_reload", ui_custom_value_reload);
-    setBtnClickEvent("btn_memo_toggle", toggle_hide_member_memo);
-    setBtnClickEvent("btn_memo_ip_clear", delete_memo_database);
-    setBtnClickEvent("btn_read_history_clear", delete_read_database);
-
-    setBtnGroupClickEvent(document, ".ip_memo_btns", set_ip_memo_edit_mode);
-    setBtnGroupClickEvent(document, ".ip_memo_editor_btns", click_ip_memo_editor_btn);
-
-    set_ui_custom_values();
-  }
-
-  function setBtnClickEvent(id, event) {
-    var btn = document.getElementById(id);
-    if (btn != null) btn.addEventListener("click", event);
-  }
-  function setBtnGroupClickEvent(el, cssQuery, event) {
-    if (el == null) el = document;
-    Array.from(el.querySelectorAll(cssQuery)).forEach((item) => { item.addEventListener("click", event) });
-  }
-
   //IP메모 기능 시작
   function set_ip_memo_edit_mode() {
     var edit_mode = true;
@@ -3579,6 +3368,479 @@
     return term;
   }
   //터치 이벤트 기록용 끝
+
+  //소모임 추천 및 단축키 등록 유도 시작
+  function set_bbs_group_recommend(ui_obj, reload){
+    if (reload) {
+      var removes = document.querySelectorAll('div.nav-item.bbs_group_recommend');
+      removes.forEach((item)=>{
+        item.remove();
+      });  
+    }
+    var board_obj = null;
+    if (!(ui_obj?.bbs_shortcut_recommend_off ?? false)) {
+      board_obj = get_board_mb_id();
+    }
+    var user_regs = [];
+    for(var i=0;i<10;i++) {
+      var temp_short = (ui_obj["shortcut_" + i] ?? "");
+
+      if (temp_short != "") {
+        user_regs.push(temp_short);        
+      }
+    }
+    console.debug(user_regs);
+
+
+    var bbs_group = document.querySelectorAll("div.nav-item div.nav-item:has(a.nav-link.dropdown-toggle)");
+    var link_list = [];
+    var links = document.querySelectorAll("#sidebar-site-menu .da-menu--bbs-group-group div >  a");
+    links.forEach((temp)=> {
+      var regex = /^[a-zA-Z]+$/;
+      var temp_link_obj = temp;
+      var temp_name = temp_link_obj.innerHTML.trim();
+      var temp_link = temp_link_obj.href.trim();
+      var temp_link_org = temp_link;
+      if (temp_link.length > 0) {
+        temp_link = temp_link.substr(temp_link.lastIndexOf('/') + 1);
+        if (regex.test(temp_link)) {
+          if (board_obj != null && board_obj.board == temp_link) {
+            board_obj.board_name = temp_name;
+          }
+          if (user_regs.length > 0 && user_regs.includes(temp_link)) {
+
+          } else {
+            link_list.push({ link: temp_link, org: temp_link_org, name: temp_name });
+          }
+        }
+      }
+    });
+    if (board_obj?.board_name != null) {
+      set_bbs_shortcut_recommend(ui_obj, board_obj, reload);
+    }
+
+    if (ui_obj?.bbs_group_recommend_off ?? false) {
+      return;
+    }
+
+    var recommend_count = 3;
+    var recommend_int = [];
+    var recommend_group = [];
+    while(recommend_int.length<recommend_count) {
+      var temp = Math.floor(Math.random() * link_list.length);
+      if (!recommend_int.includes(temp)) {
+        recommend_int.push(temp);
+        recommend_group.push(link_list[temp]);
+      }
+    }
+    recommend_group.push({ link: "recommend_off", org: "#recommend_off", name: "소모임추천 끄기"});
+
+    bbs_group.forEach((group)=>{
+      var parent = group.parentNode;
+      var nextSibling = group.nextSibling;
+      recommend_group.forEach((link)=>{
+        var shortcut_div = document.createElement("div");
+        shortcut_div.className = "nav-item bbs_group_recommend";
+        var shortcut_link = document.createElement("a");
+        shortcut_link.className = "nav-link bbs_group_recommend";
+        shortcut_link.href = link.org;
+        shortcut_link.innerHTML = '<span class="d-flex align-items-center gap-2 nav-link-title"></i> <span class="badge p-1 text-bg-secondary">·</span>' + link.name + "</span>";//<i class="bi-list-stars nav-icon">
+        if (link.org=="#recommend_off") {
+          shortcut_link.addEventListener('click',set_bbs_group_recommend_off);
+        }
+        shortcut_div.appendChild(shortcut_link);
+        parent.insertBefore(shortcut_div, nextSibling);  
+      });
+    });
+  }
+//get_board_mb_id
+  function set_bbs_group_recommend_off(e){
+    if (confirm("소모임 추천을 하지 않겠습니까?")){
+      remove_bbs_group_recommend();
+      var ui_obj = get_ui_obj(true);
+      ui_obj.bbs_group_recommend_off = true;
+      set_ui_obj(ui_obj);
+      alert('앞으로 소모임 추천 기능을 하지 않습니다.');
+      set_ui_custom_values();
+    }
+  }
+  function remove_bbs_group_recommend(){
+    var removes = document.querySelectorAll('div.nav-item.bbs_group_recommend');
+    removes.forEach((item)=>{
+      item.remove();
+    });  
+  
+  }
+  function set_bbs_shortcut_recommend(ui_obj, board_obj, reload){
+    if (reload) {
+      remove_bbs_shortcut_reg();
+    }
+    if (ui_obj?.bbs_shortcut_recommend_off ?? false) {
+      return;
+    } else {
+      if (board_obj != null && board_obj.board_name != null) {
+        var reged = false;
+        var fulled = true;
+        for(var i=1;i<11;i++) {
+          var check_i = i<10 ? i : i-10;
+          var temp_short = (ui_obj["shortcut_" + check_i] ?? "");
+          if (temp_short == board_obj.board) {
+            reged = true;
+            break;
+          } else if (temp_short == ""){
+            fulled = false;
+          }
+        }
+        if (reged || fulled) {
+          return;
+        }
+      }  
+    }
+    var title_a = document.querySelector("div.page-title a");
+    var button = document.createElement('button');
+    button.setAttribute("type","button");
+    button.className = "btn btn-link btn-lg p-0 bbs_shortcut_recommend";
+    button.style = "font-size: 1.3em;margin: -0.5em 0em -0.3em;";
+    button.title = "소모임 단축키를 등록해 봅시다.";
+    button.innerHTML = '<i class="bi bi-keyboard ms-3"></i>';
+    button.addEventListener('click',set_bbs_shortcut_reg);
+    title_a.parentNode.insertBefore(button,title_a.nextSibling);
+  }
+  function set_bbs_shortcut_reg(){
+    var board_obj = get_board_mb_id();
+    if ((board_obj?.board ?? "") == "" ) {
+      remove_bbs_shortcut_reg();
+      return;
+    }
+    var title_a = document.querySelector("div.page-title a");
+    var board_title = title_a.innerText.trim();
+    var ui_obj = get_ui_obj(true);
+    var shortcut_arr = [];
+    var first_num = null;
+    var check_board = false;
+    if (ui_obj != null) {
+      for(var i=1;i<11;i++) {
+        var check_i = i<10 ? i : i-10;
+        var temp_short = (ui_obj["shortcut_" + check_i] ?? "");
+        if (temp_short == "") {
+          if (first_num == null) {
+            first_num = check_i;
+          }
+        } else {
+          if (temp_short == board_obj?.board) {
+            check_board = true;
+          }
+          shortcut_arr.push(check_i);
+        }
+      }
+    }    
+    if (first_num == null) {
+      alert("단축키가 모두 등록되어 있습니다.");
+    } else if (check_board) {
+      alert("이미 등록된 단축키 입니다.");
+    }else {
+      if (confirm(board_title + "의 단축키를 " + first_num + "번으로 등록하시겠습니까?")){
+        ui_obj.shortcut_use = true;
+        ui_obj["shortcut_"+first_num] = board_obj.board;
+        set_ui_obj(ui_obj);
+        alert(board_title+"의 단축키가 " + first_num + "번으로 등록되었습니다.");
+        set_ui_custom_values();
+      } else {
+        if (shortcut_arr.length > 2) {
+          setTimeout(function(){
+            if (confirm("소모임의 단축키 등록 표시를 그만 보시겠습니까?")) {  
+              ui_obj.bbs_shortcut_recommend_off = true;
+              set_ui_obj(ui_obj);
+              set_ui_custom_values();
+              alert("앞으로 소모임의 단축키 등록 버튼을 표시하지 않습니다.");
+            }  
+          },700);  
+        }
+      }
+    }
+  }
+
+  function remove_bbs_shortcut_reg(){
+    var removes = document.querySelectorAll('button.bbs_shortcut_recommend');
+      removes.forEach((item)=>{
+        item.remove();
+      });  
+  }
+ 
+  function get_ui_obj(not_null){
+    var ui_custom_storage_str = localStorage.getItem("ui_custom");
+    var ui_obj = null;
+    if (ui_custom_storage_str != null && ui_custom_storage_str != "") {
+      try {
+        ui_obj = JSON.parse(ui_custom_storage_str);
+      } catch(e) {
+      }
+    }
+    if (ui_obj == null && (not_null ?? false)) {
+      ui_obj = {};
+    }
+    return ui_obj;
+  }
+  function set_ui_obj(ui_obj){
+    var json_str = "";
+    if (ui_obj == null) {
+      json_str = "";
+    } else if (typeof ui_obj == "string") {
+      json_str = ui_obj
+    } else {
+      try {
+        json_str = JSON.stringify(ui_obj);
+      } catch(e) {
+        json_str = "";
+      }
+    }
+    json_str = json_str.trim();
+    if (json_str != "") {
+      localStorage.setItem("ui_custom", json_str);
+    } else {
+      localStorage.removeItem("ui_custom")
+    }    
+  }
+  //소모임 추천 및 단축키 등록 유도 끝
+
+
+  //화면 그리기
+  function draw_ui_custom(reload) {
+    var ui_custom_storage_str = localStorage.getItem("ui_custom");
+    if (ui_custom_storage_str != null && ui_custom_storage_str != "") {
+      var ui_obj = JSON.parse(ui_custom_storage_str);
+      if (ui_obj) {
+        hide_nick(ui_obj, reload);
+      }
+    }
+  }
+
+
+  function set_ui_custom_click_event() {
+    try {
+      //탭 클릭 이벤트 설정 시작
+      Array.from(document.querySelectorAll("#user-ui-custom .ui-custom-tabs .ui-custom-tab a.nav-link")).forEach((click_item) => {
+        click_item.addEventListener("click", function (e) {
+          e.preventDefault();
+          Array.from(document.querySelectorAll("#user-ui-custom .ui-custom-tabs .ui-custom-tab a.nav-link.active")).forEach((item) => {
+            if (click_item != item) {
+              document.querySelector(item.getAttribute('href')).classList.add("d-none");
+              item.classList.remove("active");
+            }
+          });
+          click_item.classList.add("active");
+          document.querySelector(click_item.getAttribute('href')).classList.remove("d-none");
+        });
+      });
+
+      Array.from(document.querySelectorAll("#user-ui-custom .ui-custom-ul-tabs .ui-custom-ul-tab a.nav-link")).forEach((click_item) => {
+        click_item.addEventListener("click", function (e) {
+          e.preventDefault();
+          Array.from(document.querySelectorAll("#user-ui-custom .ui-custom-ul-tabs .ui-custom-ul-tab a.nav-link.active")).forEach((item) => {
+            if (click_item != item) {
+              document.querySelector(item.getAttribute('href')).classList.add("d-none");
+              item.classList.remove("active");
+            }
+          });
+          click_item.classList.add("active");
+          document.querySelector(click_item.getAttribute('href')).classList.remove("d-none");
+        });
+      });
+      //탭 클릭 이벤트 설정 끝
+      //reg_expand_shortcut
+      $("#reg_show_detail").change(function () {
+        var container = document.querySelector("#user-ui-custom div.ui-custom-container");
+        if (container!=null){
+          if ($("#reg_show_detail").is(":checked")) {
+            container.classList.add("show-detail");
+          } else {
+            container.classList.remove("show-detail");  
+          }  
+        }
+        $("#reg_ui_custom").trigger('change');
+
+        $("#reg_title_filtering").trigger('change');
+        $("#reg_content_blur").trigger('change');
+        $("#reg_shortcut_use").trigger('change');  
+      });      
+
+      //reg_expand_shortcut
+      $("#reg_expand_shortcut").change(function () {
+        set_ui_custom_expand();
+      });
+
+      $("#reg_rcmd_font_color").change(function () {
+        switch (this.value) {
+          case "self":
+            $("#reg_rcmd_font_color_self").removeClass('d-none');
+            $(".rcmd_font_steps").addClass('d-none');
+            break;
+          case "step":
+            $("#reg_rcmd_font_color_self").addClass('d-none');
+            $(".rcmd_font_steps").removeClass('d-none');
+            break;
+          default:
+            $("#reg_rcmd_font_color_self").addClass('d-none');
+            $(".rcmd_font_steps").addClass('d-none');
+            break;
+        }
+        set_ui_rcmd_steps_class();
+      });
+
+      $("#reg_rcmd_color_set").change(function () {
+        if (this.value == "self") {
+          $(".rcmd_color_steps").removeClass('d-none');
+        } else {
+          $(".rcmd_color_steps").addClass('d-none');
+        }
+        set_ui_rcmd_steps_class();
+      });
+
+      $("#reg_expand_quick").change(function () {
+        set_ui_custom_expand();
+      });
+
+      $("#reg_read_history").change(function () {
+        set_ui_custom_read_history();
+      });
+
+      $("#reg_ui_custom").change(function () {
+        if ($("#reg_ui_custom").is(":checked")) {
+          $(".ui-custom-item").removeClass('d-none');
+          $("#reg_rcmd_font_color").trigger('change');
+          $("#reg_rcmd_color_set").trigger('change');
+          set_ui_custom_expand();
+          set_ui_custom_read_history();
+        } else {
+          $(".ui-custom-item").addClass('d-none');
+        }
+      });
+      $("#reg_title_filtering").change(function () {
+        if ($("#reg_title_filtering").is(":checked")) {
+          $(".ui-custom-filtering").removeClass('d-none');
+        } else {
+          $(".ui-custom-filtering").addClass('d-none');
+        }
+      });
+      $("#reg_content_blur").change(function () {
+        if ($("#reg_content_blur").is(":checked")) {
+          $(".ui-custom-content-blur").removeClass('d-none');
+        } else {
+          $(".ui-custom-content-blur").addClass('d-none');
+        }
+      });
+      $("#reg_shortcut_use").change(function () {
+        if ($("#reg_shortcut_use").is(":checked")) {
+          $(".ui-custom-shortcut").removeClass('d-none');
+        } else {
+          $(".ui-custom-shortcut").addClass('d-none');
+        }
+        set_ui_custom_expand_shortcut();
+      });
+      $(".ui_custom_shortcut_items").change(function () {
+        //console.debug(this)
+        set_ui_custom_expand_shortcut();
+      });
+    } catch (error) {
+      //console.error('Failed to initialize custom UI settings:', error);
+    }
+  }
+  function set_ui_rcmd_steps_class(){
+    if ($("#reg_rcmd_color_set").val() == "self" || $("#reg_rcmd_font_color").val()) {
+      $(".ui-custom-rcmd-steps").removeClass("ui-custom-detail");
+    } else {
+      $(".ui-custom-rcmd-steps").addClass("ui-custom-detail");
+    }
+  }
+
+  function set_ui_custom_expand_shortcut() {
+    if ($("#reg_expand_quick").is(":checked") && $("#reg_shortcut_use").is(":checked")) {
+      $("#reg_expand_shortcut_li").removeClass('d-none');
+      if ($("#reg_expand_shortcut").is(":checked")) {
+        $(".ui-custom-expand-shortcut").removeClass('d-none');
+        var link_map = get_board_link_map();
+        Array.from(document.querySelectorAll(".ui-custom-expand-shortcut")).forEach((item) => {
+          var temp_input = item.querySelector("input");
+          var temp_id = temp_input.id.replace("expand_", "");
+          var check_input = document.getElementById(temp_id);
+          if ((check_input?.value ?? "") != "") {
+            var temp_label = item.querySelector("label.col-form-label");
+            temp_label.innerHTML = temp_id.substring(temp_id.length - 1) + " : " + link_map[check_input.value].name;
+            $(item).removeClass('d-none');
+          } else {
+            $(item).addClass('d-none');
+          }
+        });
+      } else {
+        $(".ui-custom-expand-shortcut").addClass('d-none');
+      }
+    } else {
+      $("#reg_expand_shortcut_li").addClass('d-none');
+      $(".ui-custom-expand-shortcut").addClass('d-none');
+    }
+  }
+
+  function set_ui_custom_expand() {
+    if ($("#reg_expand_quick").is(":checked")) {
+      $(".ui-custom-expand-item").removeClass('d-none');
+    } else {
+      $(".ui-custom-expand-item").addClass('d-none');
+    }
+    set_ui_custom_expand_shortcut();
+  }
+  function set_ui_custom_read_history() {
+    if ($("#reg_read_history").is(":checked")) {
+      $(".ui-custom-read-history").removeClass('d-none');
+      document.getElementById("btn_ip_memo_close").click();
+    } else {
+      $(".ui-custom-read-history").addClass('d-none');
+    }
+  }
+  function set_ui_custom_trigger() {
+    try {
+      //$("#reg_expand_quick").trigger('change');
+      $("#reg_show_detail").trigger('change');
+    } catch (error) {
+      //console.error('Failed to initialize custom UI settings:', error);
+    }
+  }
+
+  function set_ui_custom_onload() {
+
+    draw_ui_custom();
+
+    //개인설정 그리기
+    set_board_link_option_html();
+    check_indexDB();
+    set_ui_custom_click_event();
+
+    setBtnClickEvent("btn_ui_apply", ui_custom_apply);
+    setBtnClickEvent("btn_ui_value_view", ui_custom_value_view);
+    setBtnClickEvent("btn_ui_value_cancle", ui_custom_value_cancle);
+    setBtnClickEvent("btn_ui_value_save", ui_custom_value_save);
+    setBtnClickEvent("btn_ui_value_copy", ui_custom_value_copy);
+    setBtnClickEvent("btn_ui_value_paste", ui_custom_value_paste);
+    setBtnClickEvent("btn_ui_value_clear", ui_custom_value_clear);
+    setBtnClickEvent("btn_ui_value_reload", ui_custom_value_reload);
+    setBtnClickEvent("btn_memo_toggle", toggle_hide_member_memo);
+    setBtnClickEvent("btn_memo_ip_clear", delete_memo_database);
+    setBtnClickEvent("btn_read_history_clear", delete_read_database);
+
+    setBtnGroupClickEvent(document, ".ip_memo_btns", set_ip_memo_edit_mode);
+    setBtnGroupClickEvent(document, ".ip_memo_editor_btns", click_ip_memo_editor_btn);
+
+    set_ui_custom_values();
+  }
+
+  function setBtnClickEvent(id, event) {
+    var btn = document.getElementById(id);
+    if (btn != null) btn.addEventListener("click", event);
+  }
+  function setBtnGroupClickEvent(el, cssQuery, event) {
+    if (el == null) el = document;
+    Array.from(el.querySelectorAll(cssQuery)).forEach((item) => { item.addEventListener("click", event) });
+  }
+
 
   function set_page_show(event) {
     if (event.persisted || (window.performance && window.performance.navigation.type == 2)) {
