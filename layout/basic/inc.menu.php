@@ -57,9 +57,9 @@ return [
                 'shortcut' => 'Ｇ',
             ],
             '자료실' => [
-                'url' => '/event',
+                'url' => '/pds',
                 'icon' => 'bi-person-heart',
-                'shortcut' => 'Ａ',
+                'shortcut' => 'P',
             ],
             '알뜰구매' => [
                 'url' => '/economy',
