@@ -59,7 +59,7 @@ return [
                 // 'icon' => 'bi-cart-plus-fill',
                 'shortcut' => 'Ｗ',
             ],
-            '삐앙삐앙🚨' => [
+            '삐앙삐앙🚓' => [
                 'url' => '/angreport',
                 'shortcut' => 'Ｘ',
                 'icon' => 'bi-webcam-fill',
@@ -87,8 +87,8 @@ return [
                 'icon' => 'bi-cart-plus-fill',
                 'shortcut' => '·',
                 'items' => [
-                    '알림사앙 🆕' => '/notice',
-                    '릴리즈 노트' => '/release',
+                    // '알림사앙 🆕' => '/notice',
+                    // '릴리즈 노트' => '/release',
                     '유지관리' => '/bug',
                     '광고앙' => get_pretty_url('content', 'advertiser'),
                     '거버넌스' => '/governance',
