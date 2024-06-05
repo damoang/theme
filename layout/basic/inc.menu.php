@@ -149,6 +149,7 @@ return [
                     '진실의 방' => '/truthroom',
                     '광고앙돼앙' => '/nope',
                     '강등열람' => '/disciplinelog',
+                    '소명게시판' => '/claim',
                 ],
 
                 // Ａ단축키는 알림 링크에 사용됨
