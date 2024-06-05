@@ -190,15 +190,15 @@
           //ui_custom_style += "#bo_list li.list-group-item.da-link-block div.wr-num div.rcmd-box {margin-top: -0.5em;margin-bottom: -0.5em;height: 2em;width: 2.3em;vertical-align: middle;padding-top: 0.4em;border-radius: 45%;}\n";
 
           if (ui_custom_animation) {
-            ui_custom_style += "div.order-1 ul.list-group li.list-group-item.da-link-block div.wr-num div.rcmd-box.step1 {animation-delay: 1s;animation-duration: 1s;animation-name: popUp10;}\n";
-            ui_custom_style += "div.order-1 ul.list-group li.list-group-item.da-link-block div.wr-num div.rcmd-box.step2 {animation-delay: 1s;animation-duration: 1s;animation-name: popUp15;}\n";
-            ui_custom_style += "div.order-1 ul.list-group li.list-group-item.da-link-block div.wr-num div.rcmd-box.step3 {animation-delay: 1s;animation-duration: 1s;animation-name: popUp20;}\n";
-            ui_custom_style += "div.order-1 ul.list-group li.list-group-item.da-link-block div.wr-num div.rcmd-box.step4 {animation-delay: 1s;animation-duration: 1s;animation-name: popUp25;}\n";
+            ui_custom_style += "div.order-1 ul.list-group li.list-group-item.da-link-block .rcmd-box.step1 {animation-delay: 1s;animation-duration: 1s;animation-name: popUp10;}\n";
+            ui_custom_style += "div.order-1 ul.list-group li.list-group-item.da-link-block .rcmd-box.step2 {animation-delay: 1s;animation-duration: 1s;animation-name: popUp15;}\n";
+            ui_custom_style += "div.order-1 ul.list-group li.list-group-item.da-link-block .rcmd-box.step3 {animation-delay: 1s;animation-duration: 1s;animation-name: popUp20;}\n";
+            ui_custom_style += "div.order-1 ul.list-group li.list-group-item.da-link-block .rcmd-box.step4 {animation-delay: 1s;animation-duration: 1s;animation-name: popUp25;}\n";
 
-            ui_custom_style += "div.order-1 ul.list-group li.list-group-item.da-link-block:hover div.wr-num div.rcmd-box.step1 {animation-iteration-count: infinite;}\n";
-            ui_custom_style += "div.order-1 ul.list-group li.list-group-item.da-link-block:hover div.wr-num div.rcmd-box.step2 {animation-iteration-count: infinite;}\n";
-            ui_custom_style += "div.order-1 ul.list-group li.list-group-item.da-link-block:hover div.wr-num div.rcmd-box.step3 {animation-iteration-count: infinite;}\n";
-            ui_custom_style += "div.order-1 ul.list-group li.list-group-item.da-link-block:hover div.wr-num div.rcmd-box.step4 {animation-iteration-count: infinite;}\n";
+            ui_custom_style += "div.order-1 ul.list-group li.list-group-item.da-link-block:hover .rcmd-box.step1 {animation-iteration-count: infinite;}\n";
+            ui_custom_style += "div.order-1 ul.list-group li.list-group-item.da-link-block:hover .rcmd-box.step2 {animation-iteration-count: infinite;}\n";
+            ui_custom_style += "div.order-1 ul.list-group li.list-group-item.da-link-block:hover .rcmd-box.step3 {animation-iteration-count: infinite;}\n";
+            ui_custom_style += "div.order-1 ul.list-group li.list-group-item.da-link-block:hover .rcmd-box.step4 {animation-iteration-count: infinite;}\n";
           }
           //ui_media768_style += "#bo_list .list-group-item div.ms-md-auto > div > div:nth-child(3) {position:absolute;left:5px;width:2.3em;}\n";
           //ui_media768_style += "#bo_list .list-group-item div.wr-num.order-3 {position:absolute;left:5px;height: 2em;width: 2.3em;margin-top: -0.4em;padding-top: 0.4em;padding-left:0em;padding-right:0em;border-radius: 40%;}\n";          
@@ -263,13 +263,13 @@
               if ((ui_obj.rcmd_font_color_self ?? "") != "") font_color = ui_obj.rcmd_font_color_self;
               break;
             case "step":
-              if ((ui_obj.rcmd_font_color_1 ?? "") != "") ui_custom_style += "div.order-1 ul.list-group li.list-group-item.da-link-block div.rcmd-box" + rcmd_color_set + ".step1 {color : " + ui_obj.rcmd_font_color_1 + " !important}\n";
-              if ((ui_obj.rcmd_font_color_2 ?? "") != "") ui_custom_style += "div.order-1 ul.list-group li.list-group-item.da-link-block div.rcmd-box" + rcmd_color_set + ".step2 {color : " + ui_obj.rcmd_font_color_2 + " !important}\n";
-              if ((ui_obj.rcmd_font_color_3 ?? "") != "") ui_custom_style += "div.order-1 ul.list-group li.list-group-item.da-link-block div.rcmd-box" + rcmd_color_set + ".step3 {color : " + ui_obj.rcmd_font_color_3 + " !important}\n";
-              if ((ui_obj.rcmd_font_color_4 ?? "") != "") ui_custom_style += "div.order-1 ul.list-group li.list-group-item.da-link-block div.rcmd-box" + rcmd_color_set + ".step4 {color : " + ui_obj.rcmd_font_color_4 + " !important}\n";
+              if ((ui_obj.rcmd_font_color_1 ?? "") != "") ui_custom_style += "div.order-1 ul.list-group li.list-group-item.da-link-block .rcmd-box" + rcmd_color_set + ".step1 {color : " + ui_obj.rcmd_font_color_1 + " !important}\n";
+              if ((ui_obj.rcmd_font_color_2 ?? "") != "") ui_custom_style += "div.order-1 ul.list-group li.list-group-item.da-link-block .rcmd-box" + rcmd_color_set + ".step2 {color : " + ui_obj.rcmd_font_color_2 + " !important}\n";
+              if ((ui_obj.rcmd_font_color_3 ?? "") != "") ui_custom_style += "div.order-1 ul.list-group li.list-group-item.da-link-block .rcmd-box" + rcmd_color_set + ".step3 {color : " + ui_obj.rcmd_font_color_3 + " !important}\n";
+              if ((ui_obj.rcmd_font_color_4 ?? "") != "") ui_custom_style += "div.order-1 ul.list-group li.list-group-item.da-link-block .rcmd-box" + rcmd_color_set + ".step4 {color : " + ui_obj.rcmd_font_color_4 + " !important}\n";
               break;
           }
-          if (font_color != "") ui_custom_style += "div.order-1 ul.list-group li.list-group-item.da-link-block div.rcmd-box" + rcmd_color_set + " {color : " + font_color + " !important}\n";
+          if (font_color != "") ui_custom_style += "div.order-1 ul.list-group li.list-group-item.da-link-block .rcmd-box" + rcmd_color_set + " {color : " + font_color + " !important}\n";
         }
 
         if ((ui_obj.rcmd_color_set ?? "") == "self") {
@@ -278,10 +278,10 @@
           var rcmd_color_step3 = ui_obj.rcmd_color_step3 ?? "";
           var rcmd_color_step4 = ui_obj.rcmd_color_step4 ?? "";
 
-          if (rcmd_color_step1 != "") ui_custom_style += "div.order-1 ul.list-group li.list-group-item.da-link-block div.rcmd-box.step1 {background-color : " + rcmd_color_step1 + " !important;}\n";
-          if (rcmd_color_step2 != "") ui_custom_style += "div.order-1 ul.list-group li.list-group-item.da-link-block div.rcmd-box.step2 {background-color : " + rcmd_color_step2 + " !important;}\n";
-          if (rcmd_color_step3 != "") ui_custom_style += "div.order-1 ul.list-group li.list-group-item.da-link-block div.rcmd-box.step3 {background-color : " + rcmd_color_step3 + " !important;}\n";
-          if (rcmd_color_step4 != "") ui_custom_style += "div.order-1 ul.list-group li.list-group-item.da-link-block div.rcmd-box.step4 {background-color : " + rcmd_color_step4 + " !important;}\n";
+          if (rcmd_color_step1 != "") ui_custom_style += "div.order-1 ul.list-group li.list-group-item.da-link-block .rcmd-box.step1 {background-color : " + rcmd_color_step1 + " !important;}\n";
+          if (rcmd_color_step2 != "") ui_custom_style += "div.order-1 ul.list-group li.list-group-item.da-link-block .rcmd-box.step2 {background-color : " + rcmd_color_step2 + " !important;}\n";
+          if (rcmd_color_step3 != "") ui_custom_style += "div.order-1 ul.list-group li.list-group-item.da-link-block .rcmd-box.step3 {background-color : " + rcmd_color_step3 + " !important;}\n";
+          if (rcmd_color_step4 != "") ui_custom_style += "div.order-1 ul.list-group li.list-group-item.da-link-block .rcmd-box.step4 {background-color : " + rcmd_color_step4 + " !important;}\n";
         }
       }
       //hide_nick(ui_obj);
@@ -666,19 +666,20 @@
     var cv_2 = Number(ui_obj.rcmd_color_step2_value ?? 6);
     var cv_3 = Number(ui_obj.rcmd_color_step3_value ?? 11);
     var cv_4 = Number(ui_obj.rcmd_color_step4_value ?? 51);
-    var change_step_value = (ui_obj.rcmd_color_step1_value ?? false) || (ui_obj.rcmd_color_step2_value ?? false) || (ui_obj.rcmd_color_step3_value ?? false) || (ui_obj.rcmd_color_step4_value ?? false);
+    var change_step_value = ((ui_obj.rcmd_color_step1_value !=null)) || (ui_obj.rcmd_color_step2_value != null) || (ui_obj.rcmd_color_step3_valu != null) || (ui_obj.rcmd_color_step4_value != null);
     if (change_step_value) {
       if (cv_2 < cv_1) cv2 = cv_1;
       if (cv_3 < cv_2) cv3 = cv_2;
       if (cv_4 < cv_3) cv4 = cv_3;
+      console.debug(cv_1,cv_2,cv_3,cv_4);
     }
     var rv_1 = 500, rv_2 = 1000, rv_3 = 5000;
     //var option_class = ["bg-danger","bg-success","bg-primary","bg-info","bg-secondary","bg-opacity-25","bg-opacity-10","bg-gradient","fw-bold","cu_rv_1","cu_rv_2","cu_rv_3"];
     var option_class = ["cu_rv_1", "cu_rv_2", "cu_rv_3", "cu_rv_4", "cu_rv_5"];
     var custom_class = ["gray", "forest", "yellow", "colorful", "none", "self"];
-    var step_class = ["step1", "step2", "step3", "step4"];
+    var step_class = ["step0","step1", "step2", "step3", "step4"];
     var color_set = ui_obj.rcmd_color_set ?? "";
-    if (color_set != "" && color_set != "self") {
+    if (color_set != "") {
       color_set = "rcmd-box-" + color_set;
     }
 
@@ -708,8 +709,8 @@
           });
           if (custom_set == null) {
             custom_class.some((tc) => {
-              if (thumb_up.classList.contains(tc)) {
-                custom_set = tc;
+              if (thumb_up.classList.contains("rcmd-box-" + tc)) {
+                custom_set = "rcmd-box-" + tc;
                 return true;
               } else {
                 return false;
@@ -749,7 +750,7 @@
             add_class_list = "step3 cu_rv_3";
           } else if (temp_num >= cv_2) {
             add_class_list = "step2 cu_rv_2";
-          } else if (temp_num >= cv_3) {
+          } else if (temp_num >= cv_1) {
             add_class_list = "step1 cu_rv_1";
           } else {
             add_class_list = "step0";
@@ -757,6 +758,7 @@
 
         }
         if (add_class_list != "") {
+          console.debug(add_class_list);
           add_class_list.split(" ").forEach((cl) => {
             thumb_up.classList.add(cl);
             if (thumb_up_m != null) thumb_up_m_batch.add(cl);
