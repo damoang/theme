@@ -25,7 +25,7 @@ return [
                 // bi-star-fill
                 // Ａ단축키는 알림 링크에 사용됨
             ],
-            '새소식' => [
+            '새로운 소식' => [
                 'url' => '/new',
                 'icon' => 'bi-newspaper',
                 'shortcut' => 'Ｎ',
