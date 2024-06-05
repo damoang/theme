@@ -3083,6 +3083,7 @@
   var tlog = null;
   var tges = {};
   function set_touch_gesture(ui_obj) {
+    close_offcanvas();
     if (ui_obj != null && ui_obj.expand_gesture) {
       tges = {};
       tges.swipe = ui_obj.expand_gesture_swipe;
@@ -3217,7 +3218,7 @@
       if (m) {
         ax = Math.abs(tlog.summary.totalX)
         ay = Math.abs(tlog.summary.totalY);
-        if (((tges.swipe ?? "") != "") && ax > (tges.swipe_minx ?? 50) && ay < (tges.swipe_maxy ?? 30)) {
+        if (((tges.swipe ?? "") != "") && ax > (tges.swipe_minx ?? 50) && ay < (tges.swipe_maxy ?? 30) && (ax/ay) >= 3) {
           t_type = tges?.swipe;
           if (tlog.summary.totalX > 0) {
             t_value = "r";
@@ -3351,16 +3352,12 @@
           }
           break;
         case "goBack": //뒤로이동
-          term = close_offcanvas();
-          setTimeout(function(){
-            history.back();
-          },term);
+          //term = close_offcanvas();
+          history.back();
           break;
         case "goForward": //앞으로이동  
-          term = close_offcanvas();
-          setTimeout(function(){
-            history.forward();
-          },term);
+          //term = close_offcanvas();
+          history.forward();
           break;
     }
     }
