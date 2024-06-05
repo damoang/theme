@@ -183,8 +183,9 @@ if (!defined('_GNUBOARD_')) {
 
    <h3>다모앙에 도움을 주셨던 이전 광고주님</h3>
     <li class="list-group-item border-0">
-            <a href="https://smartstore.naver.com/dingreen" data-dd-action-name="Boards Ads Banner">
-                <img src="https://damoang.net/data/file/banners/015f0b5e4ca48f7d44e78ebd6f62e722_eIEiASdk_ae77791f0b971a127e0c4ea6f9bbba4692a8de02.gif" alt="딩그린" class="mw-100">
-            </a>
+<!--             <a href="https://smartstore.naver.com/dingreen" data-dd-action-name="Boards Ads Banner">
+                딩그린 (베트남)  -->
+<!--                 <img src="https://damoang.net/data/file/banners/015f0b5e4ca48f7d44e78ebd6f62e722_eIEiASdk_ae77791f0b971a127e0c4ea6f9bbba4692a8de02.gif" alt="딩그린" class="mw-100">
+            </a> -->
         </li>
 </section>
