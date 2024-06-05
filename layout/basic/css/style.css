@@ -831,6 +831,7 @@ div a mark:hover {
 }
 .rcmd-mb {
   margin: inherit;
+  min-width: 45px;
 }
 .rcmd-mb .rcmd-box {
   padding-left: .3rem !important;
