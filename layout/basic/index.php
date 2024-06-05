@@ -63,7 +63,18 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                  
                         </div>
                     </div>
-
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6922133409882969"
+                         crossorigin="anonymous"></script>
+                    <!-- 수평형 -->
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-6922133409882969"
+                         data-ad-slot="5448923097"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
                     <div class="row row-cols-1 row-cols-lg-2">
                         <div class="col">
                             <!-- 위젯 시작 { -->
