@@ -74,7 +74,7 @@ return [
             '아이디어 게시판(앙상불)' => [
                 'url' => '/referral',
                 // 'icon' => 'bi-cart-plus-fill',
-                'shortcut' => 'Ｏ',
+                'shortcut' => 'A',
             ],
 
         ]
