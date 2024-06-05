@@ -47,7 +47,7 @@ return [
                 'icon' => 'bi-vector-pen',
                 'shortcut' => 'Ｔ',
             ],
-         '강좌/팁' => [
+           '강좌/팁' => [
                 'url' => '/lecture',
                 'shortcut' => 'Ｌ',
             ],
@@ -66,7 +66,7 @@ return [
                 'icon' => 'bi-cash-coin',
                 'shortcut' => 'Ｅ',
             ],
-            '추천 구매 게시판' => [
+            '수익링크 게시판' => [
                 'url' => '/referral',
                 // 'icon' => 'bi-cart-plus-fill',
                 'shortcut' => 'Ｏ',
