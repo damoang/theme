@@ -168,7 +168,7 @@ return [
                     // '릴리즈 노트' => '/release',
                     '유지관리' => '/bug',
                     // '광고앙' => get_pretty_url('content', 'advertiser'),
-                    '정책관리' => '/governance',
+                    '운영관리' => '/governance',
                     // '진실의 방' => '/truthroom',
                     // '광고앙돼앙' => '/nope',
                     // '레벨강등 열람' => '/disciplinelog',
