@@ -145,9 +145,10 @@ return [
                 'shortcut' => 'Ｘ',
                 'icon' => 'bi-webcam-fill',
                     'items' => [
+                    '신고게시판' => '/angreport',
                     '진실의 방' => '/truthroom',
                     '광고앙돼앙' => '/nope',
-                    '레벨강등 열람' => '/disciplinelog',
+                    '강등열람' => '/disciplinelog',
                 ],
 
                 // Ａ단축키는 알림 링크에 사용됨
