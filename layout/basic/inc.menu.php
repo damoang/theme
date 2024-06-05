@@ -7,14 +7,14 @@ return [
     [
         'title' => '다모앙',
         'items' => [
-            '지도게시판 (앙지도:평점,추천)' => [
+            '앙지도' => [
                 'url' => '/angmap',
                 'shortcut' => 'Ｍ',
                 'icon' => 'bi-geo-alt-fill',
                 // bi-star-fill
                 // Ａ단축키는 알림 링크에 사용됨
             ],
-            '신고게시판 (삐앙삐앙)' => [
+            '삐앙삐앙 🚨' => [
                 'url' => '/angreport',
                 'shortcut' => 'Ｘ',
                 'icon' => 'bi-webcam-fill',
@@ -71,8 +71,8 @@ return [
                 // 'icon' => 'bi-cart-plus-fill',
                 'shortcut' => 'Ｏ',
             ],
-            '아이디어 게시판(앙상불)' => [
-                'url' => '/referral',
+            '앙상불 아이디어 건의의' => [
+                'url' => '/event',
                 // 'icon' => 'bi-cart-plus-fill',
                 'shortcut' => 'A',
             ],
@@ -164,7 +164,7 @@ return [
         'title' => '운영게시판 (통폐합중)',
     
         'items' => [
-            '앙림사앙 (알림 / 공지)' => [
+            '공지사항' => [
                 'url' => '/notice',
                 'shortcut' => 'K',
                 'icon' => 'bi-geo-alt-fill',
