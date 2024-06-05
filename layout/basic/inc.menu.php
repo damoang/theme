@@ -18,17 +18,17 @@ return [
                 'shortcut' => 'Ｑ',
                 'icon' => 'bi-question-circle',
             ],
+            '새로운 소식' => [
+                'url' => '/new',
+                'icon' => 'bi-newspaper',
+                'shortcut' => 'Ｎ',
+            ],
             '앙지도' => [
                 'url' => '/angmap',
                 'shortcut' => 'Ｍ',
                 'icon' => 'bi-geo-alt-fill',
                 // bi-star-fill
                 // Ａ단축키는 알림 링크에 사용됨
-            ],
-            '새로운 소식' => [
-                'url' => '/new',
-                'icon' => 'bi-newspaper',
-                'shortcut' => 'Ｎ',
             ],
             '사용기' => [
                 'url' => '/tutorial',
@@ -48,6 +48,11 @@ return [
                 'url' => '/pds',
                 'icon' => 'bi-person-heart',
                 'shortcut' => 'P',
+            ],
+            '광고앙' => [
+                'url' => get_pretty_url('content', 'advertiser'),
+                'icon' => 'bi-person-heart',
+                'shortcut' => '·',
             ],
             '알뜰구매' => [
                 'url' => '/economy',
