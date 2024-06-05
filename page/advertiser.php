@@ -131,12 +131,12 @@ if (!defined('_GNUBOARD_')) {
             </a>
         </li>
         <li class="col list-group-item border-0">
-            <a href="#" data-dd-action-name="Sidebar Ads Banner">
+            <a href="https://blackdogkorea.com/index.html" data-dd-action-name="Sidebar Ads Banner">
                 <img src="https://damoang.net/data/editor/669a2-66608a27cc73e-932d5bc69669f8323ae9c0a5b271e21a0723ea2b.jpg" alt="블랙독" class="mw-100">
             </a>
         </li>
         <li class="col list-group-item border-0">
-            <a href="https://smartstore.naver.com/k-young/products/4605987515" data-dd-action-name="Sidebar Ads Banner">
+            <a href="https://qshop.ai/?utm_source=damoang&utm_medium=display" data-dd-action-name="Sidebar Ads Banner">
                 <img src="https://damoang.net/data/file/banners/669a2fdc5df0a62a80ae0c25089c78d8_Ar6xPYEk_b156ab7519de667d6ec93cd676371edd3fd06483.gif" alt="스퀘어스" class="mw-100">
             </a>
         </li>
