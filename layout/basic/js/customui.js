@@ -758,7 +758,6 @@
 
         }
         if (add_class_list != "") {
-          console.debug(add_class_list);
           add_class_list.split(" ").forEach((cl) => {
             thumb_up.classList.add(cl);
             if (thumb_up_m != null) thumb_up_m_batch.add(cl);
