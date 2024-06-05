@@ -1,5 +1,9 @@
 <?php
 if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
+// 현재 날짜와 시간을 'Y-m-d H:i:s' 형식으로 지정
+$dt = new DateTime();
+$formatted_dt = $dt->format('Y-m-d H:i:s');
+    
 ?>
 
 <div id="main-wrap" class="bg-body">
@@ -12,7 +16,8 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                         <div class="col">
                             <!-- 위젯 시작 { -->
                             <h3 class="fs-5 px-3 py-2 mb-0">
-                                <a href="">
+                                    <a href="/free?bo_table=free&sop=and&sod=desc&sfl=wr_datetime&stx=<?php echo urlencode($formatted_dt); ?>&sca=&page=1&sst=wr_good">
+
                                     <i class="bi bi-chat-dots"></i>
                                     추천 글 (오늘 기준)
                                     <i class="bi bi-plus small float-end mt-1 text-body-tertiary"></i>
@@ -26,77 +31,55 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                         </div>
 
                         <div class="col">
-                            <!-- 광고 시작 { -->
-
-                            <div>
-                                <script async
-                                        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6922133409882969"
-                                        crossorigin="anonymous"></script>
-                                <?php if (is_mobile()) { ?>
-                                    <!-- 모바일 -->
-                                    <!-- main -->
-                                    <h3 class="fs-5 px-3 py-2 mb-0 line-bottom">
-                                        <a href="<?php echo get_pretty_url('notice') ?>">
-                                            <i class="bi bi-bell"></i>
-                                            공지사항
-                                            <i class="bi bi-plus small float-end mt-1 text-body-tertiary"></i>
-                                        </a>
-                                    </h3>
-                                    <?php echo na_widget('wr-list', 'idx-notice', 'bo_list=notice wr_notice=1 is_notice=1'); ?>
-                                    <h3 class="fs-5 px-3 py-2 mb-0 line-bottom">
-                                        <a href="">
-                                            <i class="bi bi-bell"></i>
-                                            광고
-                                            <i class="bi bi-plus small float-end mt-1 text-body-tertiary"></i>
-                                        </a>
-                                    </h3>
-                                    <ins class="adsbygoogle"
-                                         style="display:block"
-                                         data-ad-client="ca-pub-6922133409882969"
-                                         data-ad-slot="9138253649"
-                                         data-ad-format="auto"
-                                         data-full-width-responsive="true"></ins>
-                                    <ins class="adsbygoogle"
-                                         style="display:block"
-                                         data-ad-client="ca-pub-6922133409882969"
-                                         data-ad-slot="9138253649"
-                                         data-ad-format="auto"
-                                         data-full-width-responsive="true"></ins>
-
-                                <?php } else { ?>
-                                    <!-- PC -->
-                                    <!-- 메인 -->
-                                    <!-- main -->
-                                    <h3 class="fs-5 px-3 py-2 mb-0 line-bottom">
-                                        <a href="<?php echo get_pretty_url('notice') ?>">
-                                            <i class="bi bi-bell"></i>
-                                            공지사항
-                                            <i class="bi bi-plus small float-end mt-1 text-body-tertiary"></i>
-                                        </a>
-                                    </h3>
-                                    <?php echo na_widget('wr-list', 'idx-notice', 'bo_list=notice wr_notice=1 is_notice=1'); ?>
-                                    <h3 class="fs-5 px-3 py-2 mb-0 line-bottom">
-                                        <a href="">
-                                            <i class="bi bi-bell"></i>
-                                            광고
-                                            <i class="bi bi-plus small float-end mt-1 text-body-tertiary"></i>
-                                        </a>
-                                    </h3>
-                                    <ins class="adsbygoogle"
-                                         style="display:block"
-                                         data-ad-client="ca-pub-6922133409882969"
-                                         data-ad-slot="9138253649"
-                                         data-ad-format="auto"
-                                         data-full-width-responsive="true"></ins>
-                                <?php } ?>
-                                <script>
-                                    (adsbygoogle = window.adsbygoogle || []).push({});
-                                </script>
-                            </div>
-                            <!-- } 광고 끝 -->
+                            <h3 class="fs-5 px-3 py-2 mb-0 line-bottom">
+                                <a href="<?php echo get_pretty_url('notice') ?>">
+                                    <i class="bi bi-bell"></i>
+                                    공지사항
+                                    <i class="bi bi-plus small float-end mt-1 text-body-tertiary"></i>
+                                </a>
+                            </h3>
+                           <div class="line-top mb-4">
+                                <?php echo na_widget('wr-list', 'idx-notice', 'bo_list=notice wr_notice=1 is_notice=1'); ?>
+                          </div>
+                          <!-- 위젯 시작 { -->
+                          <h3 class="fs-5 px-3 py-2 mb-0">
+                            <a href="<?php echo get_pretty_url('qa') ?>">
+                                <i class="bi bi-question-circle"></i>
+                                질문답변
+                                <i class="bi bi-plus small float-end mt-1 text-body-tertiary"></i>
+                            </a>
+                        </h3>
+                        <div class="line-top mb-4">
+                            <?php echo na_widget('wr-list', 'idx-qa', 'bo_list=qa wr_notice=1 is_notice=1'); ?>
+                        </div>
+                        <!-- } 위젯 끝 -->
+                          <!-- 위젯 시작 { -->
+                          <h3 class="fs-5 px-3 py-2 mb-0">
+                            <a href="<?php echo get_pretty_url('angmap') ?>">
+                                <i class="bi bi-geo-alt-fill"></i>
+                                앙지도
+                                <i class="bi bi-plus small float-end mt-1 text-body-tertiary"></i>
+                            </a>
+                        </h3>
+                        <div class="line-top mb-4">
+                            <?php echo na_widget('wr-list', 'idx-map', 'bo_list=qa wr_notice=0 is_notice=0'); ?>
+                        </div>
+                        <!-- } 위젯 끝 -->
+                 
                         </div>
                     </div>
-
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6922133409882969"
+                         crossorigin="anonymous"></script>
+                    <!-- 수평형 -->
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-6922133409882969"
+                         data-ad-slot="5448923097"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
                     <div class="row row-cols-1 row-cols-lg-2">
                         <div class="col">
                             <!-- 위젯 시작 { -->
@@ -183,17 +166,18 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
                             <!-- 위젯 시작 { -->
                             <h3 class="fs-5 px-3 py-2 mb-0">
-                                <a href="<?php echo get_pretty_url('qa') ?>">
-                                    <i class="bi bi-question-circle"></i>
-                                    질문답변
+                                <a href="<?php echo get_pretty_url('pds') ?>">
+                                    <i class="bi bi-postcard-heart"></i>
+                                    자료실
                                     <i class="bi bi-plus small float-end mt-1 text-body-tertiary"></i>
                                 </a>
                             </h3>
                             <div class="line-top mb-4">
-                                <?php echo na_widget('wr-list', 'idx-qa', 'bo_list=qa wr_notice=1 is_notice=1'); ?>
+                                <?php echo na_widget('wr-list', 'idx-pds', 'bo_list=qa wr_notice=1 is_notice=1'); ?>
 
                             </div>
                             <!-- } 위젯 끝 -->
+
 
                         </div>
 
@@ -215,6 +199,18 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
                     </div>
 
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6922133409882969"
+                         crossorigin="anonymous"></script>
+                    <!-- 수평형 -->
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-6922133409882969"
+                         data-ad-slot="5448923097"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>
+                         (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
 
                     <!-- 위젯 시작 { -->
                     <h3 class="fs-5 px-3 py-2 mb-0">
@@ -232,20 +228,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
                     <div class="row row-cols-1 row-cols-lg-2">
                         <div class="col">
-                            <!-- 위젯 시작 { -->
-                            <h3 class="fs-5 px-3 py-2 mb-0">
-                                <a href="<?php echo get_pretty_url('pds') ?>">
-                                    <i class="bi bi-postcard-heart"></i>
-                                    자료실
-                                    <i class="bi bi-plus small float-end mt-1 text-body-tertiary"></i>
-                                </a>
-                            </h3>
-                            <div class="line-top mb-4">
-                                <?php echo na_widget('wr-list', 'idx-pds', 'bo_list=qa wr_notice=1 is_notice=1'); ?>
-
-                            </div>
-                            <!-- } 위젯 끝 -->
-
+                          
                         </div>
                         <div class="col">
                             <?php /*<div class="col d-none">

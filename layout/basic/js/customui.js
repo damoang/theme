@@ -686,12 +686,25 @@
 
     Array.from(document.querySelectorAll("div.order-1 ul.list-group li.list-group-item.da-link-block:has(.rcmd-box)")).forEach((item) => {
       var thumb_up = item.querySelector(".rcmd-box");
-      var thumb_up_m = item.querySelector(".rcmd-mb");
+      var thumb_up_m = item.querySelectorAll(".rcmd-mb .rcmd-box");
+      var thumb_up_m_batch = {
+        add: (el) => {
+          thumb_up_m.forEach((e) => {
+            e.classList.add(el);
+          });
+        },
+        remove: (el) => {
+          thumb_up_m.forEach((e) => {
+            e.classList.remove(el);
+          });
+        }
+      };
+
       if (thumb_up != null) {
         if (reload) {
           option_class.forEach((tc) => {
             thumb_up.classList.remove(tc);
-            if (thumb_up_m != null) thumb_up_m.classList.remove(tc);
+            if (thumb_up_m != null) thumb_up_m_batch.remove(tc);
           });
           if (custom_set == null) {
             custom_class.some((tc) => {
@@ -703,12 +716,12 @@
               }
             });
           } else {
-            if (thumb_up_m != null) thumb_up_m.classList.add(custom_set);
+            if (thumb_up_m != null) thumb_up_m_batch.add(custom_set);
           }
         } else {
           step_class.some((tc) => {
             if (thumb_up.classList.contains(tc)) {
-              if (thumb_up_m != null) thumb_up_m.classList.add(tc);
+              if (thumb_up_m != null) thumb_up_m_batch.add(tc);
               return true;
             } else {
               return false;
@@ -727,7 +740,7 @@
         if (change_step_value) {
           step_class.forEach((tc) => {
             thumb_up.classList.remove(tc);
-            if (thumb_up_m != null) thumb_up_m.classList.remove(tc);
+            if (thumb_up_m != null) thumb_up_m_batch.remove(tc);
           });
 
           if (temp_num >= cv_4) {
@@ -746,14 +759,14 @@
         if (add_class_list != "") {
           add_class_list.split(" ").forEach((cl) => {
             thumb_up.classList.add(cl);
-            if (thumb_up_m != null) thumb_up_m.classList.add(cl);
+            if (thumb_up_m != null) thumb_up_m_batch.add(cl);
           });
         }
         if (color_set != "") {
           thumb_up.classList.add(color_set);
-          if (thumb_up_m != null) thumb_up_m.classList.add(color_set);
+          if (thumb_up_m != null) thumb_up_m_batch.add(color_set);
         } else {
-          if (thumb_up_m != null) thumb_up_m.classList.add("rcmd-box");
+          if (thumb_up_m != null) thumb_up_m_batch.add("rcmd-box");
         }
       }
     });
