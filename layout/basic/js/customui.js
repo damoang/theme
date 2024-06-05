@@ -3335,10 +3335,12 @@
         case "sideMenu": //게시판메뉴
         case "sideMenuOff": //게시판메뉴
           document.querySelector("a[data-bs-target='#menuOffcanvas']").click();
+          document.querySelector("a[data-bs-target='#menuOffcanvas']").blur();
           break;
         case "myMenu": //마이메뉴
         case "myMenuOff": //마이메뉴
           document.querySelector("a[data-bs-target='#memberOffcanvas']").click();
+          document.querySelector("a[data-bs-target='#memberOffcanvas']").blur();
           break;
           break;
         case "toTop": //위아래로이동
@@ -3366,10 +3368,12 @@
     var term = 10;
     if (document.getElementById("menuOffcanvas") != null && document.getElementById("menuOffcanvas").classList.contains("show")) {
       document.querySelector("a[data-bs-target='#menuOffcanvas']").click();
+      document.querySelector("a[data-bs-target='#menuOffcanvas']").blur();
       term += 250;
     }
     if (document.getElementById("memberOffcanvas") != null && document.getElementById("memberOffcanvas").classList.contains("show")) {
       document.querySelector("a[data-bs-target='#memberOffcanvas']").click();
+      document.querySelector("a[data-bs-target='#memberOffcanvas']").blur();
       term += 250;
     }
     return term;
