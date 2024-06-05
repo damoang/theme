@@ -25,18 +25,6 @@ return [
                 // bi-star-fill
                 // Ａ단축키는 알림 링크에 사용됨
             ],
-            '삐앙삐앙 🚨' => [
-                'url' => '/angreport',
-                'shortcut' => 'Ｘ',
-                'icon' => 'bi-webcam-fill',
-
-                // Ａ단축키는 알림 링크에 사용됨
-            ],
-            '직접홍보 🌻' => [
-                'url' => '/promotion',
-                // 'icon' => 'bi-cart-plus-fill',
-                'shortcut' => 'Ｗ',
-            ],
             '새소식' => [
                 'url' => '/new',
                 'icon' => 'bi-newspaper',
@@ -66,6 +54,18 @@ return [
                 'icon' => 'bi-cash-coin',
                 'shortcut' => 'Ｅ',
             ],
+            '직접홍보 🌻' => [
+                'url' => '/promotion',
+                // 'icon' => 'bi-cart-plus-fill',
+                'shortcut' => 'Ｗ',
+            ],
+            '삐앙삐앙 🚨' => [
+                'url' => '/angreport',
+                'shortcut' => 'Ｘ',
+                'icon' => 'bi-webcam-fill',
+
+                // Ａ단축키는 알림 링크에 사용됨
+            ],
             '수익링크 게시판' => [
                 'url' => '/referral',
                 // 'icon' => 'bi-cart-plus-fill',
@@ -76,7 +76,27 @@ return [
                 // 'icon' => 'bi-cart-plus-fill',
                 'shortcut' => 'A',
             ],
-
+            '공지사항' => [
+                'url' => '/notice',
+                'shortcut' => 'K',
+                'icon' => 'bi-geo-alt-fill',
+            ],
+            '운영게시판' => [
+                'url' => G5_BBS_URL . '/group.php?gr_id=admin',
+                'page_id' => G5_BBS_DIR . '-group-group',
+                'icon' => 'bi-cart-plus-fill',
+                'shortcut' => '·',
+                'items' => [
+                    '알림사앙 🆕' => '/notice',
+                    '릴리즈 노트' => '/release',
+                    '유지관리' => '/bug',
+                    '광고앙' => get_pretty_url('content', 'advertiser'),
+                    '거버넌스' => '/governance',
+                    '진실의 방' => '/truthroom',
+                    '광고앙돼앙' => '/nope',
+                    '레벨강등 열람' => '/disciplinelog',
+                ],
+            ],
         ]
     ],
     [
@@ -157,33 +177,6 @@ return [
                     '플레이모빌당' => '/playmobil',
                     '필기도구당' => '/stationery',
                 ]
-            ],
-        ],
-    ],
-    [
-        'title' => '운영게시판 (통폐합중)',
-    
-        'items' => [
-            '공지사항' => [
-                'url' => '/notice',
-                'shortcut' => 'K',
-                'icon' => 'bi-geo-alt-fill',
-            ],
-            '운영게시판' => [
-                'url' => G5_BBS_URL . '/group.php?gr_id=admin',
-                'page_id' => G5_BBS_DIR . '-group-group',
-                'icon' => 'bi-cart-plus-fill',
-                'shortcut' => '·',
-                'items' => [
-                    '알림사앙 🆕' => '/notice',
-                    '릴리즈 노트' => '/release',
-                    '유지관리' => '/bug',
-                    '광고앙' => get_pretty_url('content', 'advertiser'),
-                    '거버넌스' => '/governance',
-                    '진실의 방' => '/truthroom',
-                    '광고앙돼앙' => '/nope',
-                    '레벨강등 열람' => '/disciplinelog',
-                ],
             ],
         ],
     ],
