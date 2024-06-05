@@ -7,7 +7,7 @@ return [
     [
         'title' => '다모앙',
         'items' => [
-            '지도게시판 (앙지도 : 장소 평점, 추천)' => [
+            '지도게시판 (앙지도: 장소 평점,추천)' => [
                 'url' => '/angmap',
                 'shortcut' => 'Ｍ',
                 'icon' => 'bi-geo-alt-fill',
