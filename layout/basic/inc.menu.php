@@ -76,11 +76,6 @@ return [
                 // 'icon' => 'bi-cart-plus-fill',
                 'shortcut' => 'Ｏ',
             ],
-            '앙상불-앙님들의 상상 공간' => [
-                'url' => '/event',
-                // 'icon' => 'bi-cart-plus-fill',
-                'shortcut' => 'A',
-            ],
             '공지사항' => [
                 'url' => '/notice',
                 'shortcut' => 'K',
@@ -101,6 +96,11 @@ return [
                     '광고앙돼앙' => '/nope',
                     '레벨강등 열람' => '/disciplinelog',
                 ],
+            ],
+            '앙상불-앙님들의 상상 공간' => [
+                'url' => '/event',
+                // 'icon' => 'bi-cart-plus-fill',
+                'shortcut' => 'A',
             ],
         ]
     ],
