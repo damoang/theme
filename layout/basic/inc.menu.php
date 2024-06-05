@@ -7,7 +7,7 @@ return [
     [
         'title' => '다모앙',
         'items' => [
-            '지도게시판 (앙지도: 장소 평점,추천)' => [
+            '지도게시판 (앙지도:평점,추천)' => [
                 'url' => '/angmap',
                 'shortcut' => 'Ｍ',
                 'icon' => 'bi-geo-alt-fill',
@@ -47,14 +47,36 @@ return [
                 'icon' => 'bi-vector-pen',
                 'shortcut' => 'Ｔ',
             ],
-            '강좌/팁' => [
-                'url' => '/le어)' => [
-                'url' => '/event',
-                'shortcut' => 'A',
-                'icon' => 'bi-geo-alt-fill',
-                // bi-star-fill
-                // Ａ단축키는 알림 링크에 사용됨
+         '강좌/팁' => [
+                'url' => '/lecture',
+                'shortcut' => 'Ｌ',
             ],
+            '갤러리' => [
+                'url' => '/gallery',
+                'icon' => 'bi-images',
+                'shortcut' => 'Ｇ',
+            ],
+            '자료실' => [
+                'url' => '/event',
+                'icon' => 'bi-person-heart',
+                'shortcut' => 'Ａ',
+            ],
+            '알뜰구매' => [
+                'url' => '/economy',
+                'icon' => 'bi-cash-coin',
+                'shortcut' => 'Ｅ',
+            ],
+            '추천 구매 게시판' => [
+                'url' => '/referral',
+                // 'icon' => 'bi-cart-plus-fill',
+                'shortcut' => 'Ｏ',
+            ],
+            '아이디어 게시판(앙상불)' => [
+                'url' => '/referral',
+                // 'icon' => 'bi-cart-plus-fill',
+                'shortcut' => 'Ｏ',
+            ],
+
         ]
     ],
     [
