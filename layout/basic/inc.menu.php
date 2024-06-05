@@ -55,6 +55,12 @@ return [
                 'url' => '/event',
                 'icon' => 'bi-person-heart',
                 'shortcut' => 'Ａ',
+            ],
+            '앙상불 (아이디어 건의 게시판)' => [
+                'url' => '/event',
+                'shortcut' => 'A',
+                'icon' => 'bi-geo-alt-fill',
+                // bi-star-fill
                 // Ａ단축키는 알림 링크에 사용됨
             ],
         ]
@@ -142,7 +148,13 @@ return [
     ],
     [
         'title' => '운영게시판 (통폐합중)',
+    
         'items' => [
+            '앙림사앙 (알림 / 공지)' => [
+                'url' => '/notice',
+                'shortcut' => 'K',
+                'icon' => 'bi-geo-alt-fill',
+            ],
             '운영게시판' => [
                 'url' => G5_BBS_URL . '/group.php?gr_id=admin',
                 'page_id' => G5_BBS_DIR . '-group-group',
