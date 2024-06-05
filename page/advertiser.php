@@ -125,14 +125,20 @@ if (!defined('_GNUBOARD_')) {
                 <img src="https://damoang.net/data/file/banners/3caac7cdc7671dc247c1198f5a901c2c_WhdUsIZi_d7df65cb104838cf08fbf90ba21e40e66b370103.gif" alt="스테디 커피" class="mw-100">
             </a>
         </li>
-         <li class="col list-group-item border-0">
-            8번째 사이드바 광고주님 자리
-        </li>  
         <li class="col list-group-item border-0">
-            9번째 사이드바 광고주님 자리
+            <a href="#" data-dd-action-name="Sidebar Ads Banner">
+                <img src="https://damoang.net/data/editor/669a2-66608a27cc73e-932d5bc69669f8323ae9c0a5b271e21a0723ea2b.jpg" alt="블랙독" class="mw-100">
+            </a>
         </li>
         <li class="col list-group-item border-0">
-            10번째 사이드바 광고주님 자리
+            <a href="https://smartstore.naver.com/k-young/products/4605987515" data-dd-action-name="Sidebar Ads Banner">
+                <img src="https://damoang.net/data/file/banners/669a2fdc5df0a62a80ae0c25089c78d8_Ar6xPYEk_b156ab7519de667d6ec93cd676371edd3fd06483.gif" alt="스퀘어스" class="mw-100">
+            </a>
+        </li>
+        <li class="col list-group-item border-0">
+            <a href="#" data-dd-action-name="Sidebar Ads Banner">
+                <img src="https://damoang.net/data/file/main/015f0b5e4ca48f7d44e78ebd6f62e722_okJwxveB_c6b9ed39b9396558318ccdda410aed0e2a1cfdbd.png" alt="스테디 커피" class="mw-100">
+            </a>
         </li>
     </ul>
 </section>
