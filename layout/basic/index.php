@@ -2,7 +2,7 @@
 if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 // 현재 날짜와 시간을 'Y-m-d H:i:s' 형식으로 지정
 $dt = new DateTime();
-$formatted_dt = $dt->format('Y-m-d H:i:s');
+$formatted_dt = $dt->format('Y-m-d');
     
 ?>
 
