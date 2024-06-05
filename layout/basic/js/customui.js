@@ -964,9 +964,7 @@
       var after_img = document.createElement("img");
       after_img.className = "rounded-circle";
       after_img.id = "my_menu_img";
-      after_img.style.verticalAlign = "top";
-      after_img.style.maxWidth = "14.4px";
-      after_img.style.maxHeight = "14.4px";
+      after_img.style = "vertical-align: middle;max-width: 1.3em;max-height: 1.3em;margin-top: -0.3em;";
       after_img.src = person_img.src;
       if (is_hide_nick) {
         after_img.style.opacity = 0.1;
