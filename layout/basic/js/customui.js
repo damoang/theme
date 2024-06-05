@@ -3401,8 +3401,15 @@
         user_regs.push(temp_short);        
       }
     }
-
-    var bbs_group = document.querySelectorAll("div.nav-item div.nav-item:has(a.nav-link.dropdown-toggle)");
+    var bbs_group = [];
+    var menu_div = document.querySelectorAll("div.na-menu div.nav");
+    menu_div.forEach((item)=>{
+      var dropdown = item.querySelector("div.nav-item div.nav-item:has(a.nav-link.dropdown-toggle)");
+      if (dropdown!=null) {
+        bbs_group.push(dropdown);
+      }
+    });
+    //var bbs_group = document.querySelectorAll("div.na-menu div.nav div.nav-item div.nav-item:has(a.nav-link.dropdown-toggle)");
     var link_list = [];
     var links = document.querySelectorAll("#sidebar-site-menu .da-menu--bbs-group-group div >  a");
     links.forEach((temp)=> {
@@ -3445,18 +3452,23 @@
         break;
       }
     }
-    recommend_group.push({ link: "recommend_off", org: "#recommend_off", name: "소모임추천 끄기"});
+    recommend_group.push({ link: "recommend_off", org: "#recommend_off", name: "소모임 추천끄기"});
     
     bbs_group.forEach((group)=>{
       var parent = group.parentNode;
       var nextSibling = group.nextSibling;
+      var header = document.createElement("div");
+      header.className = "dropdown-header bbs_group_recommend fst-italic";
+      header.innerHTML = "소모임 추천";
+      parent.insertBefore(header, nextSibling);  
+
       recommend_group.forEach((link)=>{
         var shortcut_div = document.createElement("div");
-        shortcut_div.className = "nav-item bbs_group_recommend";
+        shortcut_div.className = "nav-item bbs_group_recommend opacity-75 fst-italic";
         var shortcut_link = document.createElement("a");
         shortcut_link.className = "nav-link bbs_group_recommend";
         shortcut_link.href = link.org;
-        shortcut_link.innerHTML = '<span class="d-flex align-items-center gap-2 nav-link-title"></i> <span class="badge p-1 text-bg-secondary">·</span>' + link.name + "</span>";//<i class="bi-list-stars nav-icon">
+        shortcut_link.innerHTML = '<span class="d-flex align-items-center gap-2 nav-link-title"><span class="badge p-1 text-bg-secondary">·</span>' + link.name + "</span>";//<i class="bi-list-stars nav-icon">//
         if (link.org=="#recommend_off") {
           shortcut_link.addEventListener('click',set_bbs_group_recommend_off);
         }
@@ -3467,7 +3479,7 @@
   }
 
   function set_bbs_group_recommend_off(){
-    if (confirm("소모임 추천을 하지 않겠습니까?")){
+    if (confirm("소모임 추천을 하지 않겠습니까?\n마이메뉴 -> 개인화면설정 -> 추천에서 설정을 바꾸실 수 있습니다.")){
       remove_bbs_group_recommend();
       var ui_obj = get_ui_obj(true);
       ui_obj.bbs_group_recommend_off = true;
@@ -3562,7 +3574,7 @@
       } else {
         if (shortcut_arr.length > 2) {
           setTimeout(function(){
-            if (confirm("소모임의 단축키 등록 표시를 그만 보시겠습니까?")) {  
+            if (confirm("소모임의 단축키 등록 표시를 그만 보시겠습니까?\n마이메뉴 -> 개인화면설정 -> 추천에서 설정을 바꾸실 수 있습니다.")) {  
               ui_obj.bbs_shortcut_recommend_off = true;
               set_ui_obj(ui_obj);
               set_ui_custom_values();

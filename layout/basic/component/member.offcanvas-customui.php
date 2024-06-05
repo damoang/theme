@@ -987,7 +987,7 @@ if (!defined('_GNUBOARD_')) {
                         </div>
                     </div>
                 </li>
-                <li class="list-group-item">
+                <li class="list-group-item ui-custom-detail">
                     <div class="row align-items-center">
                         <label for="reg_thumbup_em_off" class="col-sm-5 col-form-label" title="추천 애니메이션 효과를 제거합니다.">추천 동작 끄기</label>
                         <div class="col-sm-7">
@@ -997,7 +997,7 @@ if (!defined('_GNUBOARD_')) {
                         </div>
                     </div>
                 </li>
-                <li class="list-group-item ui-custom-detail">
+                <li class="list-group-item">
                     <div class="row align-items-center">
                         <label for="reg_bbs_group_recommend_off" class="col-sm-5 col-form-label" title="메뉴에 소모임 추천 링크를 보여주지 않습니다.">소모임 추천 끄기</label>
                         <div class="col-sm-7">
@@ -1007,7 +1007,7 @@ if (!defined('_GNUBOARD_')) {
                         </div>
                     </div>
                 </li>
-                <li class="list-group-item ui-custom-detail">
+                <li class="list-group-item">
                     <div class="row align-items-center">
                         <label for="reg_bbs_shortcut_recommend_off" class="col-sm-5 col-form-label" title="소모임 타이틀에 단축키 등록 링크를 보여주지 않습니다.">단축키 추천 끄기</label>
                         <div class="col-sm-7">
