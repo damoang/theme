@@ -187,25 +187,11 @@ if (!defined('_GNUBOARD_')) {
 <section class="container mb-5">
 
    <h3>다모앙에 도움을 주셨던 이전 광고주님</h3>
-       <h3 class="border-bottom mb-4 pb-2">
-        긴 배너
-    </h3>
         <ul class="text-center row row-cols-2 row-cols-md-3 list-group list-group-horizontal list-group-flush" style="font-size: 0.875rem;">
 
 <!--                     <li class="col list-group-item border-0">딩그린(베트남) 긴배너</li> -->
 
         </li>
-             </ul>
-       <h3 class="border-bottom mb-4 pb-2"> 사이드 배너 </h3>
-                 <ul class="text-center row row-cols-2 row-cols-md-3 list-group list-group-horizontal list-group-flush" style="font-size: 0.875rem;">
-
-                    <li class="col list-group-item border-0">사이드 배너</li>
-                 </ul>
-      </ul>
-
-           <h3 class="border-bottom mb-4 pb-2"> 직접 홍보게시판 </h3>
-             <ul class="text-center row row-cols-2 row-cols-md-3 list-group list-group-horizontal list-group-flush" style="font-size: 0.875rem;">
-                <li class="col list-group-item border-0">직접 홍보게시판</li>
-          </ul>
+        
     
 </section>
