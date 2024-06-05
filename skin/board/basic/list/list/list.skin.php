@@ -140,18 +140,6 @@ add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
                     <div class="flex-grow-1 overflow-hidden">
                         <div class="d-flex flex-column flex-md-row align-items-md-center gap-2">
                             <div class="d-inline-flex flex-fill overflow-hidden align-items-center">
-                                <!-- 추천 수 (모바일) -->
-                                <?php if($is_good && $row['wr_good'] > 0) { ?>
-                                    <div class="wr-num da-rcmd rcmd-mb text-nowrap d-md-none me-2 d-none">
-                                        <div class="<?php echo $rcmd_step ?> w-auto">
-                                        <?php if(!strpos($row['wr_good'], '공지')) { ?>
-                                            <i class="bi bi-hand-thumbs-up" style="font-size:.7rem"></i>
-                                        <?php } ?>
-                                        <?php echo $row['wr_good'] ?>
-                                        </div>
-                                        <span class="visually-hidden">추천</span>
-                                    </div>
-                                <?php } ?>
                                 <?php
                                 // 회원만 보기
                                 echo $row['da_member_only'] ?? '';
