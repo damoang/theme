@@ -71,7 +71,7 @@ return [
                 // 'icon' => 'bi-cart-plus-fill',
                 'shortcut' => 'Ｏ',
             ],
-            '앙상불 아이디어 건의의' => [
+            '앙상불-앙님들의 상상 공간' => [
                 'url' => '/event',
                 // 'icon' => 'bi-cart-plus-fill',
                 'shortcut' => 'A',
