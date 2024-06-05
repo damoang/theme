@@ -48,31 +48,7 @@ return [
                 'shortcut' => 'Ｔ',
             ],
             '강좌/팁' => [
-                'url' => '/lecture',
-                'shortcut' => 'Ｌ',
-            ],
-            '갤러리' => [
-                'url' => '/gallery',
-                'icon' => 'bi-images',
-                'shortcut' => 'Ｇ',
-            ],
-            '자료실' => [
-                'url' => '/event',
-                'icon' => 'bi-person-heart',
-                'shortcut' => 'Ａ',
-            ],
-            '알뜰구매' => [
-                'url' => '/economy',
-                'icon' => 'bi-cash-coin',
-                'shortcut' => 'Ｅ',
-            ],
-            '추천 구매 게시판' => [
-                'url' => '/referral',
-                // 'icon' => 'bi-cart-plus-fill',
-                'shortcut' => 'Ｏ',
-            ],
-
-            '건의 게시판 (앙상불 : 앙님들의 상상력을 불러오는 곳)' => [
+                'url' => '/le어)' => [
                 'url' => '/event',
                 'shortcut' => 'A',
                 'icon' => 'bi-geo-alt-fill',
