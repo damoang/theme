@@ -7,7 +7,7 @@ return [
     [
         'title' => '다모앙',
         'items' => [
-            '앙지도 (장소 평점, 추천 게시판)' => [
+            '지도 게시판 (앙지도 : 장소 평점, 추천)' => [
                 'url' => '/angmap',
                 'shortcut' => 'Ｍ',
                 'icon' => 'bi-geo-alt-fill',
@@ -56,7 +56,7 @@ return [
                 'icon' => 'bi-person-heart',
                 'shortcut' => 'Ａ',
             ],
-            '앙상불 (아이디어 건의 게시판)' => [
+            '건의 게시판 (앙상불 : 앙님들의 상상력을 불러오는 곳)' => [
                 'url' => '/event',
                 'shortcut' => 'A',
                 'icon' => 'bi-geo-alt-fill',
