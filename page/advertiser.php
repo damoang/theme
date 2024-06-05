@@ -141,7 +141,7 @@ if (!defined('_GNUBOARD_')) {
 <section class="container my-5">
     <h3 class="border-bottom mb-4 pb-2">
         직접홍보 게시판
-        <small class="float-end"><a class="btn btn-sm btn-bd-light rounded-2" href="/promotion">바로가기</a></small>
+        <small class="float-end"><a class="btn btn-sm btn-bd-light rounded-2" href="/promotion">🌻바로가기</a></small>
     </h3>
 
     <ul class="text-center row row-cols-2 row-cols-md-3 list-group list-group-horizontal list-group-flush" style="font-size: 0.875rem;">
