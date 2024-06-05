@@ -7,6 +7,11 @@ return [
     [
         'title' => '다모앙',
         'items' => [
+            '자유게시판' => [
+                'url' => '/free',
+                'icon' => 'bi-chat',
+                'shortcut' => 'Ｆ',
+            ],
             '앙지도' => [
                 'url' => '/angmap',
                 'shortcut' => 'Ｍ',
@@ -20,11 +25,6 @@ return [
                 'icon' => 'bi-webcam-fill',
 
                 // Ａ단축키는 알림 링크에 사용됨
-            ],
-            '자유게시판' => [
-                'url' => '/free',
-                'icon' => 'bi-chat',
-                'shortcut' => 'Ｆ',
             ],
             '질문과 답변' => [
                 'url' => '/qa',
