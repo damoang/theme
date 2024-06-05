@@ -54,12 +54,12 @@ return [
                 'icon' => 'bi-cash-coin',
                 'shortcut' => 'Ｅ',
             ],
-            '직접홍보 🌻' => [
+            '직접홍보🌻' => [
                 'url' => '/promotion',
                 // 'icon' => 'bi-cart-plus-fill',
                 'shortcut' => 'Ｗ',
             ],
-            '삐앙삐앙 🚨' => [
+            '삐앙삐앙🚨' => [
                 'url' => '/angreport',
                 'shortcut' => 'Ｘ',
                 'icon' => 'bi-webcam-fill',
