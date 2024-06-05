@@ -12,6 +12,12 @@ return [
                 'icon' => 'bi-chat',
                 'shortcut' => 'Ｆ',
             ],
+            '질문과 답변' => [
+                'url' => '/qa',
+                // 'icon' => 'bi-question-circle',
+                'shortcut' => 'Ｑ',
+                'icon' => 'bi-question-circle',
+            ],
             '앙지도' => [
                 'url' => '/angmap',
                 'shortcut' => 'Ｍ',
@@ -25,12 +31,6 @@ return [
                 'icon' => 'bi-webcam-fill',
 
                 // Ａ단축키는 알림 링크에 사용됨
-            ],
-            '질문과 답변' => [
-                'url' => '/qa',
-                // 'icon' => 'bi-question-circle',
-                'shortcut' => 'Ｑ',
-                'icon' => 'bi-question-circle',
             ],
             '직접홍보 🌻' => [
                 'url' => '/promotion',
