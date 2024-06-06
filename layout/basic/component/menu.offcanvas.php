@@ -86,7 +86,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
                                     <?= ($hasSub) ? 'role="button" data-bs-toggle="collapse" data-bs-target="#' . $menuToggleId . '" aria-expanded="false" aria-controls="' . $menuToggleId . '"' : '' ?>
                                 >
                                     <span class="d-flex align-items-center gap-2 nav-link-title">
-                                        <i class="<?= $menuItem['icon'] ?> nav-icon"></i>
+<!--                                        <i class="--><?php //= $menuItem['icon'] ?><!-- nav-icon"></i>-->
                                         <?php if ($menuItem['shortcut']) { ?>
                                             <span class="badge p-1 text-bg-secondary"><?= $menuItem['shortcut'] ?></span>
                                         <?php } ?>
@@ -111,7 +111,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
                     <div class="nav-item da-menu--device-mode">
                         <a class="nav-link" href="<?php echo get_device_change_url() ?>" data-placement="left">
-                            <i class="<?php echo (G5_IS_MOBILE) ? 'bi-pc-display' : 'bi-tablet'; ?> nav-icon"></i>
+<!--                            <i class="--><?php //echo (G5_IS_MOBILE) ? 'bi-pc-display' : 'bi-tablet'; ?><!-- nav-icon"></i>-->
                             <span class="nav-link-title"><?php echo (G5_IS_MOBILE) ? 'PC' : '모바일'; ?> 버전</span>
                         </a>
                     </div>

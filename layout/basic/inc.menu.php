@@ -5,36 +5,18 @@
 
 return [
     [
-        'title' => ($member['mb_level'] >= 5) ?'Nerv' : "",
-        'items' => 	($member['mb_level'] >= 5) ? [
-            'FAQ' => [
-                'url' => G5_BBS_URL . '/group.php?gr_id=nerv',
-                'icon' => 'bi-question-circle',
-            ],
-            '회의록' => [
-                'url' => '/meet',
-                'icon' => 'bi-pencil',
-            ],
-            'Document' => [
-                'url' =>  '/nerv',
-                'icon' => 'bi-search',
-            ],
-            'notion' => [
-                'url' => 'https://www.notion.so/jphan32/NERV-TF-b2155d6027fa47978f5657ea758900ec',
-                'icon' => 'bi-search',
-            ],
-        ] :  [
-
-        ],
-    ],
-    [
-        'title' => 'DAMOANG',
+        'title' => '다모앙',
         'items' => [
-            '앙상불' => [
-                'url' => '/event',
-                'icon' => 'bi-person-heart',
-                'shortcut' => 'Ａ',
-                // Ａ단축키는 알림 링크에 사용됨
+            '자유게시판' => [
+                'url' => '/free',
+                'icon' => 'bi-chat',
+                'shortcut' => 'Ｆ',
+            ],
+            '질문과 답변' => [
+                'url' => '/qa',
+                // 'icon' => 'bi-question-circle',
+                'shortcut' => 'Ｑ',
+                'icon' => 'bi-question-circle',
             ],
             '앙지도' => [
                 'url' => '/angmap',
@@ -43,62 +25,58 @@ return [
                 // bi-star-fill
                 // Ａ단축키는 알림 링크에 사용됨
             ],
-            '삐앙삐앙' => [
+            '삐앙삐앙 🚨' => [
                 'url' => '/angreport',
                 'shortcut' => 'Ｘ',
-                    'icon' => 'bi-webcam-fill',
+                'icon' => 'bi-webcam-fill',
 
                 // Ａ단축키는 알림 링크에 사용됨
             ],
-            '자유게시판' => [
-                'url' => '/free',
-                'icon' => 'bi-chat',
-                'shortcut' => 'Ｆ',
-            ],
-
-            '질문과 답변' => [
-                'url' => '/qa',
-                // 'icon' => 'bi-question-circle',
-                'shortcut' => 'Ｑ',
-                'icon' => 'bi-question-circle',
-            ],
-            '새소식' => [
-                'url' => '/new',
-                // 'icon' => 'bi-postcard-heart',
-                'shortcut' => 'Ｎ',
-            ],
-            '사용기' => [
-                'url' => '/tutorial',
-                'shortcut' => 'Ｔ',
-            ],
-            '강좌/팁' => [
-                'url' => '/lecture',
-                'shortcut' => 'Ｌ',
-            ],
-            '직접홍보' => [
+            '직접홍보 🌻' => [
                 'url' => '/promotion',
                 // 'icon' => 'bi-cart-plus-fill',
                 'shortcut' => 'Ｗ',
             ],
-            '자료실' => [
-                'url' => '/pds',
-                'shortcut' => 'Ｐ',
+            '새소식' => [
+                'url' => '/new',
+                'icon' => 'bi-newspaper',
+                'shortcut' => 'Ｎ',
             ],
-            '알뜰구매' => [
-                'url' => '/economy',
-                // 'icon' => 'bi-cart-plus-fill',
-                'shortcut' => 'Ｅ',
+            '사용기' => [
+                'url' => '/tutorial',
+                'icon' => 'bi-vector-pen',
+                'shortcut' => 'Ｔ',
+            ],
+           '강좌/팁' => [
+                'url' => '/lecture',
+                'shortcut' => 'Ｌ',
             ],
             '갤러리' => [
                 'url' => '/gallery',
-                // 'icon' => 'bi-images',
+                'icon' => 'bi-images',
                 'shortcut' => 'Ｇ',
             ],
-            '레퍼럴' => [
+            '자료실' => [
+                'url' => '/pds',
+                'icon' => 'bi-person-heart',
+                'shortcut' => 'P',
+            ],
+            '알뜰구매' => [
+                'url' => '/economy',
+                'icon' => 'bi-cash-coin',
+                'shortcut' => 'Ｅ',
+            ],
+            '수익링크 게시판' => [
                 'url' => '/referral',
                 // 'icon' => 'bi-cart-plus-fill',
                 'shortcut' => 'Ｏ',
             ],
+            '앙상불-앙님들의 상상 공간' => [
+                'url' => '/event',
+                // 'icon' => 'bi-cart-plus-fill',
+                'shortcut' => 'A',
+            ],
+
         ]
     ],
     [
@@ -107,6 +85,7 @@ return [
             '소모임' => [
                 'url' => G5_BBS_URL . '/group.php?gr_id=group',
                 'page_id' => G5_BBS_DIR . '-group-group',
+                'icon' => 'bi-cart-plus-fill',
                 'shortcut' => 'Ｓ',
                 'items' => [
                     '모아보기' => G5_BBS_URL . '/group.php?gr_id=group',
@@ -168,7 +147,7 @@ return [
                     '축구당' => '/soccer',
                     '캠핑간당' => '/camping',
                     '콘솔한당' => '/console',
-                    '클다방' => '/coffee',
+                    '다바앙' => '/coffee',
                     '키보드당' => '/keyboard',
                     '탁구당' => '/tabletennis',
                     '패스오브엑자일당' => '/pathofexile',
@@ -182,48 +161,35 @@ return [
         ],
     ],
     [
-        'title' => 'GOVERNANCE',
+        'title' => '운영게시판 (통폐합중)',
+    
         'items' => [
             '공지사항' => [
                 'url' => '/notice',
-                'icon' => 'bi-lightbulb-fill',
-                'shortcut' => 'Ｋ',
+                'shortcut' => 'K',
+                'icon' => 'bi-geo-alt-fill',
             ],
-            '릴리즈 노트' => [
-                'url' => '/release',
-                // 'icon' => 'bi-bell',
+            '운영게시판' => [
+                'url' => G5_BBS_URL . '/group.php?gr_id=admin',
+                'page_id' => G5_BBS_DIR . '-group-group',
+                'icon' => 'bi-cart-plus-fill',
                 'shortcut' => '·',
-
-            ],
-            '유지관리' => [
-                'url' => '/bug',
-                // 'icon' => 'bi-tools',
-                'shortcut' => 'Ｂ',
-            ],
-            '광고앙' => [
-                'url' => get_pretty_url('content', 'advertiser'),
-                'icon' => 'bi-badge-ad',
-                'shortcut' => '·',
-                
-            ],
-            '거버넌스' => [
-                'url' => '/governance',
-                'shortcut' => 'Ｖ',
-            ],
-            '진실의 방' => [
-                'url' => '/truthroom',
-                'shortcut' => 'Ｊ',
-            ],
-            '레벨강등 열람' => [
-                'url' => '/disciplinelog',
-                'shortcut' => 'Ｙ',
-                'icon' => 'bi-person-fill-dash',
+                'items' => [
+                    '알림사앙 🆕' => '/notice',
+                    '릴리즈 노트' => '/release',
+                    '유지관리' => '/bug',
+                    '광고앙' => get_pretty_url('content', 'advertiser'),
+                    '거버넌스' => '/governance',
+                    '진실의 방' => '/truthroom',
+                    '광고앙돼앙' => '/nope',
+                    '레벨강등 열람' => '/disciplinelog',
+                ],
             ],
         ],
     ],
     [
-        'title' => 'Miscellaneous',
-        'items' => 	($member['mb_level'] >= 2) ? [
+        'title' => '기타',
+        'items' => ($member['mb_level'] >= 2) ? [
             'FAQ' => [
                 'url' => G5_BBS_URL . '/faq.php',
                 'page_id' => G5_BBS_DIR . '-page-faq',
@@ -234,17 +200,17 @@ return [
                 'page_id' => G5_BBS_DIR . '-page-new',
                 'icon' => 'bi-pencil',
             ],
-            // '태그모음' => [
-            //     'url' => G5_BBS_URL . '/tag.php',
-            //     'page_id' => G5_BBS_DIR . '-page-tag',
-            //     'icon' => 'bi-tags',
-            // ],
+            '태그모음' => [
+                'url' => G5_BBS_URL . '/tag.php',
+                'page_id' => G5_BBS_DIR . '-page-tag',
+                'icon' => 'bi-tags',
+            ],
             '게시물검색' => [
                 'url' => G5_BBS_URL . '/search.php',
                 'page_id' => G5_BBS_DIR . '-page-search',
                 'icon' => 'bi-search',
             ],
-        ] :  [
+        ] : [
             'FAQ' => [
                 'url' => G5_BBS_URL . '/faq.php',
                 'page_id' => G5_BBS_DIR . '-page-faq',
@@ -278,5 +244,4 @@ return [
         ],
     ],
 ];
-
 

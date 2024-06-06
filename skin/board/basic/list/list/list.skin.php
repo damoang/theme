@@ -90,8 +90,14 @@ add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
                 $row['num'] = '<span class="orangered">공지</span>';
                 $row['wr_good'] = '<span class="orangered">공지</span>';
             }
+
+            // 내가 작성한 글 강조하기
+            $writter_bg = "";
+            if(trim($list[$i]['mb_id']) == trim($member['mb_id'])){
+                $writter_bg = "writter-bg";
+            }
         ?>
-            <li class="list-group-item da-link-block <?php echo $li_css; ?>">
+            <li class="list-group-item da-link-block <?php echo $li_css; ?> <?php echo $writter_bg; ?>">
 
                 <div class="d-flex align-items-center gap-1">
                     <?php if($is_good) { ?>
@@ -100,6 +106,8 @@ add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
                             $rcmd_step = "rcmd-box step1";
                             if(strpos($row['wr_good'],'공지') == true) {
                                 $rcmd_step = ""; //공지사항은 추천수 표시하지 않고 "공지" 텍스트 출력
+                            }else if($row['wr_good'] == 0) {
+                                $rcmd_step = "rcmd-box step0";
                             }else if($row['wr_good'] <= 5) {
                                 $rcmd_step = "rcmd-box step1";
                             }else if($row['wr_good'] > 5 && $row['wr_good'] <=10) {
@@ -131,7 +139,19 @@ add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
                     <?php } ?>
                     <div class="flex-grow-1 overflow-hidden">
                         <div class="d-flex flex-column flex-md-row align-items-md-center gap-2">
-                            <div class="d-inline-flex flex-fill overflow-hidden">
+                            <div class="d-inline-flex flex-fill overflow-hidden align-items-center">
+                                <!-- 추천 수 (모바일) -->
+                                <?php if($is_good && $row['wr_good'] > 0) { ?>
+                                    <div class="wr-num da-rcmd rcmd-mb text-nowrap d-md-none me-2 d-none">
+                                        <div class="<?php echo $rcmd_step ?> w-auto">
+                                        <?php if(!strpos($row['wr_good'], '공지')) { ?>
+                                            <i class="bi bi-hand-thumbs-up" style="font-size:.7rem"></i>
+                                        <?php } ?>
+                                        <?php echo $row['wr_good'] ?>
+                                        </div>
+                                        <span class="visually-hidden">추천</span>
+                                    </div>
+                                <?php } ?>
                                 <?php
                                 // 회원만 보기
                                 echo $row['da_member_only'] ?? '';
@@ -164,22 +184,28 @@ add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
                                     <span class="float-end"><?= $row['da_member_memo'] ?></span>
                                 <?php } ?>
                             </div>
-                            <div class="">
+                            <div class="da-list-meta">
                                 <div class="d-flex gap-2">
-                                    <div class="order-1 wr-name">
+                                    <div class="wr-name ms-auto order-last order-md-1">
                                         <?php
                                             $wr_name = ($row['mb_id']) ? str_replace('sv_member', 'sv_member text-truncate d-block', $row['name']) : str_replace('sv_guest', 'sv_guest text-truncate d-block', $row['name']);
                                             echo na_name_photo($row['mb_id'], $wr_name);
                                         ?>
                                     </div>
-                                    <div class="wr-date ms-auto text-nowrap order-last order-md-2">
-                                        <?php echo na_date($row['wr_datetime'], 'orangered', 'H:i', 'm.d', 'Y.m.d') ?>
+                                    <div class="wr-date text-nowrap order-5 order-md-2">
+                                        <i class="bi bi-clock d-inline-block d-md-none"></i>
+                                        <?php echo na_date($row['wr_datetime'], 'orangered da-list-date', 'H:i', 'm.d', 'Y.m.d') ?>
                                         <span class="visually-hidden">등록</span>
                                     </div>
-                                    <?php if($is_good) { ?>
-                                        <div class="wr-num text-nowrap order-3 rcmd-mb">
-                                            <i class="bi bi-hand-thumbs-up d-inline-block d-md-none"></i>
+                                    <!-- 추천 수 (모바일) -->
+                                    <?php if($is_good && $row['wr_good'] > 0) { ?>
+                                        <div class="wr-num da-rcmd rcmd-mb text-nowrap d-md-none">
+                                            <div class="<?php echo $rcmd_step ?> w-auto">
+                                            <?php if(!strpos($row['wr_good'], '공지')) { ?>
+                                                <i class="bi bi-hand-thumbs-up" style="font-size:.7rem"></i>
+                                            <?php } ?>
                                             <?php echo $row['wr_good'] ?>
+                                            </div>
                                             <span class="visually-hidden">추천</span>
                                         </div>
                                     <?php } ?>
@@ -187,6 +213,11 @@ add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
                                         <i class="bi bi-eye d-inline-block d-md-none"></i>
                                         <?php echo $row['wr_hit'] ?>
                                         <span class="visually-hidden">조회</span>
+                                    </div>
+                                    <div class="wr-num text-nowrap order-2 d-md-none d-none da-list-meta--comments">
+                                        <i class="bi bi-chat-dots d-inline-block d-md-none"></i>
+                                        <?php echo $row['wr_comment'] ?>
+                                        <span class="visually-hidden">댓글</span>
                                     </div>
                                 </div>
                             </div>

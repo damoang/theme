@@ -46,7 +46,7 @@ $rows_cnt = count($rows);
         <li class="list-group-item">
             <div class="d-flex align-items-center">
                 <div class="pe-3">
-                    <img src="<?php echo na_member_photo($rows[$i]['mb_id']); ?>" class="rounded-circle" style="max-width:50px;" onerror="this.onerror=null; this.src='<?php echo G5_IMG_URL . '/no_profile.gif' ?>';">
+                    <img src="<?php echo na_member_photo($rows[$i]['mb_id']); ?>" class="rounded-circle" style="max-width:50px;">
                 </div>
                 <div class="flex-grow-1">
                     <?php echo $rows[$i]['num'] ?>. <?php echo $rows[$i]['name'] ?>
