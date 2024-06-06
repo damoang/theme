@@ -294,7 +294,7 @@ add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css">
         }
         ?>
         <div class="pt-5 pb-4 text-center">
-            <div id="bo_v_act" class="btn-group" role="group">
+            <div id="bo_v_act" class="btn-group btn-group-sm" role="group">
                 <?php if ($board['bo_use_good']) { ?>
                     <button type="button"
                             onclick="na_good('<?php echo $bo_table ?>', '<?php echo $wr_id ?>', 'good', 'wr_good');"

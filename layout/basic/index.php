@@ -2,7 +2,7 @@
 if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 // 현재 날짜와 시간을 'Y-m-d H:i:s' 형식으로 지정
 $dt = new DateTime();
-$formatted_dt = $dt->format('Y-m-d H:i:s');
+$formatted_dt = $dt->format('Y-m-d');
     
 ?>
 
@@ -70,13 +70,11 @@ $formatted_dt = $dt->format('Y-m-d H:i:s');
                     </div>
                     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6922133409882969"
                          crossorigin="anonymous"></script>
-                    <!-- 수평형 -->
+                    <!-- 게시풀 하단 -->
                     <ins class="adsbygoogle"
-                         style="display:block"
+                         style="display:inline-block;width:860px;height:100px"
                          data-ad-client="ca-pub-6922133409882969"
-                         data-ad-slot="5448923097"
-                         data-ad-format="auto"
-                         data-full-width-responsive="true"></ins>
+                         data-ad-slot="3013497299"></ins>
                     <script>
                          (adsbygoogle = window.adsbygoogle || []).push({});
                     </script>
@@ -201,13 +199,11 @@ $formatted_dt = $dt->format('Y-m-d H:i:s');
 
                     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6922133409882969"
                          crossorigin="anonymous"></script>
-                    <!-- 수평형 -->
+                    <!-- 게시풀 하단 -->
                     <ins class="adsbygoogle"
-                         style="display:block"
+                         style="display:inline-block;width:860px;height:100px"
                          data-ad-client="ca-pub-6922133409882969"
-                         data-ad-slot="5448923097"
-                         data-ad-format="auto"
-                         data-full-width-responsive="true"></ins>
+                         data-ad-slot="3013497299"></ins>
                     <script>
                          (adsbygoogle = window.adsbygoogle || []).push({});
                     </script>

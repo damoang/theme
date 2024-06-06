@@ -83,6 +83,11 @@ if (!defined('_GNUBOARD_')) {
                 <img src="https://damoang.net/data/file/banners/5e66ab3f5657fa5d5b92b43e91145d8a_E9Aam2I3_65702721937a30691bf9d8d43bb1f9ac18889b42.gif" alt="일딩오" class="mw-100">
             </a>
         </li>
+        <li class="list-group-item border-0">
+          <a href="https://smartstore.naver.com/dingreen" data-dd-action-name="Boards Ads Banner">
+               <img src="https://damoang.net/data/file/banners/015f0b5e4ca48f7d44e78ebd6f62e722_eIEiASdk_ae77791f0b971a127e0c4ea6f9bbba4692a8de02.gif" alt="딩그린" class="mw-100">
+            </a>
+        </li>
     </ul>
 </section>
 
@@ -125,14 +130,20 @@ if (!defined('_GNUBOARD_')) {
                 <img src="https://damoang.net/data/file/banners/3caac7cdc7671dc247c1198f5a901c2c_WhdUsIZi_d7df65cb104838cf08fbf90ba21e40e66b370103.gif" alt="스테디 커피" class="mw-100">
             </a>
         </li>
-         <li class="col list-group-item border-0">
-            8번째 사이드바 광고주님 자리
-        </li>  
         <li class="col list-group-item border-0">
-            9번째 사이드바 광고주님 자리
+            <a href="https://qshop.ai/?utm_source=damoang&utm_medium=display" data-dd-action-name="Sidebar Ads Banner">
+                <img src="https://damoang.net/data/editor/669a2-66608a27cc73e-932d5bc69669f8323ae9c0a5b271e21a0723ea2b.jpg" alt="블랙독" class="mw-100">
+            </a>
         </li>
         <li class="col list-group-item border-0">
-            10번째 사이드바 광고주님 자리
+            <a href="https://blackdogkorea.com/index.html" data-dd-action-name="Sidebar Ads Banner">
+                <img src="https://damoang.net/data/file/banners/669a2fdc5df0a62a80ae0c25089c78d8_Ar6xPYEk_b156ab7519de667d6ec93cd676371edd3fd06483.gif" alt="스퀘어스" class="mw-100">
+            </a>
+        </li>
+        <li class="col list-group-item border-0">
+            <a href="#" data-dd-action-name="Sidebar Ads Banner">
+                <img src="https://damoang.net/data/file/main/015f0b5e4ca48f7d44e78ebd6f62e722_okJwxveB_c6b9ed39b9396558318ccdda410aed0e2a1cfdbd.png" alt="스테디 커피" class="mw-100">
+            </a>
         </li>
     </ul>
 </section>
@@ -141,7 +152,7 @@ if (!defined('_GNUBOARD_')) {
 <section class="container my-5">
     <h3 class="border-bottom mb-4 pb-2">
         직접홍보 게시판
-        <small class="float-end"><a class="btn btn-sm btn-bd-light rounded-2" href="/promotion">바로가기</a></small>
+        <small class="float-end"><a class="btn btn-sm btn-bd-light rounded-2" href="/promotion">🌻바로가기</a></small>
     </h3>
 
     <ul class="text-center row row-cols-2 row-cols-md-3 list-group list-group-horizontal list-group-flush" style="font-size: 0.875rem;">
@@ -176,9 +187,11 @@ if (!defined('_GNUBOARD_')) {
 <section class="container mb-5">
 
    <h3>다모앙에 도움을 주셨던 이전 광고주님</h3>
-    <li class="list-group-item border-0">
-            <a href="https://smartstore.naver.com/dingreen" data-dd-action-name="Boards Ads Banner">
-                <img src="https://damoang.net/data/file/banners/015f0b5e4ca48f7d44e78ebd6f62e722_eIEiASdk_ae77791f0b971a127e0c4ea6f9bbba4692a8de02.gif" alt="딩그린" class="mw-100">
-            </a>
+        <ul class="text-center row row-cols-2 row-cols-md-3 list-group list-group-horizontal list-group-flush" style="font-size: 0.875rem;">
+
+<!--                     <li class="col list-group-item border-0">딩그린(베트남) 긴배너</li> -->
+
         </li>
+        
+    
 </section>

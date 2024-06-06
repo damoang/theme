@@ -165,7 +165,7 @@ var na_url = "<?php echo NA_URL ?>";
 <script src="<?php echo G5_THEME_URL ?>/js/clipboard.min.js"></script>
 <script src="<?php echo G5_THEME_URL ?>/js/nariya.js?ver=2404281"></script>
 <script src="<?php echo LAYOUT_URL ?>/js/darkmode.js?ver=<?php echo G5_JS_VER; ?>" data-cfasync="false"></script>
-<script src="<?php echo LAYOUT_URL ?>/js/customui.js?ver=240604<?php echo G5_JS_VER; ?>" data-cfasync="false"></script>
+<script src="<?php echo LAYOUT_URL ?>/js/customui.js?ver=240605<?php echo G5_JS_VER; ?>" data-cfasync="false"></script>
 <script src="<?php echo LAYOUT_URL ?>/js/custom_features.js?ver=<?php echo G5_JS_VER; ?>" data-cfasync="false">
 <?php
 // 레이아웃 스크립트

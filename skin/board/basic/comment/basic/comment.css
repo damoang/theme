@@ -11,3 +11,15 @@
 #bo_vc_sns input {margin:0 5px 0 0}
 #bo_vc_sns img {margin-top:-5px !important;}
 #bo_vc_opt, #bo_vc_sns {height:30px; line-height:30px;}
+
+[data-bs-theme=light] {
+  .bg-comment-writer {
+    background-color: rgba(239, 191, 150, 0.3) !important;
+  }
+}
+
+[data-bs-theme=dark] {
+  .bg-comment-writer {
+    background-color: rgba(1, 5, 86, 0.25) !important;
+  }
+}
