@@ -7,7 +7,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
 // add_stylesheet('css 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
 if(!$is_ajax)
-    add_stylesheet('<link rel="stylesheet" href="'.$comment_skin_url.'/comment.css">', 0);
+    add_stylesheet('<link rel="stylesheet" href="' . $comment_skin_url . '/comment.css?CACHEBUST">', 0);
 ?>
 
 <?php if(!$is_ajax) { // 1번만 출력 ?>
