@@ -40,7 +40,7 @@ include_once ($member_skin_path.'/memo_tab.skin.php');
                     <div class="clearfix small">
                         <?php echo na_name_photo($list[$i]['mb_id'], $list[$i]['name']) ?>
                         <div class="float-end">
-                            <?php echo na_date($list[$i]['send_datetime'], 'orangered', 'H:i', 'm.d H:i', 'Y.m.d H:i'); ?>
+                            <?php echo na_date($list[$i]['send_datetime'], 'orangered', 'full'); ?>
                         </div>
                     </div>
                 </div>

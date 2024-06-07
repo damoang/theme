@@ -117,9 +117,9 @@ document.getElementById("view").value = "<?php echo $view ?>";
                         <a href="<?php echo get_pretty_url($list[$i]['bo_table']); ?>">
                             <i class="bi bi-dot text-body-tertiary"></i><?php echo $bo_subject ?>
                         </a>
-                        <div class="float-end">
+                        <div class="float-end" title="<?= get_text($list[$i]['wr_datetime']) ?>">
                             <span class="visually-hidden">등록일</span>
-                            <?php echo na_date($list[$i]['wr_datetime'], 'orangered', 'H:i', 'm.d', 'Y.m.d') ?>
+                            <?php echo na_date($list[$i]['wr_datetime'], 'orangered') ?>
                         </div>
                     </div>
                 </div>

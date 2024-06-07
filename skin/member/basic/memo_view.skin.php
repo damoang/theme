@@ -27,7 +27,7 @@ include_once ($member_skin_path.'/memo_tab.skin.php');
             </div>
             <div>
                 <span class="visually-hidden">작성일</span>
-                <?php echo na_date($memo['me_send_datetime'], 'orangered', 'H:i', 'm.d H:i', 'Y.m.d H:i'); ?>
+                <?php echo na_date($memo['me_send_datetime'], 'orangered', 'full'); ?>
             </div>
         </div>
     </li>

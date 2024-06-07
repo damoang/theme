@@ -30,7 +30,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$qa_skin_url.'/style.css">', 0);
             </div>
             <div>
                 <span class="visually-hidden">작성일</span>
-                <?php echo na_date($view['qa_datetime'], 'orangered', 'H:i', 'm.d H:i', 'Y.m.d H:i'); ?>
+                <?php echo na_date($view['qa_datetime'], 'orangered', 'full'); ?>
             </div>
         </div>
 

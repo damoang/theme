@@ -88,8 +88,8 @@ if (!defined('_GNUBOARD_')) {
                             <i class="bi bi-person-circle"></i>
                             <?php echo $row['name'] ?>
 
-                            <span class="float-end">
-                                <?php echo na_date($row['wr_datetime'], 'orangered', 'H:i', 'm.d', 'Y.m.d') ?>
+                            <span class="float-end" title="<?= get_text($row['wr_datetime']) ?>">
+                                <?php echo na_date($row['wr_datetime'], 'orangered') ?>
                             </span>
                         </p>
                     </div>
@@ -151,8 +151,8 @@ if (!defined('_GNUBOARD_')) {
                             <i class="bi bi-person-circle"></i>
                             <?php echo $row['name'] ?>
 
-                            <span class="float-end">
-                                <?php echo na_date($row['wr_datetime'], 'orangered', 'H:i', 'm.d', 'Y.m.d') ?>
+                            <span class="float-end" title="<?= get_text($row['wr_datetime']) ?>">
+                                <?php echo na_date($row['wr_datetime'], 'orangered') ?>
                             </span>
                         </p>
 

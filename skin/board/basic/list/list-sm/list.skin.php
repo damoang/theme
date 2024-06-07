@@ -148,7 +148,7 @@ add_stylesheet('<link rel="stylesheet" href="' . $list_skin_url . '/list.css?CAC
                                         ?>
                                     </div>
                                     <div class="wr-date ms-auto text-nowrap order-last order-md-2">
-                                        <?php echo na_date($row['wr_datetime'], 'orangered', 'H:i', 'm.d', 'Y.m.d') ?>
+                                        <?php echo na_date($row['wr_datetime'], 'orangered') ?>
                                         <span class="visually-hidden">등록</span>
                                     </div>
                                     <?php if($is_good) { ?>

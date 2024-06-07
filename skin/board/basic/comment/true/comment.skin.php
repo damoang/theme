@@ -112,9 +112,9 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
                         <div>
                             <?php include(G5_SNS_PATH.'/view_comment_list.sns.skin.php'); // SNS ?>
                         </div>
-                        <div class="ms-auto">
+                        <div class="ms-auto" title="<?= get_text($list[$i]['wr_datetime']) ?>">
                             <span class="visually-hidden">작성일</span>
-                            <?php echo na_date($list[$i]['wr_datetime'], 'orangered', 'H:i', 'm.d H:i', 'Y.m.d H:i'); ?>
+                            <?php echo na_date($list[$i]['wr_datetime'], 'orangered'); ?>
                         </div>
                     </div>
                 </header>

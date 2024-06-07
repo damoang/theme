@@ -10,7 +10,7 @@ if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
         <div class="d-flex align-items-center gap-2 px-3 small">
             <div>
                 <i class="bi bi-alarm"></i>
-                <?php echo na_date($answer['qa_datetime'], 'orangered', 'H:i', 'm.d H:i', 'Y.m.d H:i'); ?>
+                <?php echo na_date($answer['qa_datetime'], 'orangered', 'full'); ?>
             </div>
             <div class="ms-auto">
                 <?php if($answer_update_href) { ?>
