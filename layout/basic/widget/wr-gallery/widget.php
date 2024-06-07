@@ -95,8 +95,8 @@ if($is_notice) {
                         <?php echo $wr_icon ?>
                     </div>
                 <?php } ?>
-                <div class="ms-auto ps-1 small text-body-tertiary">
-                    <?php echo na_date($row['wr_datetime'], 'orangered', 'H:i', 'm.d', 'm.d') ?>
+                <div class="ms-auto ps-1 small text-body-tertiary text-nowrap">
+                    <?php echo na_date($row['wr_datetime'], 'orangered') ?>
                 </div>
             </div>
         </li>
@@ -234,8 +234,8 @@ $grid = (isset($wset['grid']) && $wset['grid']) ? $wset['grid'] : 'g-3 row-cols-
                                         <span class="visually-hidden">추천</span>
                                     </div>
                                 <?php } ?>
-                                <div class="ms-auto">
-                                    <?php echo na_date($row['wr_datetime'], 'orangered', 'H:i', 'm.d', 'Y.m.d') ?>
+                                <div class="ms-auto text-nowrap">
+                                    <?php echo na_date($row['wr_datetime'], 'orangered') ?>
                                     <span class="visually-hidden">등록</span>
                                 </div>
                             </div>

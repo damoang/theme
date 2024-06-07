@@ -170,9 +170,9 @@ function fsearch_submit(f) {
                         <div class="form-text clearfix">
                             <span class="visually-hidden">등록자</span>
                             <?php echo na_name_photo($list[$idx][$i]['mb_id'], $list[$idx][$i]['name']); ?>
-                            <div class="float-end">
+                            <div class="float-end" title="<?= get_text($list[$idx][$i]['wr_datetime']) ?>">
                                 <span class="visually-hidden">등록일</span>
-                                <?php echo na_date($list[$idx][$i]['wr_datetime'], 'orangered', 'H:i', 'm.d', 'Y.m.d') ?>
+                                <?php echo na_date($list[$idx][$i]['wr_datetime'], 'orangered') ?>
                             </div>
                         </div>
                     </div>

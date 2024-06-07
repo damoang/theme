@@ -182,7 +182,7 @@ add_stylesheet('<link rel="stylesheet" href="' . $list_skin_url . '/list.css?CAC
                                     </div>
                                     <div class="wr-date text-nowrap order-5 order-md-2">
                                         <i class="bi bi-clock d-inline-block d-md-none"></i>
-                                        <?php echo na_date($row['wr_datetime'], 'orangered da-list-date', 'H:i', 'm.d', 'Y.m.d') ?>
+                                        <?php echo na_date($row['wr_datetime'], 'orangered da-list-date') ?>
                                         <span class="visually-hidden">등록</span>
                                     </div>
                                     <!-- 추천 수 (모바일) -->

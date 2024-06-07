@@ -45,7 +45,7 @@ add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css?C
             </div>
             <div>
                 <span class="visually-hidden">작성일</span>
-                <?php echo na_date($view['wr_datetime'], 'orangered', 'H:i', 'm.d H:i', 'Y.m.d H:i'); ?>
+                <?php echo na_date($view['wr_datetime'], 'orangered', 'long'); ?>
             </div>
         </div>
 
@@ -409,7 +409,7 @@ add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css?C
                                 <div class="na-title">
                                     <div class="float-right text-muted f-sm font-weight-normal ml-2">
                                         <span class="sr-only">등록일</span>
-                                        <?php echo na_date($list[$i]['wr_datetime'], 'orangered', 'H:i', 'm.d', 'Y.m.d') ?>
+                                        <?php echo na_date($list[$i]['wr_datetime'], 'orangered', 'long') ?>
                                     </div>
                                     <div class="na-item">
                                         <a href="<?php echo $list[$i]['href'] ?>" class="na-subject">

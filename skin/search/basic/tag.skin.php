@@ -113,7 +113,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$search_skin_url.'/style.css" med
                         </div>
                         <div class="float-left mr-3">
                             <span class="sr-only">등록일</span>
-                            <?php echo na_date($list[$i]['wr_datetime'], 'orangered', 'H:i', 'm.d', 'Y.m.d') ?>
+                            <?php echo na_date($list[$i]['wr_datetime'], 'orangered') ?>
                         </div>
                         <div class="float-left">
                             <i class="fa fa-eye" aria-hidden="true"></i>
