@@ -34,7 +34,13 @@ if ($is_admin === 'super') {
     $member_only_permit = true;
 }
 ?>
-
+<div class="rolling-noti-container small" id="rolling-noti-container">
+  <div class="fixed-text">
+    <span class="bi bi-bell"></span> 알림
+  </div>
+  <div class="divider">|</div>
+  <div class="rolling-noti" id="rolling-noti"></div>
+</div>
 <section id="bo_w">
 
     <h2 class="fs-4 mb-0 pb-2 px-3">
