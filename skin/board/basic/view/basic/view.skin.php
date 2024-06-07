@@ -18,13 +18,13 @@ add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css?C
 
 <?php echo $config['cf_10']; ?>
 <article id="bo_v" class="mb-4">
-<div class="rolling-noti-container small" id="rolling-noti-container">
-  <div class="fixed-text">
-    <span class="bi bi-bell"></span> 알림
-  </div>
-  <div class="divider">|</div>
-  <div class="rolling-noti" id="rolling-noti"></div>
-</div>
+    <div class="rolling-noti-container small" id="rolling-noti-container">
+      <div class="fixed-text">
+        <span class="bi bi-bell"></span> 알림
+      </div>
+      <div class="divider">|</div>
+      <div class="rolling-noti" id="rolling-noti"></div>
+    </div>
     <header>
         <h1 id="bo_v_title" class="px-3 pb-2 mb-0 lh-base fs-5">
             <?php
