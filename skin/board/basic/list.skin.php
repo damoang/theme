@@ -232,7 +232,7 @@ function showRollingNoti(key) {
 
     rollingNoti.appendChild(createRollingNotiElement(messages[index], false));
 
-    setInterval(updateRollingNoti, 3000);
+    setInterval(updateRollingNoti, 4000);
   })
   .catch(error => {
     console.error('Error:', error);
