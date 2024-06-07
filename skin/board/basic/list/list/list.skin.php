@@ -5,13 +5,6 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 add_stylesheet('<link rel="stylesheet" href="' . $list_skin_url . '/list.css?CACHEBUST">', 0);
 ?>
 
-<div class="rolling-noti-container small" id="rolling-noti-container">
-  <div class="fixed-text">
-    <span class="bi bi-bell"></span> 알림
-  </div>
-  <div class="divider">|</div>
-  <div class="rolling-noti" id="rolling-noti"></div>
-</div>
 <section id="bo_list" class="line-top mb-3">
     
     <ul class="list-group list-group-flush border-bottom">
@@ -231,71 +224,3 @@ add_stylesheet('<link rel="stylesheet" href="' . $list_skin_url . '/list.css?CAC
     </ul>
 </section>
 
-<script>
-// 롤링 공지 호출 함수
-function showRollingNoti(key) {
-  const rollingNotiContainer = document.getElementById('rolling-noti-container');
-  const rollingNoti = document.getElementById('rolling-noti');
-
-  rollingNotiContainer.style.display = 'none';
-
-  Promise.all([
-    fetch('theme/damoang/skin/board/basic/getRollingMessages.php?group=all_board').then(response => response.json()),
-    fetch(`theme/damoang/skin/board/basic/getRollingMessages.php?group=${key}`).then(response => response.json())
-  ])
-  .then(([allBoardData, keyData]) => {
-    const allBoardMessages = (allBoardData.data || []).filter(message => message.charAt(0) !== '#');
-    const keyMessages = (keyData.data || []).filter(message => message.charAt(0) !== '#');
-    const messages = allBoardMessages.concat(keyMessages);
-
-    if (messages.length === 0) {
-      rollingNotiContainer.style.display = 'none';
-      return;
-    }
-
-    rollingNotiContainer.style.display = 'flex';
-
-    let index = 0;
-
-    function createRollingNotiElement(text, isNext) {
-      const element = document.createElement('div');
-      element.innerHTML = text;
-      if (isNext) {
-        element.style.transform = 'translateY(100%)';
-      }
-      return element;
-    }
-
-    function updateRollingNoti() {
-      const currentElement = rollingNoti.firstChild;
-      const nextIndex = (index + 1) % messages.length;
-      const nextElement = createRollingNotiElement(messages[nextIndex], true);
-
-      rollingNoti.appendChild(nextElement);
-
-      nextElement.offsetHeight;
-
-      nextElement.style.transform = 'translateY(0)';
-      if (currentElement) {
-        currentElement.style.transform = 'translateY(-100%)';
-      }
-
-      setTimeout(() => {
-        if (currentElement) {
-          rollingNoti.removeChild(currentElement);
-        }
-        index = nextIndex;
-      }, 1000);
-    }
-
-    rollingNoti.appendChild(createRollingNotiElement(messages[index], false));
-
-    setInterval(updateRollingNoti, 4000);
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
-}
-
-showRollingNoti('<?php echo $bo_table ?>');
-</script>
