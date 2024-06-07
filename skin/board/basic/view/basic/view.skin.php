@@ -653,3 +653,71 @@ add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css?C
         <?php } ?>
     });
 </script>
+<script>
+// 롤링 공지 호출 함수
+function showRollingNoti(key) {
+  const rollingNotiContainer = document.getElementById('rolling-noti-container');
+  const rollingNoti = document.getElementById('rolling-noti');
+
+  rollingNotiContainer.style.display = 'none';
+
+  Promise.all([
+    fetch('theme/damoang/skin/board/basic/getRollingMessages.php?group=all_board').then(response => response.json()),
+    fetch(`theme/damoang/skin/board/basic/getRollingMessages.php?group=${key}`).then(response => response.json())
+  ])
+  .then(([allBoardData, keyData]) => {
+    const allBoardMessages = (allBoardData.data || []).filter(message => message.charAt(0) !== '#');
+    const keyMessages = (keyData.data || []).filter(message => message.charAt(0) !== '#');
+    const messages = allBoardMessages.concat(keyMessages);
+
+    if (messages.length === 0) {
+      rollingNotiContainer.style.display = 'none';
+      return;
+    }
+
+    rollingNotiContainer.style.display = 'flex';
+
+    let index = 0;
+
+    function createRollingNotiElement(text, isNext) {
+      const element = document.createElement('div');
+      element.innerHTML = text;
+      if (isNext) {
+        element.style.transform = 'translateY(100%)';
+      }
+      return element;
+    }
+
+    function updateRollingNoti() {
+      const currentElement = rollingNoti.firstChild;
+      const nextIndex = (index + 1) % messages.length;
+      const nextElement = createRollingNotiElement(messages[nextIndex], true);
+
+      rollingNoti.appendChild(nextElement);
+
+      nextElement.offsetHeight;
+
+      nextElement.style.transform = 'translateY(0)';
+      if (currentElement) {
+        currentElement.style.transform = 'translateY(-100%)';
+      }
+
+      setTimeout(() => {
+        if (currentElement) {
+          rollingNoti.removeChild(currentElement);
+        }
+        index = nextIndex;
+      }, 1000);
+    }
+
+    rollingNoti.appendChild(createRollingNotiElement(messages[index], false));
+
+    setInterval(updateRollingNoti, 4000);
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+}
+
+showRollingNoti('<?php echo $bo_table ?>');
+</script>
