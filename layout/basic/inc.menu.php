@@ -140,7 +140,7 @@ return [
                 // 'icon' => 'bi-cart-plus-fill',
                 'shortcut' => 'Ｗ',
             ],
-            '삐앙삐앙🚓' => [
+            '삐앙삐앙🚨' => [
                 'url' => '/angreport',
                 'shortcut' => 'Ｘ',
                 'icon' => 'bi-webcam-fill',
