@@ -154,6 +154,11 @@ return [
 
                 // Ａ단축키는 알림 링크에 사용됨
             ],
+            '수익링크' => [
+                'url' => '/referral',
+                // 'icon' => 'bi-cart-plus-fill',
+                'shortcut' => 'Ｏ',
+            ],
             '공지사항' => [
                 'url' => '/notice',
                 'shortcut' => 'K',
@@ -176,20 +181,15 @@ return [
                     // '레벨강등 열람' => '/disciplinelog',
                 ],
             ],
+            '이벤트 제안' => [
+                'url' => '/event',
+                // 'icon' => 'bi-cart-plus-fill',
+                'shortcut' => 'A',
+            ],
             '다모앙 만들기' => [
                 'url' => '/makeang',
                 'shortcut' => '·',
                 'icon' => 'bi-geo-alt-fill',
-            ],
-            '수익링크 게시판' => [
-                'url' => '/referral',
-                // 'icon' => 'bi-cart-plus-fill',
-                'shortcut' => 'Ｏ',
-            ],
-            '앙상불-앙님들의 상상 공간' => [
-                'url' => '/event',
-                // 'icon' => 'bi-cart-plus-fill',
-                'shortcut' => 'A',
             ],
         ]
     ],
