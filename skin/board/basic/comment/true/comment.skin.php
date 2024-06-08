@@ -8,7 +8,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
 // add_stylesheet('css 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
 if(!$is_ajax)
-    add_stylesheet('<link rel="stylesheet" href="'.$comment_skin_url.'/comment.css">', 0);
+    add_stylesheet('<link rel="stylesheet" href="' . $comment_skin_url . '/comment.css?CACHEBUST">', 0);
 ?>
 
 <?php if(!$is_ajax) { // 1번만 출력 ?>
@@ -112,9 +112,9 @@ var char_max = parseInt(<?php echo $comment_max ?>); // 최대
                         <div>
                             <?php include(G5_SNS_PATH.'/view_comment_list.sns.skin.php'); // SNS ?>
                         </div>
-                        <div class="ms-auto">
+                        <div class="ms-auto" title="<?= get_text($list[$i]['wr_datetime']) ?>">
                             <span class="visually-hidden">작성일</span>
-                            <?php echo na_date($list[$i]['wr_datetime'], 'orangered', 'H:i', 'm.d H:i', 'Y.m.d H:i'); ?>
+                            <?php echo na_date($list[$i]['wr_datetime'], 'orangered'); ?>
                         </div>
                     </div>
                 </header>

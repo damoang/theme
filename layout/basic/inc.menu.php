@@ -140,12 +140,12 @@ return [
                 // 'icon' => 'bi-cart-plus-fill',
                 'shortcut' => 'Ｗ',
             ],
-            '삐앙삐앙🚓' => [
+            '삐앙삐앙🚨' => [
                 'url' => '/angreport',
                 'shortcut' => 'Ｘ',
                 'icon' => 'bi-webcam-fill',
                     'items' => [
-                    '신고게시판' => '/angreport',
+                    // '신고게시판' => '/angreport',
                     '진실의 방' => '/truthroom',
                     '광고앙돼앙' => '/nope',
                     '강등열람' => '/disciplinelog',
@@ -153,6 +153,11 @@ return [
                 ],
 
                 // Ａ단축키는 알림 링크에 사용됨
+            ],
+            '수익링크' => [
+                'url' => '/referral',
+                // 'icon' => 'bi-cart-plus-fill',
+                'shortcut' => 'Ｏ',
             ],
             '공지사항' => [
                 'url' => '/notice',
@@ -170,20 +175,21 @@ return [
                     '유지관리' => '/bug',
                     // '광고앙' => get_pretty_url('content', 'advertiser'),
                     '운영관리' => '/governance',
+                    '디스코드 입당 신청' => '/discord',
                     // '진실의 방' => '/truthroom',
                     // '광고앙돼앙' => '/nope',
                     // '레벨강등 열람' => '/disciplinelog',
                 ],
             ],
-            '수익링크 게시판' => [
-                'url' => '/referral',
-                // 'icon' => 'bi-cart-plus-fill',
-                'shortcut' => 'Ｏ',
-            ],
-            '앙상불-앙님들의 상상 공간' => [
+            '이벤트 제안' => [
                 'url' => '/event',
                 // 'icon' => 'bi-cart-plus-fill',
                 'shortcut' => 'A',
+            ],
+            '다모앙 만들기' => [
+                'url' => '/makeang',
+                'shortcut' => '·',
+                'icon' => 'bi-geo-alt-fill',
             ],
         ]
     ],

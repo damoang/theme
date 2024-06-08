@@ -2,7 +2,7 @@
 if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
 // add_stylesheet('css 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
-add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
+add_stylesheet('<link rel="stylesheet" href="' . $list_skin_url . '/list.css?CACHEBUST">', 0);
 ?>
 
 <section id="bo_list" class="line-top mb-3">
@@ -148,7 +148,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
                                         ?>
                                     </div>
                                     <div class="wr-date ms-auto text-nowrap order-last order-md-2">
-                                        <?php echo na_date($row['wr_datetime'], 'orangered', 'H:i', 'm.d', 'Y.m.d') ?>
+                                        <?php echo na_date($row['wr_datetime'], 'orangered') ?>
                                         <span class="visually-hidden">등록</span>
                                     </div>
                                     <?php if($is_good) { ?>

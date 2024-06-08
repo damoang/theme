@@ -3,7 +3,7 @@
 if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
 
 // add_stylesheet('css 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
-add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css">', 0);
+add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css?CACHEBUST">', 0);
 
 ?>
 
@@ -17,8 +17,14 @@ add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css">
 <?php echo na_widget('damoang-image-banner', 'board-head'); ?>
 
 <?php echo $config['cf_10']; ?>
-
 <article id="bo_v" class="mb-4">
+    <div class="rolling-noti-container small" id="rolling-noti-container">
+      <div class="fixed-text">
+        <span class="bi bi-bell"></span> 알림
+      </div>
+      <div class="divider">|</div>
+      <div class="rolling-noti" id="rolling-noti"></div>
+    </div>
     <header>
         <h1 id="bo_v_title" class="px-3 pb-2 mb-0 lh-base fs-5">
             <?php
@@ -45,7 +51,7 @@ add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css">
             </div>
             <div>
                 <span class="visually-hidden">작성일</span>
-                <?php echo na_date($view['wr_datetime'], 'orangered', 'H:i', 'm.d H:i', 'Y.m.d H:i'); ?>
+                <?php echo na_date($view['wr_datetime'], 'orangered', 'long'); ?>
             </div>
         </div>
 
@@ -409,7 +415,7 @@ add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css">
                                 <div class="na-title">
                                     <div class="float-right text-muted f-sm font-weight-normal ml-2">
                                         <span class="sr-only">등록일</span>
-                                        <?php echo na_date($list[$i]['wr_datetime'], 'orangered', 'H:i', 'm.d', 'Y.m.d') ?>
+                                        <?php echo na_date($list[$i]['wr_datetime'], 'orangered', 'long') ?>
                                     </div>
                                     <div class="na-item">
                                         <a href="<?php echo $list[$i]['href'] ?>" class="na-subject">
@@ -646,4 +652,72 @@ add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css">
         });
         <?php } ?>
     });
+</script>
+<script>
+// 롤링 공지 호출 함수
+function showRollingNoti(key) {
+  const rollingNotiContainer = document.getElementById('rolling-noti-container');
+  const rollingNoti = document.getElementById('rolling-noti');
+
+  rollingNotiContainer.style.display = 'none';
+
+  Promise.all([
+    fetch('theme/damoang/skin/board/basic/getRollingMessages.php?group=all_board').then(response => response.json()),
+    fetch(`theme/damoang/skin/board/basic/getRollingMessages.php?group=${key}`).then(response => response.json())
+  ])
+  .then(([allBoardData, keyData]) => {
+    const allBoardMessages = (allBoardData.data || []).filter(message => message.charAt(0) !== '#');
+    const keyMessages = (keyData.data || []).filter(message => message.charAt(0) !== '#');
+    const messages = allBoardMessages.concat(keyMessages);
+
+    if (messages.length === 0) {
+      rollingNotiContainer.style.display = 'none';
+      return;
+    }
+
+    rollingNotiContainer.style.display = 'flex';
+
+    let index = 0;
+
+    function createRollingNotiElement(text, isNext) {
+      const element = document.createElement('div');
+      element.innerHTML = text;
+      if (isNext) {
+        element.style.transform = 'translateY(100%)';
+      }
+      return element;
+    }
+
+    function updateRollingNoti() {
+      const currentElement = rollingNoti.firstChild;
+      const nextIndex = (index + 1) % messages.length;
+      const nextElement = createRollingNotiElement(messages[nextIndex], true);
+
+      rollingNoti.appendChild(nextElement);
+
+      nextElement.offsetHeight;
+
+      nextElement.style.transform = 'translateY(0)';
+      if (currentElement) {
+        currentElement.style.transform = 'translateY(-100%)';
+      }
+
+      setTimeout(() => {
+        if (currentElement) {
+          rollingNoti.removeChild(currentElement);
+        }
+        index = nextIndex;
+      }, 1000);
+    }
+
+    rollingNoti.appendChild(createRollingNotiElement(messages[index], false));
+
+    setInterval(updateRollingNoti, 4000);
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+}
+
+showRollingNoti('<?php echo $bo_table ?>');
 </script>

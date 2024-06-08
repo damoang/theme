@@ -42,7 +42,7 @@ if ($config['cf_add_meta'])
 <?php
 add_stylesheet('<link rel="stylesheet" href="' . G5_THEME_URL . '/css/' . (G5_IS_MOBILE ? 'mobile' : 'default') . '.css">', 0);
 add_stylesheet('<link rel="stylesheet" href="' . G5_THEME_URL . '/css/nariya.css">', 0);
-add_stylesheet('<link rel="stylesheet" href="' . LAYOUT_URL . '/css/style.css">', 0);
+add_stylesheet('<link rel="stylesheet" href="' . LAYOUT_URL . '/css/style.css?CACHEBUST">', 0);
 add_stylesheet('<link rel="stylesheet" href="' . G5_THEME_URL . '/css/bootstrap-icons.min.css">', 0);
 add_stylesheet('<link rel="stylesheet" href="' . G5_JS_URL . '/font-awesome/css/font-awesome.min.css">', 0);
 $agent = $_SERVER["HTTP_USER_AGENT"];
@@ -157,19 +157,20 @@ var na_url = "<?php echo NA_URL ?>";
 
 //	            window.addEventListener("load", set_ui_custom);
 </script>
-<script src="<?php echo G5_THEME_URL ?>/js/jquery-3.5.1.min.js?ver=<?php echo G5_JS_VER; ?>"></script>
-<script src="https://fastly.jsdelivr.net/npm/sweetalert2@11?ver=<?php echo G5_JS_VER; ?>"></script>
-<script src="<?php echo G5_THEME_URL ?>/js/common.js?ver=<?php echo G5_JS_VER; ?>"></script>
-<script src="<?php echo G5_THEME_URL ?>/js/wrest.js?ver=<?php echo G5_JS_VER; ?>"></script>
-<script src="<?php echo G5_THEME_URL ?>/js/bootstrap.bundle.min.js?ver=<?php echo G5_JS_VER; ?>"></script>
-<script src="<?php echo G5_THEME_URL ?>/js/clipboard.min.js"></script>
-<script src="<?php echo G5_THEME_URL ?>/js/nariya.js?ver=2404281"></script>
-<script src="<?php echo LAYOUT_URL ?>/js/darkmode.js?ver=<?php echo G5_JS_VER; ?>" data-cfasync="false"></script>
-<script src="<?php echo LAYOUT_URL ?>/js/customui.js?ver=240605<?php echo G5_JS_VER; ?>" data-cfasync="false"></script>
-<script src="<?php echo LAYOUT_URL ?>/js/custom_features.js?ver=<?php echo G5_JS_VER; ?>" data-cfasync="false">
 <?php
+add_javascript('<script src="' . G5_THEME_URL . '/js/jquery-3.5.1.min.js"></script>');
+add_javascript('<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>');
+add_javascript('<script src="' . G5_THEME_URL . '/js/common.js"></script>');
+add_javascript('<script src="' . G5_THEME_URL . '/js/wrest.js"></script>');
+add_javascript('<script src="' . G5_THEME_URL . '/js/bootstrap.bundle.min.js"></script>');
+add_javascript('<script src="' . G5_THEME_URL . '/js/clipboard.min.js"></script>');
+add_javascript('<script src="' . G5_THEME_URL . '/js/nariya.js"></script>');
+add_javascript('<script src="' . LAYOUT_URL . '/js/darkmode.js"></script>');
+add_javascript('<script src="' . LAYOUT_URL . '/js/customui.js?CACHEBUST"></script>');
+add_javascript('<script src="' . LAYOUT_URL . '/js/custom_features.js"></script>');
+
 // 레이아웃 스크립트
-add_javascript('<script src="'.LAYOUT_URL.'/js/layout.js"></script>', 0);
+add_javascript('<script src="' . LAYOUT_URL . '/js/layout.js?CACHEBUST"></script>');
 ?>
 </script>
 

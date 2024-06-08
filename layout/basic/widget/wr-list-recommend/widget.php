@@ -104,8 +104,8 @@ $wr_notice = (isset($wset['is_notice']) && $wset['is_notice']) ? ' bg-body-terti
                     </a>
                 </div>
 
-                <div class="ms-auto ps-1 small text-body-tertiary">
-                    <?php echo na_date($row['wr_datetime'], 'orangered', 'H:i', 'm.d', 'm.d') ?>
+                <div class="ms-auto ps-1 small text-body-tertiary text-nowrap">
+                    <?php echo na_date($row['wr_datetime'], 'orangered') ?>
                 </div>
             </div>
         </li>

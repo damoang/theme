@@ -192,7 +192,7 @@ if ($category_option) {
 
                             <div class="float-end">
                                 <span class="visually-hidden">등록일</span>
-                                <?php echo na_date($list[$i]['qa_datetime'], 'orangered', 'H:i', 'm.d', 'Y.m.d') ?>
+                                <?php echo na_date($list[$i]['qa_datetime'], 'orangered', 'full') ?>
                             </div>
                         </div>
                     </div>

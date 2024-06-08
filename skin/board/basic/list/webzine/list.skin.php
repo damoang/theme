@@ -2,7 +2,7 @@
 if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
 // add_stylesheet('css 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
-add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
+add_stylesheet('<link rel="stylesheet" href="' . $list_skin_url . '/list.css?CACHEBUST">', 0);
 
 $list_cnt = count($list);
 
@@ -119,7 +119,7 @@ $ratio = na_img_ratio($thumb_w, $thumb_h, 75);
                         <?php } ?>
                     </div>
                     <div class="wr-num text-nowrap ps-2 d-none d-sm-block">
-                        <?php echo na_date($row['wr_datetime'], 'orangered', 'H:i', 'm.d', 'Y.m.d') ?>
+                        <?php echo na_date($row['wr_datetime'], 'orangered') ?>
                         <span class="visually-hidden">등록</span>
                     </div>
                 </div>
@@ -256,7 +256,7 @@ $ratio = na_img_ratio($thumb_w, $thumb_h, 75);
                                         <span class="float-end"><?= $row['da_member_memo'] ?></span>
                                     <?php } ?>
                                     <div class="">
-                                        <?php echo na_date($row['wr_datetime'], 'orangered', 'H:i', 'm.d', 'Y.m.d') ?>
+                                        <?php echo na_date($row['wr_datetime'], 'orangered') ?>
                                         <span class="visually-hidden">등록</span>
                                     </div>
                                 </div>

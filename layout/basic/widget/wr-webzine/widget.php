@@ -95,8 +95,8 @@ if($is_notice) {
                         <?php echo $wr_icon ?>
                     </div>
                 <?php } ?>
-                <div class="ms-auto ps-1 small text-body-tertiary">
-                    <?php echo na_date($row['wr_datetime'], 'orangered', 'H:i', 'm.d', 'm.d') ?>
+                <div class="ms-auto ps-1 small text-body-tertiary text-nowrap">
+                    <?php echo na_date($row['wr_datetime'], 'orangered') ?>
                 </div>
             </div>
         </li>
@@ -238,8 +238,8 @@ $id = 'webzine-'.na_rid();
                                         <span class="visually-hidden">추천</span>
                                     </div>
                                 <?php } ?>
-                                <div class="ms-auto">
-                                    <?php echo na_date($row['wr_datetime'], 'orangered', 'H:i', 'm.d', 'Y.m.d') ?>
+                                <div class="ms-auto text-nowrap">
+                                    <?php echo na_date($row['wr_datetime'], 'orangered') ?>
                                     <span class="visually-hidden">등록</span>
                                 </div>
                             </div>

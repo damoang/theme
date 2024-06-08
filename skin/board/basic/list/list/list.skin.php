@@ -2,10 +2,11 @@
 if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
 // add_stylesheet('css 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
-add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
+add_stylesheet('<link rel="stylesheet" href="' . $list_skin_url . '/list.css?CACHEBUST">', 0);
 ?>
 
 <section id="bo_list" class="line-top mb-3">
+    
     <ul class="list-group list-group-flush border-bottom">
         <li class="list-group-item d-none d-md-block hd-wrap">
             <div class="d-flex flex-md-row align-items-md-center gap-1 fw-bold">
@@ -182,7 +183,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
                                     </div>
                                     <div class="wr-date text-nowrap order-5 order-md-2">
                                         <i class="bi bi-clock d-inline-block d-md-none"></i>
-                                        <?php echo na_date($row['wr_datetime'], 'orangered da-list-date', 'H:i', 'm.d', 'Y.m.d') ?>
+                                        <?php echo na_date($row['wr_datetime'], 'orangered da-list-date') ?>
                                         <span class="visually-hidden">등록</span>
                                     </div>
                                     <!-- 추천 수 (모바일) -->
@@ -222,3 +223,4 @@ add_stylesheet('<link rel="stylesheet" href="'.$list_skin_url.'/list.css">', 0);
     <?php } ?>
     </ul>
 </section>
+

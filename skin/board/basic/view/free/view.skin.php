@@ -3,7 +3,7 @@
 if (!defined("_GNUBOARD_")) exit; // 개별 페이지 접근 불가
 
 // add_stylesheet('css 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
-add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css">', 0);
+add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css?CACHEBUST">', 0);
 
 ?>
 
@@ -44,7 +44,7 @@ add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css">
             </div>
             <div>
                 <span class="visually-hidden">작성일</span>
-                <?php echo na_date($view['wr_datetime'], 'orangered', 'H:i', 'm.d H:i', 'Y.m.d H:i'); ?>
+                <?php echo na_date($view['wr_datetime'], 'orangered', 'long'); ?>
             </div>
         </div>
 
@@ -374,7 +374,7 @@ add_stylesheet('<link rel="stylesheet" href="' . $board_skin_url . '/style.css">
                                 <div class="na-title">
                                     <div class="float-right text-muted f-sm font-weight-normal ml-2">
                                         <span class="sr-only">등록일</span>
-                                        <?php echo na_date($list[$i]['wr_datetime'], 'orangered', 'H:i', 'm.d', 'Y.m.d') ?>
+                                        <?php echo na_date($list[$i]['wr_datetime'], 'orangered', 'long') ?>
                                     </div>
                                     <div class="na-item">
                                         <a href="<?php echo $list[$i]['href'] ?>" class="na-subject">

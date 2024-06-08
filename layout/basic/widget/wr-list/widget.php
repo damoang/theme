@@ -82,8 +82,8 @@ for ($i=0; $i < $list_cnt; $i++) {
                 </a>
             </div>
 
-            <div class="ms-auto ps-1 small text-body-tertiary">
-                <?php echo na_date($row['wr_datetime'], 'orangered', 'H:i', 'm.d', 'm.d') ?>
+            <div class="ms-auto ps-1 small text-body-tertiary text-nowrap">
+                <?php echo na_date($row['wr_datetime'], 'orangered') ?>
             </div>
         </div>
     </li>
