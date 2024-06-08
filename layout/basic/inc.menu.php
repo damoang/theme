@@ -145,7 +145,7 @@ return [
                 'shortcut' => 'Ｘ',
                 'icon' => 'bi-webcam-fill',
                     'items' => [
-                    '신고게시판' => '/angreport',
+                    // '신고게시판' => '/angreport',
                     '진실의 방' => '/truthroom',
                     '광고앙돼앙' => '/nope',
                     '강등열람' => '/disciplinelog',
