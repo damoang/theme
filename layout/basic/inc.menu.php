@@ -170,6 +170,7 @@ return [
                     '유지관리' => '/bug',
                     // '광고앙' => get_pretty_url('content', 'advertiser'),
                     '운영관리' => '/governance',
+                    '디스코드 입당 신청' => '/discord',
                     // '진실의 방' => '/truthroom',
                     // '광고앙돼앙' => '/nope',
                     // '레벨강등 열람' => '/disciplinelog',
